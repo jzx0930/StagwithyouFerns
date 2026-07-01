@@ -49,6 +49,56 @@
           "photo": "1--gXPO4YxbGDySePhWQWe_7B882xNw2i"
         }
       ]
+    },
+    {
+      "name": "梅里迪棒槌",
+      "latin": "Pachypodium meridionale",
+      "category": "棒槌",
+      "date": "2026.07.01",
+      "note": "棒槌一員,穩定生長中。",
+      "cover": "1a7ZgiKoeVoYSec0HJwzPPzzjvr5H_vsd",
+      "timeline": [
+        {
+          "date": "2026.07.01",
+          "tag": "現況",
+          "note": "植株現況。",
+          "photo": "1a7ZgiKoeVoYSec0HJwzPPzzjvr5H_vsd"
+        },
+        {
+          "date": "2026.07.01",
+          "tag": "紀錄",
+          "note": "另一角度細節。",
+          "photo": "1lWXStpGKSaASXkNjKoHE6Gf1XMQUm0cJ"
+        }
+      ]
+    },
+    {
+      "name": "畢之比（雙刺瓶幹）",
+      "latin": "Pachypodium bispinosum",
+      "category": "棒槌",
+      "date": "2026.07.01",
+      "note": "雙刺瓶幹,塊莖圓潤。",
+      "cover": "1Jmk6uoMND-lmRv1EZZrgveOqU3DkdYQ2",
+      "timeline": [
+        {
+          "date": "2026.07.01",
+          "tag": "現況",
+          "note": "植株現況。",
+          "photo": "1Jmk6uoMND-lmRv1EZZrgveOqU3DkdYQ2"
+        },
+        {
+          "date": "2026.07.01",
+          "tag": "紀錄",
+          "note": "細節一。",
+          "photo": "1DhXdq7yemzwyVOX4XYpxnU-IW57Y2WUU"
+        },
+        {
+          "date": "2026.07.01",
+          "tag": "紀錄",
+          "note": "細節二。",
+          "photo": "1M8AOq1rTd3rjkgzK463MPghJlIKOR2wq"
+        }
+      ]
     }
   ]
 }
