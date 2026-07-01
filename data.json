@@ -21,5 +21,28 @@
       }
     ]
   },
-  "plants": []
+  "plants": [
+    {
+      "name": "女王",
+      "latin": "Platycerium wandae",
+      "category": "鹿角蕨",
+      "date": "2026.07.01",
+      "note": "鹿角蕨之王,冠幅壯闊。",
+      "cover": "1FOOpU3NoLbvm3VBsezJnRWm7jqNDJcOs",
+      "timeline": [
+        {
+          "date": "2026.07.01",
+          "tag": "現況",
+          "note": "植株現況,孢子葉舒展。",
+          "photo": "1FOOpU3NoLbvm3VBsezJnRWm7jqNDJcOs"
+        },
+        {
+          "date": "2026.07.01",
+          "tag": "紀錄",
+          "note": "另一角度細節。",
+          "photo": "1_T6BjahLeUFFK2LqzKi8SCfgVnY4A2wP"
+        }
+      ]
+    }
+  ]
 }
