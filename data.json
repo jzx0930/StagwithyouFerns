@@ -1,5 +1,5 @@
 {
-  "_說明": "先在 categories 選好分頁類別,再把每株植物加進 plants。每株植物的 category 必須是 鹿角蕨 / 棒槌 / 仙人掌 其中之一,首頁會依此歸到對應分頁。cover 與每個時間軸節點的 photo 填 Google Drive 檔案 ID 或完整圖片網址,留空字串就顯示佔位框。改完 commit 上 GitHub 即生效。",
+  "_說明": "先在 categories 選好分頁類別,再把每株植物加進 plants。每株植物的 category 必須是 鹿角蕨 / 棒槌 / 仙人掌 其中之一,首頁會依此歸到對應分頁。cover 與每個時間軸節點的 photo 填 Google Drive 檔案 ID 或完整圖片網址,留空字串就顯示佔位框。時間軸會自動依日期排序,最新的在最上面。改完 commit 上 GitHub 即生效。",
   "categories": [
     "鹿角蕨",
     "棒槌",
@@ -35,21 +35,19 @@
           "tag": "紀錄",
           "note": "另一角度細節。",
           "photo": "1_T6BjahLeUFFK2LqzKi8SCfgVnY4A2wP"
-         
         },
         {
-           "date": "2026.06.11",
+          "date": "2026.06.11",
           "tag": "紀錄",
           "note": "植株現況,孢子葉舒展。",
           "photo": "1FOOpU3NoLbvm3VBsezJnRWm7jqNDJcOs"
         },
         {
-           "date": "2026.06.03",
+          "date": "2026.06.03",
           "tag": "紀錄",
           "note": "剛長臉。",
           "photo": "1--gXPO4YxbGDySePhWQWe_7B882xNw2i"
         }
-
       ]
     }
   ]
