@@ -59,5 +59,6 @@
 ## 部署(GitHub Pages)
 
 - commit 全部檔案 → main / root。字型走 Google Fonts CDN,瀏覽需連網。
-- **快取破壞**:`index.html` 對 `styles.css`/`app.js` 用 `?v=N` 版本參數;**每次改 css/js 就把 N +1**,避免使用者被舊快取卡成白畫面。目前為 `?v=2`。
+- **快取破壞**:`index.html` 對 `styles.css`/`app.js` 用 `?v=N` 版本參數;**每次改 css/js 就把 N +1**,避免使用者被舊快取卡成白畫面。目前為 `?v=3`。
+- **燈箱隱藏坑**:`#lightbox` 用 `hidden` 屬性,但 `.lightbox{display:flex}` 會蓋過 `[hidden]` 的預設 `display:none`,導致燈箱變成永遠蓋滿畫面的深色遮罩(整頁看似全黑,其實內容已渲染)。務必保留 `.lightbox[hidden]{display:none}` 這條規則。
 - 若使用者回報「空白/開不起來」:多半是舊快取——先請他無痕視窗或 Ctrl+Shift+R;根治靠上面的 `?v=N` bump。
