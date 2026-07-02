@@ -101,6 +101,7 @@ body {
 
 .fern-card { background: radial-gradient(120% 120% at 74% 46%, #16281f, #0a1410 46%, #05080a 80%); }
 .fern-card staghorn-fern { position: absolute; inset: 0; width: 100%; height: 100%; }
+.fern-card model-viewer { position: absolute; inset: 0; width: 100%; height: 100%; --poster-color: transparent; background: transparent; }
 
 /* ---- 分類頁分頁列 ---- */
 .tabs { display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }

@@ -37,7 +37,7 @@
   function normCats() {
     var raw = state.cats || DEFAULT_CATS;
     return raw.map(function (c) {
-      return (typeof c === 'string') ? { name: c, cover: '' } : { name: c.name, cover: c.cover || '', fx: c.fx };
+      return (typeof c === 'string') ? { name: c, cover: '' } : { name: c.name, cover: c.cover || '', fx: c.fx, model: c.model };
     });
   }
   function catOf(p, cats) { return p.category || cats[0].name; }
@@ -87,17 +87,21 @@
 
     var cards = cats.map(function (c, i) {
       var count = data.filter(function (p) { return catOf(p, cats) === c.name; }).length;
-      var useFern = (c.fx === 'staghorn-fern') || (c.name === '鹿角蕨');
+      var useModel = !!c.model;
+      var useFern = !useModel && ((c.fx === 'staghorn-fern') || (c.name === '鹿角蕨'));
       var visual;
-      if (useFern) {
-        // 互動式 3D 鹿角蕨元件當封面(滑鼠視差)
+      if (useModel) {
+        // 真實 3D 模型(.glb)當互動封面,可拖曳旋轉檢視
+        visual = '<model-viewer src="' + esc(c.model) + '" camera-controls auto-rotate autoplay disable-zoom interaction-prompt="none" exposure="1.05" shadow-intensity="0.9" environment-image="neutral" touch-action="pan-y" alt="' + esc(c.name) + ' 3D"></model-viewer>';
+      } else if (useFern) {
+        // 互動式程序生成 3D 鹿角蕨元件(滑鼠視差)
         visual = '<staghorn-fern accent="#9ccb6f" frond-color="#7c9a56" basal-color="#45502a" fronds="9"></staghorn-fern>';
       } else {
         var cover = c.cover;
         if (!cover) { var fp = data.find(function (p) { return catOf(p, cats) === c.name && p.cover; }); if (fp) cover = fp.cover; }
         visual = '<div class="placeholder"><span>＋ 分類封面</span></div>' + coverImg(cover, 1000, c.name);
       }
-      return '<div class="cat-card' + (useFern ? ' fern-card' : '') + '" data-act="enter" data-i="' + i + '">' +
+      return '<div class="cat-card' + ((useModel || useFern) ? ' fern-card' : '') + '" data-act="enter" data-i="' + i + '">' +
         visual +
         '<div class="cat-shade"></div>' +
         '<div class="cat-meta"><div class="cat-name">' + esc(c.name) + '</div>' +
