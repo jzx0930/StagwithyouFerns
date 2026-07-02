@@ -48,7 +48,7 @@
 - `state`:`view / tab / selected / indiv / data / cats / lbUrl / lbScale`。
 - `load()` fetch `./data.json` → `render()` 依 `view` 呼叫 `renderLobby / renderGrid / renderDetail`。
 - 互動用事件委派:`data-act`(enter/tab/open/indiv/lobby/back-grid/zoom)+ `data-i`,`#app` 單一 click 監聽。
-- `initFireflies()` 動態產 30 顆螢火蟲塞進 `#bg`;使用者資料經 `esc()` 轉義。
+- `init3D()` 在 `#bg` 內加一張 `#fx3d` canvas,手寫 3D 粒子場(透視投影 + 滑鼠/陀螺儀視差 + 連線 + 微光),大廳全強度、其他頁 `window.__fxMode(view)` 自動淡到很弱;使用者資料經 `esc()` 轉義。
 
 ## 驗證習慣(每次改完必做)
 
@@ -59,6 +59,6 @@
 ## 部署(GitHub Pages)
 
 - commit 全部檔案 → main / root。字型走 Google Fonts CDN,瀏覽需連網。
-- **快取破壞**:`index.html` 對 `styles.css`/`app.js` 用 `?v=N` 版本參數;**每次改 css/js 就把 N +1**,避免使用者被舊快取卡成白畫面。目前為 `?v=3`。
+- **快取破壞**:`index.html` 對 `styles.css`/`app.js` 用 `?v=N` 版本參數;**每次改 css/js 就把 N +1**,避免使用者被舊快取卡成白畫面。目前為 `?v=4`。
 - **燈箱隱藏坑**:`#lightbox` 用 `hidden` 屬性,但 `.lightbox{display:flex}` 會蓋過 `[hidden]` 的預設 `display:none`,導致燈箱變成永遠蓋滿畫面的深色遮罩(整頁看似全黑,其實內容已渲染)。務必保留 `.lightbox[hidden]{display:none}` 這條規則。
 - 若使用者回報「空白/開不起來」:多半是舊快取——先請他無痕視窗或 Ctrl+Shift+R;根治靠上面的 `?v=N` bump。

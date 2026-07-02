@@ -27,6 +27,7 @@ body {
 
 /* ---- 背景動態層 ---- */
 .bg { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+#fx3d { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .aurora {
   position: absolute; top: 50%; left: 50%; width: 150vmax; height: 150vmax; margin: -75vmax;
   background: conic-gradient(from 0deg, transparent 0deg, rgba(74,168,120,0.14) 60deg, transparent 130deg, rgba(56,130,150,0.12) 210deg, transparent 300deg, rgba(60,150,120,0.10) 340deg, transparent 360deg);

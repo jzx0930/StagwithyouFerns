@@ -6,12 +6,12 @@
 
   var state = {
     view: 'lobby',     // lobby | grid | detail
-    tab: 0,            // 目前分類 index
-    selected: 0,       // 目前植物在 data 中的 index
-    indiv: 0,          // 目前個體(#)index
+    tab: 0,
+    selected: 0,
+    indiv: 0,
     data: null,
     cats: null,
-    lbUrl: null,       // 燈箱圖片 URL
+    lbUrl: null,
     lbScale: 1
   };
 
@@ -41,7 +41,6 @@
     });
   }
   function catOf(p, cats) { return p.category || cats[0].name; }
-  // 個體:相容舊格式(plant.timeline)與新格式(plant.individuals)
   function normIndiv(p) {
     if (Array.isArray(p.individuals) && p.individuals.length) return p.individuals;
     return [{ label: '', cover: p.cover || '', timeline: p.timeline || [] }];
@@ -58,9 +57,7 @@
         if (d && Array.isArray(d.plants)) {
           state.data = d.plants;
           state.cats = Array.isArray(d.categories) ? d.categories : null;
-        } else {
-          state.data = [];
-        }
+        } else { state.data = []; }
         render();
       })
       .catch(function () { state.data = []; render(); });
@@ -189,7 +186,6 @@
     }).join('');
     if (!total) rows = '<p class="subtitle" style="margin-left:108px;">這個個體還沒有照片。</p>';
 
-    // 個體(#)切換列 — 有多個個體、或有 # 編號時顯示
     var showIndiv = indivs.length > 1 || (indivs.length === 1 && !!cur.label);
     var picker = '';
     if (showIndiv) {
@@ -229,6 +225,7 @@
     if (state.view === 'lobby') renderLobby();
     else if (state.view === 'grid') renderGrid();
     else renderDetail();
+    if (window.__fxMode) window.__fxMode(state.view);
   }
 
   // ---- 事件委派 ----
@@ -270,27 +267,122 @@
     closeLightbox();
   });
 
-  // ---- 螢火蟲 ----
-  function initFireflies() {
+  // ---- 3D 互動粒子背景(純 Canvas,滑鼠視差) ----
+  function init3D() {
     var bg = document.getElementById('bg');
-    if (!bg) return;
-    var N = 30;
-    for (var i = 0; i < N; i++) {
-      var f = document.createElement('div');
-      f.className = 'firefly';
-      var s = (2.2 + Math.random() * 3.3).toFixed(1);
-      f.style.left = (Math.random() * 100).toFixed(1) + '%';
-      f.style.top = (Math.random() * 100).toFixed(1) + '%';
-      f.style.width = s + 'px'; f.style.height = s + 'px';
-      f.style.setProperty('--dx', Math.round(Math.random() * 180 - 90) + 'px');
-      f.style.setProperty('--dy', Math.round(Math.random() * 200 - 120) + 'px');
-      f.style.animationDuration = (11 + Math.random() * 15).toFixed(1) + 's, ' + (3.5 + Math.random() * 4).toFixed(1) + 's';
-      f.style.animationDelay = (Math.random() * 8).toFixed(1) + 's, ' + (Math.random() * 5).toFixed(1) + 's';
-      bg.appendChild(f);
+    if (!bg || !document.createElement('canvas').getContext) return;
+    var canvas = document.createElement('canvas');
+    canvas.id = 'fx3d';
+    bg.appendChild(canvas);
+    var ctx = canvas.getContext('2d');
+    var W, H, DPR, cx, cy, R;
+
+    function resize() {
+      DPR = Math.min(window.devicePixelRatio || 1, 2);
+      W = canvas.width = Math.floor(window.innerWidth * DPR);
+      H = canvas.height = Math.floor(window.innerHeight * DPR);
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+      cx = W / 2; cy = H / 2; R = Math.min(W, H) * 0.62;
     }
+    resize();
+    window.addEventListener('resize', resize);
+
+    var N = 130, focal = 3.0, pts = [];
+    for (var k = 0; k < N; k++) {
+      pts.push({
+        x: Math.random() * 2 - 1, y: Math.random() * 2 - 1, z: Math.random() * 2 - 1,
+        vx: (Math.random() - 0.5) * 0.0005, vy: (Math.random() - 0.5) * 0.0005, vz: (Math.random() - 0.5) * 0.0005,
+        s: 0.5 + Math.random() * 1.6, ph: Math.random() * Math.PI * 2, sp: 0.3 + Math.random() * 0.7
+      });
+    }
+
+    var tRotY = 0, tRotX = 0, rotY = 0, rotX = 0, autoYaw = 0, t = 0, fade = 1, targetFade = 1;
+    window.addEventListener('pointermove', function (e) {
+      var mx = (e.clientX / window.innerWidth) * 2 - 1;
+      var my = (e.clientY / window.innerHeight) * 2 - 1;
+      tRotY = mx * 0.5; tRotX = -my * 0.35;
+    });
+    window.addEventListener('deviceorientation', function (e) {
+      if (e.gamma == null) return;
+      tRotY = Math.max(-1, Math.min(1, e.gamma / 45)) * 0.5;
+      tRotX = Math.max(-1, Math.min(1, e.beta / 90)) * 0.35;
+    });
+    window.__fxMode = function (view) { targetFade = (view === 'lobby') ? 1 : 0.2; };
+
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function frame() {
+      t += 0.006;
+      if (!reduce) autoYaw += 0.0009;
+      rotY += (tRotY - rotY) * 0.05;
+      rotX += (tRotX - rotX) * 0.05;
+      fade += (targetFade - fade) * 0.05;
+
+      var ay = rotY + autoYaw, ax = rotX;
+      var cosY = Math.cos(ay), sinY = Math.sin(ay), cosX = Math.cos(ax), sinX = Math.sin(ax);
+
+      ctx.clearRect(0, 0, W, H);
+      if (fade < 0.02) { requestAnimationFrame(frame); return; }
+      ctx.globalCompositeOperation = 'lighter';
+
+      var proj = new Array(N), i, p;
+      for (i = 0; i < N; i++) {
+        p = pts[i];
+        if (!reduce) {
+          p.x += p.vx; p.y += p.vy; p.z += p.vz;
+          if (p.x > 1) p.x = -1; else if (p.x < -1) p.x = 1;
+          if (p.y > 1) p.y = -1; else if (p.y < -1) p.y = 1;
+          if (p.z > 1) p.z = -1; else if (p.z < -1) p.z = 1;
+        }
+        var x1 = p.x * cosY - p.z * sinY;
+        var z1 = p.x * sinY + p.z * cosY;
+        var y1 = p.y * cosX - z1 * sinX;
+        var z2 = p.y * sinX + z1 * cosX;
+        var depth = focal / (focal - z2);
+        proj[i] = { sx: cx + x1 * R * depth, sy: cy + y1 * R * depth, sc: depth, p: p };
+      }
+
+      // 近距離連線(細緻網絡)
+      var maxd = 118 * DPR, maxd2 = maxd * maxd;
+      ctx.lineWidth = DPR;
+      for (i = 0; i < N; i++) {
+        for (var j = i + 1; j < N; j++) {
+          var a = proj[i], b = proj[j];
+          var dx = a.sx - b.sx, dy = a.sy - b.sy, d2 = dx * dx + dy * dy;
+          if (d2 < maxd2) {
+            var al = (1 - Math.sqrt(d2) / maxd) * 0.09 * fade;
+            if (al > 0.004) {
+              ctx.strokeStyle = 'rgba(150,230,175,' + al + ')';
+              ctx.beginPath(); ctx.moveTo(a.sx, a.sy); ctx.lineTo(b.sx, b.sy); ctx.stroke();
+            }
+          }
+        }
+      }
+
+      // 粒子(近大遠小 + 微光閃爍 + 光暈)
+      for (i = 0; i < N; i++) {
+        var q = proj[i]; p = q.p;
+        var tw = 0.45 + 0.55 * Math.sin(t * 6 * p.sp + p.ph);
+        var r = Math.max(0.4, p.s * q.sc * 1.5 * DPR);
+        var a1 = Math.max(0, Math.min(1, tw)) * Math.min(1, q.sc * 0.9) * fade;
+        if (a1 <= 0.004) continue;
+        var g = ctx.createRadialGradient(q.sx, q.sy, 0, q.sx, q.sy, r * 5);
+        g.addColorStop(0, 'rgba(200,255,210,' + (a1 * 0.9) + ')');
+        g.addColorStop(0.3, 'rgba(120,230,150,' + (a1 * 0.5) + ')');
+        g.addColorStop(1, 'rgba(80,200,120,0)');
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(q.sx, q.sy, r * 5, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = 'rgba(216,255,222,' + a1 + ')';
+        ctx.beginPath(); ctx.arc(q.sx, q.sy, r, 0, Math.PI * 2); ctx.fill();
+      }
+      ctx.globalCompositeOperation = 'source-over';
+      requestAnimationFrame(frame);
+    }
+    frame();
   }
 
   // ---- 啟動 ----
-  initFireflies();
+  init3D();
   load();
 })();
