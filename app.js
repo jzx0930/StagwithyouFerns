@@ -1,0 +1,271 @@
+/* ===== 植物照片牆 / 成長紀錄站 — 邏輯 ===== */
+(function () {
+  'use strict';
+
+  var DEFAULT_CATS = ['鹿角蕨', '棒槌', '仙人掌', '龍舌蘭', '塊根', '多肉', '美照'];
+
+  var state = {
+    view: 'lobby',     // lobby | grid | detail
+    tab: 0,            // 目前分類 index
+    selected: 0,       // 目前植物在 data 中的 index
+    data: null,
+    cats: null,
+    lbUrl: null,       // 燈箱圖片 URL
+    lbScale: 1
+  };
+
+  var app = document.getElementById('app');
+  var lightbox = document.getElementById('lightbox');
+
+  // ---- 工具 ----
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  // Drive 檔案 ID 或完整網址 → 圖片 URL
+  function driveImg(v, w) {
+    if (!v) return null;
+    if (/^https?:/i.test(v)) return v;
+    return 'https://lh3.googleusercontent.com/d/' + v + '=w' + (w || 1000);
+  }
+  function coverImg(v, w, alt) {
+    var url = driveImg(v, w);
+    if (!url) return '';
+    return '<img class="cover-img" src="' + esc(url) + '" alt="' + esc(alt || '') +
+      '" onerror="this.style.display=\'none\'">';
+  }
+  function normCats() {
+    var raw = state.cats || DEFAULT_CATS;
+    return raw.map(function (c) {
+      return (typeof c === 'string') ? { name: c, cover: '' } : { name: c.name, cover: c.cover || '' };
+    });
+  }
+  function catOf(p, cats) { return p.category || cats[0].name; }
+  function photoCount(p) { return (p.count != null) ? Number(p.count) : (p.timeline ? p.timeline.length : 0); }
+
+  // ---- 資料載入 ----
+  function load() {
+    fetch('./data.json', { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (d && Array.isArray(d.plants)) {
+          state.data = d.plants;
+          state.cats = Array.isArray(d.categories) ? d.categories : null;
+        } else {
+          state.data = [];
+        }
+        render();
+      })
+      .catch(function () { state.data = []; render(); });
+  }
+
+  // ---- 導覽 ----
+  function go(view) {
+    state.view = view;
+    window.scrollTo(0, 0);
+    render();
+  }
+
+  // ---- 畫面 ----
+  function headerHTML(eyebrow, title, subtitle, withStats, totalPlants, totalPhotos) {
+    var stats = withStats ?
+      '<div class="stats">' +
+        '<div class="stat"><div class="num">' + totalPlants + '</div><div class="lbl">種植物</div></div>' +
+        '<div class="stat"><div class="num">' + totalPhotos + '</div><div class="lbl">張照片</div></div>' +
+      '</div>' : '';
+    return '<div class="head"><div>' +
+      '<div class="eyebrow">' + esc(eyebrow) + '</div>' +
+      '<h1 class="title">' + esc(title) + '</h1>' +
+      '<p class="subtitle">' + esc(subtitle) + '</p>' +
+      '</div>' + stats + '</div>';
+  }
+
+  function renderLobby() {
+    var cats = normCats();
+    var data = state.data || [];
+    var totalPlants = data.length;
+    var totalPhotos = data.reduce(function (s, p) { return s + photoCount(p); }, 0);
+
+    var cards = cats.map(function (c, i) {
+      var cover = c.cover;
+      if (!cover) { var fp = data.find(function (p) { return catOf(p, cats) === c.name && p.cover; }); if (fp) cover = fp.cover; }
+      var count = data.filter(function (p) { return catOf(p, cats) === c.name; }).length;
+      return '<div class="cat-card" data-act="enter" data-i="' + i + '">' +
+        '<div class="placeholder"><span>＋ 分類封面</span></div>' +
+        coverImg(cover, 1000, c.name) +
+        '<div class="cat-shade"></div>' +
+        '<div class="cat-meta"><div class="cat-name">' + esc(c.name) + '</div>' +
+        '<div class="chip">' + count + ' 種</div></div>' +
+      '</div>';
+    }).join('');
+
+    app.innerHTML = '<div class="wrap">' +
+      headerHTML('Herbarium · 分類選單', '我的植物收藏', '選一個分類,進入觀看。', true, totalPlants, totalPhotos) +
+      '<div class="card-grid">' + cards + '</div></div>';
+  }
+
+  function renderGrid() {
+    var cats = normCats();
+    var tabIdx = Math.min(state.tab, cats.length - 1);
+    var activeCat = cats[tabIdx].name;
+    var data = state.data || [];
+
+    var tabs = cats.map(function (c, i) {
+      var n = data.filter(function (p) { return catOf(p, cats) === c.name; }).length;
+      return '<div class="tab' + (i === tabIdx ? ' active' : '') + '" data-act="tab" data-i="' + i + '">' +
+        esc(c.name) + '<span class="c">' + n + '</span></div>';
+    }).join('');
+
+    var indexed = data.map(function (p, i) { return { p: p, i: i }; })
+      .filter(function (x) { return catOf(x.p, cats) === activeCat; });
+
+    var cards = indexed.map(function (x) {
+      var p = x.p;
+      var cover = coverImg(p.cover, 900, p.name);
+      var ph = cover ? '' : '<div class="placeholder"><span>＋ 封面照片</span></div>';
+      return '<div class="plant-card" data-act="open" data-i="' + x.i + '">' +
+        '<div class="pc-cover">' + ph + cover +
+          '<span class="pc-count">' + photoCount(p) + ' 張</span></div>' +
+        '<div class="pc-body">' +
+          '<div class="pc-name">' + esc(p.name) + '</div>' +
+          '<div class="pc-latin">' + esc(p.latin || '') + '</div>' +
+          '<div class="rule"></div>' +
+          '<div class="pc-foot"><span class="pc-date">入手 ' + esc(p.date || '') + '</span>' +
+            '<span class="pc-go">看成長 →</span></div>' +
+          (p.note ? '<div class="pc-note">— ' + esc(p.note) + '</div>' : '') +
+        '</div></div>';
+    }).join('');
+
+    var totalPhotos = indexed.reduce(function (s, x) { return s + photoCount(x.p); }, 0);
+    var empty = indexed.length ? '' :
+      '<p class="subtitle" style="margin-top:8px;">這個分類還沒有植物。在 data.json 的 plants 加一筆,把 category 設成「' + esc(activeCat) + '」即可。</p>';
+
+    app.innerHTML = '<div class="wrap">' +
+      '<div class="back-row"><span class="pill-btn" data-act="lobby">← 回到分類大廳</span></div>' +
+      headerHTML('Herbarium · 成長紀錄', activeCat, '點任一株,進入牠的成長時間軸。', true, indexed.length, totalPhotos) +
+      '<div class="tabs">' + tabs + '</div>' +
+      '<div class="card-grid">' + cards + '</div>' + empty +
+      '</div>';
+  }
+
+  function renderDetail() {
+    var data = state.data || [];
+    var order = '最新在前';
+    var sel = data[state.selected] || data[0] || { name: '', latin: '', date: '', timeline: [] };
+    var entries = (sel.timeline || []).slice().sort(function (a, b) { return a.date.localeCompare(b.date); });
+    if (order === '最新在前') entries.reverse();
+    var total = entries.length;
+
+    var rows = entries.map(function (e, i) {
+      var parts = String(e.date || '').split('.');
+      var y = parts[0] || '', md = (parts[1] || '') + '.' + (parts[2] || '');
+      var num = String(order === '最新在前' ? i + 1 : total - i).padStart(2, '0');
+      var tot = String(total).padStart(2, '0');
+      var photo;
+      if (e.photo) {
+        var url = driveImg(e.photo, 1600);
+        var big = driveImg(e.photo, 2600);
+        photo = '<div class="tl-photo">' +
+          '<img src="' + esc(url) + '" alt="' + esc(e.tag || '') + '" onerror="this.style.display=\'none\'">' +
+          '<span class="tag">' + esc(e.tag || '') + '</span>' +
+          '<span class="idx">' + num + ' / ' + tot + '</span>' +
+          '<span class="fs-btn" data-act="zoom" data-url="' + esc(big) + '">⤢ 全螢幕</span>' +
+        '</div>';
+      } else {
+        photo = '<div class="tl-empty"><span>尚未加入照片</span><span class="tag">' + esc(e.tag || '') + '</span></div>';
+      }
+      return '<div class="tl-row">' +
+        '<div class="tl-when"><div class="y">' + esc(y) + '</div><div class="md">' + esc(md) + '</div></div>' +
+        '<div class="tl-axis"><div class="line"></div><div class="dot"></div></div>' +
+        '<div class="tl-main"><div class="tl-card">' + photo +
+          '<div class="tl-note">' + esc(e.note || '') + '</div></div></div>' +
+      '</div>';
+    }).join('');
+
+    var no = String(state.selected + 1).padStart(3, '0');
+    app.innerHTML = '<div class="wrap narrow">' +
+      '<span class="pill-btn" data-act="lobby-from-detail">← 回到照片牆</span>' +
+      '<div style="margin:34px 0 12px;">' +
+        '<div class="eyebrow">No. ' + no + ' · Growth Log</div>' +
+        '<h1 class="title">' + esc(sel.name) + '</h1>' +
+        '<div class="detail-latin">' + esc(sel.latin || '') + '</div>' +
+      '</div>' +
+      '<div class="metrics">' +
+        '<div class="metric"><div class="k">入手 / 種植</div><div class="v">' + esc(sel.date || '') + '</div></div>' +
+        '<div class="metric"><div class="k">累積照片</div><div class="v">' + photoCount(sel) + ' 張</div></div>' +
+        '<div class="metric"><div class="k">紀錄節點</div><div class="v">' + (sel.timeline || []).length + ' 個</div></div>' +
+      '</div>' +
+      '<div class="tl-head"><h2>成長時間軸</h2><div class="tl-order">最新 → 最早</div></div>' +
+      '<div>' + rows + '</div>' +
+      '<div class="detail-footer"><span class="pill-btn" data-act="back-grid">↑ 回到照片牆</span></div>' +
+    '</div>';
+  }
+
+  function render() {
+    if (state.view === 'lobby') renderLobby();
+    else if (state.view === 'grid') renderGrid();
+    else renderDetail();
+  }
+
+  // ---- 事件委派 ----
+  app.addEventListener('click', function (ev) {
+    var t = ev.target.closest('[data-act]');
+    if (!t) return;
+    var act = t.getAttribute('data-act');
+    var i = parseInt(t.getAttribute('data-i'), 10);
+    if (act === 'enter') { state.tab = i; go('grid'); }
+    else if (act === 'tab') { state.tab = i; render(); }
+    else if (act === 'open') { state.selected = i; go('detail'); }
+    else if (act === 'lobby' || act === 'lobby-from-detail') { go('lobby'); }
+    else if (act === 'back-grid') { go('grid'); }
+    else if (act === 'zoom') { openLightbox(t.getAttribute('data-url')); }
+  });
+
+  // ---- 燈箱 ----
+  function openLightbox(url) {
+    if (!url) return;
+    state.lbUrl = url; state.lbScale = 1;
+    renderLightbox();
+  }
+  function closeLightbox() { state.lbUrl = null; state.lbScale = 1; lightbox.hidden = true; lightbox.innerHTML = ''; }
+  function cycleZoom() { var s = state.lbScale; state.lbScale = s >= 3.4 ? 1 : (s >= 1.9 ? 3.5 : 2); renderLightbox(); }
+  function renderLightbox() {
+    var sc = state.lbScale;
+    lightbox.hidden = false;
+    lightbox.classList.toggle('zoomed', sc !== 1);
+    var imgStyle = sc === 1 ? '' : 'width:' + (sc * 100) + 'vw;';
+    var label = sc === 1 ? '點圖片放大看細節' : (Math.round(sc * 100) + '% · 點圖片切換');
+    lightbox.innerHTML =
+      '<img src="' + esc(state.lbUrl) + '" alt="" style="' + imgStyle + '">' +
+      '<div class="lb-close" data-lb="close">✕ 關閉</div>' +
+      '<div class="lb-label">' + label + '</div>';
+  }
+  lightbox.addEventListener('click', function (ev) {
+    if (ev.target.tagName === 'IMG') { ev.stopPropagation(); cycleZoom(); return; }
+    closeLightbox();
+  });
+
+  // ---- 螢火蟲 ----
+  function initFireflies() {
+    var bg = document.getElementById('bg');
+    if (!bg) return;
+    var N = 30;
+    for (var i = 0; i < N; i++) {
+      var f = document.createElement('div');
+      f.className = 'firefly';
+      var s = (2.2 + Math.random() * 3.3).toFixed(1);
+      f.style.left = (Math.random() * 100).toFixed(1) + '%';
+      f.style.top = (Math.random() * 100).toFixed(1) + '%';
+      f.style.width = s + 'px'; f.style.height = s + 'px';
+      f.style.setProperty('--dx', Math.round(Math.random() * 180 - 90) + 'px');
+      f.style.setProperty('--dy', Math.round(Math.random() * 200 - 120) + 'px');
+      f.style.animationDuration = (11 + Math.random() * 15).toFixed(1) + 's, ' + (3.5 + Math.random() * 4).toFixed(1) + 's';
+      f.style.animationDelay = (Math.random() * 8).toFixed(1) + 's, ' + (Math.random() * 5).toFixed(1) + 's';
+      bg.appendChild(f);
+    }
+  }
+
+  // ---- 啟動 ----
+  initFireflies();
+  load();
+})();
