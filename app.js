@@ -5,7 +5,7 @@
   var DEFAULT_CATS = ['鹿角蕨', '棒槌樹', '美照'];
 
   var state = {
-    view: 'lobby',     // lobby | grid | detail
+    view: 'lobby',
     tab: 0,
     selected: 0,
     indiv: 0,
@@ -37,7 +37,7 @@
   function normCats() {
     var raw = state.cats || DEFAULT_CATS;
     return raw.map(function (c) {
-      return (typeof c === 'string') ? { name: c, cover: '' } : { name: c.name, cover: c.cover || '' };
+      return (typeof c === 'string') ? { name: c, cover: '' } : { name: c.name, cover: c.cover || '', fx: c.fx };
     });
   }
   function catOf(p, cats) { return p.category || cats[0].name; }
@@ -86,12 +86,19 @@
     var totalPhotos = data.reduce(function (s, p) { return s + photoCount(p); }, 0);
 
     var cards = cats.map(function (c, i) {
-      var cover = c.cover;
-      if (!cover) { var fp = data.find(function (p) { return catOf(p, cats) === c.name && p.cover; }); if (fp) cover = fp.cover; }
       var count = data.filter(function (p) { return catOf(p, cats) === c.name; }).length;
-      return '<div class="cat-card" data-act="enter" data-i="' + i + '">' +
-        '<div class="placeholder"><span>＋ 分類封面</span></div>' +
-        coverImg(cover, 1000, c.name) +
+      var useFern = (c.fx === 'staghorn-fern') || (c.name === '鹿角蕨');
+      var visual;
+      if (useFern) {
+        // 互動式 3D 鹿角蕨元件當封面(滑鼠視差)
+        visual = '<staghorn-fern accent="#9ccb6f" frond-color="#7c9a56" basal-color="#45502a" fronds="9"></staghorn-fern>';
+      } else {
+        var cover = c.cover;
+        if (!cover) { var fp = data.find(function (p) { return catOf(p, cats) === c.name && p.cover; }); if (fp) cover = fp.cover; }
+        visual = '<div class="placeholder"><span>＋ 分類封面</span></div>' + coverImg(cover, 1000, c.name);
+      }
+      return '<div class="cat-card' + (useFern ? ' fern-card' : '') + '" data-act="enter" data-i="' + i + '">' +
+        visual +
         '<div class="cat-shade"></div>' +
         '<div class="cat-meta"><div class="cat-name">' + esc(c.name) + '</div>' +
         '<div class="chip">' + count + ' 種</div></div>' +
@@ -343,7 +350,6 @@
         proj[i] = { sx: cx + x1 * R * depth, sy: cy + y1 * R * depth, sc: depth, p: p };
       }
 
-      // 近距離連線(細緻網絡)
       var maxd = 118 * DPR, maxd2 = maxd * maxd;
       ctx.lineWidth = DPR;
       for (i = 0; i < N; i++) {
@@ -360,7 +366,6 @@
         }
       }
 
-      // 粒子(近大遠小 + 微光閃爍 + 光暈)
       for (i = 0; i < N; i++) {
         var q = proj[i]; p = q.p;
         var tw = 0.45 + 0.55 * Math.sin(t * 6 * p.sp + p.ph);
