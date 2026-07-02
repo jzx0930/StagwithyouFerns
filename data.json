@@ -1,13 +1,34 @@
 {
-  "_說明": "先在 categories 選好分頁類別,再把每株植物加進 plants。每株植物的 category 必須是 鹿角蕨 / 棒槌 / 仙人掌 其中之一,首頁會依此歸到對應分頁。cover 與每個時間軸節點的 photo 填 Google Drive 檔案 ID 或完整圖片網址,留空字串就顯示佔位框。時間軸會自動依日期排序,最新的在最上面。改完 commit 上 GitHub 即生效。",
+  "_說明": "分類選單(大廳)會顯示每個 category 的封面圖片。categories 每一項可用 {\"name\":\"分類名\",\"cover\":\"Drive檔案ID或圖片網址\"} 指定代表照片;cover 留空則自動用該分類第一株植物的封面,再空則顯示佔位框。每株植物的 category 必須等於某個分類的 name。植物的 cover 與時間軸節點的 photo 一樣填 Drive 檔案 ID 或完整圖片網址。時間軸自動依日期排序,最新在最上面。改完 commit 上 GitHub 即生效。",
   "categories": [
-    "鹿角蕨",
-    "棒槌",
-    "仙人掌",
-    "龍舌蘭",
-    "塊根",
-    "多肉",
-    "美照"
+    {
+      "name": "鹿角蕨",
+      "cover": "1FOOpU3NoLbvm3VBsezJnRWm7jqNDJcOs"
+    },
+    {
+      "name": "棒槌",
+      "cover": "1a7ZgiKoeVoYSec0HJwzPPzzjvr5H_vsd"
+    },
+    {
+      "name": "仙人掌",
+      "cover": ""
+    },
+    {
+      "name": "龍舌蘭",
+      "cover": ""
+    },
+    {
+      "name": "塊根",
+      "cover": ""
+    },
+    {
+      "name": "多肉",
+      "cover": ""
+    },
+    {
+      "name": "美照",
+      "cover": ""
+    }
   ],
   "_範例植物格式": {
     "name": "二歧鹿角蕨",
