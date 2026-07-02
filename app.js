@@ -2,12 +2,13 @@
 (function () {
   'use strict';
 
-  var DEFAULT_CATS = ['鹿角蕨', '棒槌', '仙人掌', '龍舌蘭', '塊根', '多肉', '美照'];
+  var DEFAULT_CATS = ['鹿角蕨', '棒槌樹', '美照'];
 
   var state = {
     view: 'lobby',     // lobby | grid | detail
     tab: 0,            // 目前分類 index
     selected: 0,       // 目前植物在 data 中的 index
+    indiv: 0,          // 目前個體(#)index
     data: null,
     cats: null,
     lbUrl: null,       // 燈箱圖片 URL
@@ -22,7 +23,6 @@
     return String(s == null ? '' : s)
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
-  // Drive 檔案 ID 或完整網址 → 圖片 URL
   function driveImg(v, w) {
     if (!v) return null;
     if (/^https?:/i.test(v)) return v;
@@ -41,7 +41,14 @@
     });
   }
   function catOf(p, cats) { return p.category || cats[0].name; }
-  function photoCount(p) { return (p.count != null) ? Number(p.count) : (p.timeline ? p.timeline.length : 0); }
+  // 個體:相容舊格式(plant.timeline)與新格式(plant.individuals)
+  function normIndiv(p) {
+    if (Array.isArray(p.individuals) && p.individuals.length) return p.individuals;
+    return [{ label: '', cover: p.cover || '', timeline: p.timeline || [] }];
+  }
+  function photoCount(p) {
+    return normIndiv(p).reduce(function (s, iv) { return s + ((iv.timeline || []).length); }, 0);
+  }
 
   // ---- 資料載入 ----
   function load() {
@@ -59,12 +66,7 @@
       .catch(function () { state.data = []; render(); });
   }
 
-  // ---- 導覽 ----
-  function go(view) {
-    state.view = view;
-    window.scrollTo(0, 0);
-    render();
-  }
+  function go(view) { state.view = view; window.scrollTo(0, 0); render(); }
 
   // ---- 畫面 ----
   function headerHTML(eyebrow, title, subtitle, withStats, totalPlants, totalPhotos) {
@@ -138,7 +140,7 @@
 
     var totalPhotos = indexed.reduce(function (s, x) { return s + photoCount(x.p); }, 0);
     var empty = indexed.length ? '' :
-      '<p class="subtitle" style="margin-top:8px;">這個分類還沒有植物。在 data.json 的 plants 加一筆,把 category 設成「' + esc(activeCat) + '」即可。</p>';
+      '<p class="subtitle" style="margin-top:8px;">這個分類還沒有植物。</p>';
 
     app.innerHTML = '<div class="wrap">' +
       '<div class="back-row"><span class="pill-btn" data-act="lobby">← 回到分類大廳</span></div>' +
@@ -150,16 +152,20 @@
 
   function renderDetail() {
     var data = state.data || [];
-    var order = '最新在前';
-    var sel = data[state.selected] || data[0] || { name: '', latin: '', date: '', timeline: [] };
-    var entries = (sel.timeline || []).slice().sort(function (a, b) { return a.date.localeCompare(b.date); });
-    if (order === '最新在前') entries.reverse();
+    var sel = data[state.selected] || data[0] || { name: '', latin: '', date: '', individuals: [] };
+    var indivs = normIndiv(sel);
+    var ii = Math.min(state.indiv || 0, indivs.length - 1);
+    if (ii < 0) ii = 0;
+    var cur = indivs[ii] || { label: '', timeline: [] };
+
+    var entries = (cur.timeline || []).slice().sort(function (a, b) { return a.date.localeCompare(b.date); });
+    entries.reverse();
     var total = entries.length;
 
     var rows = entries.map(function (e, i) {
       var parts = String(e.date || '').split('.');
       var y = parts[0] || '', md = (parts[1] || '') + '.' + (parts[2] || '');
-      var num = String(order === '最新在前' ? i + 1 : total - i).padStart(2, '0');
+      var num = String(i + 1).padStart(2, '0');
       var tot = String(total).padStart(2, '0');
       var photo;
       if (e.photo) {
@@ -181,8 +187,25 @@
           '<div class="tl-note">' + esc(e.note || '') + '</div></div></div>' +
       '</div>';
     }).join('');
+    if (!total) rows = '<p class="subtitle" style="margin-left:108px;">這個個體還沒有照片。</p>';
+
+    // 個體(#)切換列 — 有多個個體、或有 # 編號時顯示
+    var showIndiv = indivs.length > 1 || (indivs.length === 1 && !!cur.label);
+    var picker = '';
+    if (showIndiv) {
+      picker = '<div class="tl-head"><h2>選擇個體</h2><div class="tl-order">共 ' + indivs.length + ' 株</div></div>' +
+        '<div class="tabs">' + indivs.map(function (iv, i) {
+          var lbl = iv.label || '未編號';
+          return '<div class="tab' + (i === ii ? ' active' : '') + '" data-act="indiv" data-i="' + i + '">' +
+            esc(lbl) + '<span class="c">' + ((iv.timeline || []).length) + '</span></div>';
+        }).join('') + '</div>';
+    }
 
     var no = String(state.selected + 1).padStart(3, '0');
+    var indivMetric = showIndiv
+      ? '<div class="metric"><div class="k">目前個體</div><div class="v">' + esc(cur.label || '未編號') + '</div></div>'
+      : '';
+
     app.innerHTML = '<div class="wrap narrow">' +
       '<span class="pill-btn" data-act="lobby-from-detail">← 回到照片牆</span>' +
       '<div style="margin:34px 0 12px;">' +
@@ -193,8 +216,9 @@
       '<div class="metrics">' +
         '<div class="metric"><div class="k">入手 / 種植</div><div class="v">' + esc(sel.date || '') + '</div></div>' +
         '<div class="metric"><div class="k">累積照片</div><div class="v">' + photoCount(sel) + ' 張</div></div>' +
-        '<div class="metric"><div class="k">紀錄節點</div><div class="v">' + (sel.timeline || []).length + ' 個</div></div>' +
+        indivMetric +
       '</div>' +
+      picker +
       '<div class="tl-head"><h2>成長時間軸</h2><div class="tl-order">最新 → 最早</div></div>' +
       '<div>' + rows + '</div>' +
       '<div class="detail-footer"><span class="pill-btn" data-act="back-grid">↑ 回到照片牆</span></div>' +
@@ -215,7 +239,8 @@
     var i = parseInt(t.getAttribute('data-i'), 10);
     if (act === 'enter') { state.tab = i; go('grid'); }
     else if (act === 'tab') { state.tab = i; render(); }
-    else if (act === 'open') { state.selected = i; go('detail'); }
+    else if (act === 'open') { state.selected = i; state.indiv = 0; go('detail'); }
+    else if (act === 'indiv') { state.indiv = i; render(); }
     else if (act === 'lobby' || act === 'lobby-from-detail') { go('lobby'); }
     else if (act === 'back-grid') { go('grid'); }
     else if (act === 'zoom') { openLightbox(t.getAttribute('data-url')); }

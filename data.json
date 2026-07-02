@@ -1,28 +1,12 @@
 {
-  "_說明": "分類選單(大廳)會顯示每個 category 的封面圖片。categories 每一項可用 {\"name\":\"分類名\",\"cover\":\"Drive檔案ID或圖片網址\"} 指定代表照片;cover 留空則自動用該分類第一株植物的封面,再空則顯示佔位框。每株植物的 category 必須等於某個分類的 name。植物的 cover 與時間軸節點的 photo 一樣填 Drive 檔案 ID 或完整圖片網址。時間軸自動依日期排序,最新在最上面。改完 commit 上 GitHub 即生效。",
+  "_說明": "由 Google Drive「植物照片」自動產生。層級:分類(第一層資料夾,取中文)→ 植物(第二層,latin=屬名+種小名)→ 個體 #編號(第三層,可切換)→ 照片。個體資料夾以 #數字 命名代表同種不同株;植物資料夾內直接放的照片視為未編號個體(label 空)。date 取自照片檔名的日期(支援 2026年6月7日 或 2026:6:7 兩種),無日期則用上傳日。note/tag 目前為系統化產生。時間軸自動排序,最新在最上面。",
   "categories": [
     {
       "name": "鹿角蕨",
-      "cover": "1FOOpU3NoLbvm3VBsezJnRWm7jqNDJcOs"
-    },
-    {
-      "name": "棒槌",
-      "cover": "1a7ZgiKoeVoYSec0HJwzPPzzjvr5H_vsd"
-    },
-    {
-      "name": "仙人掌",
       "cover": ""
     },
     {
-      "name": "龍舌蘭",
-      "cover": ""
-    },
-    {
-      "name": "塊根",
-      "cover": ""
-    },
-    {
-      "name": "多肉",
+      "name": "棒槌樹",
       "cover": ""
     },
     {
@@ -30,98 +14,165 @@
       "cover": ""
     }
   ],
-  "_範例植物格式": {
-    "name": "二歧鹿角蕨",
-    "latin": "Platycerium bifurcatum",
-    "category": "鹿角蕨",
-    "date": "2024.01.01",
-    "note": "上板馴化中",
-    "cover": "",
-    "timeline": [
-      {
-        "date": "2024.01.01",
-        "tag": "入手",
-        "note": "小苗上板,孢子葉尚未展開。",
-        "photo": ""
-      }
-    ]
-  },
   "plants": [
     {
       "name": "女王",
       "latin": "Platycerium wandae",
       "category": "鹿角蕨",
       "date": "2026.07.01",
-      "note": "鹿角蕨之王,冠幅壯闊。",
-      "cover": "1FOOpU3NoLbvm3VBsezJnRWm7jqNDJcOs",
-      "timeline": [
+      "note": "",
+      "cover": "1_T6BjahLeUFFK2LqzKi8SCfgVnY4A2wP",
+      "individuals": [
         {
-          "date": "2026.06.27",
-          "tag": "紀錄",
-          "note": "另一角度細節。",
-          "photo": "1_T6BjahLeUFFK2LqzKi8SCfgVnY4A2wP"
-        },
+          "label": "",
+          "cover": "1_T6BjahLeUFFK2LqzKi8SCfgVnY4A2wP",
+          "timeline": [
+            {
+              "date": "2026.07.01",
+              "tag": "紀錄",
+              "note": "2026.07.01 紀錄",
+              "photo": "1--gXPO4YxbGDySePhWQWe_7B882xNw2i"
+            },
+            {
+              "date": "2026.07.01",
+              "tag": "紀錄",
+              "note": "2026.07.01 紀錄",
+              "photo": "1TdTFAHrOrHh10Gs94IRgXQNRTHNhMYCf"
+            },
+            {
+              "date": "2026.07.01",
+              "tag": "紀錄",
+              "note": "2026.07.01 紀錄",
+              "photo": "1_T6BjahLeUFFK2LqzKi8SCfgVnY4A2wP"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "非猴",
+      "latin": "Platycerium",
+      "category": "鹿角蕨",
+      "date": "2026.07.01",
+      "note": "",
+      "cover": "",
+      "individuals": [
         {
-          "date": "2026.06.11",
-          "tag": "紀錄",
-          "note": "植株現況,孢子葉舒展。",
-          "photo": "1FOOpU3NoLbvm3VBsezJnRWm7jqNDJcOs"
-        },
-        {
-          "date": "2026.06.03",
-          "tag": "紀錄",
-          "note": "剛長臉。",
-          "photo": "1--gXPO4YxbGDySePhWQWe_7B882xNw2i"
+          "label": "",
+          "cover": "",
+          "timeline": []
         }
       ]
     },
     {
       "name": "梅里迪棒槌",
       "latin": "Pachypodium meridionale",
-      "category": "棒槌",
-      "date": "2026.07.01",
-      "note": "棒槌一員,穩定生長中。",
-      "cover": "1a7ZgiKoeVoYSec0HJwzPPzzjvr5H_vsd",
-      "timeline": [
+      "category": "棒槌樹",
+      "date": "2026.06.27",
+      "note": "",
+      "cover": "1lWXStpGKSaASXkNjKoHE6Gf1XMQUm0cJ",
+      "individuals": [
         {
-          "date": "2026.07.01",
-          "tag": "現況",
-          "note": "植株現況。",
-          "photo": "1a7ZgiKoeVoYSec0HJwzPPzzjvr5H_vsd"
-        },
+          "label": "#99",
+          "cover": "1lWXStpGKSaASXkNjKoHE6Gf1XMQUm0cJ",
+          "timeline": [
+            {
+              "date": "2026.06.27",
+              "tag": "#99",
+              "note": "#99 個體 · 2026.06.27 紀錄",
+              "photo": "1a7ZgiKoeVoYSec0HJwzPPzzjvr5H_vsd"
+            },
+            {
+              "date": "2026.06.30",
+              "tag": "#99",
+              "note": "#99 個體 · 2026.06.30 紀錄",
+              "photo": "1lWXStpGKSaASXkNjKoHE6Gf1XMQUm0cJ"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "一本尼",
+      "latin": "Pachypodium eburneum",
+      "category": "棒槌樹",
+      "date": "2026.06.07",
+      "note": "",
+      "cover": "1BBcgjymjzsYA3SEnQmKR6eVa6QoVedma",
+      "individuals": [
         {
-          "date": "2026.07.01",
-          "tag": "紀錄",
-          "note": "另一角度細節。",
-          "photo": "1lWXStpGKSaASXkNjKoHE6Gf1XMQUm0cJ"
+          "label": "#99",
+          "cover": "1BBcgjymjzsYA3SEnQmKR6eVa6QoVedma",
+          "timeline": [
+            {
+              "date": "2026.06.07",
+              "tag": "#99",
+              "note": "#99 個體 · 2026.06.07 紀錄",
+              "photo": "1rI4IKrTlFCGsoa8zrO4ohVRPo3OQssKs"
+            },
+            {
+              "date": "2026.06.11",
+              "tag": "#99",
+              "note": "#99 個體 · 2026.06.11 紀錄",
+              "photo": "1BBcgjymjzsYA3SEnQmKR6eVa6QoVedma"
+            }
+          ]
         }
       ]
     },
     {
       "name": "畢之比（雙刺瓶幹）",
       "latin": "Pachypodium bispinosum",
-      "category": "棒槌",
+      "category": "棒槌樹",
       "date": "2026.07.01",
-      "note": "雙刺瓶幹,塊莖圓潤。",
+      "note": "",
       "cover": "1Jmk6uoMND-lmRv1EZZrgveOqU3DkdYQ2",
-      "timeline": [
+      "individuals": [
         {
-          "date": "2026.07.01",
-          "tag": "現況",
-          "note": "植株現況。",
-          "photo": "1Jmk6uoMND-lmRv1EZZrgveOqU3DkdYQ2"
-        },
+          "label": "",
+          "cover": "1Jmk6uoMND-lmRv1EZZrgveOqU3DkdYQ2",
+          "timeline": [
+            {
+              "date": "2026.07.01",
+              "tag": "紀錄",
+              "note": "2026.07.01 紀錄",
+              "photo": "1M8AOq1rTd3rjkgzK463MPghJlIKOR2wq"
+            },
+            {
+              "date": "2026.07.01",
+              "tag": "紀錄",
+              "note": "2026.07.01 紀錄",
+              "photo": "1DhXdq7yemzwyVOX4XYpxnU-IW57Y2WUU"
+            },
+            {
+              "date": "2026.07.01",
+              "tag": "紀錄",
+              "note": "2026.07.01 紀錄",
+              "photo": "1Jmk6uoMND-lmRv1EZZrgveOqU3DkdYQ2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "美照精選",
+      "latin": "",
+      "category": "美照",
+      "date": "2026.07.01",
+      "note": "",
+      "cover": "1-Q5XjB2StaXy0qCnWeIRtv52mnHjjeTV",
+      "individuals": [
         {
-          "date": "2026.07.01",
-          "tag": "紀錄",
-          "note": "細節一。",
-          "photo": "1DhXdq7yemzwyVOX4XYpxnU-IW57Y2WUU"
-        },
-        {
-          "date": "2026.07.01",
-          "tag": "紀錄",
-          "note": "細節二。",
-          "photo": "1M8AOq1rTd3rjkgzK463MPghJlIKOR2wq"
+          "label": "",
+          "cover": "1-Q5XjB2StaXy0qCnWeIRtv52mnHjjeTV",
+          "timeline": [
+            {
+              "date": "2026.07.01",
+              "tag": "紀錄",
+              "note": "2026.07.01 紀錄",
+              "photo": "1-Q5XjB2StaXy0qCnWeIRtv52mnHjjeTV"
+            }
+          ]
         }
       ]
     }
