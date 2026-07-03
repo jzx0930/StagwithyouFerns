@@ -10,7 +10,7 @@
 - **data.json** — 內容;日常只改這裡(通常由 Google Drive 自動產生,見下)。
 - **staghorn-fern.js** — 原生 Web Component `<staghorn-fern>`(自帶 3D 動畫鹿角蕨,首次使用自動載入 Three.js from cdnjs)。大廳中 `c.name === '鹿角蕨'` 或 `category.fx === 'staghorn-fern'` 的分類卡改用此元件當互動封面(滑鼠視差)。
 - **真實 3D 模型封面**:index.html 以 CDN 載入 Google `<model-viewer>`。若某 `category` 設 `"model": "models/xxx.glb"`,大廳該卡改用 `<model-viewer>` 顯示可拖曳旋轉的 .glb(優先序:model > staghorn-fern > 圖片)。.glb 需自備(用圖片轉 3D 服務生成),放進 repo(例如 models/ 資料夾)。
-- **models/**:放 .glb 模型檔。分類的 `model` 欄位指向它即啟用(見 models/README.md)。**Drive 重新同步 data.json 會覆蓋手填的 `model`**,同步時需把「鹿角蕨→models/staghorn.glb」重新補上。
+- **models/**:放 .glb 模型檔。分類的 `model` 欄位指向它即啟用(見 models/README.md)。**Drive 重新同步 data.json 會覆蓋手填的 `model`**,同步時需把「鹿角蕨→models/staghorn/staghorn.glb」重新補上。網站固定取 `models/staghorn/` 資料夾內檔名為 `staghorn.glb` 的模型顯示(該夾可放多個 .glb,只有 `staghorn.glb` 會被用到)。
 
 ## data.json 結構(含「個體 #」層)
 

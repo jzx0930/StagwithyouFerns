@@ -72,7 +72,7 @@
         '<div class="stat"><div class="num">' + totalPlants + '</div><div class="lbl">種植物</div></div>' +
         '<div class="stat"><div class="num">' + totalPhotos + '</div><div class="lbl">張照片</div></div>' +
       '</div>' : '';
-    return '<div class="head"><div>' +
+    return '<div class="head' + (mid ? ' has-mid' : '') + '"><div>' +
       '<div class="eyebrow">' + esc(eyebrow) + '</div>' +
       '<h1 class="title">' + esc(title) + '</h1>' +
       '<p class="subtitle">' + esc(subtitle) + '</p>' +
