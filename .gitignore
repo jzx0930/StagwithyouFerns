@@ -4,5 +4,5 @@ models/staghorn/*.glb
 !models/staghorn/staghorn.glb
 
 # 暫存預覽圖
-models/staghorn/_compare_preview.png
-_compare_preview.png
+models/staghorn/_*_preview.png
+_*_preview.png

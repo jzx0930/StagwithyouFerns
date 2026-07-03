@@ -108,7 +108,7 @@ body {
 
 /* 分類頁標題列中間的 3D 模型(無框、透明背景,與標題同一背景;可自由拖曳旋轉,不會誤觸進入) */
 .cat-hero {
-  position: relative; flex: 0 0 auto; width: min(32vw, 380px); height: 200px; align-self: flex-start;
+  position: relative; flex: 0 0 auto; width: min(56vw, 700px); height: 360px; align-self: flex-start;
   background: transparent; border: 0; box-shadow: none;
 }
 /* 有 3D 模型的標題列:左側文字改為與矩形頂端對齊,右側數字維持在底部 */
