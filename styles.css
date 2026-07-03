@@ -97,6 +97,7 @@ body {
 .cat-shade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(4,8,7,0.9) 0%, rgba(4,8,7,0.25) 46%, transparent 74%); }
 .cat-meta { position: absolute; left: 20px; right: 20px; bottom: 18px; display: flex; align-items: flex-end; justify-content: space-between; }
 .cat-name { font-family: var(--serif); font-size: 30px; color: var(--ink-strong); line-height: 1.1; text-shadow: 0 2px 12px rgba(0,0,0,0.6); }
+.cat-latin { font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--green-soft); margin-top: 3px; letter-spacing: 0.02em; text-shadow: 0 2px 10px rgba(0,0,0,0.6); }
 .chip { font-family: var(--mono); font-size: 11px; color: var(--green-mint); background: rgba(0,0,0,0.4); border: 1px solid rgba(154,216,171,0.3); border-radius: 999px; padding: 4px 11px; backdrop-filter: blur(8px); }
 
 .fern-card { background: radial-gradient(120% 120% at 74% 46%, #16281f, #0a1410 46%, #05080a 80%); }

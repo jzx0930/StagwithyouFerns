@@ -34,13 +34,26 @@
     return '<img class="cover-img" src="' + esc(url) + '" alt="' + esc(alt || '') +
       '" onerror="this.style.display=\'none\'">';
   }
+  function parseCat(nm) {
+    var s = String(nm || '');
+    var m = s.match(/[A-Za-z][A-Za-z .\-]*$/);
+    var latin = m ? m[0].trim() : '';
+    var zh = latin ? s.slice(0, s.length - m[0].length).trim() : s.trim();
+    if (!zh) zh = s.trim();
+    return { zh: zh, latin: latin };
+  }
   function normCats() {
     var raw = state.cats || DEFAULT_CATS;
     return raw.map(function (c) {
-      return (typeof c === 'string') ? { name: c, cover: '' } : { name: c.name, cover: c.cover || '', fx: c.fx, model: c.model };
+      var o = (typeof c === 'string') ? { name: c, cover: '' } : c;
+      var pc = parseCat(o.name);
+      var mpath = '';
+      if (o.model === true || o.model === 'auto') { if (pc.latin) mpath = 'models/' + pc.latin + '/' + pc.latin + '.glb'; }
+      else if (typeof o.model === 'string' && o.model) { mpath = o.model; }
+      return { name: o.name, zh: pc.zh, latin: pc.latin, cover: o.cover || '', fx: o.fx, model: mpath };
     });
   }
-  function catOf(p, cats) { return p.category || cats[0].name; }
+  function catOf(p, cats) { return p.category || cats[0].zh; }
   function normIndiv(p) {
     if (Array.isArray(p.individuals) && p.individuals.length) return p.individuals;
     return [{ label: '', cover: p.cover || '', timeline: p.timeline || [] }];
@@ -86,9 +99,9 @@
     var totalPhotos = data.reduce(function (s, p) { return s + photoCount(p); }, 0);
 
     var cards = cats.map(function (c, i) {
-      var count = data.filter(function (p) { return catOf(p, cats) === c.name; }).length;
+      var count = data.filter(function (p) { return catOf(p, cats) === c.zh; }).length;
       var useModel = !!c.model;
-      var useFern = !useModel && ((c.fx === 'staghorn-fern') || (c.name === '鹿角蕨'));
+      var useFern = !useModel && ((c.fx === 'staghorn-fern') || (c.zh === '鹿角蕨'));
       var visual;
       if (useModel) {
         // 真實 3D 模型(.glb)當互動封面,可拖曳旋轉檢視
@@ -98,13 +111,14 @@
         visual = '<staghorn-fern accent="#9ccb6f" frond-color="#7c9a56" basal-color="#45502a" fronds="9"></staghorn-fern>';
       } else {
         var cover = c.cover;
-        if (!cover) { var fp = data.find(function (p) { return catOf(p, cats) === c.name && p.cover; }); if (fp) cover = fp.cover; }
+        if (!cover) { var fp = data.find(function (p) { return catOf(p, cats) === c.zh && p.cover; }); if (fp) cover = fp.cover; }
         visual = '<div class="placeholder"><span>＋ 分類封面</span></div>' + coverImg(cover, 1000, c.name);
       }
       return '<div class="cat-card' + ((useModel || useFern) ? ' fern-card' : '') + '" data-act="enter" data-i="' + i + '">' +
         visual +
         '<div class="cat-shade"></div>' +
-        '<div class="cat-meta"><div class="cat-name">' + esc(c.name) + '</div>' +
+        '<div class="cat-meta"><div class="cat-nameblock"><div class="cat-name">' + esc(c.zh) + '</div>' +
+        (c.latin ? '<div class="cat-latin">' + esc(c.latin) + '</div>' : '') + '</div>' +
         '<div class="chip">' + count + ' 種</div></div>' +
       '</div>';
     }).join('');
@@ -117,13 +131,13 @@
   function renderGrid() {
     var cats = normCats();
     var tabIdx = Math.min(state.tab, cats.length - 1);
-    var activeCat = cats[tabIdx].name;
+    var activeCat = cats[tabIdx].zh;
     var data = state.data || [];
 
     var tabs = cats.map(function (c, i) {
-      var n = data.filter(function (p) { return catOf(p, cats) === c.name; }).length;
+      var n = data.filter(function (p) { return catOf(p, cats) === c.zh; }).length;
       return '<div class="tab' + (i === tabIdx ? ' active' : '') + '" data-act="tab" data-i="' + i + '">' +
-        esc(c.name) + '<span class="c">' + n + '</span></div>';
+        esc(c.zh) + '<span class="c">' + n + '</span></div>';
     }).join('');
 
     var indexed = data.map(function (p, i) { return { p: p, i: i }; })

@@ -1,38 +1,38 @@
 {
-  "_說明": "先在 categories 選好分頁類別,再把每株植物加進 plants。每株植物的 category 必須是 鹿角蕨 / 棒槌 / 仙人掌 其中之一,首頁會依此歸到對應分頁。cover 與每個時間軸節點的 photo 填 Google Drive 檔案 ID 或完整圖片網址,留空字串就顯示佔位框。時間軸會自動依日期排序,最新的在最上面。改完 commit 上 GitHub 即生效。",
+  "_說明": "分類名寫成「中文+屬名」(例:鹿角蕨Platycerium);網站顯示時中文為主、屬名為斜體小字。植物的 category 仍填中文(鹿角蕨/棒槌/仙人掌…),依此歸類。某分類要顯示 3D 模型:把該分類 model 設為 true,並放 models/<屬名>/<屬名>.glb(例 models/Platycerium/Platycerium.glb);model 也可直接填一個路徑字串。cover 與 photo 填 Google Drive ID 或圖片網址,留空顯示佔位框。時間軸自動依日期排序,最新在最上面。",
   "categories": [
     {
-      "name": "鹿角蕨",
+      "name": "鹿角蕨Platycerium",
       "cover": "1FOOpU3NoLbvm3VBsezJnRWm7jqNDJcOs",
-      "model": "models/staghorn/staghorn.glb"
+      "model": true
     },
     {
-      "name": "棒槌",
+      "name": "棒槌Pachypodium",
       "cover": "1a7ZgiKoeVoYSec0HJwzPPzzjvr5H_vsd",
       "model": ""
     },
     {
-      "name": "仙人掌",
+      "name": "仙人掌Cactaceae",
       "cover": "",
       "model": ""
     },
     {
-      "name": "龍舌蘭",
+      "name": "龍舌蘭Agave",
       "cover": "",
       "model": ""
     },
     {
-      "name": "塊根",
+      "name": "塊根Caudex",
       "cover": "",
       "model": ""
     },
     {
-      "name": "多肉",
+      "name": "多肉Succulent",
       "cover": "",
       "model": ""
     },
     {
-      "name": "美照",
+      "name": "美照Gallery",
       "cover": "",
       "model": ""
     }

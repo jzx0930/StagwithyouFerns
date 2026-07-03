@@ -9,14 +9,16 @@
 - **app.js** — 所有邏輯(免框架原生 JS,IIFE)。
 - **data.json** — 內容;日常只改這裡(通常由 Google Drive 自動產生,見下)。
 - **staghorn-fern.js** — 原生 Web Component `<staghorn-fern>`(自帶 3D 動畫鹿角蕨,首次使用自動載入 Three.js from cdnjs)。大廳中 `c.name === '鹿角蕨'` 或 `category.fx === 'staghorn-fern'` 的分類卡改用此元件當互動封面(滑鼠視差)。
-- **真實 3D 模型封面**:index.html 以 CDN 載入 Google `<model-viewer>`。若某 `category` 設 `"model": "models/xxx.glb"`,大廳該卡改用 `<model-viewer>` 顯示可拖曳旋轉的 .glb(優先序:model > staghorn-fern > 圖片)。.glb 需自備(用圖片轉 3D 服務生成),放進 repo(例如 models/ 資料夾)。
-- **models/**:放 .glb 模型檔。分類的 `model` 欄位指向它即啟用(見 models/README.md)。**Drive 重新同步 data.json 會覆蓋手填的 `model`**,同步時需把「鹿角蕨→models/staghorn/staghorn.glb」重新補上。網站固定取 `models/staghorn/` 資料夾內檔名為 `staghorn.glb` 的模型顯示(該夾可放多個 .glb,只有 `staghorn.glb` 會被用到)。
+- **分類名 = 中文+屬名**:`category.name` 寫成「中文屬名」(例 `鹿角蕨Platycerium`、`龍舌蘭Agave`;沒屬名者用英文,如 `多肉Succulent`、`美照Gallery`)。`app.js` 的 `parseCat()` 把名字拆成 `zh`(中文,顯示為主+對應植物)與 `latin`(屬名/英文,斜體小字顯示 `.cat-latin`)。**植物的 `category` 仍只填中文**(如 `鹿角蕨`),靠 `zh` 比對歸類,所以改分類屬名不會讓植物跑掉。
+- **真實 3D 模型封面**:index.html 以 CDN 載入 Google `<model-viewer>`。分類要顯示 3D:`"model": true` → 自動抓 `models/<屬名>/<屬名>.glb`(由 `latin` 推,例 `鹿角蕨Platycerium` → `models/Platycerium/Platycerium.glb`);`model` 也可直接填路徑字串。優先序:model > staghorn-fern > 圖片。大廳卡與分類頁上方各顯示一個(分類頁那個較大、無框、可自由拖曳)。
+- **models/**:每個有模型的分類一個資料夾,以**屬名**命名,內放同名 `<屬名>.glb`(壓縮後、單檔宜 <15MB,見下方壓縮法)。原始大檔別進 repo(`.gitignore` 已擋 `*-original.glb`/`Hitem3d-*`/`Meshy_*`,會拖垮 GitHub Pages deploy 的 syncing_files)。**Drive 重新同步 data.json 會覆蓋手填的 `model`**,同步後把要顯示模型的分類 `model` 重設為 `true`。
+- **.glb 壓縮(無 gltf-transform 時)**:AI 生成模型常達數十 MB(幾何為主)。用 numpy 頂點叢集減面 + PIL 貼圖轉 JPEG 可壓到 ~1/9(例 74MB→8.3MB,GR=160≈27萬三角形),流程見對話紀錄;原檔另存 `<屬名>-original.glb`(gitignore)。
 
 ## data.json 結構(含「個體 #」層)
 
 ```json
 {
-  "categories": [ { "name": "鹿角蕨", "cover": "<Drive ID 或網址>" } ],
+  "categories": [ { "name": "鹿角蕨Platycerium", "cover": "<Drive ID 或網址>", "model": true } ],
   "plants": [{
     "name": "一本尼", "latin": "Pachypodium eburneum",
     "category": "棒槌樹",            // 必須等於某個 category.name
