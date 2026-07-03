@@ -37,6 +37,7 @@ class App:
         self.out_path = tk.StringVar(value=os.path.join("models", "staghorn.glb"))
         self.category = tk.StringVar(value="鹿角蕨")
         self.api_key = tk.StringVar(value=os.environ.get("NVIDIA_API_KEY", ""))
+        self.rm_bg = tk.BooleanVar(value=True)
         self._preview_img = None
         self._build()
         self.root.after(120, self._drain)
@@ -58,12 +59,15 @@ class App:
         # 拖曳桿參數
         box = ttk.LabelFrame(self.root, text="生成參數(拖曳桿)")
         box.pack(fill="x", **pad)
-        self.s_slat_cfg = self._slider(box, "slat_cfg_scale(結構引導)", 0.0, 10.0, 3.0, 0.5)
-        self.s_ss_cfg   = self._slider(box, "ss_cfg_scale(外觀引導)", 0.0, 15.0, 7.5, 0.5)
+        self.s_slat_cfg = self._slider(box, "slat_cfg_scale(結構引導 >1)", 1.5, 10.0, 3.0, 0.5)
+        self.s_ss_cfg   = self._slider(box, "ss_cfg_scale(外觀引導 >1)", 1.5, 15.0, 7.5, 0.5)
         self.s_slat_st  = self._slider(box, "slat_sampling_steps(結構步數)", 10, 50, 25, 1)
         self.s_ss_st    = self._slider(box, "ss_sampling_steps(外觀步數)", 10, 50, 25, 1)
         self.s_seed     = self._slider(box, "seed(隨機種子)", 0, 100000, 0, 1)
         self.s_max      = self._slider(box, "縮圖最長邊 px(越大越慢)", 512, 2048, 1024, 64)
+        bgrow = ttk.Frame(box); bgrow.pack(fill="x", padx=8, pady=(2, 8))
+        ttk.Checkbutton(bgrow, variable=self.rm_bg,
+                        text="上傳前自動去背(rembg,建議;首次會自動安裝並下載模型)").pack(side="left")
 
         # 輸出 / 分類 / 金鑰
         opt = ttk.Frame(self.root); opt.pack(fill="x", **pad)
@@ -162,6 +166,7 @@ class App:
             ss_steps=int(self.s_ss_st.get()),
             slat_cfg=float(self.s_slat_cfg.get()),
             ss_cfg=float(self.s_ss_cfg.get()),
+            remove_bg=bool(self.rm_bg.get()),
         )
         threading.Thread(target=self._work, args=(args,), daemon=True).start()
 
