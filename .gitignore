@@ -1,0 +1,8 @@
+# 大型原始 / 備用 .glb 只留在本機,不上 repo 與 GitHub Pages。
+# 網站只需要壓縮後的 models/staghorn/staghorn.glb。
+models/staghorn/*.glb
+!models/staghorn/staghorn.glb
+
+# 暫存預覽圖
+models/staghorn/_compare_preview.png
+_compare_preview.png
