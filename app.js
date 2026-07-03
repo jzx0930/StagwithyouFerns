@@ -92,7 +92,7 @@
       var visual;
       if (useModel) {
         // 真實 3D 模型(.glb)當互動封面,可拖曳旋轉檢視
-        visual = '<model-viewer src="' + esc(c.model) + '" camera-controls auto-rotate autoplay disable-zoom interaction-prompt="none" exposure="1.05" shadow-intensity="0.9" environment-image="neutral" touch-action="pan-y" alt="' + esc(c.name) + ' 3D"></model-viewer>';
+        visual = '<model-viewer src="' + esc(c.model) + '" camera-controls auto-rotate autoplay auto-rotate-delay="0" rotation-per-second="24deg" disable-zoom interaction-prompt="none" exposure="1.05" shadow-intensity="0.9" environment-image="neutral" touch-action="pan-y" alt="' + esc(c.name) + ' 3D"></model-viewer>';
       } else if (useFern) {
         // 互動式程序生成 3D 鹿角蕨元件(滑鼠視差)
         visual = '<staghorn-fern accent="#9ccb6f" frond-color="#7c9a56" basal-color="#45502a" fronds="9"></staghorn-fern>';
@@ -147,6 +147,9 @@
     }).join('');
 
     var totalPhotos = indexed.reduce(function (s, x) { return s + photoCount(x.p); }, 0);
+    var cat = cats[tabIdx];
+    var hero = cat.model ?
+      '<div class="cat-hero"><model-viewer src="' + esc(cat.model) + '" camera-controls auto-rotate autoplay auto-rotate-delay="0" rotation-per-second="24deg" disable-zoom interaction-prompt="none" exposure="1.05" shadow-intensity="0.9" environment-image="neutral" touch-action="pan-y" alt="' + esc(activeCat) + ' 3D"></model-viewer></div>' : '';
     var empty = indexed.length ? '' :
       '<p class="subtitle" style="margin-top:8px;">這個分類還沒有植物。</p>';
 
@@ -154,6 +157,7 @@
       '<div class="back-row"><span class="pill-btn" data-act="lobby">← 回到分類大廳</span></div>' +
       headerHTML('Herbarium · 成長紀錄', activeCat, '點任一株,進入牠的成長時間軸。', true, indexed.length, totalPhotos) +
       '<div class="tabs">' + tabs + '</div>' +
+      hero +
       '<div class="card-grid">' + cards + '</div>' + empty +
       '</div>';
   }
