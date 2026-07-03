@@ -9,7 +9,7 @@
     {
       "name": "棒槌Pachypodium",
       "cover": "1a7ZgiKoeVoYSec0HJwzPPzzjvr5H_vsd",
-      "model": ""
+      "model": true
     },
     {
       "name": "仙人掌Cactaceae",
@@ -19,7 +19,7 @@
     {
       "name": "龍舌蘭Agave",
       "cover": "",
-      "model": ""
+      "model": true
     },
     {
       "name": "塊根Caudex",
