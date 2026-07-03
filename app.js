@@ -66,7 +66,7 @@
   function go(view) { state.view = view; window.scrollTo(0, 0); render(); }
 
   // ---- 畫面 ----
-  function headerHTML(eyebrow, title, subtitle, withStats, totalPlants, totalPhotos) {
+  function headerHTML(eyebrow, title, subtitle, withStats, totalPlants, totalPhotos, mid) {
     var stats = withStats ?
       '<div class="stats">' +
         '<div class="stat"><div class="num">' + totalPlants + '</div><div class="lbl">種植物</div></div>' +
@@ -76,7 +76,7 @@
       '<div class="eyebrow">' + esc(eyebrow) + '</div>' +
       '<h1 class="title">' + esc(title) + '</h1>' +
       '<p class="subtitle">' + esc(subtitle) + '</p>' +
-      '</div>' + stats + '</div>';
+      '</div>' + (mid || '') + stats + '</div>';
   }
 
   function renderLobby() {
@@ -155,9 +155,8 @@
 
     app.innerHTML = '<div class="wrap">' +
       '<div class="back-row"><span class="pill-btn" data-act="lobby">← 回到分類大廳</span></div>' +
-      headerHTML('Herbarium · 成長紀錄', activeCat, '點任一株,進入牠的成長時間軸。', true, indexed.length, totalPhotos) +
+      headerHTML('Herbarium · 成長紀錄', activeCat, '點任一株,進入牠的成長時間軸。', true, indexed.length, totalPhotos, hero) +
       '<div class="tabs">' + tabs + '</div>' +
-      hero +
       '<div class="card-grid">' + cards + '</div>' + empty +
       '</div>';
   }
