@@ -3,16 +3,36 @@
   "categories": [
     {
       "name": "鹿角蕨",
-      "cover": "",
+      "cover": "1FOOpU3NoLbvm3VBsezJnRWm7jqNDJcOs",
       "model": "models/staghorn.glb"
     },
     {
       "name": "棒槌",
-      "cover": "",
+      "cover": "1a7ZgiKoeVoYSec0HJwzPPzzjvr5H_vsd",
       "model": ""
     },
     {
       "name": "仙人掌",
+      "cover": "",
+      "model": ""
+    },
+    {
+      "name": "龍舌蘭",
+      "cover": "",
+      "model": ""
+    },
+    {
+      "name": "塊根",
+      "cover": "",
+      "model": ""
+    },
+    {
+      "name": "多肉",
+      "cover": "",
+      "model": ""
+    },
+    {
+      "name": "美照",
       "cover": "",
       "model": ""
     }
