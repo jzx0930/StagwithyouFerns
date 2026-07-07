@@ -32,7 +32,7 @@ body {
 /* 夜晚照片背景 + 螢火蟲(#fx3d 由 app.js 疊在最上層) */
 .bg-photo {
   position: absolute; inset: -4%;
-  background-image: url('https://lh3.googleusercontent.com/d/17uA34MMbvC9wuvq8gttaovIaBY0cHR91=w2000');
+  background-image: url('https://lh3.googleusercontent.com/d/1fgb-BT8G4-nd_HuItDWEFv0w51fgmjHE=w2000');
   background-size: cover; background-position: center;
   filter: brightness(0.52) saturate(0.85) contrast(1.04) blur(2px);
   transform: scale(1.06);
