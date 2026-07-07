@@ -320,7 +320,7 @@
     for (var k = 0; k < N; k++) {
       pts.push({
         x: Math.random() * 2 - 1, y: Math.random() * 2 - 1, z: Math.random() * 2 - 1,
-        vx: (Math.random() - 0.5) * 0.0005, vy: (Math.random() - 0.5) * 0.0005, vz: (Math.random() - 0.5) * 0.0005,
+        vx: (Math.random() - 0.5) * 0.0011, vy: (Math.random() - 0.5) * 0.0011, vz: (Math.random() - 0.5) * 0.0011,
         s: 0.5 + Math.random() * 1.6, ph: Math.random() * Math.PI * 2, sp: 0.3 + Math.random() * 0.7
       });
     }
@@ -342,7 +342,7 @@
 
     function frame() {
       t += 0.006;
-      if (!reduce) autoYaw += 0.0009;
+      if (!reduce) autoYaw += 0.0003;
       rotY += (tRotY - rotY) * 0.05;
       rotX += (tRotX - rotX) * 0.05;
       fade += (targetFade - fade) * 0.05;
@@ -371,21 +371,7 @@
         proj[i] = { sx: cx + x1 * R * depth, sy: cy + y1 * R * depth, sc: depth, p: p };
       }
 
-      var maxd = 118 * DPR, maxd2 = maxd * maxd;
-      ctx.lineWidth = DPR;
-      for (i = 0; i < N; i++) {
-        for (var j = i + 1; j < N; j++) {
-          var a = proj[i], b = proj[j];
-          var dx = a.sx - b.sx, dy = a.sy - b.sy, d2 = dx * dx + dy * dy;
-          if (d2 < maxd2) {
-            var al = (1 - Math.sqrt(d2) / maxd) * 0.09 * fade;
-            if (al > 0.004) {
-              ctx.strokeStyle = 'rgba(150,230,175,' + al + ')';
-              ctx.beginPath(); ctx.moveTo(a.sx, a.sy); ctx.lineTo(b.sx, b.sy); ctx.stroke();
-            }
-          }
-        }
-      }
+      // 螢火蟲:不畫點與點之間的連線
 
       for (i = 0; i < N; i++) {
         var q = proj[i]; p = q.p;
@@ -394,12 +380,12 @@
         var a1 = Math.max(0, Math.min(1, tw)) * Math.min(1, q.sc * 0.9) * fade;
         if (a1 <= 0.004) continue;
         var g = ctx.createRadialGradient(q.sx, q.sy, 0, q.sx, q.sy, r * 5);
-        g.addColorStop(0, 'rgba(200,255,210,' + (a1 * 0.9) + ')');
-        g.addColorStop(0.3, 'rgba(120,230,150,' + (a1 * 0.5) + ')');
-        g.addColorStop(1, 'rgba(80,200,120,0)');
+        g.addColorStop(0, 'rgba(226,255,170,' + (a1 * 0.95) + ')');
+        g.addColorStop(0.3, 'rgba(172,240,112,' + (a1 * 0.5) + ')');
+        g.addColorStop(1, 'rgba(110,200,70,0)');
         ctx.fillStyle = g;
         ctx.beginPath(); ctx.arc(q.sx, q.sy, r * 5, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = 'rgba(216,255,222,' + a1 + ')';
+        ctx.fillStyle = 'rgba(234,255,196,' + a1 + ')';
         ctx.beginPath(); ctx.arc(q.sx, q.sy, r, 0, Math.PI * 2); ctx.fill();
       }
       ctx.globalCompositeOperation = 'source-over';
