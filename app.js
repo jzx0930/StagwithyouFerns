@@ -338,6 +338,20 @@
     });
     window.__fxMode = function (view) { targetFade = (view === 'lobby') ? 1 : 0.2; };
 
+    // 背景隨捲動視差移動(螢火蟲維持固定飄浮)
+    var bgPhoto = document.querySelector && document.querySelector('.bg-photo');
+    function parallax() {
+      if (!bgPhoto) return;
+      var sh = (document.documentElement || {}).scrollHeight || 0;
+      var max = sh - window.innerHeight;
+      var frac = max > 0 ? Math.min(1, Math.max(0, (window.scrollY || 0) / max)) : 0;
+      var shift = (0.16 - frac * 0.32) * window.innerHeight;
+      bgPhoto.style.transform = 'translateY(' + shift.toFixed(1) + 'px) scale(1.05)';
+    }
+    window.addEventListener('scroll', parallax, { passive: true });
+    window.addEventListener('resize', parallax);
+    parallax();
+
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     function frame() {
