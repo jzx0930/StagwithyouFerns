@@ -14,7 +14,7 @@
     {
       "name": "仙人掌Cactaceae",
       "cover": "",
-      "model": ""
+      "model": true
     },
     {
       "name": "龍舌蘭Agave",
@@ -29,12 +29,17 @@
     {
       "name": "多肉Succulent",
       "cover": "",
-      "model": ""
+      "model": true
     },
     {
       "name": "大戟Euphorbiaceae",
       "cover": "",
-      "model": false
+      "model": true
+    },
+    {
+      "name": "觀葉Foliage",
+      "cover": "",
+      "model": true
     },
     {
       "name": "美照Gallery",
