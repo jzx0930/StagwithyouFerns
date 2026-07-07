@@ -124,7 +124,7 @@
     }).join('');
 
     app.innerHTML = '<div class="wrap">' +
-      headerHTML('Herbarium · 分類選單', '我的植物收藏', '選一個分類,進入觀看。', true, totalPlants, totalPhotos) +
+      headerHTML('Herbarium · 分類選單', 'StagwithyoyFerns', '選一個分類,進入觀看。', true, totalPlants, totalPhotos) +
       '<div class="card-grid">' + cards + '</div></div>';
   }
 
