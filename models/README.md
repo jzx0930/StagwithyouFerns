@@ -1,20 +1,35 @@
 # 3D 模型資料夾(.glb)
 
-把「圖片轉 3D」服務產生的模型檔放這裡,建議命名:
+每個要顯示 3D 模型的分類,在這裡開一個**以屬名命名**的資料夾,裡面放**同名**的 `.glb`:
 
-- `models/staghorn.glb` — 鹿角蕨分類的封面模型
+```
+models/<屬名>/<屬名>.glb
+```
+
+例:`models/Platycerium/Platycerium.glb`、`models/Caudex/Caudex.glb`。
+
+## 啟用(讓大廳分類卡 + 分類頁變成可拖曳 3D 模型)
+1. 分類名要是「中文+屬名」(例 `鹿角蕨Platycerium`);`app.js` 會從屬名推路徑。
+2. 把 `<屬名>.glb` 放進 `models/<屬名>/`。
+3. 開 `data.json`,把該分類的 `"model"` 設成 `true`。
+   - `model: true` → 自動載入 `models/<屬名>/<屬名>.glb`
+   - `model: "models/xxx.glb"`(字串)→ 直接用這個路徑
+   - `model: false` / 空 → 沒有 3D 模型(改用程序生成鹿角蕨 or 圖片封面)
+4. commit + push。大廳該卡與分類頁上方都會出現可旋轉的模型。
+
+目前已有:`Platycerium`、`Pachypodium`、`Agave`、`Caudex`。
 
 ## 產生 .glb 的方式
-用任一「圖片轉 3D」服務上傳你的照片,匯出 **GLB** 格式:
-Meshy.ai / Tripo3D / Luma Genie / Rodin(Hyper3D）/ 騰訊 Hunyuan3D / Stability SPAR3D。
-(單張照片:正面佳、背面為 AI 推測;薄的孢子葉可能較糊,想更好用多角度照片。)
+用任一「圖片轉 3D」服務上傳照片,匯出 **GLB**:
+Meshy.ai / Tripo3D / Luma Genie / Rodin(Hyper3D)/ 騰訊 Hunyuan3D / Stability SPAR3D / Hitem3d。
+(單張照片:正面佳、背面為 AI 推測;薄的孢子葉可能較糊,想更好可用多角度照片。)
 
-## 啟用(讓大廳該分類卡變成可旋轉 3D 模型)
-1. 把 `staghorn.glb` 放進這個 `models/` 資料夾。
-2. 開 `data.json`,在「鹿角蕨」那個 category 把 `"model"` 從空字串改成:
-   `"model": "models/staghorn.glb"`
-3. commit + push。大廳鹿角蕨卡就會用 `<model-viewer>` 顯示可拖曳旋轉的真實 3D 模型。
-   (`model` 有值 → 用 3D 模型;空 → 用程序生成鹿角蕨;都沒有 → 圖片封面。)
+## 壓縮(檔案太大時)
+AI 生成模型常達數十 MB(多半是高多邊形幾何)。建議壓到單檔 **<15MB** 再放,
+避免拖垮 GitHub Pages 的 deploy(syncing_files 逾時)。無 gltf-transform 時,
+可用 numpy 頂點叢集減面 + PIL 貼圖轉 JPEG(例 74MB → 8.3MB)。原始大檔**別進 repo**——
+`.gitignore` 已擋 `*-original.glb`、`Hitem3d-*`、`Meshy_*`,請把原檔留在本機或 repo 外。
 
-注意:若之後用 Google Drive 重新產生 data.json,這個手填的 `model` 會被覆蓋,需要再填一次
-(或請我把「鹿角蕨→models/staghorn.glb」這個對應寫進同步流程)。
+## 注意
+若之後用 Google Drive 重新產生 data.json,手填的 `model` 會被覆蓋,需要把要顯示模型的
+分類 `model` 重新設回 `true`。
