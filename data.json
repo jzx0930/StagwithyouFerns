@@ -141,6 +141,52 @@
           "photo": "1M8AOq1rTd3rjkgzK463MPghJlIKOR2wq"
         }
       ]
+    },
+    {
+      "name": "象耳",
+      "latin": "Platycerium elephantotis",
+      "category": "鹿角蕨",
+      "date": "2026.06.03",
+      "note": "象耳鹿角蕨,孢子葉尖不分叉。",
+      "cover": "1lNGlbfoPfyEN_9sXT9Y84fVHulagkOSC",
+      "individuals": [
+        {
+          "label": "#01",
+          "cover": "1lNGlbfoPfyEN_9sXT9Y84fVHulagkOSC",
+          "timeline": [
+            {
+              "date": "2026.06.03",
+              "tag": "#01",
+              "note": "植株現況。",
+              "photo": "1lNGlbfoPfyEN_9sXT9Y84fVHulagkOSC"
+            },
+            {
+              "date": "2026.04.29",
+              "tag": "#01",
+              "note": "入手記錄。",
+              "photo": "1c5naZBEZTCeVo8tDZYljrDzZJvdKRKGk"
+            },
+            {
+              "date": "2026.04.29",
+              "tag": "#01",
+              "note": "另一角度。",
+              "photo": "1Ue8P7c0qhmx6tL-qKp_PMuS3WqAKW5nN"
+            }
+          ]
+        },
+        {
+          "label": "#02",
+          "cover": "1Cd03WtPAx9PA5DoBdDADL0YpDIlSCV3_",
+          "timeline": [
+            {
+              "date": "2026.05.23",
+              "tag": "#02",
+              "note": "植株現況。",
+              "photo": "1Cd03WtPAx9PA5DoBdDADL0YpDIlSCV3_"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
