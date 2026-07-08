@@ -48,6 +48,22 @@
 - 產生前用 `get_file_permissions` 抽查照片是否為 `anyone/reader`(公開),否則網站顯示不出。
 - 使用者選擇「完全以 Drive 為準重建」:每次同步都從資料夾重生 data.json,手寫 note/tag 會被覆蓋。
 
+## 「開始更新」流程(見 SKILL.md)
+
+使用者說「**開始更新**」時,依 `SKILL.md`(repo 根目錄)這套工作手冊執行:
+1. `Glob` 掃 `G:\我的雲端硬碟\植物照片`(Drive 電腦版同步碟;bash **無法掛載 G:\**,只能用 Glob/Read)。
+2. 找出**未符合「英文-中文」**格式的資料夾:分類夾應為 `屬名-中文`、植物夾應為 `種名/園藝名-中文`;純英文(Akki/Nano/E…)不動。
+3. 上網查名(原生種→種小名、品種→英文園藝名、交種→交種式;查不到就維持中文回報使用者),把 `Rn '舊' '新'` **append** 到改名腳本。
+4. 請使用者雙擊 `run_rename.bat` 改名 → 等 Drive 同步。
+5. 由 Drive 重建 data.json(保留 `categories`/`_說明`,只換 `plants`)。量大時用 **subagent** 走訪(200+ 檔會塞爆主脈絡)。
+6. 提醒 commit + push。
+
+**改名腳本**(在 repo 根目錄,改名只能靠這些在使用者電腦上跑——檔案工具/連接器都沒有改名功能):
+- `rename_plants.ps1`(分類 + 非鹿角蕨植物)、`rename_platycerium.ps1`(鹿角蕨):存成 **UTF-8 + BOM**(否則 PowerShell 5.1 讀不對中文);每筆用 `Rn` 函式含 `Test-Path` 保護,已存在/找不到就跳過。
+- `run_rename.bat`:純 ASCII、`chcp 65001`、`-ExecutionPolicy Bypass` 依序呼叫兩支 `.ps1`。
+- **累加式**:每次只 append 新行,**不刪**舊行;已改好的靠 `Test-Path` 自動跳過。
+- 分類名對照與命名決策、今日已建立的中↔英對照表,詳見 `SKILL.md`。
+
 ## app.js 重點
 
 - `state`:`view / tab / selected / indiv / data / cats / lbUrl / lbScale`。
