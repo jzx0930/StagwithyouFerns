@@ -49,6 +49,9 @@ Rn '大戟\白衣魁偉玉' 'horrida-白衣魁偉玉'
 Rn '大戟\鬼棲閣' 'guillauminiana-鬼棲閣'
 # 龍舌蘭 Agave
 Rn '龍舌蘭\吉祥冠覆輪龍舌蘭' 'potatorum-吉祥冠覆輪龍舌蘭'
+# 觀葉 Foliage(Alocasia 觀音蓮)
+Rn '觀葉\黑葉觀音蓮' 'amazonica-黑葉觀音蓮'
+Rn '觀葉\絨葉斑葉觀音蓮' 'micholitziana-絨葉斑葉觀音蓮'
 
 Write-Host ''
 Write-Host '=== 分類夾改名(最後做)==='
@@ -57,6 +60,7 @@ Rn '塊根' 'Caudex-塊根'
 Rn '大戟' 'Euphorbiaceae-大戟'
 Rn '龍舌蘭' 'Agave-龍舌蘭'
 Rn '美照' 'Gallery-美照'
+Rn '觀葉' 'Foliage-觀葉'
 
 Write-Host ''
 Write-Host '完成。品種名鹿角蕨(巨獸/三角/雷達等)因無學名,維持中文未改。'
