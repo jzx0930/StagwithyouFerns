@@ -799,8 +799,8 @@
       ]
     },
     {
-      "name": "情花few",
-      "latin": "Platycerium",
+      "name": "P.willinckii Yellow moon x FSQ sporeling",
+      "latin": "",
       "category": "鹿角蕨",
       "date": "2026.06.03",
       "note": "",
@@ -1787,6 +1787,100 @@
               "tag": "紀錄",
               "note": "",
               "photo": "1GGyqST75bprkRhWOxemwiBRXEwQOA-sE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "檸檬",
+      "latin": "Platycerium veitchii 'Lemoinei'",
+      "category": "鹿角蕨",
+      "date": "2026.04.06",
+      "note": "",
+      "cover": "1xmJbYdtI9whpg72tHgOzJAS2c6Gw3KAv",
+      "individuals": [
+        {
+          "label": "",
+          "cover": "1xmJbYdtI9whpg72tHgOzJAS2c6Gw3KAv",
+          "timeline": [
+            {
+              "date": "2026.04.06",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1xmJbYdtI9whpg72tHgOzJAS2c6Gw3KAv"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "羅賓",
+      "latin": "Platycerium willinckii 'Robin'",
+      "category": "鹿角蕨",
+      "date": "2026.04.17",
+      "note": "",
+      "cover": "12_134DbG_NHWvB0_30DbDTiZqQnYfwFC",
+      "individuals": [
+        {
+          "label": "",
+          "cover": "12_134DbG_NHWvB0_30DbDTiZqQnYfwFC",
+          "timeline": [
+            {
+              "date": "2026.04.17",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "12_134DbG_NHWvB0_30DbDTiZqQnYfwFC"
+            },
+            {
+              "date": "2026.04.17",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1E-ZVp2_slfhAiReZCM7tlwLcF6M6TM6a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "黑葉觀音蓮",
+      "latin": "Alocasia amazonica",
+      "category": "觀葉",
+      "date": "2026.05.09",
+      "note": "",
+      "cover": "1yrwe5cMF3K3Y82lXRSTM5oiqkmlvwVF0",
+      "individuals": [
+        {
+          "label": "",
+          "cover": "1yrwe5cMF3K3Y82lXRSTM5oiqkmlvwVF0",
+          "timeline": [
+            {
+              "date": "2026.05.09",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1yrwe5cMF3K3Y82lXRSTM5oiqkmlvwVF0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "絨葉斑葉觀音蓮",
+      "latin": "Alocasia micholitziana",
+      "category": "觀葉",
+      "date": "2026.05.09",
+      "note": "",
+      "cover": "1SSSQPsA1Eae2lUYEHUD5H4i0TKXhwIcM",
+      "individuals": [
+        {
+          "label": "",
+          "cover": "1SSSQPsA1Eae2lUYEHUD5H4i0TKXhwIcM",
+          "timeline": [
+            {
+              "date": "2026.05.09",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1SSSQPsA1Eae2lUYEHUD5H4i0TKXhwIcM"
             }
           ]
         }
