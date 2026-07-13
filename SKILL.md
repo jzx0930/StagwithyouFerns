@@ -31,25 +31,36 @@ description: 當使用者說「開始更新」時觸發。檢查 Google Drive「
 4. **查不到可靠名稱** → **維持中文不改**,並把清單回報給使用者、請他補親本/英文名。
 5. **已是英文** → 不動。
 
-## 執行步驟(收到「開始更新」)
-1. `Glob` 掃 `G:\我的雲端硬碟\植物照片` 全部分類夾與植物夾。
-2. 逐一判斷資料夾名是否已符合「英文-中文」或「純英文」:
-   - **符合** → 跳過。
-   - **不符合** → 依上面決策上網查名,將一行 `Rn '舊名' '新名'` **附加**到對應腳本:
-     - 分類夾 + 非鹿角蕨植物 → `rename_plants.ps1`
-     - 鹿角蕨植物 → `rename_platycerium.ps1`
-   - **絕不刪除腳本裡既有的行**。已改好的資料夾靠腳本內 `Test-Path` 自動「跳過」。
-3. **啟動 `run_rename.bat`**(請使用者雙擊;或經 computer-use 於檔案總管開啟並徵得同意)。等 Google Drive 同步完成(右下角圖示轉完)。
-4. **由 Drive 重建 data.json**(見下節)。
-5. 提醒使用者到 GitHub Desktop **commit + push**(data.json、models、腳本等)。
+## 執行步驟(收到「開始更新」)— 嚴格照順序
+1. **掃描 + 偵測變更**:`Glob` 掃 `G:\我的雲端硬碟\植物照片` 全部分類夾與植物夾,和「上次的狀態」(現有 `data.json` 的 plants + 現有資料夾名)比對,分出三種變更:
+   - **(A) 新增夾 / 改名夾**:資料夾名還不是「英文-中文」或純英文 → 進第 2 步查名改名;純新增但已命名好的植物也記下來要補進 data.json。
+   - **(B) 舊植物補了新照片**:資料夾名沒變、但裡面照片變多。**這種光看資料夾名看不出來**,要**逐一比對該株在 data.json 的照片數 vs Drive 該夾實際照片數**(用 `search_files` 抓該夾照片數對照),不一致就要重抓那株的時間軸。若不確定,對「有在成長中、可能常拍」的植物直接重抓即可。
+   - **(C) 完全沒變**:跳過。
+   - 把「這次要處理的清單」(要改名的、要補進 data.json 的新株、要更新照片的舊株)先列出來,再往下做。
+2. **查名 + 附加腳本**:逐一判斷資料夾名是否已符合「英文-中文」或「純英文」:
+   - 符合 / 純英文 → 跳過。
+   - 不符合 → 依決策上網查名,把 `Rn '舊名' '新名'` **附加**到對應腳本(分類夾+非鹿角蕨植物 → `rename_plants.ps1`;鹿角蕨植物 → `rename_platycerium.ps1`)。**只 append,絕不刪舊行**;已改好的靠 `Test-Path` 跳過。
+   - 若**全部都已符合**(沒有要改的名),跳過第 3、4 步,直接到第 5 步。
+3. **請使用者跑 bat,然後停下來等**:請使用者**雙擊 `run_rename.bat`** → **⚠️ 停在這裡,等使用者回覆「好了」並等 Drive 同步完成後才繼續。在確認前絕不往下做**,否則會用到舊資料夾名。
+4. **驗證改名**:重新 `Glob` 確認每筆改名都生效。偶爾某夾第一次沒改到(同步延遲/暫時失敗)——腳本是冪等的,請使用者**再雙擊一次**即可(已改好的會跳過)。全部符合後再繼續。
+5. **更新 data.json**(見下節;**增量優先**)。
+6. **提醒 commit + push**:請使用者到 GitHub Desktop commit + push(data.json、改過的腳本等)。
 
-## 由 Drive 重建 data.json
-用 Drive 連接器 `search_files` 走訪:`植物照片` → 分類夾 → 植物夾 →(`#`個體夾)→ 照片,取檔案 ID。
-- **分類**:folder `屬名-中文` → `category.name` = `中文屬名`(中文在前、屬名在後、去掉 `-`,例 `Platycerium-鹿角蕨` → `鹿角蕨Platycerium`)。有 `.glb` 模型的分類設 `"model": true`。
-- **植物**:folder `種名-中文` → `name`=中文、`latin`=`屬名 種名`、`category`=分類的中文部分。
-- **個體**:每個 `#NN` 夾 → `{ "label":"#NN", "cover":<最新照片ID>, "timeline":[...] }`;直接放在植物夾的照片 → 未編號個體(`label:""`)。
-- **時間軸節點**:`date` 由檔名解析(`YYYY:M:D HH:MM:SS` 或 `YYYY年M月D日` → `YYYY.MM.DD`);`photo`=Drive 檔案 ID;`tag`/`note` 可系統化產生。app.js 會自動依日期排序、最新在最上。
-- **cover**:用最新一張照片 ID;分類 `cover` 可留空(app.js 自動取該類第一株)。
+## 更新 data.json(保留 categories/_說明,只動 plants)
+
+**增量優先(重要教訓)**:整棵樹(200+ 檔)用 subagent 走訪**很容易 API 連線中斷**,實測失敗多次。所以:
+- **平常只做增量**:比對現有 data.json 的 plants 與 Drive 現況,**只處理「新增夾 / 改名夾 / 補了照片的夾」**——用 `search_files` 只抓那幾株的照片(ID+檔名日期),建立或就地更新該株物件、append 到 plants。既有未變動的植物**不重抓**。改名但中文名沒變的,plants 不受影響;若某株的顯示名要跟著資料夾改(如純英文夾),就地更新該株 `name`/`latin`。
+- **只有第一次建、或使用者明確要「完整重建」時**,才用 subagent 走訪整棵樹(給它 8 個分類夾 ID + 下面規則)。即使如此仍可能中斷 → 斷了就改用增量補齊剩下的。
+
+走訪規則(`search_files` 以 `parentId` 查:植物照片 → 分類夾 → 植物夾 →(`#`個體夾)→ 照片):
+- **分類**:**保留現有 `categories` 陣列**(名稱/cover/model 都不動),不要重建。
+- **植物**:植物夾名用**第一個 `-`** 切:左=latin、右=中文=`name`(無中文就用整個資料夾名,如 `P.willinckii Yellow moon…`)。`category` = 分類中文部分,但**棒槌類一律填「棒槌」**(對應 data.json 的 `棒槌Pachypodium`,app.js 用 `c.zh` 精確比對;填「棒槌樹」會對不上而消失)。
+- **latin** = 屬名 + 種名。屬名取分類夾 latin,**但這幾類要用該株「真正的屬」而非分類名**:仙人掌(Cactaceae 是科)→ 用真正屬如 `Lophophora`/`Astrophytum`;塊根(Caudex)、大戟(Euphorbiaceae 是科)→ 用真正屬;**觀葉(Foliage)→ 用 `Alocasia` 等真正屬,不是 Foliage**。鹿角蕨/棒槌/龍舌蘭的分類夾 latin 本就是正確屬名。植物夾 latin 已含屬名(如 `Platycerium wandae`)就不重複加。
+- **個體**:`#NN` 夾 → `{ "label":"#NN", "cover":<該個體最新照片ID>, "timeline":[...] }`;直接放植物夾的照片 → 未編號個體(`label:""`)。巢狀 `#01/#01` 用最外層 label。
+- **時間軸節點**:`date` 由檔名解析(`YYYY:M:D HH:MM:SS` / `YYYY年M月D日` / `YYYY M D HH MM SS` → `YYYY.MM.DD`);`photo`=Drive 檔案 ID;`tag`/`note` 可系統化。app.js 自動依日期排序、最新在最上。
+- **空資料夾(無照片)不產生植物**。
+- **cover**:用該株最新一張照片 ID;分類 `cover` 可留空。
+- **寫檔**:Read 現有 data.json,保留 `_說明`/`_範例植物格式`/`categories`,只換或補 `plants`,用 Python `json.dump(ensure_ascii=False, indent=2)` 寫,寫完 `json.load` 驗證。
 
 ## 腳本慣例(重要)
 - `rename_plants.ps1` / `rename_platycerium.ps1`:存成 **UTF-8 + BOM**(否則 PowerShell 5.1 讀不對中文,改名會失敗)。每筆用 `Rn` 函式,內含 `Test-Path` 保護:目標已存在或找不到舊夾就印「跳過」,不會亂改或覆蓋。
