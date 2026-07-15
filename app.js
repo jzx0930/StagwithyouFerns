@@ -3,6 +3,10 @@
   'use strict';
 
   var DEFAULT_CATS = ['鹿角蕨', '棒槌樹', '美照'];
+  // 模型 CDN 開關:留空=用同源(GitHub Pages,本身就是 Fastly CDN)。
+  // 要改用 jsDelivr:設成 'https://cdn.jsdelivr.net/gh/jzx0930/StagwithyouFerns@main/'
+  // 注意:jsDelivr @main 會快取最久 7 天,還在改模型時先別開,免得看到舊檔。
+  var MODEL_CDN = '';
 
   var state = {
     view: 'lobby',
@@ -48,7 +52,7 @@
       var o = (typeof c === 'string') ? { name: c, cover: '' } : c;
       var pc = parseCat(o.name);
       var mpath = '';
-      if (o.model === true || o.model === 'auto') { if (pc.latin) mpath = 'models/' + pc.latin + '/' + pc.latin + '.glb'; }
+      if (o.model === true || o.model === 'auto') { if (pc.latin) mpath = MODEL_CDN + 'models/' + pc.latin + '/' + pc.latin + '.glb'; }
       else if (typeof o.model === 'string' && o.model) { mpath = o.model; }
       return { name: o.name, zh: pc.zh, latin: pc.latin, cover: o.cover || '', fx: o.fx, model: mpath };
     });
@@ -105,7 +109,7 @@
       var visual;
       if (useModel) {
         // 真實 3D 模型(.glb)當互動封面,可拖曳旋轉檢視
-        visual = '<model-viewer src="' + esc(c.model) + '" camera-controls auto-rotate autoplay auto-rotate-delay="0" rotation-per-second="24deg" disable-zoom interaction-prompt="none" exposure="1.05" shadow-intensity="0.9" environment-image="neutral" touch-action="pan-y" alt="' + esc(c.name) + ' 3D"></model-viewer>';
+        visual = '<model-viewer src="' + esc(c.model) + '" poster="' + esc(c.model.replace(/\.glb$/i, '-poster.webp')) + '" camera-controls auto-rotate autoplay auto-rotate-delay="0" rotation-per-second="24deg" disable-zoom interaction-prompt="none" exposure="1.05" shadow-intensity="0.9" environment-image="neutral" touch-action="pan-y" alt="' + esc(c.name) + ' 3D"></model-viewer>';
       } else if (useFern) {
         // 互動式程序生成 3D 鹿角蕨元件(滑鼠視差)
         visual = '<staghorn-fern accent="#9ccb6f" frond-color="#7c9a56" basal-color="#45502a" fronds="9"></staghorn-fern>';
@@ -163,7 +167,7 @@
     var totalPhotos = indexed.reduce(function (s, x) { return s + photoCount(x.p); }, 0);
     var cat = cats[tabIdx];
     var hero = cat.model ?
-      '<div class="cat-hero"><model-viewer src="' + esc(cat.model) + '" camera-controls auto-rotate autoplay auto-rotate-delay="0" rotation-per-second="24deg" disable-zoom interaction-prompt="none" exposure="1.05" shadow-intensity="0.9" environment-image="neutral" touch-action="pan-y" alt="' + esc(activeCat) + ' 3D"></model-viewer></div>' : '';
+      '<div class="cat-hero"><model-viewer src="' + esc(cat.model) + '" poster="' + esc(cat.model.replace(/\.glb$/i, '-poster.webp')) + '" camera-controls auto-rotate autoplay auto-rotate-delay="0" rotation-per-second="24deg" disable-zoom interaction-prompt="none" exposure="1.05" shadow-intensity="0.9" environment-image="neutral" touch-action="pan-y" alt="' + esc(activeCat) + ' 3D"></model-viewer></div>' : '';
     var empty = indexed.length ? '' :
       '<p class="subtitle" style="margin-top:8px;">這個分類還沒有植物。</p>';
 

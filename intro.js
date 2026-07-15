@@ -1,9 +1,8 @@
-/* ===== 開場自動飛行(auto-play)=====
-   自成一體:注入自己的樣式與 DOM,開場時暫時隱藏 #app;
-   自動飛過各分類模型(頭尾慢、中間快),結束顯示「進入大廳」;按進入或跳過後清掉開場、還原正常網站。
-   模型會提前預載,確保每個都來得及出現。
-   停用:刪掉 index.html 裡載入這支的 <script> 那行即可。
-   調整:DUR_PER=每個分類毫秒;easeTrap 裡的 a=頭尾加減速佔比(越小中間越快越久)。 */
+/* ===== 開場自動飛行(先預載模型,再飛)=====
+   自成一體:注入樣式與 DOM,開場時暫時隱藏 #app。
+   流程:進站 → 逐一預載 5 個模型(顯示「載入中 n/5」)→ 全部載好 → 自動飛過(頭尾慢中間快)→ 落地「進入大廳」。
+   停用:刪 index.html 裡載入這支的 <script> 那行即可。
+   調整:DUR_PER=每個分類毫秒;easeTrap 的 a=頭尾加減速佔比。 */
 (function () {
   'use strict';
   var app = document.getElementById('app');
@@ -18,8 +17,9 @@
     { m: 'models/Caudex/Caudex.glb',           zh: '塊根',   la: 'Caudex',      el: 82, az: 8 }
   ];
   var N = SCENES.length;
-  var DUR_PER = 4600;
+  var DUR_PER = 460;          // 每個分類毫秒(現在是很快;預載後即使很快也每株都在)
   var LAND_MS = 1400;
+  var LOAD_TIMEOUT = 12000;   // 單一模型逾時保護
 
   var CSS = ''
     + '#sf-intro{position:fixed;inset:0;z-index:60;overflow:hidden;opacity:1;transition:opacity .7s ease;background:#06090a;}'
@@ -39,7 +39,11 @@
     + '#sf-intro .chips span{font-family:"Space Mono",monospace;font-size:13px;color:#9ad8ab;border:1px solid rgba(154,216,171,.32);border-radius:999px;padding:7px 15px;background:rgba(0,0,0,.28);backdrop-filter:blur(8px);}'
     + '#sf-intro .enter{display:inline-block;font-family:"Space Grotesk",sans-serif;font-size:15px;color:#0a0f0d;background:#9ad8ab;border-radius:999px;padding:13px 30px;text-decoration:none;cursor:pointer;box-shadow:0 10px 34px rgba(154,216,171,.35);}'
     + '#sf-intro .bar{position:absolute;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#9ad8ab,#bfe6cb);transition:width .2s linear;}'
-    + '#sf-intro .skip{position:absolute;top:18px;right:20px;font-family:"Space Mono",monospace;font-size:12px;color:#cfe9d6;background:rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:7px 15px;cursor:pointer;backdrop-filter:blur(8px);z-index:2;}'
+    + '#sf-intro .skip{position:absolute;top:18px;right:20px;font-family:"Space Mono",monospace;font-size:12px;color:#cfe9d6;background:rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:7px 15px;cursor:pointer;backdrop-filter:blur(8px);z-index:3;}'
+    + '#sf-load{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;z-index:2;transition:opacity .5s ease;}'
+    + '#sf-load .t{font-family:"Space Mono",monospace;font-size:13px;letter-spacing:.2em;color:#bfe6cb;}'
+    + '#sf-load .track{width:200px;height:3px;background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden;}'
+    + '#sf-load .fill{height:100%;width:0;background:linear-gradient(90deg,#9ad8ab,#bfe6cb);transition:width .3s ease;}'
     + 'body.sf-on{overflow:hidden;}';
   var st = document.createElement('style'); st.id = 'sf-intro-style'; st.textContent = CSS; document.head.appendChild(st);
 
@@ -55,6 +59,7 @@
     + '<div class="eb">HERBARIUM · 成長紀錄</div><h1>StagwithyouFerns</h1>'
     + '<div class="chips"><span>鹿角蕨</span><span>棒槌</span><span>仙人掌</span><span>龍舌蘭</span><span>塊根</span><span>大戟</span><span>觀葉</span><span>美照</span></div>'
     + '<a class="enter" id="sf-enter">進入大廳 →</a></div></div>'
+    + '<div id="sf-load"><div class="t" id="sf-loadt">載入中 0 / ' + N + '</div><div class="track"><div class="fill" id="sf-loadf"></div></div></div>'
     + '<div class="bar" id="sf-bar"></div>'
     + '<div class="skip" id="sf-skip">跳過開場 →</div>';
   document.body.appendChild(root);
@@ -71,6 +76,7 @@
     v.setAttribute('min-camera-orbit', 'auto 0deg 1m'); v.setAttribute('max-camera-orbit', 'auto 180deg 18m');
     v.setAttribute('field-of-view', '30deg');
     v.setAttribute('interpolation-decay', '200');
+    v.setAttribute('poster', s.m.replace('.glb', '-poster.webp'));
     d.appendChild(v); scenesWrap.appendChild(d);
     var c = document.createElement('div'); c.className = 'cap';
     c.innerHTML = '<div class="zh">' + s.zh + '</div><div class="la">' + s.la + '</div>';
@@ -79,21 +85,52 @@
   });
 
   var bgp = document.getElementById('sf-p'), land = document.getElementById('sf-land'),
-      bar = document.getElementById('sf-bar');
+      bar = document.getElementById('sf-bar'), loadBox = document.getElementById('sf-load'),
+      loadT = document.getElementById('sf-loadt'), loadF = document.getElementById('sf-loadf');
   function clamp(v, a, b) { return v < a ? a : (v > b ? b : v); }
   function smooth(t) { t = clamp(t, 0, 1); return t * t * (3 - 2 * t); }
 
-  var running = true, fxStop = false, t0 = null;
+  // ── 逐一預載模型 ──
+  var loaded = 0, flightStarted = false;
+  function preload(i) {
+    if (i >= N) { startFlight(); return; }
+    var v = mv[i], done = false;
+    function next() {
+      if (done) return; done = true;
+      loaded++;
+      loadT.textContent = '載入中 ' + loaded + ' / ' + N;
+      loadF.style.width = (loaded / N * 100) + '%';
+      preload(i + 1);
+    }
+    v.addEventListener('load', next, { once: true });
+    v.addEventListener('error', next, { once: true });
+    setTimeout(next, LOAD_TIMEOUT);
+    v.setAttribute('src', SCENES[i].m);
+  }
+  preload(0);
+  setTimeout(function () { if (!flightStarted) startFlight(); }, N * LOAD_TIMEOUT + 2000); // 全域保護
+
+  // ── 飛行 ──
+  var running = false, t0 = null;
   var FP_START = -0.5, FP_END = N - 0.35;
   var SCENE_MS = (FP_END - FP_START) * DUR_PER;
 
-  // 梯形速度曲線:頭尾慢(加速/減速)、中間維持較快的勻速。a = 加減速佔比。
+  // 梯形速度曲線:頭尾慢(加速/減速)、中間維持較快勻速。
   function easeTrap(u) {
     var a = 0.28, tot = 1 - a, c;
     if (u < a) c = (u * u) / (2 * a);
     else if (u < 1 - a) c = a / 2 + (u - a);
     else { var w = u - (1 - a); c = a / 2 + (1 - 2 * a) + (w - (w * w) / (2 * a)); }
     return clamp(c / tot, 0, 1);
+  }
+
+  function startFlight() {
+    if (flightStarted) return;
+    flightStarted = true;
+    loadBox.style.opacity = '0';
+    setTimeout(function () { if (loadBox.parentNode) loadBox.style.display = 'none'; }, 500);
+    running = true; t0 = null;
+    requestAnimationFrame(frame);
   }
 
   function frame(now) {
@@ -108,7 +145,6 @@
     bgp.style.transform = 'translateY(' + (scenePhase * -46) + 'px) scale(1.1)';
 
     for (var i = 0; i < N; i++) {
-      if (fp > i - 1.7 && !mv[i].getAttribute('src')) mv[i].setAttribute('src', SCENES[i].m);
       var x = fp - (i + 0.5);
       var vis = smooth(1 - Math.abs(x) / 0.85) * (1 - lp);
       scn[i].style.opacity = vis;
@@ -129,8 +165,9 @@
     if (lp >= 1) return;
     requestAnimationFrame(frame);
   }
-  requestAnimationFrame(frame);
 
+  // 螢火蟲(載入階段就開始)
+  var fxStop = false;
   (function () {
     var c = document.getElementById('sf-fx'), g = c.getContext('2d'), W, H, DPR, pts;
     function rs() { DPR = Math.min(window.devicePixelRatio || 1, 2); W = c.width = innerWidth * DPR; H = c.height = innerHeight * DPR; }

@@ -9,3 +9,7 @@ models/**/_*_preview.png
 models/**/*-original.glb
 models/**/Hitem3d-*.glb
 models/**/Meshy_*.glb
+
+# poster 中間產物(只上傳 webp)
+models/**/*-poster.png
+models/_poster_sheet.png
