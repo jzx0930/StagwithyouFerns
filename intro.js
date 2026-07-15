@@ -1,12 +1,13 @@
-/* ===== 開場滾動飛行 =====
-   自成一體:注入自己的樣式與 DOM,開場時暫時隱藏 #app,
-   使用者按「進入大廳」或跳過後,清掉開場、還原成正常網站。
-   停用方式:把 index.html 裡這支的 <script> 那一行刪掉即可,其餘檔案不受影響。 */
+/* ===== 開場自動飛行(auto-play)=====
+   自成一體:注入自己的樣式與 DOM,開場時暫時隱藏 #app;
+   自動慢速飛過各分類模型,結束顯示「進入大廳」;按進入或跳過後清掉開場、還原正常網站。
+   模型會提前預載,確保每個都來得及出現。
+   停用:刪掉 index.html 裡載入這支的 <script> 那行即可,其餘檔案不受影響。
+   ── 想調速度/停留:改下面 DUR_PER(每個分類幾毫秒)。 */
 (function () {
   'use strict';
   var app = document.getElementById('app');
   if (!app) return;
-  // 同一個分頁看過就不再重播(要重看:開新分頁或無痕)
   try { if (sessionStorage.getItem('sf_intro_seen')) return; } catch (e) {}
 
   var SCENES = [
@@ -16,15 +17,17 @@
     { m: 'models/Agave/Agave.glb',             zh: '龍舌蘭', la: 'Agave',       el: 76, az: -10 },
     { m: 'models/Caudex/Caudex.glb',           zh: '塊根',   la: 'Caudex',      el: 82, az: 8 }
   ];
-  var N = SCENES.length, SCENE_END = 0.84;
+  var N = SCENES.length;
+  var DUR_PER = 4600;   // 每個分類停留(毫秒)— 想更慢就調大
+  var LAND_MS = 1400;   // 落地面板淡入時間
 
   var CSS = ''
-    + '#sf-intro{position:fixed;inset:0;z-index:60;overflow:hidden;opacity:1;transition:opacity .6s ease;}'
+    + '#sf-intro{position:fixed;inset:0;z-index:60;overflow:hidden;opacity:1;transition:opacity .7s ease;background:#06090a;}'
     + '#sf-intro .p{position:absolute;inset:-8%;background:url("https://lh3.googleusercontent.com/d/1fgb-BT8G4-nd_HuItDWEFv0w51fgmjHE=w2000") center/cover no-repeat;filter:brightness(.5) saturate(.85) blur(3px);transform:scale(1.1);will-change:transform;}'
     + '#sf-intro .n{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,15,28,.4),rgba(4,9,18,.62) 70%,rgba(3,7,14,.74));}'
     + '#sf-intro canvas{position:absolute;inset:0;width:100%;height:100%;}'
     + '#sf-intro .sc{position:absolute;inset:0;opacity:0;will-change:opacity;}'
-    + '#sf-intro .sc model-viewer{width:100%;height:100%;--poster-color:transparent;background:transparent;}'
+    + '#sf-intro .sc model-viewer{width:100%;height:100%;--poster-color:transparent;background:transparent;--progress-bar-color:transparent;}'
     + '#sf-intro .cap{position:absolute;left:8%;bottom:18%;opacity:0;will-change:opacity,transform;text-shadow:0 2px 18px rgba(0,0,0,.75);}'
     + '#sf-intro .cap .zh{font-family:"Newsreader",Georgia,serif;font-size:clamp(40px,7vw,72px);line-height:1;color:#f4f8f4;}'
     + '#sf-intro .cap .la{font-family:"Newsreader",Georgia,serif;font-style:italic;font-size:clamp(16px,2.2vw,24px);color:#9ad8ab;margin-top:8px;}'
@@ -35,20 +38,14 @@
     + '#sf-intro .chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:640px;margin:0 auto 30px;}'
     + '#sf-intro .chips span{font-family:"Space Mono",monospace;font-size:13px;color:#9ad8ab;border:1px solid rgba(154,216,171,.32);border-radius:999px;padding:7px 15px;background:rgba(0,0,0,.28);backdrop-filter:blur(8px);}'
     + '#sf-intro .enter{display:inline-block;font-family:"Space Grotesk",sans-serif;font-size:15px;color:#0a0f0d;background:#9ad8ab;border-radius:999px;padding:13px 30px;text-decoration:none;cursor:pointer;box-shadow:0 10px 34px rgba(154,216,171,.35);}'
-    + '#sf-intro .bar{position:absolute;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#9ad8ab,#bfe6cb);}'
-    + '#sf-intro .hint{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.14em;color:#bfe6cb;opacity:.75;animation:sfbob 2.2s ease-in-out infinite;}'
-    + '#sf-intro .skip{position:absolute;top:18px;right:20px;font-family:"Space Mono",monospace;font-size:12px;color:#9fb2a8;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:7px 15px;cursor:pointer;backdrop-filter:blur(8px);}'
-    + '@keyframes sfbob{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,6px);}}'
-    + '#sf-spacer{height:640vh;}'
-    + 'body.sf-on{overflow-x:hidden;}';
+    + '#sf-intro .bar{position:absolute;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#9ad8ab,#bfe6cb);transition:width .2s linear;}'
+    + '#sf-intro .skip{position:absolute;top:18px;right:20px;font-family:"Space Mono",monospace;font-size:12px;color:#cfe9d6;background:rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:7px 15px;cursor:pointer;backdrop-filter:blur(8px);z-index:2;}'
+    + 'body.sf-on{overflow:hidden;}';
   var st = document.createElement('style'); st.id = 'sf-intro-style'; st.textContent = CSS; document.head.appendChild(st);
 
-  // 開場期間先藏住正式站
   var appDisp = app.style.display;
   app.style.display = 'none';
   document.body.classList.add('sf-on');
-
-  var spacer = document.createElement('div'); spacer.id = 'sf-spacer'; document.body.appendChild(spacer);
 
   var root = document.createElement('div'); root.id = 'sf-intro';
   root.innerHTML =
@@ -59,8 +56,7 @@
     + '<div class="chips"><span>鹿角蕨</span><span>棒槌</span><span>仙人掌</span><span>龍舌蘭</span><span>塊根</span><span>大戟</span><span>觀葉</span><span>美照</span></div>'
     + '<a class="enter" id="sf-enter">進入大廳 →</a></div></div>'
     + '<div class="bar" id="sf-bar"></div>'
-    + '<div class="hint" id="sf-hint">↓ 往下滾動,飛過你的植物世界 ↓</div>'
-    + '<div class="skip" id="sf-skip">跳過開場</div>';
+    + '<div class="skip" id="sf-skip">跳過開場 →</div>';
   document.body.appendChild(root);
 
   var scenesWrap = document.getElementById('sf-scenes');
@@ -71,9 +67,10 @@
     v.setAttribute('interaction-prompt', 'none'); v.setAttribute('disable-zoom', '');
     v.setAttribute('exposure', '1.05'); v.setAttribute('shadow-intensity', '0.7');
     v.setAttribute('environment-image', 'neutral');
-    v.setAttribute('camera-orbit', s.az + 'deg ' + s.el + 'deg 14m');
+    v.setAttribute('camera-orbit', s.az + 'deg ' + s.el + 'deg 15m');
     v.setAttribute('min-camera-orbit', 'auto 0deg 1m'); v.setAttribute('max-camera-orbit', 'auto 180deg 18m');
     v.setAttribute('field-of-view', '30deg');
+    v.setAttribute('interpolation-decay', '200'); // 讓鏡頭跟得更柔順
     d.appendChild(v); scenesWrap.appendChild(d);
     var c = document.createElement('div'); c.className = 'cap';
     c.innerHTML = '<div class="zh">' + s.zh + '</div><div class="la">' + s.la + '</div>';
@@ -82,50 +79,57 @@
   });
 
   var bgp = document.getElementById('sf-p'), land = document.getElementById('sf-land'),
-      hint = document.getElementById('sf-hint'), bar = document.getElementById('sf-bar');
+      bar = document.getElementById('sf-bar');
   function clamp(v, a, b) { return v < a ? a : (v > b ? b : v); }
   function smooth(t) { t = clamp(t, 0, 1); return t * t * (3 - 2 * t); }
 
-  var running = true;
-  function frame() {
+  var running = true, fxStop = false, t0 = null;
+  // 進場總長:從 fp=-0.5 走到 fp=N-0.35(最後一株充分顯示)
+  var FP_START = -0.5, FP_END = N - 0.35;
+  var SCENE_MS = (FP_END - FP_START) * DUR_PER;
+
+  function frame(now) {
     if (!running) return;
-    var total = document.documentElement.scrollHeight - window.innerHeight;
-    var p = total > 0 ? clamp(window.scrollY / total, 0, 1) : 0;
-    bar.style.width = (p * 100) + '%';
-    var sp = clamp(p / SCENE_END, 0, 1);
-    var lp = smooth((p - SCENE_END) / (1 - SCENE_END));
-    var fp = sp * N;
-    bgp.style.transform = 'translateY(' + (p * -40) + 'px) scale(1.1)';
+    if (t0 === null) t0 = now;
+    var el = now - t0;
+    var scenePhase = clamp(el / SCENE_MS, 0, 1);
+    var fp = FP_START + scenePhase * (FP_END - FP_START);
+    var lp = smooth((el - SCENE_MS) / LAND_MS); // 場景跑完才開始落地
+
+    bar.style.width = (clamp((el) / (SCENE_MS + LAND_MS), 0, 1) * 100) + '%';
+    bgp.style.transform = 'translateY(' + (scenePhase * -46) + 'px) scale(1.1)';
+
     for (var i = 0; i < N; i++) {
+      // 提前預載(該場景還有 ~1.7 個身位才到就先載)
+      if (fp > i - 1.7 && !mv[i].getAttribute('src')) mv[i].setAttribute('src', SCENES[i].m);
       var x = fp - (i + 0.5);
-      if (Math.abs(x) < 1.35 && !mv[i].getAttribute('src')) mv[i].setAttribute('src', SCENES[i].m);
-      var vis = smooth(1 - Math.abs(x) / 0.82) * (1 - lp);
+      var vis = smooth(1 - Math.abs(x) / 0.85) * (1 - lp);
       scn[i].style.opacity = vis;
       cap[i].style.opacity = smooth(1 - Math.abs(x) / 0.5) * (1 - lp);
-      cap[i].style.transform = 'translateY(' + (x * 46) + 'px)';
-      if (vis > 0.01) {
-        var t = clamp((x + 0.82) / 1.64, 0, 1);
-        var radius = 15 - t * 13;
-        var el = SCENES[i].el + (0.5 - t) * 16;
-        var az = SCENES[i].az + x * 24;
-        mv[i].cameraOrbit = az.toFixed(1) + 'deg ' + el.toFixed(1) + 'deg ' + radius.toFixed(2) + 'm';
+      cap[i].style.transform = 'translateY(' + (x * 44) + 'px)';
+      if (vis > 0.008) {
+        var t = clamp((x + 0.85) / 1.7, 0, 1);
+        var radius = 15 - smooth(t) * 12.5;                 // 15m→2.5m,緩入
+        var elev = SCENES[i].el + (0.5 - t) * 15;
+        var az = SCENES[i].az + x * 22;
+        mv[i].cameraOrbit = az.toFixed(1) + 'deg ' + elev.toFixed(1) + 'deg ' + radius.toFixed(2) + 'm';
       }
     }
     land.style.opacity = lp;
-    if (lp > 0.6) land.classList.add('on'); else land.classList.remove('on');
+    if (lp > 0.55) land.classList.add('on'); else land.classList.remove('on');
     land.querySelector('.land-in').style.transform = 'translateY(' + ((1 - lp) * 28) + 'px)';
-    hint.style.opacity = p < 0.05 ? 0.75 : 0;
+
+    if (lp >= 1) { /* 停在落地畫面,等使用者進入 */ return; }
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
 
   // 螢火蟲
-  var fxStop = false;
   (function () {
     var c = document.getElementById('sf-fx'), g = c.getContext('2d'), W, H, DPR, pts;
     function rs() { DPR = Math.min(window.devicePixelRatio || 1, 2); W = c.width = innerWidth * DPR; H = c.height = innerHeight * DPR; }
     rs(); window.addEventListener('resize', rs);
-    pts = []; for (var i = 0; i < 70; i++) pts.push({ x: Math.random(), y: Math.random(), vx: (Math.random() - .5) * .0007, vy: (Math.random() - .5) * .0007, s: .5 + Math.random() * 1.6, ph: Math.random() * 6.28, sp: .3 + Math.random() * .7 });
+    pts = []; for (var i = 0; i < 64; i++) pts.push({ x: Math.random(), y: Math.random(), vx: (Math.random() - .5) * .0006, vy: (Math.random() - .5) * .0006, s: .5 + Math.random() * 1.6, ph: Math.random() * 6.28, sp: .3 + Math.random() * .7 });
     var t = 0;
     (function loop() {
       if (fxStop) return;
@@ -143,19 +147,17 @@
     })();
   })();
 
-  // 進站 / 清理
   function enter() {
     try { sessionStorage.setItem('sf_intro_seen', '1'); } catch (e) {}
     root.style.opacity = '0';
     setTimeout(function () {
       running = false; fxStop = true;
       if (root.parentNode) root.parentNode.removeChild(root);
-      if (spacer.parentNode) spacer.parentNode.removeChild(spacer);
       document.body.classList.remove('sf-on');
       window.scrollTo(0, 0);
       app.style.display = appDisp || '';
       if (window.__fxMode) window.__fxMode('lobby');
-    }, 620);
+    }, 720);
   }
   document.getElementById('sf-enter').addEventListener('click', function (e) { e.preventDefault(); enter(); });
   document.getElementById('sf-skip').addEventListener('click', enter);
