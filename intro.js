@@ -1,9 +1,9 @@
 /* ===== 開場自動飛行(auto-play)=====
    自成一體:注入自己的樣式與 DOM,開場時暫時隱藏 #app;
-   自動慢速飛過各分類模型,結束顯示「進入大廳」;按進入或跳過後清掉開場、還原正常網站。
+   自動飛過各分類模型(頭尾慢、中間快),結束顯示「進入大廳」;按進入或跳過後清掉開場、還原正常網站。
    模型會提前預載,確保每個都來得及出現。
-   停用:刪掉 index.html 裡載入這支的 <script> 那行即可,其餘檔案不受影響。
-   ── 想調速度/停留:改下面 DUR_PER(每個分類幾毫秒)。 */
+   停用:刪掉 index.html 裡載入這支的 <script> 那行即可。
+   調整:DUR_PER=每個分類毫秒;easeTrap 裡的 a=頭尾加減速佔比(越小中間越快越久)。 */
 (function () {
   'use strict';
   var app = document.getElementById('app');
@@ -18,8 +18,8 @@
     { m: 'models/Caudex/Caudex.glb',           zh: '塊根',   la: 'Caudex',      el: 82, az: 8 }
   ];
   var N = SCENES.length;
-  var DUR_PER = 4600;   // 每個分類停留(毫秒)— 想更慢就調大
-  var LAND_MS = 1400;   // 落地面板淡入時間
+  var DUR_PER = 4600;
+  var LAND_MS = 1400;
 
   var CSS = ''
     + '#sf-intro{position:fixed;inset:0;z-index:60;overflow:hidden;opacity:1;transition:opacity .7s ease;background:#06090a;}'
@@ -70,7 +70,7 @@
     v.setAttribute('camera-orbit', s.az + 'deg ' + s.el + 'deg 15m');
     v.setAttribute('min-camera-orbit', 'auto 0deg 1m'); v.setAttribute('max-camera-orbit', 'auto 180deg 18m');
     v.setAttribute('field-of-view', '30deg');
-    v.setAttribute('interpolation-decay', '200'); // 讓鏡頭跟得更柔順
+    v.setAttribute('interpolation-decay', '200');
     d.appendChild(v); scenesWrap.appendChild(d);
     var c = document.createElement('div'); c.className = 'cap';
     c.innerHTML = '<div class="zh">' + s.zh + '</div><div class="la">' + s.la + '</div>';
@@ -84,23 +84,30 @@
   function smooth(t) { t = clamp(t, 0, 1); return t * t * (3 - 2 * t); }
 
   var running = true, fxStop = false, t0 = null;
-  // 進場總長:從 fp=-0.5 走到 fp=N-0.35(最後一株充分顯示)
   var FP_START = -0.5, FP_END = N - 0.35;
   var SCENE_MS = (FP_END - FP_START) * DUR_PER;
+
+  // 梯形速度曲線:頭尾慢(加速/減速)、中間維持較快的勻速。a = 加減速佔比。
+  function easeTrap(u) {
+    var a = 0.28, tot = 1 - a, c;
+    if (u < a) c = (u * u) / (2 * a);
+    else if (u < 1 - a) c = a / 2 + (u - a);
+    else { var w = u - (1 - a); c = a / 2 + (1 - 2 * a) + (w - (w * w) / (2 * a)); }
+    return clamp(c / tot, 0, 1);
+  }
 
   function frame(now) {
     if (!running) return;
     if (t0 === null) t0 = now;
     var el = now - t0;
-    var scenePhase = clamp(el / SCENE_MS, 0, 1);
+    var scenePhase = easeTrap(clamp(el / SCENE_MS, 0, 1));
     var fp = FP_START + scenePhase * (FP_END - FP_START);
-    var lp = smooth((el - SCENE_MS) / LAND_MS); // 場景跑完才開始落地
+    var lp = smooth((el - SCENE_MS) / LAND_MS);
 
-    bar.style.width = (clamp((el) / (SCENE_MS + LAND_MS), 0, 1) * 100) + '%';
+    bar.style.width = (clamp(el / (SCENE_MS + LAND_MS), 0, 1) * 100) + '%';
     bgp.style.transform = 'translateY(' + (scenePhase * -46) + 'px) scale(1.1)';
 
     for (var i = 0; i < N; i++) {
-      // 提前預載(該場景還有 ~1.7 個身位才到就先載)
       if (fp > i - 1.7 && !mv[i].getAttribute('src')) mv[i].setAttribute('src', SCENES[i].m);
       var x = fp - (i + 0.5);
       var vis = smooth(1 - Math.abs(x) / 0.85) * (1 - lp);
@@ -109,7 +116,7 @@
       cap[i].style.transform = 'translateY(' + (x * 44) + 'px)';
       if (vis > 0.008) {
         var t = clamp((x + 0.85) / 1.7, 0, 1);
-        var radius = 15 - smooth(t) * 12.5;                 // 15m→2.5m,緩入
+        var radius = 15 - smooth(t) * 12.5;
         var elev = SCENES[i].el + (0.5 - t) * 15;
         var az = SCENES[i].az + x * 22;
         mv[i].cameraOrbit = az.toFixed(1) + 'deg ' + elev.toFixed(1) + 'deg ' + radius.toFixed(2) + 'm';
@@ -119,12 +126,11 @@
     if (lp > 0.55) land.classList.add('on'); else land.classList.remove('on');
     land.querySelector('.land-in').style.transform = 'translateY(' + ((1 - lp) * 28) + 'px)';
 
-    if (lp >= 1) { /* 停在落地畫面,等使用者進入 */ return; }
+    if (lp >= 1) return;
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
 
-  // 螢火蟲
   (function () {
     var c = document.getElementById('sf-fx'), g = c.getContext('2d'), W, H, DPR, pts;
     function rs() { DPR = Math.min(window.devicePixelRatio || 1, 2); W = c.width = innerWidth * DPR; H = c.height = innerHeight * DPR; }
