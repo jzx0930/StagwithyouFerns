@@ -1,3 +1,6 @@
+# 手動還原備份(只留在本機,不上傳)
+_backup/
+
 # 暫存預覽圖(壓縮/尺寸比較用)
 _*_preview.png
 models/**/_*_preview.png
