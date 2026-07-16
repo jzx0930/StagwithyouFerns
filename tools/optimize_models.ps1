@@ -2,7 +2,7 @@
 # Draco 幾何 + WebP 貼圖。此腳本在 tools/,操作對象是「上一層」的 models/。
 $ErrorActionPreference = 'Continue'
 Set-Location -LiteralPath (Split-Path -Parent $PSScriptRoot)   # 回到 repo 根目錄
-$models = 'Platycerium','Pachypodium','Cactaceae','Agave','Caudex','Euphorbiaceae','Foliage','Succulent'
+$models = 'Platycerium','Pachypodium','Cactaceae','Agave','Caudex','Euphorbiaceae','Foliage','Succulent','Gallery'
 foreach ($g in $models) {
   $src = "models\$g\未壓縮\$g.glb"
   $dst = "models\$g\$g.glb"
