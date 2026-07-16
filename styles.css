@@ -119,9 +119,11 @@ body {
 .fern-card { background: transparent; }
 .fern-card staghorn-fern { position: absolute; inset: 0; width: 100%; height: 100%; }
 .fern-card model-viewer { position: absolute; inset: 0; width: 100%; height: 100%; --poster-color: transparent; background: transparent; pointer-events: auto; cursor: grab; }
-/* 3D 模型卡:遮罩不擋事件,讓滑鼠能拖曳旋轉模型;文字列仍可點擊進入分類 */
-.fern-card .cat-shade { pointer-events: none; }
+/* 3D 模型卡:完全無底色(移除深色漸層遮罩),讓背景透出;文字靠加強陰影維持可讀 */
+.fern-card .cat-shade { pointer-events: none; background: none; }
 .fern-card .cat-meta { pointer-events: auto; }
+.fern-card .cat-name { text-shadow: 0 2px 14px rgba(0,0,0,0.9), 0 1px 4px rgba(0,0,0,0.75); }
+.fern-card .cat-latin { text-shadow: 0 2px 12px rgba(0,0,0,0.9), 0 1px 4px rgba(0,0,0,0.75); }
 
 /* 分類頁標題列中間的 3D 模型(無框、透明背景,與標題同一背景;可自由拖曳旋轉,不會誤觸進入) */
 .cat-hero {
