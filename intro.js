@@ -22,7 +22,7 @@
   var LOAD_TIMEOUT = 12000;   // 單一模型逾時保護
 
   var CSS = ''
-    + '#sf-intro{position:fixed;inset:0;z-index:60;overflow:hidden;opacity:1;transition:opacity .7s ease;background:#06090a;}'
+    + '#sf-intro{position:fixed;inset:0;z-index:60;overflow:hidden;opacity:1;transition:opacity .72s ease,transform .8s ease;background:#06090a;}'
     + '#sf-intro .p{position:absolute;inset:-8%;background:url("https://lh3.googleusercontent.com/d/1fgb-BT8G4-nd_HuItDWEFv0w51fgmjHE=w2000") center/cover no-repeat;filter:brightness(.5) saturate(.85) blur(3px);transform:scale(1.1);will-change:transform;}'
     + '#sf-intro .n{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,15,28,.4),rgba(4,9,18,.62) 70%,rgba(3,7,14,.74));}'
     + '#sf-intro canvas{position:absolute;inset:0;width:100%;height:100%;}'
@@ -37,7 +37,12 @@
     + '#sf-intro h1{font-family:"Newsreader",Georgia,serif;font-weight:400;font-size:clamp(44px,9vw,90px);margin:12px 0 18px;color:#f4f8f4;}'
     + '#sf-intro .chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:640px;margin:0 auto 30px;}'
     + '#sf-intro .chips span{font-family:"Space Mono",monospace;font-size:13px;color:#9ad8ab;border:1px solid rgba(154,216,171,.32);border-radius:999px;padding:7px 15px;background:rgba(0,0,0,.28);backdrop-filter:blur(8px);}'
-    + '#sf-intro .enter{display:inline-block;font-family:"Space Grotesk",sans-serif;font-size:15px;color:#0a0f0d;background:#9ad8ab;border-radius:999px;padding:13px 30px;text-decoration:none;cursor:pointer;box-shadow:0 10px 34px rgba(154,216,171,.35);}'
+    + '#sf-intro .enter{display:inline-block;position:relative;font-family:"Space Grotesk",sans-serif;font-size:15px;color:#0a0f0d;background:#9ad8ab;border-radius:999px;padding:13px 30px;text-decoration:none;cursor:pointer;box-shadow:0 10px 34px rgba(154,216,171,.35);transition:transform .14s ease,box-shadow .14s ease;}'
+    + '#sf-intro .enter .rip{position:absolute;left:50%;top:50%;width:24px;height:24px;margin:-12px 0 0 -12px;border-radius:999px;border:2px solid rgba(154,216,171,.75);transform:scale(0);opacity:0;pointer-events:none;}'
+    + '#sf-intro .enter.clicking{animation:sfpress .4s ease;}'
+    + '#sf-intro .enter.clicking .rip{animation:sfrip .6s ease-out;}'
+    + '@keyframes sfpress{0%{transform:scale(1);}30%{transform:scale(.9);box-shadow:0 4px 14px rgba(154,216,171,.5);}100%{transform:scale(1.05);box-shadow:0 16px 46px rgba(154,216,171,.6);}}'
+    + '@keyframes sfrip{0%{transform:scale(0);opacity:.85;}100%{transform:scale(7);opacity:0;}}'
     + '#sf-intro .bar{position:absolute;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#9ad8ab,#bfe6cb);transition:width .2s linear;}'
     + '#sf-intro .skip{position:absolute;top:18px;right:20px;font-family:"Space Mono",monospace;font-size:12px;color:#cfe9d6;background:rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:7px 15px;cursor:pointer;backdrop-filter:blur(8px);z-index:3;}'
     + '#sf-load{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;z-index:2;transition:opacity .5s ease;}'
@@ -58,7 +63,7 @@
     + '<div class="land" id="sf-land"><div class="land-in">'
     + '<div class="eb">HERBARIUM · 成長紀錄</div><h1>StagwithyouFerns</h1>'
     + '<div class="chips"><span>鹿角蕨</span><span>棒槌</span><span>仙人掌</span><span>龍舌蘭</span><span>塊根</span><span>大戟</span><span>觀葉</span><span>美照</span></div>'
-    + '<a class="enter" id="sf-enter">進入大廳 →</a></div></div>'
+    + '<a class="enter" id="sf-enter"><span class="rip"></span>進入大廳 →</a></div></div>'
     + '<div id="sf-load"><div class="t" id="sf-loadt">載入中 0 / ' + N + '</div><div class="track"><div class="fill" id="sf-loadf"></div></div></div>'
     + '<div class="bar" id="sf-bar"></div>'
     + '<div class="skip" id="sf-skip">跳過開場 →</div>';
@@ -109,7 +114,7 @@
   setTimeout(function () { if (!flightStarted) startFlight(); }, LOAD_TIMEOUT + 2000); // 全域保護
 
   // ── 飛行 ──
-  var running = false, t0 = null;
+  var running = false, t0 = null, landScheduled = false, flightEntered = false;
   var FP_START = -0.5, FP_END = N - 0.35;
   var SCENE_MS = (FP_END - FP_START) * DUR_PER;
 
@@ -160,7 +165,10 @@
     if (lp > 0.55) land.classList.add('on'); else land.classList.remove('on');
     land.querySelector('.land-in').style.transform = 'translateY(' + ((1 - lp) * 28) + 'px)';
 
-    if (lp >= 1) return;
+    if (lp >= 1) {
+      if (!landScheduled) { landScheduled = true; setTimeout(autoEnter, 3000); }
+      return;
+    }
     requestAnimationFrame(frame);
   }
 
@@ -188,9 +196,18 @@
     })();
   })();
 
+  function autoEnter() {
+    if (flightEntered) return;
+    var b = document.getElementById('sf-enter');
+    if (b) b.classList.add('clicking');
+    setTimeout(enter, 380);
+  }
+
   function enter() {
+    if (flightEntered) return; flightEntered = true;
     try { sessionStorage.setItem('sf_intro_seen', '1'); } catch (e) {}
     root.style.opacity = '0';
+    root.style.transform = 'scale(1.08)';
     setTimeout(function () {
       running = false; fxStop = true;
       if (root.parentNode) root.parentNode.removeChild(root);
