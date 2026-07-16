@@ -33,7 +33,7 @@ body {
 .bg-photo {
   position: absolute; left: -3%; right: -3%; top: -22%; height: 144%;
   background-image: url('https://lh3.googleusercontent.com/d/1fgb-BT8G4-nd_HuItDWEFv0w51fgmjHE=w2000');
-  background-size: cover; background-position: center;
+  background-size: cover; background-position: center 78%;
   filter: brightness(0.7) saturate(0.9) contrast(1.03) blur(2px);
   transform: translateY(0) scale(1.05); will-change: transform;
 }

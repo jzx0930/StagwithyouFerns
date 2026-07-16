@@ -217,6 +217,6 @@
       if (window.__fxMode) window.__fxMode('lobby');
     }, 720);
   }
-  document.getElementById('sf-enter').addEventListener('click', function (e) { e.preventDefault(); enter(); });
+  document.getElementById('sf-enter').addEventListener('click', function (e) { e.preventDefault(); autoEnter(); });
   document.getElementById('sf-skip').addEventListener('click', enter);
 })();
