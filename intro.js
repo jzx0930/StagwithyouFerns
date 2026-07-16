@@ -10,11 +10,11 @@
   try { if (sessionStorage.getItem('sf_intro_seen')) return; } catch (e) {}
 
   var SCENES = [
-    { m: 'models/Platycerium/Platycerium.glb', zh: '鹿角蕨', la: 'Platycerium', el: 84, az: 0 },
-    { m: 'models/Pachypodium/Pachypodium.glb', zh: '棒槌',   la: 'Pachypodium', el: 72, az: -16 },
-    { m: 'models/Cactaceae/Cactaceae.glb',     zh: '仙人掌', la: 'Cactaceae',   el: 90, az: 14 },
+    { m: 'models/Caudex/Caudex.glb',           zh: '塊根',   la: 'Caudex',      el: 82, az: 8 },
     { m: 'models/Agave/Agave.glb',             zh: '龍舌蘭', la: 'Agave',       el: 76, az: -10 },
-    { m: 'models/Caudex/Caudex.glb',           zh: '塊根',   la: 'Caudex',      el: 82, az: 8 }
+    { m: 'models/Cactaceae/Cactaceae.glb',     zh: '仙人掌', la: 'Cactaceae',   el: 90, az: 14 },
+    { m: 'models/Pachypodium/Pachypodium.glb', zh: '棒槌',   la: 'Pachypodium', el: 72, az: -16 },
+    { m: 'models/Platycerium/Platycerium.glb', zh: '鹿角蕨', la: 'Platycerium', el: 84, az: 0 }
   ];
   var N = SCENES.length;
   var DUR_PER = 460;          // 每個分類毫秒(現在是很快;預載後即使很快也每株都在)
@@ -90,25 +90,23 @@
   function clamp(v, a, b) { return v < a ? a : (v > b ? b : v); }
   function smooth(t) { t = clamp(t, 0, 1); return t * t * (3 - 2 * t); }
 
-  // ── 逐一預載模型 ──
+  // ── 並行預載模型(壓縮後檔案小,可同時載,較快)──
   var loaded = 0, flightStarted = false;
-  function preload(i) {
-    if (i >= N) { startFlight(); return; }
-    var v = mv[i], done = false;
+  mv.forEach(function (v, i) {
+    var done = false;
     function next() {
       if (done) return; done = true;
       loaded++;
       loadT.textContent = '載入中 ' + loaded + ' / ' + N;
       loadF.style.width = (loaded / N * 100) + '%';
-      preload(i + 1);
+      if (loaded >= N) startFlight();
     }
     v.addEventListener('load', next, { once: true });
     v.addEventListener('error', next, { once: true });
     setTimeout(next, LOAD_TIMEOUT);
     v.setAttribute('src', SCENES[i].m);
-  }
-  preload(0);
-  setTimeout(function () { if (!flightStarted) startFlight(); }, N * LOAD_TIMEOUT + 2000); // 全域保護
+  });
+  setTimeout(function () { if (!flightStarted) startFlight(); }, LOAD_TIMEOUT + 2000); // 全域保護
 
   // ── 飛行 ──
   var running = false, t0 = null;
