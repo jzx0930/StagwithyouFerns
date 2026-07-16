@@ -39,9 +39,9 @@ description: 當使用者說「開始更新」時觸發。檢查 Google Drive「
    - 把「這次要處理的清單」(要改名的、要補進 data.json 的新株、要更新照片的舊株)先列出來,再往下做。
 2. **查名 + 附加腳本**:逐一判斷資料夾名是否已符合「英文-中文」或「純英文」:
    - 符合 / 純英文 → 跳過。
-   - 不符合 → 依決策上網查名,把 `Rn '舊名' '新名'` **附加**到對應腳本(分類夾+非鹿角蕨植物 → `rename_plants.ps1`;鹿角蕨植物 → `rename_platycerium.ps1`)。**只 append,絕不刪舊行**;已改好的靠 `Test-Path` 跳過。
+   - 不符合 → 依決策上網查名,把 `Rn '舊名' '新名'` **附加**到對應腳本(都在 `tools/`:分類夾+非鹿角蕨植物 → `tools/rename_plants.ps1`;鹿角蕨植物 → `tools/rename_platycerium.ps1`)。**只 append,絕不刪舊行**;已改好的靠 `Test-Path` 跳過。
    - 若**全部都已符合**(沒有要改的名),跳過第 3、4 步,直接到第 5 步。
-3. **請使用者跑 bat,然後停下來等**:請使用者**雙擊 `run_rename.bat`** → **⚠️ 停在這裡,等使用者回覆「好了」並等 Drive 同步完成後才繼續。在確認前絕不往下做**,否則會用到舊資料夾名。
+3. **請使用者跑 bat,然後停下來等**:請使用者**雙擊 `tools/run_rename.bat`** → **⚠️ 停在這裡,等使用者回覆「好了」並等 Drive 同步完成後才繼續。在確認前絕不往下做**,否則會用到舊資料夾名。
 4. **驗證改名**:重新 `Glob` 確認每筆改名都生效。偶爾某夾第一次沒改到(同步延遲/暫時失敗)——腳本是冪等的,請使用者**再雙擊一次**即可(已改好的會跳過)。全部符合後再繼續。
 5. **更新 data.json**(見下節;**增量優先**)。
 6. **提醒 commit + push**:請使用者到 GitHub Desktop commit + push(data.json、改過的腳本等)。
@@ -63,7 +63,7 @@ description: 當使用者說「開始更新」時觸發。檢查 Google Drive「
 - **寫檔**:Read 現有 data.json,保留 `_說明`/`_範例植物格式`/`categories`,只換或補 `plants`,用 Python `json.dump(ensure_ascii=False, indent=2)` 寫,寫完 `json.load` 驗證。
 
 ## 腳本慣例(重要)
-- `rename_plants.ps1` / `rename_platycerium.ps1`:存成 **UTF-8 + BOM**(否則 PowerShell 5.1 讀不對中文,改名會失敗)。每筆用 `Rn` 函式,內含 `Test-Path` 保護:目標已存在或找不到舊夾就印「跳過」,不會亂改或覆蓋。
+- **所有腳本都在 `tools/` 資料夾**(`run_rename.bat`、`optimize_models.bat`〔模型 Draco 壓縮〕等)。`rename_plants.ps1` / `rename_platycerium.ps1`:存成 **UTF-8 + BOM**(否則 PowerShell 5.1 讀不對中文,改名會失敗)。每筆用 `Rn` 函式,內含 `Test-Path` 保護:目標已存在或找不到舊夾就印「跳過」,不會亂改或覆蓋。
 - `run_rename.bat`:**純 ASCII**、`chcp 65001`、以 `-ExecutionPolicy Bypass` 依序呼叫兩支 `.ps1`。
 - **累加式**:每次「開始更新」只 **append** 新的 `Rn` 行,**不刪**舊行;重跑整支腳本時,已改好的自動跳過。
 

@@ -1,7 +1,7 @@
 ﻿# 從每個模型的「未壓縮」子夾壓縮 → 上層 <屬名>.glb(網站載入的位置)
-# Draco 幾何 + WebP 貼圖。由 Claude 產生。
+# Draco 幾何 + WebP 貼圖。此腳本在 tools/,操作對象是「上一層」的 models/。
 $ErrorActionPreference = 'Continue'
-Set-Location -LiteralPath $PSScriptRoot
+Set-Location -LiteralPath (Split-Path -Parent $PSScriptRoot)   # 回到 repo 根目錄
 $models = 'Platycerium','Pachypodium','Cactaceae','Agave','Caudex','Euphorbiaceae','Foliage','Succulent'
 foreach ($g in $models) {
   $src = "models\$g\未壓縮\$g.glb"
@@ -15,10 +15,8 @@ foreach ($g in $models) {
     Move-Item -LiteralPath $tmp -Destination $dst -Force
     $after = (Get-Item -LiteralPath $dst).Length
     Write-Host ("  OK {0}: {1:N1}MB -> {2:N1}MB" -f $g, ($before/1MB), ($after/1MB))
-  } else {
-    Write-Host "  FAILED $g (原檔未動)"
-  }
+  } else { Write-Host "  FAILED $g (原檔未動)" }
 }
 Write-Host ''
-Write-Host '完成。到 GitHub Desktop commit + push(只會推上層壓縮後的 .glb;未壓縮夾已被 gitignore 不上傳)。'
+Write-Host '完成。到 GitHub Desktop commit + push。'
 Read-Host '按 Enter 關閉'
