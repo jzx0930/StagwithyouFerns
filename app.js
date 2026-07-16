@@ -91,7 +91,7 @@
       '</div>' : '';
     return '<div class="head' + (mid ? ' has-mid' : '') + '"><div>' +
       '<div class="eyebrow">' + esc(eyebrow) + '</div>' +
-      '<h1 class="title">' + esc(title) + '</h1>' +
+      (title ? '<h1 class="title">' + esc(title) + '</h1>' : '') +
       '<p class="subtitle">' + esc(subtitle) + '</p>' +
       '</div>' + (mid || '') + stats + '</div>';
   }
@@ -128,7 +128,7 @@
     }).join('');
 
     app.innerHTML = '<div class="wrap">' +
-      headerHTML('Herbarium · 分類選單', 'StagwithyouFerns', '選一個分類,進入觀看。', true, totalPlants, totalPhotos) +
+      headerHTML('Herbarium · 分類選單', '', '選一個分類,進入觀看。', true, totalPlants, totalPhotos) +
       '<div class="card-grid">' + cards + '</div></div>';
   }
 
