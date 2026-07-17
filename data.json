@@ -66,7 +66,7 @@
   "plants": [
     {
       "name": "多佛朗明哥",
-      "latin": "Platycerium",
+      "latin": "Platycerium hillii × coronarium 'Flamenco'",
       "category": "鹿角蕨",
       "date": "2026.03.20",
       "note": "",
@@ -106,7 +106,7 @@
     },
     {
       "name": "史迪奇",
-      "latin": "Platycerium",
+      "latin": "Platycerium 'Stitch'",
       "category": "鹿角蕨",
       "date": "2026.03.06",
       "note": "",
@@ -146,7 +146,7 @@
     },
     {
       "name": "奶油獅",
-      "latin": "Platycerium",
+      "latin": "Platycerium willinckii 'Cream Lion'",
       "category": "鹿角蕨",
       "date": "2026.03.06",
       "note": "",
@@ -180,7 +180,7 @@
     },
     {
       "name": "白玫瑰",
-      "latin": "Platycerium",
+      "latin": "Platycerium willinckii 'White Rose'",
       "category": "鹿角蕨",
       "date": "2026.03.06",
       "note": "",
@@ -220,7 +220,7 @@
     },
     {
       "name": "白妖爪",
-      "latin": "Platycerium",
+      "latin": "Platycerium willinckii 'Unguis Albi'",
       "category": "鹿角蕨",
       "date": "2026.03.02",
       "note": "",
@@ -314,7 +314,7 @@
     },
     {
       "name": "二叉",
-      "latin": "Platycerium",
+      "latin": "Platycerium bifurcatum",
       "category": "鹿角蕨",
       "date": "2026.04.13",
       "note": "",
@@ -336,7 +336,7 @@
     },
     {
       "name": "爪哇",
-      "latin": "Platycerium",
+      "latin": "Platycerium willinckii",
       "category": "鹿角蕨",
       "date": "2026.03.06",
       "note": "",
@@ -850,7 +850,7 @@
     },
     {
       "name": "雷達",
-      "latin": "Platycerium",
+      "latin": "Platycerium 'Raider'",
       "category": "鹿角蕨",
       "date": "2026.06.27",
       "note": "",
@@ -1076,7 +1076,7 @@
     },
     {
       "name": "P.willinckii Yellow moon x FSQ sporeling",
-      "latin": "",
+      "latin": "Platycerium willinckii 'Yellow Moon' × FSQ",
       "category": "鹿角蕨",
       "date": "2026.06.03",
       "note": "",
@@ -1310,7 +1310,7 @@
     },
     {
       "name": "三角四叉",
-      "latin": "Platycerium",
+      "latin": "Platycerium 'African Oddity'",
       "category": "鹿角蕨",
       "date": "2026.06.03",
       "note": "",
@@ -1454,7 +1454,7 @@
     },
     {
       "name": "獅子座",
-      "latin": "Platycerium",
+      "latin": "Platycerium willinckii 'Leo'",
       "category": "鹿角蕨",
       "date": "2026.06.03",
       "note": "",
@@ -1482,7 +1482,7 @@
     },
     {
       "name": "艾沙",
-      "latin": "Platycerium",
+      "latin": "Platycerium 'Elsa'",
       "category": "鹿角蕨",
       "date": "2026.05.21",
       "note": "",
@@ -1848,7 +1848,7 @@
     },
     {
       "name": "天紫玉",
-      "latin": "Cactaceae",
+      "latin": "Gymnocalycium pflanzii var. albipulpa",
       "category": "仙人掌",
       "date": "2026.03.19",
       "note": "",

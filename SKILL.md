@@ -31,6 +31,17 @@ description: 當使用者說「開始更新」時觸發。檢查 Google Drive「
 4. **查不到可靠名稱** → **維持中文不改**,並把清單回報給使用者、請他補親本/英文名。
 5. **已是英文** → 不動。
 
+### 詳細查名方法(用 Claude in Chrome,實測成效好)
+台灣鹿角蕨/仙人掌暱稱多是交種或選拔品種,一般搜尋常查不到 → 用這套「深度查」:
+1. **工具**:Claude in Chrome。先 `tabs_context_mcp{createIfEmpty:true}` 建/取 tab,再用 **`browser_batch` 一次跑多組**「`navigate` 到 Google 搜尋 → `get_page_text`」(一批 3–4 組,快很多)。讀搜尋結果摘要即可,通常不必點進頁面。
+2. **查詢式**(繁體中文,把猜的英文一起放進去縮小範圍):
+   - 鹿角蕨:`鹿角蕨 <中文暱稱> Platycerium <猜的園藝英文名>`(例 `鹿角蕨 奶油獅 Platycerium`、`鹿角蕨 獅子座 Platycerium Leo`)。
+   - 仙人掌/塊根:`<中文名> 仙人掌 學名` 或加屬名(例 `天紫玉 仙人掌 學名`)。
+3. **可靠來源**(交叉比對 ≥2 個一致才採用):賣家/社群最準 — 蝦皮、Facebook「蕨類買賣交流」、晴花鹿苑 haruhanaplants、河馬語鹿 HippoFerns、Threads、痞客邦、青青小樹 doromon01、Tumblr 的鹿角蕨品種樹狀圖(列出 `P. Name (親A x 親B)`);仙人掌/塊根用 百度百科、塔內植物園、iPlant 植物智、有肉 Succuland。
+4. **判讀**:找 `cv.` / `'品種名'` / 交種式 `P. A × B`。英文品種名寫成 `willinckii 'Cream Lion'`、交種寫 `hillii × coronarium 'Flamenco'`。
+5. **注意音近/正字**:例 雷達=**Raider**(非 Radar)、艾沙=正字**艾莎 Elsa**、多佛朗明哥=園藝名**佛朗明哥 Flamenco**。顯示 name 可保留使用者原字,latin 用查到的正式名。
+6. 查完把「中文↔latin」對照更新進本檔的對照表區,並寫進 data.json;查不到的才回落規則 4。
+
 ## 執行步驟(收到「開始更新」)— 嚴格照順序
 1. **掃描 + 偵測變更**:`Glob` 掃 `G:\我的雲端硬碟\植物照片` 全部分類夾與植物夾,和「上次的狀態」(現有 `data.json` 的 plants + 現有資料夾名)比對,分出三種變更:
    - **(A) 新增夾 / 改名夾**:資料夾名還不是「英文-中文」或純英文 → 進第 2 步查名改名;純新增但已命名好的植物也記下來要補進 data.json。
@@ -71,10 +82,12 @@ description: 當使用者說「開始更新」時觸發。檢查 Google Drive「
 ## 今日已建立的對照(範例,供延用)
 - 分類:仙人掌→Cactaceae、塊根→Caudex、大戟→Euphorbiaceae、龍舌蘭→Agave、美照→Gallery。
 - 棒槌:席巴女王玉櫛=densiflorum、光堂=namaquanum、象牙宮=gracilius、非洲霸王樹=lamerei、溫莎瓶幹=windsorii、常綠瓶幹=cactipes、大黑惠比須=densicaule(雜交)。
-- 仙人掌:銀冠玉=fricii、烏羽玉/子吹烏羽玉=williamsii、紫兜=asterias、猴尾柱=colademononis、直刺佩雷=perezdelarosae、士童=castanea。
+- 仙人掌:銀冠玉=fricii、烏羽玉/子吹烏羽玉=williamsii、紫兜=asterias、猴尾柱=colademononis、直刺佩雷=perezdelarosae、士童=castanea、天紫玉=`Gymnocalycium pflanzii var. albipulpa`(裸萼球屬)、疣仙人=`Mammillaria`(乳突球屬,無明確種名)。
 - 塊根:奇異油甘=mirabilis、龜甲摩蘿=cyclophylla、沙漠蘇木=meridionalis、圓葉山烏龜=erecta、象足漆樹=decaryi、墨西哥龜甲龍=mexicana、彎彎曲曲樹=madagascariensis、台灣侏儒羊角玫瑰=obesum。
 - 大戟:子吹布紋球=meloformis、白衣魁偉玉=horrida、鬼棲閣=guillauminiana。
 - 龍舌蘭:吉祥冠覆輪龍舌蘭=potatorum。
 - 鹿角蕨原生種:女王=wandae、象耳=elephantotis、安地斯=andinum、菲律賓皇冠=coronarium、三角=stemaria、四叉=quadridichotomum、何其美=holttumii、亞猴=ridleyi、非猴=madagascariense、巨獸=grande、巨大=superbum、白鹿=bifurcatum、銀葉立葉/奧銀=veitchii。
 - 鹿角蕨品種:藝伎=Geisha、獨角獸=Unicorn、美猴王=ridleyi、銀華=Ginka、金童=GoldenBoy、飛飛達爾文=Darwin。
-- 未定(維持中文,待補親本):雷達、情花few、艾沙、獅子座、三角四叉。純英文不動:Akki、Nano、E。
+- 鹿角蕨品種(2026-07-17 詳查補):三角四叉=`'African Oddity'`(quadridichotomum×stemaria)、雷達=`'Raider'`、艾沙(艾莎)=`'Elsa'`、獅子座=`willinckii 'Leo'`、多佛朗明哥(佛朗明哥)=`hillii × coronarium 'Flamenco'`、史迪奇=`'Stitch'`(FSQ×Rydeen)、奶油獅=`willinckii 'Cream Lion'`、白玫瑰=`willinckii 'White Rose'`、白妖爪=`willinckii 'Unguis Albi'`、二叉=`bifurcatum`、爪哇=`willinckii`。
+- **這些暱稱株的完整 latin 以 data.json 為準(含品種引號)。全樹重建時,資料夾名只切得出屬名,務必套上本對照表補回正確 latin,不要用資料夾名蓋掉。**
+- 純英文不動:Akki、Nano、E、YAL、OMG。仍待補:情花few。
