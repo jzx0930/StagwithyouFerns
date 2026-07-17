@@ -66,6 +66,7 @@ description: 當使用者說「開始更新」時觸發。檢查 Google Drive「
 - **所有腳本都在 `tools/` 資料夾**(`run_rename.bat`、`optimize_models.bat`〔模型 Draco 壓縮〕等)。`rename_plants.ps1` / `rename_platycerium.ps1`:存成 **UTF-8 + BOM**(否則 PowerShell 5.1 讀不對中文,改名會失敗)。每筆用 `Rn` 函式,內含 `Test-Path` 保護:目標已存在或找不到舊夾就印「跳過」,不會亂改或覆蓋。
 - `run_rename.bat`:**純 ASCII**、`chcp 65001`、以 `-ExecutionPolicy Bypass` 依序呼叫兩支 `.ps1`。
 - **累加式**:每次「開始更新」只 **append** 新的 `Rn` 行,**不刪**舊行;重跑整支腳本時,已改好的自動跳過。
+- **`optimize_models.bat` 換電腦前提**:此腳本只依賴 **Node.js + gltf-transform**(bat 會自動 `npm install -g @gltf-transform/cli`),**與桌面的 `glb-optimization-master-main` 無關**(那套沒被引用,可刪)。換電腦要壓縮需:(1) 裝 Node.js、(2) 把各模型原始檔放回 `models\<屬名>\未壓縮\<屬名>.glb`(這些被 `.gitignore` 擋住、不會隨 repo 過去)。若新電腦只是瀏覽/部署網站,壓好的 glb 已在 repo 內,**不用跑壓縮**。
 
 ## 今日已建立的對照(範例,供延用)
 - 分類:仙人掌→Cactaceae、塊根→Caudex、大戟→Euphorbiaceae、龍舌蘭→Agave、美照→Gallery。

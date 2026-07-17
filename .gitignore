@@ -23,3 +23,6 @@ models/_poster_sheet.png
 # 其他大型原始 .glb
 models/**/Hitem3d-*.glb
 models/**/Meshy_*.glb
+
+# 子代理重建 data.json 的暫存檔(本機刪即可)
+_new_plants.json
