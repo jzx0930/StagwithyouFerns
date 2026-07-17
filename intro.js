@@ -19,7 +19,7 @@
   var N = SCENES.length;
   var DUR_PER = 460;          // 每個分類毫秒(現在是很快;預載後即使很快也每株都在)
   var LAND_MS = 1400;
-  var LOAD_TIMEOUT = 12000;   // 單一模型逾時保護
+  var LOAD_TIMEOUT = 20000;   // 單一模型逾時保護(拉長,確保真的載完再飛,而非撐到逾時用縮圖起飛)
 
   var CSS = ''
     + '#sf-intro{position:fixed;inset:0;z-index:60;overflow:hidden;opacity:1;transition:opacity .72s ease,transform .8s ease;background:#06090a;}'
@@ -81,6 +81,8 @@
     v.setAttribute('min-camera-orbit', 'auto 0deg 1m'); v.setAttribute('max-camera-orbit', 'auto 180deg 18m');
     v.setAttribute('field-of-view', '30deg');
     v.setAttribute('interpolation-decay', '200');
+    v.setAttribute('loading', 'eager');   // 立即下載,不要延遲載入(否則起飛時還是縮圖)
+    v.setAttribute('reveal', 'auto');
     v.setAttribute('poster', s.m.replace('.glb', '-poster.webp'));
     d.appendChild(v); scenesWrap.appendChild(d);
     var c = document.createElement('div'); c.className = 'cap';
