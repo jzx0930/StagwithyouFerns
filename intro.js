@@ -136,6 +136,16 @@
     setTimeout(function () { if (loadBox.parentNode) loadBox.style.display = 'none'; }, 500);
     running = true; t0 = null;
     requestAnimationFrame(frame);
+    warmLobby();   // 飛越同時,把沒被飛越用到的分類模型預抓進快取,進大廳才不會慢
+  }
+
+  // 大廳全部 9 顆分類模型;飛越已載 SCENES 那 5 顆,這裡補抓其餘,寫進瀏覽器快取。
+  function warmLobby() {
+    var all = ['Platycerium', 'Pachypodium', 'Cactaceae', 'Agave', 'Caudex', 'Succulent', 'Euphorbiaceae', 'Foliage', 'Gallery'];
+    all.forEach(function (g) {
+      var url = 'models/' + g + '/' + g + '.glb';
+      try { fetch(url, { cache: 'force-cache' }); } catch (e) {}
+    });
   }
 
   function frame(now) {
