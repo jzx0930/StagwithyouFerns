@@ -108,6 +108,16 @@
   }
   window.__animLobby = function () { animCards('#app .cat-card', 26); };
 
+  // 購物:價格 + 加入購物車(只有 SHOP.enabled 才出現)。
+  function shopRow(p, idx, big) {
+    if (!(window.SHOP && window.SHOP.enabled)) return '';
+    var price = window.SHOP.fmt(p.name) || '價格洽詢';
+    return '<div class="pc-shop' + (big ? ' big' : '') + '">' +
+      '<span class="pc-price">' + esc(price) + '</span>' +
+      '<button class="cart-btn" data-act="add-cart" data-i="' + idx + '">＋ 加入購物車</button>' +
+    '</div>';
+  }
+
   // 進階微互動:植物卡跟隨滑鼠 3D 傾斜 + 按鈕磁吸(需 GSAP;觸控/減少動態自動跳過)。
   var _reduceMotion = false;
   try { _reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
@@ -271,6 +281,7 @@
           '<div class="pc-foot"><span class="pc-date">入手 ' + esc(p.date || '') + '</span>' +
             '<span class="pc-go">看成長 →</span></div>' +
           (p.note ? '<div class="pc-note">— ' + esc(p.note) + '</div>' : '') +
+          shopRow(p, x.i, false) +
         '</div></div>';
     }).join('');
 
@@ -357,6 +368,7 @@
         '<div class="metric"><div class="k">累積照片</div><div class="v">' + photoCount(sel) + ' 張</div></div>' +
         indivMetric +
       '</div>' +
+      shopRow(sel, state.selected, true) +
       picker +
       '<div class="tl-head"><h2>成長時間軸</h2><div class="tl-order">最新 → 最早</div></div>' +
       '<div>' + rows + '</div>' +
@@ -387,6 +399,13 @@
     else if (act === 'lobby' || act === 'lobby-from-detail') { go('lobby'); }
     else if (act === 'back-grid') { go('grid'); }
     else if (act === 'zoom') { openLightbox(t.getAttribute('data-url')); }
+    else if (act === 'add-cart') {
+      ev.stopPropagation();
+      var pp = (state.data || [])[i];
+      if (pp && window.SHOP && window.SHOP.enabled) {
+        window.SHOP.add({ name: pp.name, latin: pp.latin, price: window.SHOP.priceNum(pp.name) });
+      }
+    }
   });
 
   // ---- 燈箱 ----
