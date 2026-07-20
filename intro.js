@@ -174,7 +174,7 @@
   }
 
   function scheduleLand() {
-    if (!landScheduled) { landScheduled = true; setTimeout(autoEnter, 3000); }
+    if (!landScheduled) { landScheduled = true; setTimeout(autoEnter, 1500); }
   }
 
   // GSAP 驅動:場景段用梯形 ease、落地段用 smoothstep;比手寫 RAF 更順、frame-rate 無關。
