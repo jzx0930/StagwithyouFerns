@@ -1,12 +1,14 @@
 /* ===== config.ini 載入器 =====
-   同步讀取 config.ini(GitHub Pages 上為 http,可讀;直接雙擊本機 file:// 開啟則讀不到,會用預設)。
-   解析後放到 window.SITE_CONFIG,並把購買功能主開關同步到 SHOP_CONFIG.enabled。
-   讀不到任何值都有安全預設,不會壞。 */
+   同步讀取 config.ini(GitHub Pages 上為 http 可讀;直接雙擊本機 file:// 開啟則讀不到,會用預設)。
+   解析後放到 window.SITE_CONFIG,並套用背景、標題、購買主開關/幣別。全部都有安全預設,讀不到也不會壞。 */
 (function () {
   'use strict';
   var C = window.SITE_CONFIG = {
-    shop: { enabled: true },
-    intro: { lobbyEnterDelay: 1.5 },
+    site: { title: 'StagwithyouFerns', eyebrow: 'HERBARIUM · 成長紀錄', lobbySubtitle: '選一個分類,進入觀看。' },
+    background: { imageId: '1fgb-BT8G4-nd_HuItDWEFv0w51fgmjHE', brightness: 0.82 },
+    intro: { show: true, sceneDuration: 460, landDuration: 1400, lobbyEnterDelay: 1.5 },
+    effects: { particles: true, cardTilt: true, magneticButtons: true, cardEntrance: true },
+    shop: { enabled: true, currency: 'NT$' },
     handwriting: { cjkSpeed: 3.5, cjkStrokeDelay: 10, latinDuration: 0.42 }
   };
 
@@ -15,12 +17,12 @@
     if (/^(true|yes|on|1)$/i.test(s)) return true;
     if (/^(false|no|off|0)$/i.test(s)) return false;
     var n = parseFloat(s);
-    return isNaN(n) ? s : n;
+    return (isNaN(n) || String(n) !== s) ? s : n;   // 純數字才轉數字,否則保留字串
   }
   function parseIni(text) {
     var out = {}, sec = '';
     text.split(/\r?\n/).forEach(function (line) {
-      line = line.replace(/[;#].*$/, '').trim();     // 去註解
+      line = line.replace(/\s+[;#].*$/, '').replace(/^[;#].*$/, '').trim();  // 去註解(行首或前有空白)
       if (!line) return;
       var m = line.match(/^\[(.+)\]$/);
       if (m) { sec = m[1].trim().toLowerCase(); out[sec] = out[sec] || {}; return; }
@@ -33,25 +35,48 @@
     return out;
   }
   function num(v, dflt) { var n = Number(v); return isNaN(n) ? dflt : n; }
+  function str(v, dflt) { return (v == null || v === '') ? dflt : String(v); }
 
   try {
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'config.ini?t=' + Date.now(), false);   // 同步、破快取
+    xhr.open('GET', 'config.ini?t=' + Date.now(), false);
     xhr.send();
-    if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 0) {
+    if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 0) {
       var ini = parseIni(xhr.responseText || '');
-      if (ini.shop && 'enabled' in ini.shop) C.shop.enabled = !!ini.shop.enabled;
-      if (ini.intro && 'lobby_enter_delay' in ini.intro) C.intro.lobbyEnterDelay = num(ini.intro.lobby_enter_delay, C.intro.lobbyEnterDelay);
-      if (ini.handwriting) {
-        var h = ini.handwriting;
-        if ('cjk_speed' in h) C.handwriting.cjkSpeed = num(h.cjk_speed, C.handwriting.cjkSpeed);
-        if ('cjk_stroke_delay' in h) C.handwriting.cjkStrokeDelay = num(h.cjk_stroke_delay, C.handwriting.cjkStrokeDelay);
-        if ('latin_duration' in h) C.handwriting.latinDuration = num(h.latin_duration, C.handwriting.latinDuration);
-      }
+      var S = ini.site || {}, B = ini.background || {}, I = ini.intro || {}, E = ini.effects || {}, SH = ini.shop || {}, H = ini.handwriting || {};
+      if ('title' in S) C.site.title = str(S.title, C.site.title);
+      if ('eyebrow' in S) C.site.eyebrow = str(S.eyebrow, C.site.eyebrow);
+      if ('lobby_subtitle' in S) C.site.lobbySubtitle = str(S.lobby_subtitle, C.site.lobbySubtitle);
+      if ('image_id' in B) C.background.imageId = str(B.image_id, C.background.imageId);
+      if ('brightness' in B) C.background.brightness = num(B.brightness, C.background.brightness);
+      if ('show' in I) C.intro.show = !!I.show;
+      if ('scene_duration' in I) C.intro.sceneDuration = num(I.scene_duration, C.intro.sceneDuration);
+      if ('land_duration' in I) C.intro.landDuration = num(I.land_duration, C.intro.landDuration);
+      if ('lobby_enter_delay' in I) C.intro.lobbyEnterDelay = num(I.lobby_enter_delay, C.intro.lobbyEnterDelay);
+      if ('particles' in E) C.effects.particles = !!E.particles;
+      if ('card_tilt' in E) C.effects.cardTilt = !!E.card_tilt;
+      if ('magnetic_buttons' in E) C.effects.magneticButtons = !!E.magnetic_buttons;
+      if ('card_entrance' in E) C.effects.cardEntrance = !!E.card_entrance;
+      if ('enabled' in SH) C.shop.enabled = !!SH.enabled;
+      if ('currency' in SH) C.shop.currency = str(SH.currency, C.shop.currency);
+      if ('cjk_speed' in H) C.handwriting.cjkSpeed = num(H.cjk_speed, C.handwriting.cjkSpeed);
+      if ('cjk_stroke_delay' in H) C.handwriting.cjkStrokeDelay = num(H.cjk_stroke_delay, C.handwriting.cjkStrokeDelay);
+      if ('latin_duration' in H) C.handwriting.latinDuration = num(H.latin_duration, C.handwriting.latinDuration);
     }
   } catch (e) { /* 讀不到 config.ini:全部用預設 */ }
 
-  // config.ini 的 shop.enabled 為購買功能主開關(蓋過 shop-config.js)
+  // ── 立即套用:背景圖 / 亮度 / 分頁標題 ──
+  try {
+    var bp = document.querySelector('.bg-photo');
+    if (bp) {
+      bp.style.backgroundImage = "url('https://lh3.googleusercontent.com/d/" + C.background.imageId + "=w2000')";
+      bp.style.filter = 'brightness(' + C.background.brightness + ') saturate(0.95) contrast(1.05)';
+    }
+    if (C.site.title) document.title = C.site.title;
+  } catch (e) {}
+
+  // ── 購買功能:把主開關與幣別同步到 SHOP_CONFIG(蓋過 shop-config.js)──
   window.SHOP_CONFIG = window.SHOP_CONFIG || {};
   window.SHOP_CONFIG.enabled = C.shop.enabled;
+  window.SHOP_CONFIG.currency = C.shop.currency;
 })();

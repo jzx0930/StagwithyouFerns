@@ -99,6 +99,7 @@
   // GSAP 交錯進場(有載 GSAP 才跑;沒有就靜態顯示,不影響功能)。
   function animCards(sel, y) {
     if (!window.gsap) return;
+    if (window.SITE_CONFIG && SITE_CONFIG.effects && SITE_CONFIG.effects.cardEntrance === false) return;
     try {
       window.gsap.from(sel, {
         opacity: 0, y: (y || 24), duration: 0.5, stagger: 0.05,
@@ -152,8 +153,9 @@
 
   function wireInteractions() {
     if (!window.gsap || _reduceMotion) return;
-    wireTilt();
-    wireMagnetic();
+    var fx = (window.SITE_CONFIG && SITE_CONFIG.effects) || {};
+    if (fx.cardTilt !== false) wireTilt();
+    if (fx.magneticButtons !== false) wireMagnetic();
   }
 
   // 進入植物詳情時,名稱「一筆一畫」手寫出來(中文走 Hanzi Writer 筆順;英數淡入),寫完淡入 latin。
@@ -251,7 +253,7 @@
     }).join('');
 
     app.innerHTML = '<div class="wrap">' +
-      headerHTML('Herbarium · 分類選單', '', '選一個分類,進入觀看。', true, totalPlants, totalPhotos) +
+      headerHTML('Herbarium · 分類選單', '', ((window.SITE_CONFIG && SITE_CONFIG.site && SITE_CONFIG.site.lobbySubtitle) || '選一個分類,進入觀看。'), true, totalPlants, totalPhotos) +
       '<div class="card-grid">' + cards + '</div></div>';
     animCards('#app .cat-card', 26);
   }
@@ -550,6 +552,6 @@
   }
 
   // ---- 啟動 ----
-  init3D();
+  if (!(window.SITE_CONFIG && SITE_CONFIG.effects && SITE_CONFIG.effects.particles === false)) init3D();
   load();
 })();

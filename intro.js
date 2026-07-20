@@ -10,6 +10,9 @@
   try { if (sessionStorage.getItem('sf_intro_seen')) return; } catch (e) {}
   // 尊重「減少動態」:設定開啟時直接跳過開場飛越,避免動暈(無障礙)。
   try { if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; } catch (e) {}
+  // config.ini:開場飛越開關與參數
+  var _SC = window.SITE_CONFIG || {}, _SCI = _SC.intro || {}, _SCS = _SC.site || {}, _SCB = _SC.background || {};
+  if (_SCI.show === false) return;
 
   var SCENES = [
     { m: 'models/Caudex/Caudex.glb',           zh: '塊根',   la: 'Caudex',      el: 82, az: 8 },
@@ -19,13 +22,13 @@
     { m: 'models/Platycerium/Platycerium.glb', zh: '鹿角蕨', la: 'Platycerium', el: 84, az: 0 }
   ];
   var N = SCENES.length;
-  var DUR_PER = 460;          // 每個分類毫秒(現在是很快;預載後即使很快也每株都在)
-  var LAND_MS = 1400;
+  var DUR_PER = (typeof _SCI.sceneDuration === 'number') ? _SCI.sceneDuration : 460;  // 每個分類毫秒
+  var LAND_MS = (typeof _SCI.landDuration === 'number') ? _SCI.landDuration : 1400;
   var LOAD_TIMEOUT = 20000;   // 單一模型逾時保護(拉長,確保真的載完再飛,而非撐到逾時用縮圖起飛)
 
   var CSS = ''
     + '#sf-intro{position:fixed;inset:0;z-index:60;overflow:hidden;opacity:1;transition:opacity .72s ease,transform .8s ease;background:#06090a;}'
-    + '#sf-intro .p{position:absolute;inset:-8%;background:url("https://lh3.googleusercontent.com/d/1fgb-BT8G4-nd_HuItDWEFv0w51fgmjHE=w2000") center/cover no-repeat;filter:brightness(.5) saturate(.85) blur(3px);transform:scale(1.1);will-change:transform;}'
+    + '#sf-intro .p{position:absolute;inset:-8%;background:url("https://lh3.googleusercontent.com/d/' + (_SCB.imageId || '1fgb-BT8G4-nd_HuItDWEFv0w51fgmjHE') + '=w2000") center/cover no-repeat;filter:brightness(.5) saturate(.85) blur(3px);transform:scale(1.1);will-change:transform;}'
     + '#sf-intro .n{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,15,28,.4),rgba(4,9,18,.62) 70%,rgba(3,7,14,.74));}'
     + '#sf-intro canvas{position:absolute;inset:0;width:100%;height:100%;}'
     + '#sf-intro .sc{position:absolute;inset:0;opacity:0;will-change:opacity;}'
@@ -63,7 +66,7 @@
     '<div class="p" id="sf-p"></div><div class="n"></div><canvas id="sf-fx"></canvas>'
     + '<div id="sf-scenes"></div>'
     + '<div class="land" id="sf-land"><div class="land-in">'
-    + '<div class="eb">HERBARIUM · 成長紀錄</div><h1>StagwithyouFerns</h1>'
+    + '<div class="eb">' + (_SCS.eyebrow || 'HERBARIUM · 成長紀錄') + '</div><h1>' + (_SCS.title || 'StagwithyouFerns') + '</h1>'
     + '<div class="chips"><span>鹿角蕨</span><span>棒槌</span><span>仙人掌</span><span>龍舌蘭</span><span>塊根</span><span>大戟</span><span>觀葉</span><span>美照</span></div>'
     + '<a class="enter" id="sf-enter"><span class="rip"></span>進入大廳 →</a></div></div>'
     + '<div id="sf-load"><div class="t" id="sf-loadt">載入中 0 / ' + N + '</div><div class="track"><div class="fill" id="sf-loadf"></div></div></div>'
