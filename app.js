@@ -36,7 +36,7 @@
     var url = driveImg(v, w);
     if (!url) return '';
     return '<img class="cover-img" src="' + esc(url) + '" alt="' + esc(alt || '') +
-      '" onerror="this.style.display=\'none\'">';
+      '" loading="lazy" decoding="async" onerror="this.style.display=\'none\'">';
   }
   function parseCat(nm) {
     var s = String(nm || '');

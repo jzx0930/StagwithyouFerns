@@ -8,6 +8,8 @@
   var app = document.getElementById('app');
   if (!app) return;
   try { if (sessionStorage.getItem('sf_intro_seen')) return; } catch (e) {}
+  // 尊重「減少動態」:設定開啟時直接跳過開場飛越,避免動暈(無障礙)。
+  try { if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; } catch (e) {}
 
   var SCENES = [
     { m: 'models/Caudex/Caudex.glb',           zh: '塊根',   la: 'Caudex',      el: 82, az: 8 },
