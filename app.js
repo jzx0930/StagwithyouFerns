@@ -146,6 +146,63 @@
     wireMagnetic();
   }
 
+  // 進入植物詳情時,名稱「一筆一畫」手寫出來(中文走 Hanzi Writer 筆順;英數淡入),寫完淡入 latin。
+  var _lastTyped = -1;
+  function _hwFallback(el, ch, size) {
+    el.textContent = ch;
+    el.style.font = '400 ' + size + 'px var(--serif)';
+    el.style.color = 'var(--ink-strong)';
+    el.style.lineHeight = size + 'px';
+  }
+  function runDetailIntro() {
+    var t = document.getElementById('sf-dtitle'), la = document.getElementById('sf-dlatin');
+    if (!t) return;
+    var full = t.textContent;
+    var showAll = function () { t.textContent = full; if (la) la.style.opacity = '1'; };
+    if (_reduceMotion || !window.HanziWriter) { showAll(); return; }        // 降級:直接顯示
+    if (state.selected === _lastTyped) { showAll(); return; }               // 切換個體不重寫
+    _lastTyped = state.selected;
+
+    var size = Math.round(parseFloat(getComputedStyle(t).fontSize) || 50);
+    var isCJK = function (c) { return /[㐀-鿿豈-﫿]/.test(c); };
+    var chars = Array.from(full);
+    t.textContent = '';
+    t.style.display = 'flex'; t.style.alignItems = 'center'; t.style.flexWrap = 'wrap'; t.style.minHeight = size + 'px';
+    if (la) la.style.opacity = '0';
+
+    var items = chars.map(function (ch) {
+      if (ch === ' ') { var sp = document.createElement('span'); sp.style.width = '0.35em'; return { type: 'space', el: sp }; }
+      if (isCJK(ch)) { var d = document.createElement('div'); d.style.cssText = 'width:' + size + 'px;height:' + size + 'px;flex:0 0 auto;'; return { type: 'cjk', el: d, ch: ch }; }
+      var s = document.createElement('span'); s.textContent = ch; s.style.opacity = '0'; s.style.transition = 'opacity .2s ease'; return { type: 'latin', el: s };
+    });
+    items.forEach(function (it) { t.appendChild(it.el); });
+
+    var idx = 0;
+    function next() {
+      if (idx >= items.length) {
+        if (la) { if (window.gsap) window.gsap.to(la, { opacity: 1, duration: 0.5, ease: 'power2.out' }); else la.style.opacity = '1'; }
+        return;
+      }
+      var it = items[idx++];
+      if (it.type === 'cjk') {
+        var moved = false, go = function () { if (moved) return; moved = true; next(); };
+        setTimeout(go, 4000);   // 安全逾時,避免某字資料載不到就卡住
+        try {
+          var w = window.HanziWriter.create(it.el, it.ch, {
+            width: size, height: size, padding: 1, showOutline: false, showCharacter: false,
+            strokeColor: '#f4f8f4', strokeAnimationSpeed: 1.4, delayBetweenStrokes: 40,
+            onLoadCharDataError: function () { _hwFallback(it.el, it.ch, size); go(); }
+          });
+          w.animateCharacter({ onComplete: go });
+        } catch (e) { _hwFallback(it.el, it.ch, size); go(); }
+      } else if (it.type === 'latin') {
+        requestAnimationFrame(function () { it.el.style.opacity = '1'; });
+        setTimeout(next, 110);
+      } else { next(); }
+    }
+    next();
+  }
+
   function renderLobby() {
     var cats = normCats();
     var data = state.data || [];
@@ -290,8 +347,8 @@
       '<span class="pill-btn" data-act="lobby-from-detail">← 回到照片牆</span>' +
       '<div style="margin:34px 0 12px;">' +
         '<div class="eyebrow">No. ' + no + ' · Growth Log</div>' +
-        '<h1 class="title">' + esc(sel.name) + '</h1>' +
-        '<div class="detail-latin">' + esc(sel.latin || '') + '</div>' +
+        '<h1 class="title" id="sf-dtitle">' + esc(sel.name) + '</h1>' +
+        '<div class="detail-latin" id="sf-dlatin">' + esc(sel.latin || '') + '</div>' +
       '</div>' +
       '<div class="metrics">' +
         '<div class="metric"><div class="k">入手 / 種植</div><div class="v">' + esc(sel.date || '') + '</div></div>' +
@@ -306,11 +363,13 @@
   }
 
   function render() {
+    if (state.view !== 'detail') _lastTyped = -1;   // 離開詳情後,下次再進同一株會重打
     if (state.view === 'lobby') renderLobby();
     else if (state.view === 'grid') renderGrid();
     else renderDetail();
     if (window.__fxMode) window.__fxMode(state.view);
     wireInteractions();   // 掛上滑鼠傾斜 / 磁吸(每次重繪後重掛)
+    if (state.view === 'detail') runDetailIntro();
   }
 
   // ---- 事件委派 ----
