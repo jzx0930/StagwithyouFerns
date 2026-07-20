@@ -13,7 +13,7 @@ window.SHOP_CONFIG = {
 
   // ── Web3Forms access key(訂單會寄到這組 key 綁定的信箱)──
   // 到 https://web3forms.com 用你的 email 免費申請,把拿到的 key 貼在這裡。
-  web3formsKey: "在這裡貼上你的 Web3Forms access key",
+  web3formsKey: "43d41607-5a34-4ef1-a764-6f4246f6b18a",
 
   // ── 幣別前綴 ──
   currency: "NT$",
