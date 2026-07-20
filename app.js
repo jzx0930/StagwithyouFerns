@@ -108,6 +108,44 @@
   }
   window.__animLobby = function () { animCards('#app .cat-card', 26); };
 
+  // 進階微互動:植物卡跟隨滑鼠 3D 傾斜 + 按鈕磁吸(需 GSAP;觸控/減少動態自動跳過)。
+  var _reduceMotion = false;
+  try { _reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+
+  function wireTilt() {
+    document.querySelectorAll('#app .plant-card').forEach(function (card) {
+      card.addEventListener('pointermove', function (e) {
+        if (e.pointerType === 'touch') return;
+        var r = card.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        window.gsap.to(card, { rotateY: px * 8, rotateX: -py * 8, y: -8, scale: 1.02, transformPerspective: 800, transformOrigin: 'center', duration: 0.4, ease: 'power2.out', overwrite: 'auto' });
+      });
+      card.addEventListener('pointerleave', function () {
+        window.gsap.to(card, { rotateY: 0, rotateX: 0, y: 0, scale: 1, duration: 0.6, ease: 'power3.out', overwrite: 'auto' });
+      });
+    });
+  }
+
+  function wireMagnetic() {
+    document.querySelectorAll('#app .pill-btn, #app .tab').forEach(function (btn) {
+      btn.addEventListener('pointermove', function (e) {
+        if (e.pointerType === 'touch') return;
+        var r = btn.getBoundingClientRect();
+        window.gsap.to(btn, { x: (e.clientX - r.left - r.width / 2) * 0.3, y: (e.clientY - r.top - r.height / 2) * 0.4, duration: 0.3, ease: 'power2.out', overwrite: 'auto' });
+      });
+      btn.addEventListener('pointerleave', function () {
+        window.gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1,0.4)', overwrite: 'auto' });
+      });
+    });
+  }
+
+  function wireInteractions() {
+    if (!window.gsap || _reduceMotion) return;
+    wireTilt();
+    wireMagnetic();
+  }
+
   function renderLobby() {
     var cats = normCats();
     var data = state.data || [];
@@ -272,6 +310,7 @@
     else if (state.view === 'grid') renderGrid();
     else renderDetail();
     if (window.__fxMode) window.__fxMode(state.view);
+    wireInteractions();   // 掛上滑鼠傾斜 / 磁吸(每次重繪後重掛)
   }
 
   // ---- 事件委派 ----
