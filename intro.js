@@ -174,7 +174,11 @@
   }
 
   function scheduleLand() {
-    if (!landScheduled) { landScheduled = true; setTimeout(autoEnter, 1500); }
+    if (!landScheduled) {
+      landScheduled = true;
+      var delay = (window.SITE_CONFIG && SITE_CONFIG.intro && SITE_CONFIG.intro.lobbyEnterDelay != null) ? SITE_CONFIG.intro.lobbyEnterDelay * 1000 : 1500;
+      setTimeout(autoEnter, delay);
+    }
   }
 
   // GSAP 驅動:場景段用梯形 ease、落地段用 smoothstep;比手寫 RAF 更順、frame-rate 無關。
