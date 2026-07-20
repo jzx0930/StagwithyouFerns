@@ -205,3 +205,50 @@ body {
   .title { font-size: 38px; }
   .detail-footer { margin-left: 0; }
 }
+
+/* ===== 微互動 / 質感升級(hover · press · 減少動態)===== */
+
+/* 按壓回饋(觸感) */
+.pill-btn, .tab, .fs-btn, .lb-close { transition: background .3s, border-color .3s, color .3s, box-shadow .3s, transform .2s cubic-bezier(.2,.8,.2,1); }
+.pill-btn:active, .tab:active, .fs-btn:active, .lb-close:active, .plant-card:active { transform: scale(.96); }
+
+/* 膠囊按鈕 hover */
+.pill-btn:hover { background: rgba(255,255,255,0.12); border-color: rgba(154,216,171,0.4); color: var(--green-mint); transform: translateY(-1px); }
+
+/* 分頁:未選 hover + 選中發光 */
+.tab:hover:not(.active) { background: rgba(255,255,255,0.1); border-color: rgba(154,216,171,0.45); color: var(--green-mint); transform: translateY(-1px); }
+.tab.active { box-shadow: 0 6px 20px rgba(154,216,171,0.28); }
+
+/* 大廳分類卡:懸浮時順模型輪廓浮起投影、名稱與 chip 提亮 */
+.fern-card { transition: transform .35s cubic-bezier(.2,.8,.2,1), filter .35s; }
+.fern-card:hover { filter: drop-shadow(0 16px 26px rgba(0,0,0,0.45)); }
+.chip { transition: background .3s, border-color .3s, color .3s; }
+.cat-card:hover .cat-name { color: #fff; }
+.cat-card:hover .chip { border-color: rgba(154,216,171,0.6); color: #eafff0; background: rgba(0,0,0,0.5); }
+
+/* 植物卡:封面微放大 + 「看成長 →」滑出 + 計數/名稱提亮 */
+.cover-img { transition: transform .5s cubic-bezier(.2,.8,.2,1); }
+.plant-card:hover .cover-img { transform: scale(1.06); }
+.pc-go { display: inline-flex; align-items: center; transition: transform .3s cubic-bezier(.2,.8,.2,1), color .3s; }
+.plant-card:hover .pc-go { color: var(--green); transform: translateX(5px); }
+.plant-card:hover .pc-count { border-color: rgba(154,216,171,0.5); color: #eafff0; }
+.plant-card:hover .pc-name { color: #fff; }
+
+/* 詳情頁:指標卡與時間軸卡懸浮微升、照片微放大 */
+.metric { transition: transform .3s cubic-bezier(.2,.8,.2,1), border-color .3s, box-shadow .3s; }
+.metric:hover { transform: translateY(-3px); border-color: rgba(154,216,171,0.3); box-shadow: 0 14px 36px rgba(0,0,0,0.4); }
+.tl-card { transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, border-color .35s; }
+.tl-card:hover { transform: translateY(-4px); border-color: rgba(154,216,171,0.3); box-shadow: 0 22px 56px rgba(0,0,0,0.5); }
+.tl-photo img { transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+.tl-card:hover .tl-photo img { transform: scale(1.03); }
+
+/* 燈箱關閉 / 全螢幕鈕 hover */
+.fs-btn:hover, .lb-close:hover { background: rgba(154,216,171,0.16); border-color: rgba(154,216,171,0.5); color: #eafff0; }
+
+/* 尊重「減少動態」:關掉位移/縮放,保留顏色與陰影變化 */
+@media (prefers-reduced-motion: reduce) {
+  .fern-card:hover, .cat-card:hover, .plant-card:hover, .pill-btn:hover, .tab:hover,
+  .metric:hover, .tl-card:hover, .plant-card:hover .cover-img, .plant-card:hover .pc-go,
+  .tl-card:hover .tl-photo img, .pill-btn:active, .tab:active, .plant-card:active,
+  .fs-btn:active, .lb-close:active { transform: none !important; }
+}
