@@ -498,6 +498,7 @@
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     function frame() {
+      if (window.__introActive) { requestAnimationFrame(frame); return; }   // 開場飛越期間暫停(看不到,省效能)
       t += 0.006;
       if (!reduce) autoYaw += 0.0003;
       rotY += (tRotY - rotY) * 0.05;

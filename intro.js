@@ -13,6 +13,7 @@
   // config.ini:開場飛越開關與參數
   var _SC = window.SITE_CONFIG || {}, _SCI = _SC.intro || {}, _SCS = _SC.site || {}, _SCB = _SC.background || {};
   if (_SCI.show === false) return;
+  window.__introActive = true;   // 通知 app.js 的背景粒子:開場期間先暫停(看不到,省效能給飛越)
 
   var SCENES = [
     { m: 'models/Caudex/Caudex.glb',           zh: '塊根',   la: 'Caudex',      el: 82, az: 8 },
@@ -80,12 +81,12 @@
     var d = document.createElement('div'); d.className = 'sc';
     var v = document.createElement('model-viewer');
     v.setAttribute('interaction-prompt', 'none'); v.setAttribute('disable-zoom', '');
-    v.setAttribute('exposure', '1.05'); v.setAttribute('shadow-intensity', '0.7');
+    v.setAttribute('exposure', '1.05'); v.setAttribute('shadow-intensity', '0');   // 飛越不畫陰影(每幀重算陰影很吃 GPU)
     v.setAttribute('environment-image', 'neutral');
     v.setAttribute('camera-orbit', s.az + 'deg ' + s.el + 'deg 15m');
     v.setAttribute('min-camera-orbit', 'auto 0deg 1m'); v.setAttribute('max-camera-orbit', 'auto 180deg 18m');
     v.setAttribute('field-of-view', '30deg');
-    v.setAttribute('interpolation-decay', '200');
+    v.setAttribute('interpolation-decay', '50');   // 降低雙重平滑造成的延遲,跟著 GSAP 值更緊、更順
     v.setAttribute('loading', 'eager');   // 立即下載,不要延遲載入(否則起飛時還是縮圖)
     v.setAttribute('reveal', 'auto');
     v.setAttribute('poster', s.m.replace('.glb', '-poster.webp'));
@@ -217,7 +218,7 @@
     var c = document.getElementById('sf-fx'), g = c.getContext('2d'), W, H, DPR, pts;
     function rs() { DPR = Math.min(window.devicePixelRatio || 1, 2); W = c.width = innerWidth * DPR; H = c.height = innerHeight * DPR; }
     rs(); window.addEventListener('resize', rs);
-    pts = []; for (var i = 0; i < 64; i++) pts.push({ x: Math.random(), y: Math.random(), vx: (Math.random() - .5) * .0006, vy: (Math.random() - .5) * .0006, s: .5 + Math.random() * 1.6, ph: Math.random() * 6.28, sp: .3 + Math.random() * .7 });
+    pts = []; for (var i = 0; i < 40; i++) pts.push({ x: Math.random(), y: Math.random(), vx: (Math.random() - .5) * .0006, vy: (Math.random() - .5) * .0006, s: .5 + Math.random() * 1.6, ph: Math.random() * 6.28, sp: .3 + Math.random() * .7 });
     var t = 0;
     (function loop() {
       if (fxStop) return;
@@ -244,6 +245,7 @@
 
   function enter() {
     if (flightEntered) return; flightEntered = true;
+    window.__introActive = false;   // 恢復背景粒子
     running = false; if (flightTL) flightTL.kill();   // 停掉飛行(手動/跳過時)
     try { sessionStorage.setItem('sf_intro_seen', '1'); } catch (e) {}
     root.style.opacity = '0';
