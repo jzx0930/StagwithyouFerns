@@ -170,37 +170,39 @@
     t.style.display = 'flex'; t.style.alignItems = 'center'; t.style.flexWrap = 'wrap'; t.style.minHeight = size + 'px';
     if (la) la.style.opacity = '0';
 
-    var items = chars.map(function (ch) {
-      if (ch === ' ') { var sp = document.createElement('span'); sp.style.width = '0.35em'; return { type: 'space', el: sp }; }
-      if (isCJK(ch)) { var d = document.createElement('div'); d.style.cssText = 'width:' + size + 'px;height:' + size + 'px;flex:0 0 auto;'; return { type: 'cjk', el: d, ch: ch }; }
-      var s = document.createElement('span'); s.textContent = ch; s.style.opacity = '0'; s.style.transition = 'opacity .2s ease'; return { type: 'latin', el: s };
-    });
-    items.forEach(function (it) { t.appendChild(it.el); });
-
-    var idx = 0;
-    function next() {
-      if (idx >= items.length) {
-        if (la) { if (window.gsap) window.gsap.to(la, { opacity: 1, duration: 0.5, ease: 'power2.out' }); else la.style.opacity = '1'; }
-        return;
-      }
-      var it = items[idx++];
-      if (it.type === 'cjk') {
-        var moved = false, go = function () { if (moved) return; moved = true; next(); };
-        setTimeout(go, 4000);   // 安全逾時,避免某字資料載不到就卡住
+    // 全部字「同時」開寫(平行、快):中文照筆順、英數用手寫體由左到右書寫揭示;全部寫完淡入 latin。
+    var pending = 0;
+    function done() {
+      if (--pending > 0) return;
+      if (la) { if (window.gsap) window.gsap.to(la, { opacity: 1, duration: 0.4, ease: 'power2.out' }); else la.style.opacity = '1'; }
+    }
+    chars.forEach(function (ch) {
+      if (ch === ' ') { var sp = document.createElement('span'); sp.style.width = '0.35em'; t.appendChild(sp); return; }
+      pending++;
+      if (isCJK(ch)) {
+        var d = document.createElement('div'); d.style.cssText = 'width:' + size + 'px;height:' + size + 'px;flex:0 0 auto;'; t.appendChild(d);
+        var moved = false, go = function () { if (moved) return; moved = true; done(); };
+        setTimeout(go, 3500);
         try {
-          var w = window.HanziWriter.create(it.el, it.ch, {
+          var w = window.HanziWriter.create(d, ch, {
             width: size, height: size, padding: 1, showOutline: false, showCharacter: false,
-            strokeColor: '#f4f8f4', strokeAnimationSpeed: 1.4, delayBetweenStrokes: 40,
-            onLoadCharDataError: function () { _hwFallback(it.el, it.ch, size); go(); }
+            strokeColor: '#f4f8f4', strokeAnimationSpeed: 3.5, delayBetweenStrokes: 10,
+            onLoadCharDataError: function () { _hwFallback(d, ch, size); go(); }
           });
           w.animateCharacter({ onComplete: go });
-        } catch (e) { _hwFallback(it.el, it.ch, size); go(); }
-      } else if (it.type === 'latin') {
-        requestAnimationFrame(function () { it.el.style.opacity = '1'; });
-        setTimeout(next, 110);
-      } else { next(); }
-    }
-    next();
+        } catch (e) { _hwFallback(d, ch, size); go(); }
+      } else {
+        var s = document.createElement('span');
+        s.textContent = ch;
+        s.style.cssText = "font-family:'Caveat',cursive;font-weight:600;font-size:" + Math.round(size * 1.12) + "px;line-height:" + size + "px;color:#f4f8f4;white-space:pre;clip-path:inset(0 100% 0 0);-webkit-clip-path:inset(0 100% 0 0);transition:clip-path .42s ease,-webkit-clip-path .42s ease;";
+        t.appendChild(s);
+        var moved2 = false, go2 = function () { if (moved2) return; moved2 = true; done(); };
+        s.addEventListener('transitionend', go2, { once: true });
+        setTimeout(go2, 1000);
+        requestAnimationFrame(function () { s.style.clipPath = 'inset(0 0 0 0)'; s.style.webkitClipPath = 'inset(0 0 0 0)'; });
+      }
+    });
+    if (pending === 0 && la) la.style.opacity = '1';
   }
 
   function renderLobby() {
