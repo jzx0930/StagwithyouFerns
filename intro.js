@@ -116,7 +116,7 @@
   setTimeout(function () { if (!flightStarted) startFlight(); }, LOAD_TIMEOUT + 2000); // 全域保護
 
   // ── 飛行 ──
-  var running = false, t0 = null, landScheduled = false, flightEntered = false;
+  var running = false, t0 = null, landScheduled = false, flightEntered = false, flightTL = null;
   var FP_START = -0.5, FP_END = N - 0.35;
   var SCENE_MS = (FP_END - FP_START) * DUR_PER;
 
@@ -135,7 +135,7 @@
     loadBox.style.opacity = '0';
     setTimeout(function () { if (loadBox.parentNode) loadBox.style.display = 'none'; }, 500);
     running = true; t0 = null;
-    requestAnimationFrame(frame);
+    if (window.gsap) runFlightGSAP(); else requestAnimationFrame(frame);
     warmLobby();   // 飛越同時,把沒被飛越用到的分類模型預抓進快取,進大廳才不會慢
   }
 
@@ -148,17 +148,10 @@
     });
   }
 
-  function frame(now) {
-    if (!running) return;
-    if (t0 === null) t0 = now;
-    var el = now - t0;
-    var scenePhase = easeTrap(clamp(el / SCENE_MS, 0, 1));
-    var fp = FP_START + scenePhase * (FP_END - FP_START);
-    var lp = smooth((el - SCENE_MS) / LAND_MS);
-
-    bar.style.width = (clamp(el / (SCENE_MS + LAND_MS), 0, 1) * 100) + '%';
+  // 把每一幀的畫面計算抽出來,GSAP 與回退 RAF 共用。
+  function renderFlight(fp, lp) {
+    var scenePhase = (fp - FP_START) / (FP_END - FP_START);
     bgp.style.transform = 'translateY(' + (scenePhase * -46) + 'px) scale(1.1)';
-
     for (var i = 0; i < N; i++) {
       var x = fp - (i + 0.5);
       var vis = smooth(1 - Math.abs(x) / 0.85) * (1 - lp);
@@ -176,11 +169,36 @@
     land.style.opacity = lp;
     if (lp > 0.55) land.classList.add('on'); else land.classList.remove('on');
     land.querySelector('.land-in').style.transform = 'translateY(' + ((1 - lp) * 28) + 'px)';
+  }
 
-    if (lp >= 1) {
-      if (!landScheduled) { landScheduled = true; setTimeout(autoEnter, 3000); }
-      return;
-    }
+  function scheduleLand() {
+    if (!landScheduled) { landScheduled = true; setTimeout(autoEnter, 3000); }
+  }
+
+  // GSAP 驅動:場景段用梯形 ease、落地段用 smoothstep;比手寫 RAF 更順、frame-rate 無關。
+  function runFlightGSAP() {
+    var proxy = { fp: FP_START, lp: 0 };
+    flightTL = gsap.timeline({
+      onUpdate: function () {
+        renderFlight(proxy.fp, proxy.lp);
+        bar.style.width = (flightTL.progress() * 100) + '%';
+      },
+      onComplete: function () { renderFlight(FP_END, 1); bar.style.width = '100%'; scheduleLand(); }
+    });
+    flightTL.to(proxy, { fp: FP_END, duration: SCENE_MS / 1000, ease: easeTrap });
+    flightTL.to(proxy, { lp: 1, duration: LAND_MS / 1000, ease: smooth });
+  }
+
+  // 回退:無 GSAP 時的手寫 RAF(邏輯同前)。
+  function frame(now) {
+    if (!running) return;
+    if (t0 === null) t0 = now;
+    var el = now - t0;
+    var fp = FP_START + easeTrap(clamp(el / SCENE_MS, 0, 1)) * (FP_END - FP_START);
+    var lp = smooth((el - SCENE_MS) / LAND_MS);
+    bar.style.width = (clamp(el / (SCENE_MS + LAND_MS), 0, 1) * 100) + '%';
+    renderFlight(fp, lp);
+    if (lp >= 1) { scheduleLand(); return; }
     requestAnimationFrame(frame);
   }
 
@@ -217,6 +235,7 @@
 
   function enter() {
     if (flightEntered) return; flightEntered = true;
+    running = false; if (flightTL) flightTL.kill();   // 停掉飛行(手動/跳過時)
     try { sessionStorage.setItem('sf_intro_seen', '1'); } catch (e) {}
     root.style.opacity = '0';
     root.style.transform = 'scale(1.08)';
@@ -227,6 +246,7 @@
       window.scrollTo(0, 0);
       app.style.display = appDisp || '';
       if (window.__fxMode) window.__fxMode('lobby');
+      if (window.__animLobby) window.__animLobby();   // 進大廳時卡片交錯浮入
     }, 720);
   }
   document.getElementById('sf-enter').addEventListener('click', function (e) { e.preventDefault(); autoEnter(); });

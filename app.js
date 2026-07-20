@@ -96,6 +96,18 @@
       '</div>' + (mid || '') + stats + '</div>';
   }
 
+  // GSAP 交錯進場(有載 GSAP 才跑;沒有就靜態顯示,不影響功能)。
+  function animCards(sel, y) {
+    if (!window.gsap) return;
+    try {
+      window.gsap.from(sel, {
+        opacity: 0, y: (y || 24), duration: 0.5, stagger: 0.05,
+        ease: 'power2.out', clearProps: 'opacity,transform', overwrite: true
+      });
+    } catch (e) {}
+  }
+  window.__animLobby = function () { animCards('#app .cat-card', 26); };
+
   function renderLobby() {
     var cats = normCats();
     var data = state.data || [];
@@ -130,6 +142,7 @@
     app.innerHTML = '<div class="wrap">' +
       headerHTML('Herbarium · 分類選單', '', '選一個分類,進入觀看。', true, totalPlants, totalPhotos) +
       '<div class="card-grid">' + cards + '</div></div>';
+    animCards('#app .cat-card', 26);
   }
 
   function renderGrid() {
@@ -177,6 +190,7 @@
       '<div class="tabs">' + tabs + '</div>' +
       '<div class="card-grid">' + cards + '</div>' + empty +
       '</div>';
+    animCards('#app .plant-card', 20);
   }
 
   function renderDetail() {
