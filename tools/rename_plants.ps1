@@ -52,6 +52,10 @@ Rn '龍舌蘭\吉祥冠覆輪龍舌蘭' 'potatorum-吉祥冠覆輪龍舌蘭'
 # 觀葉 Foliage(Alocasia 觀音蓮)
 Rn '觀葉\黑葉觀音蓮' 'amazonica-黑葉觀音蓮'
 Rn '觀葉\絨葉斑葉觀音蓮' 'micholitziana-絨葉斑葉觀音蓮'
+# --- 2026-07-17 補:先前維持中文、現已查到學名 ---
+Rn 'Cactaceae-仙人掌\天紫玉' 'pflanzii-天紫玉'
+Rn 'Cactaceae-仙人掌\疣仙人' 'Mammillaria-疣仙人'
+Rn 'Caudex-塊根\阿拉伯沙枚' 'arabicum-阿拉伯沙枚'
 
 Write-Host ''
 Write-Host '=== 分類夾改名(最後做)==='
