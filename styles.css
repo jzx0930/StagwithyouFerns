@@ -166,6 +166,17 @@ body {
 .metric { flex: 1; min-width: 140px; padding: 16px 18px; border-radius: 16px; background: linear-gradient(160deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); backdrop-filter: blur(14px); border: 1px solid var(--glass-border); }
 .metric .k { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; color: var(--muted); }
 .metric .v { font-family: var(--serif); font-size: 22px; color: #eef4ef; margin-top: 4px; }
+/* 植物介紹(照片張數之下、成長時間軸之上,置中) */
+.plant-intro {
+  margin: 30px auto 8px; max-width: 660px; text-align: center;
+  padding: 26px 32px; border-radius: 20px;
+  background: linear-gradient(160deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  backdrop-filter: blur(14px) saturate(1.2); border: 1px solid var(--glass-border);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.12);
+  color: #dfe8e2; font-size: 15px; line-height: 1.75;
+}
+.plant-intro strong { color: var(--green-soft); font-weight: 600; }
+
 .tl-head { display: flex; align-items: center; justify-content: space-between; margin: 44px 0 26px; }
 .tl-head h2 { font-family: var(--serif); font-weight: 400; font-size: 26px; color: #f2f6f2; margin: 0; }
 .tl-order { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.1em; }

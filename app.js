@@ -292,7 +292,7 @@
           '<div class="rule"></div>' +
           '<div class="pc-foot"><span class="pc-date">入手 ' + esc(p.date || '') + '</span>' +
             '<span class="pc-go">看成長 →</span></div>' +
-          (p.note ? '<div class="pc-note">— ' + esc(p.note) + '</div>' : '') +
+          (p.note ? '<div class="pc-note">— ' + esc(p.note.replace(/\*\*/g, '').replace(/\s+/g, ' ').trim().slice(0, 48)) + (p.note.length > 48 ? '…' : '') + '</div>' : '') +
           shopRow(p, x.i, false) +
         '</div></div>';
     }).join('');
@@ -382,6 +382,7 @@
       '</div>' +
       shopRow(sel, state.selected, true) +
       picker +
+      (sel.note ? '<div class="plant-intro">' + fmtNote(sel.note) + '</div>' : '') +
       '<div class="tl-head"><h2>成長時間軸</h2><div class="tl-order">最新 → 最早</div></div>' +
       '<div>' + rows + '</div>' +
       '<div class="detail-footer"><span class="pill-btn" data-act="back-grid">↑ 回到照片牆</span></div>' +
