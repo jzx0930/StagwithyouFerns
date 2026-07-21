@@ -50,5 +50,12 @@ Rn '多佛朗明哥' 'Flamenco-多佛朗明哥'
 Rn '信仰者 P.Beliver' 'Believer-信仰者'
 
 Write-Host ''
+Write-Host '=== 鹿角蕨:2026-07-20 開始更新補(侏儒/交種)==='
+Rn '珍妮' 'Jenny-珍妮'
+Rn '三叉戟' 'Trident-三叉戟'
+Rn '玉女' 'JadeGirl-玉女'
+Rn '侏儒塔蘇塔' 'DwarfTatsuta-侏儒塔蘇塔'
+
+Write-Host ''
 Write-Host '完成。Akki、Nano、E、YAL、OMG 本身已是英文,未動。'
 Read-Host '按 Enter 關閉'

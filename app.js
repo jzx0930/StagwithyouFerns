@@ -27,6 +27,12 @@
     return String(s == null ? '' : s)
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
+  // 筆記格式:先轉義,再套用 **粗體** 與換行(讓成長筆記能多行 + 重點粗體)。
+  function fmtNote(s) {
+    var e = esc(s || '');
+    e = e.replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>');
+    return e.replace(/\n/g, '<br>');
+  }
   function driveImg(v, w) {
     if (!v) return null;
     if (/^https?:/i.test(v)) return v;
@@ -341,7 +347,7 @@
         '<div class="tl-when"><div class="y">' + esc(y) + '</div><div class="md">' + esc(md) + '</div></div>' +
         '<div class="tl-axis"><div class="line"></div><div class="dot"></div></div>' +
         '<div class="tl-main"><div class="tl-card">' + photo +
-          '<div class="tl-note">' + esc(e.note || '') + '</div></div></div>' +
+          '<div class="tl-note">' + fmtNote(e.note || '') + '</div></div></div>' +
       '</div>';
     }).join('');
     if (!total) rows = '<p class="subtitle" style="margin-left:108px;">這個個體還沒有照片。</p>';
