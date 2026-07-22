@@ -508,6 +508,7 @@
     parallax();
 
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var pB = (window.SITE_CONFIG && SITE_CONFIG.effects && typeof SITE_CONFIG.effects.particleBrightness === 'number') ? SITE_CONFIG.effects.particleBrightness : 1;  // 螢火蟲亮度倍率
 
     function frame() {
       if (window.__introActive) { requestAnimationFrame(frame); return; }   // 開場飛越期間暫停(看不到,省效能)
@@ -547,7 +548,7 @@
         var q = proj[i]; p = q.p;
         var tw = 0.45 + 0.55 * Math.sin(t * 6 * p.sp + p.ph);
         var r = Math.max(0.4, p.s * q.sc * 1.5 * DPR);
-        var a1 = Math.max(0, Math.min(1, tw)) * Math.min(1, q.sc * 0.9) * fade;
+        var a1 = Math.max(0, Math.min(1, tw)) * Math.min(1, q.sc * 0.9) * fade * pB;
         if (a1 <= 0.004) continue;
         var g = ctx.createRadialGradient(q.sx, q.sy, 0, q.sx, q.sy, r * 5);
         g.addColorStop(0, 'rgba(226,255,170,' + (a1 * 0.95) + ')');

@@ -12,7 +12,8 @@
   --serif: 'Newsreader', Georgia, serif;
   --sans: 'Space Grotesk', system-ui, sans-serif;
   --mono: 'Space Mono', ui-monospace, monospace;
-  --glass: linear-gradient(160deg, rgba(255,255,255,0.075), rgba(255,255,255,0.02));
+  --panel-op: 1;   /* 玻璃面板不透明度倍率(由 config.ini panel_opacity 控制;越大越實、越小越透) */
+  --glass: linear-gradient(160deg, rgba(255,255,255, calc(0.075 * var(--panel-op))), rgba(255,255,255, calc(0.02 * var(--panel-op))));
   --glass-border: rgba(255,255,255,0.10);
 }
 
@@ -163,14 +164,14 @@ body {
 /* ---- 詳情 / 時間軸 ---- */
 .detail-latin { font-family: var(--serif); font-style: italic; font-size: 20px; color: rgba(154,216,171,0.82); }
 .metrics { display: flex; flex-wrap: wrap; gap: 14px; margin: 26px 0 8px; }
-.metric { flex: 1; min-width: 140px; padding: 16px 18px; border-radius: 16px; background: linear-gradient(160deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); backdrop-filter: blur(14px); border: 1px solid var(--glass-border); }
+.metric { flex: 1; min-width: 140px; padding: 16px 18px; border-radius: 16px; background: var(--glass); backdrop-filter: blur(14px); border: 1px solid var(--glass-border); }
 .metric .k { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; color: var(--muted); }
 .metric .v { font-family: var(--serif); font-size: 22px; color: #eef4ef; margin-top: 4px; }
 /* 植物介紹(照片張數之下、成長時間軸之上,置中) */
 .plant-intro {
   margin: 30px auto 8px; max-width: 660px; text-align: center;
   padding: 26px 32px; border-radius: 20px;
-  background: linear-gradient(160deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  background: var(--glass);
   backdrop-filter: blur(14px) saturate(1.2); border: 1px solid var(--glass-border);
   box-shadow: 0 14px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.12);
   color: #dfe8e2; font-size: 15px; line-height: 1.75;
@@ -188,7 +189,7 @@ body {
 .tl-axis .line { position: absolute; top: 0; bottom: 0; width: 2px; background: linear-gradient(rgba(154,216,171,0.35), rgba(154,216,171,0.08)); }
 .tl-axis .dot { position: relative; margin-top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 5px rgba(154,216,171,0.14); }
 .tl-main { flex: 1; padding-bottom: 30px; }
-.tl-card { border-radius: 20px; overflow: hidden; background: linear-gradient(160deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02)); backdrop-filter: blur(18px) saturate(1.3); border: 1px solid var(--glass-border); box-shadow: 0 14px 44px rgba(0,0,0,0.42), inset 0 1px 0 rgba(255,255,255,0.14); }
+.tl-card { border-radius: 20px; overflow: hidden; background: var(--glass); backdrop-filter: blur(18px) saturate(1.3); border: 1px solid var(--glass-border); box-shadow: 0 14px 44px rgba(0,0,0,0.42), inset 0 1px 0 rgba(255,255,255,0.14); }
 .tl-photo { position: relative; background: #0c1210; line-height: 0; font-size: 0; }
 .tl-photo img { display: block; width: 100%; height: auto; }
 .tl-empty { height: 300px; position: relative; background-color: #0c1210; background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 12px); display: flex; align-items: center; justify-content: center; }
