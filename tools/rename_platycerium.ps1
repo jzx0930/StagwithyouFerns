@@ -1,6 +1,6 @@
 ﻿# 鹿角蕨品種株改名(原生種=種小名;品種=英文園藝名/交種式)。由 Claude 產生,查證來源見對話。
 $ErrorActionPreference = 'Continue'
-$base = 'G:\我的雲端硬碟\植物照片\Platycerium-鹿角蕨'
+$base = 'C:\Users\MyUser\Google 雲端硬碟檔案串流\我的雲端硬碟\植物照片\Platycerium-鹿角蕨'
 
 function Rn($old, $new) {
   $full = Join-Path $base $old
@@ -57,5 +57,13 @@ Rn '玉女' 'JadeGirl-玉女'
 Rn '侏儒塔蘇塔' 'DwarfTatsuta-侏儒塔蘇塔'
 
 Write-Host ''
-Write-Host '完成。Akki、Nano、E、YAL、OMG 本身已是英文,未動。'
+Write-Host '=== 鹿角蕨:2026-07-22 新植物整理夾名(英文-中文)==='
+Rn 'P. Foong SiQi 捲捲鹿' 'FoongSiQi-捲捲鹿'
+Rn 'P. Monkoy North-北猴' 'MonkoyNorth-北猴'
+Rn 'P.willinckii Yellow moon-黃月' 'YellowMoon-黃月'
+Rn 'P. Hakuna Matata-馬塔塔' 'HakunaMatata-馬塔塔'
+Rn 'P.blue vista-藍景' 'BlueVista-藍景'
+
+Write-Host ''
+Write-Host '完成。純英文(Akki/Nano/E/YAL/OMG/Namo/Blue Ribbon)未動;雷電交種式維持中文。'
 Read-Host '按 Enter 關閉'

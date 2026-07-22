@@ -1,7 +1,7 @@
 ﻿# 植物照片 資料夾改名腳本(分類=屬名-中文;植物=種小名-中文)
 # 由 Claude 產生。改名會同步回 Google Drive。原名有保留在中文部分。
 $ErrorActionPreference = 'Continue'
-$base = 'G:\我的雲端硬碟\植物照片'
+$base = 'C:\Users\MyUser\Google 雲端硬碟檔案串流\我的雲端硬碟\植物照片'
 
 function Rn($rel, $new) {
   $full = Join-Path $base $rel

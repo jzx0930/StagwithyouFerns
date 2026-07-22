@@ -8,7 +8,7 @@ description: 當使用者說「開始更新」時觸發。檢查 Google Drive「
 **觸發語**:使用者說「**開始更新**」。收到後依本手冊執行整套流程。
 
 ## 環境限制(務必記得)
-- Drive 資料夾在 `G:\我的雲端硬碟\植物照片`(Google Drive 電腦版同步碟)。若未連接,先用 `request_cowork_directory` 連。
+- **Drive 資料夾正確路徑是 `C:\Users\MyUser\Google 雲端硬碟檔案串流\我的雲端硬碟\植物照片`**(Google Drive 電腦版同步碟)。⚠️ 舊的 `G:\我的雲端硬碟\植物照片` 是**失效/幻影掛載**——它不存在(改名腳本用 G:\ 會報「A drive with the name 'G' does not exist」)、Glob 讀它會拿到舊快取。**一律用上面的 C:\ 路徑**;連不到先用 `request_cowork_directory` 連。腳本 `$base` 也要用 C:\ 路徑。
 - **bash 無法掛載 G:\**,只能用 `Glob` / `Read` 讀 host 路徑。
 - **檔案工具與連接器都沒有「改名」功能** → 改名一律靠 PowerShell 腳本在使用者電腦上跑(見下)。
 - **我不能改 Drive 分享權限**。網站顯示照片需照片為「知道連結的任何人/檢視者」;若非公開,請使用者自行設定。目前 `植物照片` 整夾已公開。
@@ -43,11 +43,14 @@ description: 當使用者說「開始更新」時觸發。檢查 Google Drive「
 6. 查完把「中文↔latin」對照更新進本檔的對照表區,並寫進 data.json;查不到的才回落規則 4。
 
 ## 執行步驟(收到「開始更新」)— 嚴格照順序
-1. **掃描 + 偵測變更**:`Glob` 掃 `G:\我的雲端硬碟\植物照片` 全部分類夾與植物夾,和「上次的狀態」(現有 `data.json` 的 plants + 現有資料夾名)比對,分出三種變更:
+1. **掃描 + 偵測變更**:掃 `C:\Users\MyUser\Google 雲端硬碟檔案串流\我的雲端硬碟\植物照片`(**不是 G:\**)全部分類夾與植物夾,和「上次的狀態」(現有 `data.json` 的 plants + 現有資料夾名)比對,分出三種變更:
    - **(A) 新增夾 / 改名夾**:資料夾名還不是「英文-中文」或純英文 → 進第 2 步查名改名;純新增但已命名好的植物也記下來要補進 data.json。
    - **(B) 舊植物補了新照片**:資料夾名沒變、但裡面照片變多。**這種光看資料夾名看不出來**,要**逐一比對該株在 data.json 的照片數 vs Drive 該夾實際照片數**(用 `search_files` 抓該夾照片數對照),不一致就要重抓那株的時間軸。若不確定,對「有在成長中、可能常拍」的植物直接重抓即可。
    - **(C) 完全沒變**:跳過。
    - 把「這次要處理的清單」(要改名的、要補進 data.json 的新株、要更新照片的舊株)先列出來,再往下做。
+   - **⚠️ 掃描兩大盲點(2026-07-22 踩過,務必避免)**:
+     1. **檔名不是只有 `2026 ...`**:新上傳的照片檔名可能是 **`2025:10:21 22:05:35.jpeg`(冒號分隔、且是拍攝年份如 2025)**,用 `Glob **/2026*` 會**整批漏掉**。掃描要用能涵蓋所有影像的方式(例如 `**/*.jpeg`/`**/*.jpg`/`**/*.JPG`/`**/*.png`,或直接用下面第 2 點的雲端 API),不要只靠 `2026*`。
+     2. **本機 Drive 清單會快取/串流未下載**:Glob 讀 `G:\` 或 `C:\...\Google 雲端硬碟檔案串流\...`(兩者是同一份「我的雲端硬碟」)有時回**舊快取**,即使桌面顯示同步完成、網頁也有新照片。**遇到「使用者說有更新但 Glob 掃不到」時,改用 Google Drive 連接器 `search_files`(讀雲端、即時)**:例如 `mimeType contains 'image/' and modifiedTime > '<近日>'` 找剛上傳的照片,或直接以 parentId 走訪重建。連接器是雲端真實狀態,不受本機快取影響。
 2. **查名 + 附加腳本**:逐一判斷資料夾名是否已符合「英文-中文」或「純英文」:
    - 符合 / 純英文 → 跳過。
    - 不符合 → 依決策上網查名,把 `Rn '舊名' '新名'` **附加**到對應腳本(都在 `tools/`:分類夾+非鹿角蕨植物 → `tools/rename_plants.ps1`;鹿角蕨植物 → `tools/rename_platycerium.ps1`)。**只 append,絕不刪舊行**;已改好的靠 `Test-Path` 跳過。
@@ -101,5 +104,6 @@ description: 當使用者說「開始更新」時觸發。檢查 Google Drive「
 - 鹿角蕨品種(2026-07-17 詳查補):三角四叉=`'African Oddity'`(quadridichotomum×stemaria)、雷達=`'Raider'`、艾沙(艾莎)=`'Elsa'`、獅子座=`willinckii 'Leo'`、多佛朗明哥(佛朗明哥)=`hillii × coronarium 'Flamenco'`、史迪奇=`'Stitch'`(FSQ×Rydeen)、奶油獅=`willinckii 'Cream Lion'`、白玫瑰=`willinckii 'White Rose'`、白妖爪=`willinckii 'Unguis Albi'`、二叉=`bifurcatum`、爪哇=`willinckii`。
 - **這些暱稱株的完整 latin 以 data.json 為準(含品種引號)。全樹重建時,資料夾名只切得出屬名,務必套上本對照表補回正確 latin,不要用資料夾名蓋掉。**
 - 2026-07-20 開始更新新植物:亞阿相界=`Pachypodium geayi`、安哥拉葡萄甕=`Cyphostemma uter var. macropus`、綠鬼玉=`Euphorbia decepta`、金輪際=`Euphorbia gorgonis`、法利達=`Euphorbia valida`、九頭龍=`Euphorbia inermis`、貴清玉/布紋球=`Euphorbia meloformis`、群星冠=`Euphorbia stellispina`、萬象=`Haworthia maughanii`、三叉戟=`Platycerium 'Trident'`(Mt Lewis×hillii)、玉女=`Platycerium willinckii 'Jade Girl'`、珍妮=`Platycerium willinckii 'Jenny'`、侏儒塔蘇塔=`Platycerium willinckii 'Dwarf Tatsuta'`。查不到維持中文:蒼鬼塔、群星際、寶塔摩蘿。
-- 純英文不動:Akki、E、YAL。仍待補:情花few。
+- 2026-07-22 新植物(鹿角蕨,英文名多為飼主自訂):捲捲鹿=`Platycerium 'Foong Si Qi'`、北猴=`Platycerium 'Monkoy North'`、黃月=`Platycerium willinckii 'Yellow Moon'`、馬塔塔=`Platycerium 'Hakuna Matata'`、藍景=`Platycerium 'Blue Vista'`、Blue Ribbon #1/#2=`Platycerium bifurcatum 'Blue Ribbon'`(#1 含 Mt.Sugim sporelings 交)、Namo=`Platycerium 'Namo'`、雷電xK銀x小手指x白爪哇=交種(維持中文,latin=`Platycerium hybrid`)。
+- 純英文不動:Akki、E、YAL、Namo、Blue Ribbon(#1/#2)。仍待補:情花few。
 - Nano/OMG:Drive 夾已改成 `P. Willinckii Nano`/`P. Willinckii OMG`,但**網站顯示名維持短的 `Nano`/`OMG`**,latin=`Platycerium willinckii 'Nano'`/`Platycerium willinckii 'OMG'`(全樹重建時別用資料夾長名蓋掉顯示名)。

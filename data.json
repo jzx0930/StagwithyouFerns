@@ -65,44 +65,112 @@
   },
   "plants": [
     {
-      "name": "三叉戟",
-      "latin": "Platycerium 'Trident'",
+      "name": "捲捲鹿",
+      "latin": "Platycerium 'Foong Si Qi'",
       "category": "鹿角蕨",
-      "date": "2026.07.17",
+      "date": "2025.10.21",
       "note": "",
-      "cover": "1rwYmfGDxOXCebDXKn3rSIAO9CsOI9TcR",
+      "cover": "1dAkvsMeBZ8jNKB--lK0fhR79U2NtJBZI",
       "individuals": [
         {
-          "label": "",
-          "cover": "1rwYmfGDxOXCebDXKn3rSIAO9CsOI9TcR",
+          "label": "#01",
+          "cover": "1fPt3o2mdrA2mxOYMIUMEBBDOS25V4zDp",
           "timeline": [
             {
-              "date": "2026.07.17",
-              "tag": "紀錄",
+              "date": "2025.10.19",
+              "tag": "#01",
               "note": "",
-              "photo": "1rwYmfGDxOXCebDXKn3rSIAO9CsOI9TcR"
+              "photo": "1fPt3o2mdrA2mxOYMIUMEBBDOS25V4zDp"
+            }
+          ]
+        },
+        {
+          "label": "#02",
+          "cover": "1dAkvsMeBZ8jNKB--lK0fhR79U2NtJBZI",
+          "timeline": [
+            {
+              "date": "2025.10.21",
+              "tag": "#02",
+              "note": "",
+              "photo": "1dAkvsMeBZ8jNKB--lK0fhR79U2NtJBZI"
+            },
+            {
+              "date": "2025.10.21",
+              "tag": "#02",
+              "note": "",
+              "photo": "1CaKzoWWzaZqn62aLDLNIuOS3xQSMgrVP"
             }
           ]
         }
       ]
     },
     {
-      "name": "玉女",
-      "latin": "Platycerium willinckii 'Jade Girl'",
+      "name": "北猴",
+      "latin": "Platycerium 'Monkoy North'",
       "category": "鹿角蕨",
-      "date": "2026.07.17",
+      "date": "2025.10.21",
       "note": "",
-      "cover": "14JvEtt67U23BfuEFkVqXwUyBgrvfd6qy",
+      "cover": "1PgnuvOsVNN7pbxMKffGfO9ygEkmhNnqF",
       "individuals": [
         {
-          "label": "#01",
-          "cover": "14JvEtt67U23BfuEFkVqXwUyBgrvfd6qy",
+          "label": "",
+          "cover": "1PgnuvOsVNN7pbxMKffGfO9ygEkmhNnqF",
           "timeline": [
             {
-              "date": "2026.07.17",
-              "tag": "#01",
+              "date": "2025.10.21",
+              "tag": "紀錄",
               "note": "",
-              "photo": "14JvEtt67U23BfuEFkVqXwUyBgrvfd6qy"
+              "photo": "1PgnuvOsVNN7pbxMKffGfO9ygEkmhNnqF"
+            },
+            {
+              "date": "2025.10.19",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1RYsgSFni2xHSyTEQK_pRc6_YOzWs18AI"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Blue Ribbon #2",
+      "latin": "Platycerium bifurcatum 'Blue Ribbon'",
+      "category": "鹿角蕨",
+      "date": "2025.10.19",
+      "note": "",
+      "cover": "1QjfiKKtY6Q0jkn6Ru5ix1EjLyYfWvq47",
+      "individuals": [
+        {
+          "label": "",
+          "cover": "1QjfiKKtY6Q0jkn6Ru5ix1EjLyYfWvq47",
+          "timeline": [
+            {
+              "date": "2025.10.19",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1QjfiKKtY6Q0jkn6Ru5ix1EjLyYfWvq47"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Blue Ribbon #1 / Mt.Sugim Sporelings",
+      "latin": "Platycerium bifurcatum 'Blue Ribbon' × Mt.Sugim sporelings",
+      "category": "鹿角蕨",
+      "date": "2025.10.19",
+      "note": "",
+      "cover": "1eU49kPmoLMNaX_OE8H6PPhqS2Z0Ph2qf",
+      "individuals": [
+        {
+          "label": "",
+          "cover": "1eU49kPmoLMNaX_OE8H6PPhqS2Z0Ph2qf",
+          "timeline": [
+            {
+              "date": "2025.10.19",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1eU49kPmoLMNaX_OE8H6PPhqS2Z0Ph2qf"
             }
           ]
         }
@@ -131,22 +199,296 @@
       ]
     },
     {
-      "name": "珍妮",
-      "latin": "Platycerium willinckii 'Jenny'",
+      "name": "雷電xK銀x小手指x白爪哇",
+      "latin": "Platycerium hybrid",
       "category": "鹿角蕨",
-      "date": "2026.07.17",
+      "date": "2025.10.19",
       "note": "",
-      "cover": "1SleFVApBLIXAowa22jdCoushKey2uN6q",
+      "cover": "1xepw-yXvRyDG1LK5Kk88OM04WpPKI4b8",
+      "individuals": [
+        {
+          "label": "#01",
+          "cover": "1xepw-yXvRyDG1LK5Kk88OM04WpPKI4b8",
+          "timeline": [
+            {
+              "date": "2025.10.19",
+              "tag": "#01",
+              "note": "",
+              "photo": "1xepw-yXvRyDG1LK5Kk88OM04WpPKI4b8"
+            }
+          ]
+        },
+        {
+          "label": "#02",
+          "cover": "1k69bi9j74RYA1GDY690ez8zKhppfw5ge",
+          "timeline": [
+            {
+              "date": "2025.10.19",
+              "tag": "#02",
+              "note": "",
+              "photo": "1k69bi9j74RYA1GDY690ez8zKhppfw5ge"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "黃月",
+      "latin": "Platycerium willinckii 'Yellow Moon'",
+      "category": "鹿角蕨",
+      "date": "2025.10.19",
+      "note": "",
+      "cover": "1wfezViCV_cKrTkZbxXr1OdiJrCh18yuJ",
       "individuals": [
         {
           "label": "",
-          "cover": "1SleFVApBLIXAowa22jdCoushKey2uN6q",
+          "cover": "1wfezViCV_cKrTkZbxXr1OdiJrCh18yuJ",
+          "timeline": [
+            {
+              "date": "2025.10.19",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1wfezViCV_cKrTkZbxXr1OdiJrCh18yuJ"
+            },
+            {
+              "date": "2025.10.19",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1hvVmS06LyL0K9mXRWMMqUAXK8gq4V72H"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "奶油獅",
+      "latin": "Platycerium willinckii 'Cream Lion'",
+      "category": "鹿角蕨",
+      "date": "2026.03.06",
+      "note": "",
+      "cover": "1iqvy_r1HvhO_cA8DxtFVIde6jsggZFBp",
+      "individuals": [
+        {
+          "label": "",
+          "cover": "1iqvy_r1HvhO_cA8DxtFVIde6jsggZFBp",
+          "timeline": [
+            {
+              "date": "2026.03.06",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1iqvy_r1HvhO_cA8DxtFVIde6jsggZFBp"
+            },
+            {
+              "date": "2026.02.26",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1NDBPUoL7L3tXWvTiNxG9GqYATgpYRCt0"
+            },
+            {
+              "date": "2026.02.23",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1Wkx1ErObaXMf9qLz66jlC9kMdKzOxuYG"
+            },
+            {
+              "date": "2025.10.21",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1uYSIXvBQuKVUqbgGMQiEBRDEz91bcmj7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "艾沙",
+      "latin": "Platycerium 'Elsa'",
+      "category": "鹿角蕨",
+      "date": "2026.05.21",
+      "note": "",
+      "cover": "13slQiCjPhB1JvEnF_sZB3Vgpd1MD_IGQ",
+      "individuals": [
+        {
+          "label": "",
+          "cover": "13slQiCjPhB1JvEnF_sZB3Vgpd1MD_IGQ",
+          "timeline": [
+            {
+              "date": "2026.05.21",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "13slQiCjPhB1JvEnF_sZB3Vgpd1MD_IGQ"
+            },
+            {
+              "date": "2025.10.21",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1cMLWVvtp4xVwt04DhNLNxMWq1LzemyFD"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "象耳",
+      "latin": "Platycerium elephantotis",
+      "category": "鹿角蕨",
+      "date": "2026.06.03",
+      "note": "",
+      "cover": "1lNGlbfoPfyEN_9sXT9Y84fVHulagkOSC",
+      "individuals": [
+        {
+          "label": "#01",
+          "cover": "1lNGlbfoPfyEN_9sXT9Y84fVHulagkOSC",
+          "timeline": [
+            {
+              "date": "2026.06.03",
+              "tag": "#01",
+              "note": "",
+              "photo": "1lNGlbfoPfyEN_9sXT9Y84fVHulagkOSC"
+            },
+            {
+              "date": "2026.04.29",
+              "tag": "#01",
+              "note": "",
+              "photo": "1c5naZBEZTCeVo8tDZYljrDzZJvdKRKGk"
+            },
+            {
+              "date": "2026.04.29",
+              "tag": "#01",
+              "note": "",
+              "photo": "1Ue8P7c0qhmx6tL-qKp_PMuS3WqAKW5nN"
+            },
+            {
+              "date": "2026.04.13",
+              "tag": "#01",
+              "note": "",
+              "photo": "16QyQJJnGgayY3vqkiqihW1WQghysyUlU"
+            },
+            {
+              "date": "2026.03.26",
+              "tag": "#01",
+              "note": "",
+              "photo": "1XF_bDCESophE5SGBumpLtUqXfGplLQIQ"
+            },
+            {
+              "date": "2026.02.23",
+              "tag": "#01",
+              "note": "",
+              "photo": "12OoWK3uoyfoq2GsEIHJfvhWBIeVeekCK"
+            },
+            {
+              "date": "2025.10.19",
+              "tag": "#01",
+              "note": "",
+              "photo": "1j6PK-_GhkwtYO9wneaNPipN1wqorYxun"
+            }
+          ]
+        },
+        {
+          "label": "#02",
+          "cover": "1Cd03WtPAx9PA5DoBdDADL0YpDIlSCV3_",
+          "timeline": [
+            {
+              "date": "2026.05.23",
+              "tag": "#02",
+              "note": "",
+              "photo": "1Cd03WtPAx9PA5DoBdDADL0YpDIlSCV3_"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "馬塔塔",
+      "latin": "Platycerium 'Hakuna Matata'",
+      "category": "鹿角蕨",
+      "date": "2025.10.19",
+      "note": "",
+      "cover": "1wUXMIJXyvNEydEbN6Xx8XyJOZ7YrjbYv",
+      "individuals": [
+        {
+          "label": "#01",
+          "cover": "1wUXMIJXyvNEydEbN6Xx8XyJOZ7YrjbYv",
+          "timeline": [
+            {
+              "date": "2025.10.19",
+              "tag": "#01",
+              "note": "",
+              "photo": "1wUXMIJXyvNEydEbN6Xx8XyJOZ7YrjbYv"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Nano",
+      "latin": "Platycerium willinckii 'Nano'",
+      "category": "鹿角蕨",
+      "date": "2026.05.19",
+      "note": "",
+      "cover": "148z8W0rLaU0QA59or6oReGW2O_XbdCEo",
+      "individuals": [
+        {
+          "label": "",
+          "cover": "148z8W0rLaU0QA59or6oReGW2O_XbdCEo",
+          "timeline": [
+            {
+              "date": "2026.05.19",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "148z8W0rLaU0QA59or6oReGW2O_XbdCEo"
+            },
+            {
+              "date": "2026.05.15",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1UwYzMEgMa1bDaZiFPaZFRpPaJbOphrZO"
+            },
+            {
+              "date": "2025.10.19",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1PEtG9t_V1KtT3KQaigT8nDTmsv6MO-Pn"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "OMG",
+      "latin": "Platycerium willinckii 'OMG'",
+      "category": "鹿角蕨",
+      "date": "2026.07.17",
+      "note": "",
+      "cover": "1vfvCtK_JysiVjfdogAC2wB-ZhzGGwQsn",
+      "individuals": [
+        {
+          "label": "",
+          "cover": "1vfvCtK_JysiVjfdogAC2wB-ZhzGGwQsn",
           "timeline": [
             {
               "date": "2026.07.17",
               "tag": "紀錄",
               "note": "",
-              "photo": "1SleFVApBLIXAowa22jdCoushKey2uN6q"
+              "photo": "1vfvCtK_JysiVjfdogAC2wB-ZhzGGwQsn"
+            },
+            {
+              "date": "2026.05.15",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1ZIGbtzjMQY0tAP_YlG7pH_8sIlNoiHMM"
+            },
+            {
+              "date": "2026.05.15",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1ZePj9cWFB_k-3wMKN0ckVy17mamJ7_ob"
+            },
+            {
+              "date": "2025.10.19",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1nneUYnWIuCucpO4PgEp1AIZuVP4YwYkl"
             }
           ]
         }
@@ -217,114 +559,110 @@
               "tag": "紀錄",
               "note": "",
               "photo": "1iUW6_6VIfpjJYlBIdsi-GSmZ97zyf9IM"
+            },
+            {
+              "date": "2025.10.19",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1Iw4hx61LblTDagsOKLSNIqG3_JpSBP-4"
+            },
+            {
+              "date": "2025.10.19",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1ySqjCZPdju58G4EuEyzClHsIn4BQg5Ih"
             }
           ]
         }
       ]
     },
     {
-      "name": "OMG",
-      "latin": "Platycerium willinckii 'OMG'",
+      "name": "銀葉立葉",
+      "latin": "Platycerium veitchii",
       "category": "鹿角蕨",
       "date": "2026.07.17",
       "note": "",
-      "cover": "1vfvCtK_JysiVjfdogAC2wB-ZhzGGwQsn",
+      "cover": "11cvWZ4kUIQxPYT99gvtpPDQ-bcdxm3ji",
       "individuals": [
         {
           "label": "",
-          "cover": "1vfvCtK_JysiVjfdogAC2wB-ZhzGGwQsn",
+          "cover": "11cvWZ4kUIQxPYT99gvtpPDQ-bcdxm3ji",
           "timeline": [
             {
               "date": "2026.07.17",
               "tag": "紀錄",
               "note": "",
-              "photo": "1vfvCtK_JysiVjfdogAC2wB-ZhzGGwQsn"
+              "photo": "11cvWZ4kUIQxPYT99gvtpPDQ-bcdxm3ji"
             },
             {
-              "date": "2026.05.15",
+              "date": "2026.04.29",
               "tag": "紀錄",
               "note": "",
-              "photo": "1ZePj9cWFB_k-3wMKN0ckVy17mamJ7_ob"
+              "photo": "1FTQWL0pHQtRfX2OJp1PZZz12LwSoDVfI"
             },
             {
-              "date": "2026.05.15",
+              "date": "2026.04.18",
               "tag": "紀錄",
               "note": "",
-              "photo": "1ZIGbtzjMQY0tAP_YlG7pH_8sIlNoiHMM"
+              "photo": "1pQjomc5wPXyA0PFaQhjUh1idxG2CF0Bd"
+            },
+            {
+              "date": "2026.04.18",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1P_QJVAHB9__3SBrlCe6a38HNm1l8YgNl"
+            },
+            {
+              "date": "2026.04.18",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1CF9EfRO2vLkRzukoBj3bW848UqNIZhf9"
+            },
+            {
+              "date": "2026.03.06",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1e22jN5RY8cMYL2uFVjvKvVW11UPbdR6U"
+            },
+            {
+              "date": "2026.02.26",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1VFmIibCwlva8C9fRTQtyRiyaIFV34Cte"
+            },
+            {
+              "date": "2025.10.19",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "122EQn9hPCjG0yhzZ6ZHvcSGVtnkp-Dq1"
             }
           ]
         }
       ]
     },
     {
-      "name": "羅賓",
-      "latin": "Platycerium willinckii 'Robin'",
+      "name": "銀華",
+      "latin": "Platycerium Ginka",
       "category": "鹿角蕨",
-      "date": "2026.07.17",
+      "date": "2026.06.03",
       "note": "",
-      "cover": "1nq5VN-ypH63yZ5hBJ2TK5H5-MkCdf5Nu",
+      "cover": "1iV_Rivz2HtBMEbdJ7of2e9UZaS2JMWE6",
       "individuals": [
         {
           "label": "",
-          "cover": "1nq5VN-ypH63yZ5hBJ2TK5H5-MkCdf5Nu",
+          "cover": "1iV_Rivz2HtBMEbdJ7of2e9UZaS2JMWE6",
           "timeline": [
-            {
-              "date": "2026.07.17",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "1nq5VN-ypH63yZ5hBJ2TK5H5-MkCdf5Nu"
-            },
-            {
-              "date": "2026.04.17",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "12_134DbG_NHWvB0_30DbDTiZqQnYfwFC"
-            },
-            {
-              "date": "2026.04.17",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "1E-ZVp2_slfhAiReZCM7tlwLcF6M6TM6a"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "三角",
-      "latin": "Platycerium stemaria",
-      "category": "鹿角蕨",
-      "date": "2026.07.17",
-      "note": "",
-      "cover": "1JKuF5rmP3iRlNSdiCg8VAj6-CId1o3zg",
-      "individuals": [
-        {
-          "label": "",
-          "cover": "1JKuF5rmP3iRlNSdiCg8VAj6-CId1o3zg",
-          "timeline": [
-            {
-              "date": "2026.07.17",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "1JKuF5rmP3iRlNSdiCg8VAj6-CId1o3zg"
-            },
-            {
-              "date": "2026.06.27",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "1u62L5icdvNFUQRm10vDSbalGP2T7zvqf"
-            },
             {
               "date": "2026.06.03",
               "tag": "紀錄",
               "note": "",
-              "photo": "1JBUo6YoZ8qEb8TV3Ls-APlKtm2L8CLP8"
+              "photo": "1iV_Rivz2HtBMEbdJ7of2e9UZaS2JMWE6"
             },
             {
-              "date": "2026.02.23",
+              "date": "2025.10.19",
               "tag": "紀錄",
               "note": "",
-              "photo": "1JHbqktUw9hCLAVKXLz1j6UeUDepiBusE"
+              "photo": "1n0Njb1zJEzS-moMDWEr4CGAOZgLUbBxB"
             }
           ]
         }
@@ -389,6 +727,196 @@
               "tag": "紀錄",
               "note": "",
               "photo": "1qX9Zy9RRyqtMiO6SyDyW6SgU3qvjxjVw"
+            },
+            {
+              "date": "2025.10.19",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1GAF1cV1oDfX1gBtIWqoEKGij_A_CN-yy"
+            },
+            {
+              "date": "2025.10.19",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1j8HAhFCJqz5opPXqLby6a4NGM6rm0atn"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "爪哇",
+      "latin": "Platycerium willinckii",
+      "category": "鹿角蕨",
+      "date": "2026.03.06",
+      "note": "",
+      "cover": "1ZiMQAQfSuQLmvw7kRHFiLxckMbW7P3lJ",
+      "individuals": [
+        {
+          "label": "#01",
+          "cover": "1ZiMQAQfSuQLmvw7kRHFiLxckMbW7P3lJ",
+          "timeline": [
+            {
+              "date": "2026.03.06",
+              "tag": "#01",
+              "note": "",
+              "photo": "1ZiMQAQfSuQLmvw7kRHFiLxckMbW7P3lJ"
+            },
+            {
+              "date": "2026.03.06",
+              "tag": "#01",
+              "note": "",
+              "photo": "1vQgHbBgHqppento_JgCP8JPtKZ9wmkv2"
+            },
+            {
+              "date": "2025.10.19",
+              "tag": "#01",
+              "note": "",
+              "photo": "1_JkmClr2Nju_v_bmdUttC5qTgHLvTN0c"
+            }
+          ]
+        },
+        {
+          "label": "#02",
+          "cover": "1IWiouNSD0WXzMc9_fWAgwgGjex728KZC",
+          "timeline": [
+            {
+              "date": "2025.10.19",
+              "tag": "#02",
+              "note": "",
+              "photo": "1IWiouNSD0WXzMc9_fWAgwgGjex728KZC"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "奧銀",
+      "latin": "Platycerium veitchii",
+      "category": "鹿角蕨",
+      "date": "2026.04.29",
+      "note": "",
+      "cover": "1wX3aLKWhhWagy06DNx9YTDnWYjkND2_d",
+      "individuals": [
+        {
+          "label": "#01",
+          "cover": "1wX3aLKWhhWagy06DNx9YTDnWYjkND2_d",
+          "timeline": [
+            {
+              "date": "2026.04.29",
+              "tag": "#01",
+              "note": "",
+              "photo": "1wX3aLKWhhWagy06DNx9YTDnWYjkND2_d"
+            },
+            {
+              "date": "2026.03.06",
+              "tag": "#01",
+              "note": "",
+              "photo": "1AX8GWm0cN51g5eAS2eemYGKi7Yl5G1UW"
+            },
+            {
+              "date": "2026.03.02",
+              "tag": "#01",
+              "note": "",
+              "photo": "1Ls3zwm5mLaluTDXgL0eLCyYr1L00Yo8u"
+            },
+            {
+              "date": "2025.10.19",
+              "tag": "#01",
+              "note": "",
+              "photo": "1-mmJAISNUm-NCrVUkUP1KhNRt1pRNtBn"
+            }
+          ]
+        },
+        {
+          "label": "#03",
+          "cover": "1c9Pc125NR5xwzerGrZnsTMAHq3gJT4zX",
+          "timeline": [
+            {
+              "date": "2025.10.21",
+              "tag": "#03",
+              "note": "",
+              "photo": "1c9Pc125NR5xwzerGrZnsTMAHq3gJT4zX"
+            }
+          ]
+        },
+        {
+          "label": "#04",
+          "cover": "1lC0oE4lf22CWyfwLbaQFyHNOaZdad-Cq",
+          "timeline": [
+            {
+              "date": "2026.04.29",
+              "tag": "#04",
+              "note": "",
+              "photo": "1lC0oE4lf22CWyfwLbaQFyHNOaZdad-Cq"
+            },
+            {
+              "date": "2026.03.19",
+              "tag": "#04",
+              "note": "",
+              "photo": "1U6MKsXrxRvvLq3JPJ4VgCytfK0otxBxl"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "P.willinckii Yellow moon x FSQ sporeling",
+      "latin": "Platycerium willinckii 'Yellow Moon' × FSQ sporeling",
+      "category": "鹿角蕨",
+      "date": "2026.06.03",
+      "note": "",
+      "cover": "1vChIqAGz2eSfjQF9gUZNuTPGPB4pruwP",
+      "individuals": [
+        {
+          "label": "",
+          "cover": "1vChIqAGz2eSfjQF9gUZNuTPGPB4pruwP",
+          "timeline": [
+            {
+              "date": "2026.06.03",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1vChIqAGz2eSfjQF9gUZNuTPGPB4pruwP"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "羅賓",
+      "latin": "Platycerium willinckii 'Robin'",
+      "category": "鹿角蕨",
+      "date": "2026.07.17",
+      "note": "",
+      "cover": "1nq5VN-ypH63yZ5hBJ2TK5H5-MkCdf5Nu",
+      "individuals": [
+        {
+          "label": "",
+          "cover": "1nq5VN-ypH63yZ5hBJ2TK5H5-MkCdf5Nu",
+          "timeline": [
+            {
+              "date": "2026.07.17",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1nq5VN-ypH63yZ5hBJ2TK5H5-MkCdf5Nu"
+            },
+            {
+              "date": "2026.04.17",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "12_134DbG_NHWvB0_30DbDTiZqQnYfwFC"
+            },
+            {
+              "date": "2026.04.17",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1E-ZVp2_slfhAiReZCM7tlwLcF6M6TM6a"
+            },
+            {
+              "date": "2025.10.19",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1UBAFwJAICvIdTM9LQotiPMANZu3pLU1s"
             }
           ]
         }
@@ -441,40 +969,402 @@
       ]
     },
     {
-      "name": "巨大",
-      "latin": "Platycerium superbum",
+      "name": "金童",
+      "latin": "Platycerium GoldenBoy",
       "category": "鹿角蕨",
       "date": "2026.07.17",
       "note": "",
-      "cover": "1TdpubOlkuFAB7RT40zVNeGOsrmb-Xb0o",
+      "cover": "1z2b-mVWBZUevy__GeKhs8jedUlLGHA8f",
       "individuals": [
         {
-          "label": "#02",
-          "cover": "1TdpubOlkuFAB7RT40zVNeGOsrmb-Xb0o",
+          "label": "",
+          "cover": "1z2b-mVWBZUevy__GeKhs8jedUlLGHA8f",
           "timeline": [
             {
               "date": "2026.07.17",
-              "tag": "#02",
+              "tag": "紀錄",
               "note": "",
-              "photo": "1TdpubOlkuFAB7RT40zVNeGOsrmb-Xb0o"
+              "photo": "1z2b-mVWBZUevy__GeKhs8jedUlLGHA8f"
+            },
+            {
+              "date": "2026.05.19",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1dfWjLJtPFekR3BgGqMfcleDXV8K0lvSh"
+            },
+            {
+              "date": "2025.10.31",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1lBbriF9IhEf9MsB-Mq8mpU1RLLWQUJ7S"
+            },
+            {
+              "date": "2025.10.23",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "13p4ncwjTvQBiQEjrn-SINY3tKbHGheRn"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "二叉",
+      "latin": "Platycerium bifurcatum",
+      "category": "鹿角蕨",
+      "date": "2026.04.13",
+      "note": "",
+      "cover": "1Ko4WUO9xmEgVv4s8HQWpbkFcW5EZ08oY",
+      "individuals": [
+        {
+          "label": "",
+          "cover": "1Ko4WUO9xmEgVv4s8HQWpbkFcW5EZ08oY",
+          "timeline": [
+            {
+              "date": "2026.04.13",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1Ko4WUO9xmEgVv4s8HQWpbkFcW5EZ08oY"
+            },
+            {
+              "date": "2025.12.02",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1JhPKykXBw3xWiPbqIMfcHT-yYm3T_Gea"
+            },
+            {
+              "date": "2025.10.19",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1XsLbxTWCuJcsvX1Yn73OlHLCOFzyJxPu"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "巨獸",
+      "latin": "Platycerium grande",
+      "category": "鹿角蕨",
+      "date": "2026.06.27",
+      "note": "",
+      "cover": "1nXeWNsbzkyOEIzGCVn8kZDRjIbl4D9n3",
+      "individuals": [
+        {
+          "label": "",
+          "cover": "1nXeWNsbzkyOEIzGCVn8kZDRjIbl4D9n3",
+          "timeline": [
+            {
+              "date": "2026.06.27",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1nXeWNsbzkyOEIzGCVn8kZDRjIbl4D9n3"
+            },
+            {
+              "date": "2026.06.11",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "14CTbIUkxOTDAkooOpEeRgIDwmNhcTs19"
+            },
+            {
+              "date": "2026.06.03",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "12lVEQ4gQFNgBHyYQBow6SzE6_Z5Erba2"
+            },
+            {
+              "date": "2026.04.13",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1B-jG4GiJNpPAZXQZ2kiiSolPgMaoehlj"
+            },
+            {
+              "date": "2026.02.26",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1YsDRVcW-EyMPMaLMc6rrMlseb9Wo03lh"
+            },
+            {
+              "date": "2025.11.01",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1qQHAYDwsvW1G7nhq7wiOrZp9o83VvNLc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Akki",
+      "latin": "Platycerium Akki",
+      "category": "鹿角蕨",
+      "date": "2026.07.17",
+      "note": "",
+      "cover": "1DxiG82nzbIr9fxxsJc8FXihNPUWoXq-r",
+      "individuals": [
+        {
+          "label": "#01",
+          "cover": "1DxiG82nzbIr9fxxsJc8FXihNPUWoXq-r",
+          "timeline": [
+            {
+              "date": "2026.07.17",
+              "tag": "#01",
+              "note": "",
+              "photo": "1DxiG82nzbIr9fxxsJc8FXihNPUWoXq-r"
+            },
+            {
+              "date": "2026.05.21",
+              "tag": "#01",
+              "note": "",
+              "photo": "1Mvq0E_AJa9UrOIJFJ0hvtPevPnzP_c7E"
+            },
+            {
+              "date": "2026.04.29",
+              "tag": "#01",
+              "note": "",
+              "photo": "1ak4Tst3ifqLlK__VTGCbeocc7nK8CC7J"
+            },
+            {
+              "date": "2026.04.13",
+              "tag": "#01",
+              "note": "",
+              "photo": "1bPhyJ5GYeRaTOcRQYMgQzvtdpkJGoIaa"
+            },
+            {
+              "date": "2026.03.26",
+              "tag": "#01",
+              "note": "",
+              "photo": "17MCPSoU_fe9ENY2BXNcw3EsoMGd1PwpE"
+            },
+            {
+              "date": "2026.03.06",
+              "tag": "#01",
+              "note": "",
+              "photo": "14U2s2m_500fWyBjysP2LzO0r0upIJAeE"
+            },
+            {
+              "date": "2025.10.19",
+              "tag": "#01",
+              "note": "",
+              "photo": "1JmBhH4MzuRMjkAMxA1xRQLlR36FzS0hv"
+            },
+            {
+              "date": "2025.10.19",
+              "tag": "#01",
+              "note": "",
+              "photo": "1nGEV8oB-ZOQcqCGVmWXFnh1f03WvUAHG"
             }
           ]
         },
         {
-          "label": "#01",
-          "cover": "1-4Uksh7vvtV2JUiHhjY4eGUV4WynZ4pD",
+          "label": "#02",
+          "cover": "1dwDNhne1H4MuX7HE6ev0mlwd8WM9VL3X",
           "timeline": [
             {
-              "date": "2026.06.03",
-              "tag": "#01",
+              "date": "2026.04.29",
+              "tag": "#02",
               "note": "",
-              "photo": "1-4Uksh7vvtV2JUiHhjY4eGUV4WynZ4pD"
+              "photo": "1dwDNhne1H4MuX7HE6ev0mlwd8WM9VL3X"
             },
             {
-              "date": "2026.02.26",
+              "date": "2026.04.17",
+              "tag": "#02",
+              "note": "",
+              "photo": "13IxdefTt-pSixPdng7wDmfDZiry9PAbu"
+            },
+            {
+              "date": "2026.04.17",
+              "tag": "#02",
+              "note": "",
+              "photo": "1Gb_VaJMHVsSG6CY-tHAvVqJpxewbjhg1"
+            },
+            {
+              "date": "2026.04.13",
+              "tag": "#02",
+              "note": "",
+              "photo": "1xhftZ4X8n_Vuq7LU41GQl-uZZcN_Fi0X"
+            },
+            {
+              "date": "2025.10.19",
+              "tag": "#02",
+              "note": "",
+              "photo": "1fi06ohVrqqW5Q76Ah48p1usKgma_ET8q"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "玉女",
+      "latin": "Platycerium willinckii 'Jade Girl'",
+      "category": "鹿角蕨",
+      "date": "2026.07.17",
+      "note": "",
+      "cover": "14JvEtt67U23BfuEFkVqXwUyBgrvfd6qy",
+      "individuals": [
+        {
+          "label": "#01",
+          "cover": "14JvEtt67U23BfuEFkVqXwUyBgrvfd6qy",
+          "timeline": [
+            {
+              "date": "2026.07.17",
               "tag": "#01",
               "note": "",
-              "photo": "1Tad9IXlq7KkWOLbIq_AWw-FSBsKhZRVK"
+              "photo": "14JvEtt67U23BfuEFkVqXwUyBgrvfd6qy"
+            },
+            {
+              "date": "2025.12.22",
+              "tag": "#01",
+              "note": "",
+              "photo": "1cL9YBGAdJv2EIyEGz9yU5-nRCY237de8"
+            },
+            {
+              "date": "2025.10.31",
+              "tag": "#01",
+              "note": "",
+              "photo": "1i9DrHTfx2NWjBoyrVEmNh31RssfJ2WLg"
+            },
+            {
+              "date": "2025.10.27",
+              "tag": "#01",
+              "note": "",
+              "photo": "1WdHV0c7pTSgyWmW4qBjGOdq_IHrJ6rmb"
+            },
+            {
+              "date": "2025.10.19",
+              "tag": "#01",
+              "note": "",
+              "photo": "1vzlm1BD8_gVjw9c5Zkr2JeL9eOjdGF0U"
+            },
+            {
+              "date": "2025.10.19",
+              "tag": "#01",
+              "note": "",
+              "photo": "13WW-Sjtlx9iWTxqf0XBZt60k7FIpFqdI"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "菲律賓皇冠",
+      "latin": "Platycerium coronarium",
+      "category": "鹿角蕨",
+      "date": "2026.07.17",
+      "note": "",
+      "cover": "1p2K0Vja7u9q9ryIx7Oec3XlcaAYXGDxa",
+      "individuals": [
+        {
+          "label": "",
+          "cover": "1p2K0Vja7u9q9ryIx7Oec3XlcaAYXGDxa",
+          "timeline": [
+            {
+              "date": "2026.07.17",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1p2K0Vja7u9q9ryIx7Oec3XlcaAYXGDxa"
+            },
+            {
+              "date": "2026.06.03",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "13xmQVWmIUsCiNThd8-YUYg1QeOiA2IDy"
+            },
+            {
+              "date": "2026.04.13",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1A7ryk7nysF8w2sfQ-bmvyOUV9P0uGmvJ"
+            },
+            {
+              "date": "2025.11.01",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1hNmXoyhnglxh_zcGmttiNucqQeMrLGe2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "三叉戟",
+      "latin": "Platycerium 'Trident'",
+      "category": "鹿角蕨",
+      "date": "2026.07.17",
+      "note": "",
+      "cover": "1rwYmfGDxOXCebDXKn3rSIAO9CsOI9TcR",
+      "individuals": [
+        {
+          "label": "",
+          "cover": "1rwYmfGDxOXCebDXKn3rSIAO9CsOI9TcR",
+          "timeline": [
+            {
+              "date": "2026.07.17",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1rwYmfGDxOXCebDXKn3rSIAO9CsOI9TcR"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "珍妮",
+      "latin": "Platycerium willinckii 'Jenny'",
+      "category": "鹿角蕨",
+      "date": "2026.07.17",
+      "note": "",
+      "cover": "1SleFVApBLIXAowa22jdCoushKey2uN6q",
+      "individuals": [
+        {
+          "label": "",
+          "cover": "1SleFVApBLIXAowa22jdCoushKey2uN6q",
+          "timeline": [
+            {
+              "date": "2026.07.17",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1SleFVApBLIXAowa22jdCoushKey2uN6q"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "三角",
+      "latin": "Platycerium stemaria",
+      "category": "鹿角蕨",
+      "date": "2026.07.17",
+      "note": "",
+      "cover": "1JKuF5rmP3iRlNSdiCg8VAj6-CId1o3zg",
+      "individuals": [
+        {
+          "label": "",
+          "cover": "1JKuF5rmP3iRlNSdiCg8VAj6-CId1o3zg",
+          "timeline": [
+            {
+              "date": "2026.07.17",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1JKuF5rmP3iRlNSdiCg8VAj6-CId1o3zg"
+            },
+            {
+              "date": "2026.06.27",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1u62L5icdvNFUQRm10vDSbalGP2T7zvqf"
+            },
+            {
+              "date": "2026.06.03",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1JBUo6YoZ8qEb8TV3Ls-APlKtm2L8CLP8"
+            },
+            {
+              "date": "2026.02.23",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1JHbqktUw9hCLAVKXLz1j6UeUDepiBusE"
             }
           ]
         }
@@ -503,64 +1393,6 @@
               "tag": "紀錄",
               "note": "",
               "photo": "1HvuVDLH1J47nOAvTRyrszajdSmeRjGRl"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "銀葉立葉",
-      "latin": "Platycerium veitchii",
-      "category": "鹿角蕨",
-      "date": "2026.07.17",
-      "note": "",
-      "cover": "11cvWZ4kUIQxPYT99gvtpPDQ-bcdxm3ji",
-      "individuals": [
-        {
-          "label": "",
-          "cover": "11cvWZ4kUIQxPYT99gvtpPDQ-bcdxm3ji",
-          "timeline": [
-            {
-              "date": "2026.07.17",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "11cvWZ4kUIQxPYT99gvtpPDQ-bcdxm3ji"
-            },
-            {
-              "date": "2026.04.29",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "1FTQWL0pHQtRfX2OJp1PZZz12LwSoDVfI"
-            },
-            {
-              "date": "2026.04.18",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "1pQjomc5wPXyA0PFaQhjUh1idxG2CF0Bd"
-            },
-            {
-              "date": "2026.04.18",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "1P_QJVAHB9__3SBrlCe6a38HNm1l8YgNl"
-            },
-            {
-              "date": "2026.04.18",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "1CF9EfRO2vLkRzukoBj3bW848UqNIZhf9"
-            },
-            {
-              "date": "2026.03.06",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "1e22jN5RY8cMYL2uFVjvKvVW11UPbdR6U"
-            },
-            {
-              "date": "2026.02.26",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "1VFmIibCwlva8C9fRTQtyRiyaIFV34Cte"
             }
           ]
         }
@@ -631,150 +1463,6 @@
               "tag": "紀錄",
               "note": "",
               "photo": "1sCTyuRqACzpo_3NAcEWj8g2R3R0QtKMA"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "金童",
-      "latin": "Platycerium GoldenBoy",
-      "category": "鹿角蕨",
-      "date": "2026.07.17",
-      "note": "",
-      "cover": "1z2b-mVWBZUevy__GeKhs8jedUlLGHA8f",
-      "individuals": [
-        {
-          "label": "",
-          "cover": "1z2b-mVWBZUevy__GeKhs8jedUlLGHA8f",
-          "timeline": [
-            {
-              "date": "2026.07.17",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "1z2b-mVWBZUevy__GeKhs8jedUlLGHA8f"
-            },
-            {
-              "date": "2026.05.19",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "1dfWjLJtPFekR3BgGqMfcleDXV8K0lvSh"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "菲律賓皇冠",
-      "latin": "Platycerium coronarium",
-      "category": "鹿角蕨",
-      "date": "2026.07.17",
-      "note": "",
-      "cover": "1p2K0Vja7u9q9ryIx7Oec3XlcaAYXGDxa",
-      "individuals": [
-        {
-          "label": "",
-          "cover": "1p2K0Vja7u9q9ryIx7Oec3XlcaAYXGDxa",
-          "timeline": [
-            {
-              "date": "2026.07.17",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "1p2K0Vja7u9q9ryIx7Oec3XlcaAYXGDxa"
-            },
-            {
-              "date": "2026.06.03",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "13xmQVWmIUsCiNThd8-YUYg1QeOiA2IDy"
-            },
-            {
-              "date": "2026.04.13",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "1A7ryk7nysF8w2sfQ-bmvyOUV9P0uGmvJ"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Akki",
-      "latin": "Platycerium Akki",
-      "category": "鹿角蕨",
-      "date": "2026.07.17",
-      "note": "",
-      "cover": "1DxiG82nzbIr9fxxsJc8FXihNPUWoXq-r",
-      "individuals": [
-        {
-          "label": "#01",
-          "cover": "1DxiG82nzbIr9fxxsJc8FXihNPUWoXq-r",
-          "timeline": [
-            {
-              "date": "2026.07.17",
-              "tag": "#01",
-              "note": "",
-              "photo": "1DxiG82nzbIr9fxxsJc8FXihNPUWoXq-r"
-            },
-            {
-              "date": "2026.05.21",
-              "tag": "#01",
-              "note": "",
-              "photo": "1Mvq0E_AJa9UrOIJFJ0hvtPevPnzP_c7E"
-            },
-            {
-              "date": "2026.04.29",
-              "tag": "#01",
-              "note": "",
-              "photo": "1ak4Tst3ifqLlK__VTGCbeocc7nK8CC7J"
-            },
-            {
-              "date": "2026.04.13",
-              "tag": "#01",
-              "note": "",
-              "photo": "1bPhyJ5GYeRaTOcRQYMgQzvtdpkJGoIaa"
-            },
-            {
-              "date": "2026.03.26",
-              "tag": "#01",
-              "note": "",
-              "photo": "17MCPSoU_fe9ENY2BXNcw3EsoMGd1PwpE"
-            },
-            {
-              "date": "2026.03.06",
-              "tag": "#01",
-              "note": "",
-              "photo": "14U2s2m_500fWyBjysP2LzO0r0upIJAeE"
-            }
-          ]
-        },
-        {
-          "label": "#02",
-          "cover": "1dwDNhne1H4MuX7HE6ev0mlwd8WM9VL3X",
-          "timeline": [
-            {
-              "date": "2026.04.29",
-              "tag": "#02",
-              "note": "",
-              "photo": "1dwDNhne1H4MuX7HE6ev0mlwd8WM9VL3X"
-            },
-            {
-              "date": "2026.04.17",
-              "tag": "#02",
-              "note": "",
-              "photo": "13IxdefTt-pSixPdng7wDmfDZiry9PAbu"
-            },
-            {
-              "date": "2026.04.17",
-              "tag": "#02",
-              "note": "",
-              "photo": "1Gb_VaJMHVsSG6CY-tHAvVqJpxewbjhg1"
-            },
-            {
-              "date": "2026.04.13",
-              "tag": "#02",
-              "note": "",
-              "photo": "1xhftZ4X8n_Vuq7LU41GQl-uZZcN_Fi0X"
             }
           ]
         }
@@ -885,28 +1573,6 @@
       ]
     },
     {
-      "name": "P.willinckii Yellow moon x FSQ sporeling",
-      "latin": "Platycerium willinckii 'Yellow Moon' × FSQ sporeling",
-      "category": "鹿角蕨",
-      "date": "2026.06.03",
-      "note": "",
-      "cover": "1vChIqAGz2eSfjQF9gUZNuTPGPB4pruwP",
-      "individuals": [
-        {
-          "label": "",
-          "cover": "1vChIqAGz2eSfjQF9gUZNuTPGPB4pruwP",
-          "timeline": [
-            {
-              "date": "2026.06.03",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "1vChIqAGz2eSfjQF9gUZNuTPGPB4pruwP"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "name": "非猴",
       "latin": "Platycerium madagascariense",
       "category": "鹿角蕨",
@@ -953,6 +1619,46 @@
       ]
     },
     {
+      "name": "巨大",
+      "latin": "Platycerium superbum",
+      "category": "鹿角蕨",
+      "date": "2026.07.17",
+      "note": "",
+      "cover": "1TdpubOlkuFAB7RT40zVNeGOsrmb-Xb0o",
+      "individuals": [
+        {
+          "label": "#01",
+          "cover": "1-4Uksh7vvtV2JUiHhjY4eGUV4WynZ4pD",
+          "timeline": [
+            {
+              "date": "2026.06.03",
+              "tag": "#01",
+              "note": "",
+              "photo": "1-4Uksh7vvtV2JUiHhjY4eGUV4WynZ4pD"
+            },
+            {
+              "date": "2026.02.26",
+              "tag": "#01",
+              "note": "",
+              "photo": "1Tad9IXlq7KkWOLbIq_AWw-FSBsKhZRVK"
+            }
+          ]
+        },
+        {
+          "label": "#02",
+          "cover": "1TdpubOlkuFAB7RT40zVNeGOsrmb-Xb0o",
+          "timeline": [
+            {
+              "date": "2026.07.17",
+              "tag": "#02",
+              "note": "",
+              "photo": "1TdpubOlkuFAB7RT40zVNeGOsrmb-Xb0o"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "藝伎",
       "latin": "Platycerium Geisha",
       "category": "鹿角蕨",
@@ -992,23 +1698,23 @@
       "category": "鹿角蕨",
       "date": "2026.06.03",
       "note": "",
-      "cover": "1OsDIcnL5D0EimPJ8PVQFwN1RNAVLixYR",
+      "cover": "1rqjxKY4Dr4ux0O0nvijEj9bW_EiZe-BD",
       "individuals": [
         {
           "label": "",
-          "cover": "1OsDIcnL5D0EimPJ8PVQFwN1RNAVLixYR",
+          "cover": "1rqjxKY4Dr4ux0O0nvijEj9bW_EiZe-BD",
           "timeline": [
             {
               "date": "2026.06.03",
               "tag": "紀錄",
               "note": "",
-              "photo": "1OsDIcnL5D0EimPJ8PVQFwN1RNAVLixYR"
+              "photo": "1rqjxKY4Dr4ux0O0nvijEj9bW_EiZe-BD"
             },
             {
               "date": "2026.06.03",
               "tag": "紀錄",
               "note": "",
-              "photo": "1rqjxKY4Dr4ux0O0nvijEj9bW_EiZe-BD"
+              "photo": "1OsDIcnL5D0EimPJ8PVQFwN1RNAVLixYR"
             },
             {
               "date": "2026.05.04",
@@ -1061,102 +1767,28 @@
       ]
     },
     {
-      "name": "史迪奇",
-      "latin": "Platycerium 'Stitch'",
-      "category": "鹿角蕨",
-      "date": "2026.03.06",
-      "note": "",
-      "cover": "1sj9h3naKZWHJp5JTfHwqWUISLRDDln2L",
-      "individuals": [
-        {
-          "label": "#01",
-          "cover": "1sj9h3naKZWHJp5JTfHwqWUISLRDDln2L",
-          "timeline": [
-            {
-              "date": "2026.03.06",
-              "tag": "#01",
-              "note": "",
-              "photo": "1sj9h3naKZWHJp5JTfHwqWUISLRDDln2L"
-            },
-            {
-              "date": "2026.02.23",
-              "tag": "#01",
-              "note": "",
-              "photo": "1jgjCe3LSRZqZvbm9OSb5qb3ox5z-DPbp"
-            }
-          ]
-        },
-        {
-          "label": "#02",
-          "cover": "1BZxpali-uR-GmtG4tMC7wvi-B4uQkgcT",
-          "timeline": [
-            {
-              "date": "2026.03.06",
-              "tag": "#02",
-              "note": "",
-              "photo": "1BZxpali-uR-GmtG4tMC7wvi-B4uQkgcT"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "奶油獅",
-      "latin": "Platycerium willinckii 'Cream Lion'",
-      "category": "鹿角蕨",
-      "date": "2026.03.06",
-      "note": "",
-      "cover": "1iqvy_r1HvhO_cA8DxtFVIde6jsggZFBp",
-      "individuals": [
-        {
-          "label": "",
-          "cover": "1iqvy_r1HvhO_cA8DxtFVIde6jsggZFBp",
-          "timeline": [
-            {
-              "date": "2026.03.06",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "1iqvy_r1HvhO_cA8DxtFVIde6jsggZFBp"
-            },
-            {
-              "date": "2026.02.26",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "1NDBPUoL7L3tXWvTiNxG9GqYATgpYRCt0"
-            },
-            {
-              "date": "2026.02.23",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "1Wkx1ErObaXMf9qLz66jlC9kMdKzOxuYG"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "name": "白玫瑰",
       "latin": "Platycerium willinckii 'White Rose'",
       "category": "鹿角蕨",
       "date": "2026.03.06",
       "note": "",
-      "cover": "15gNLJYVKvQnzUL3NovZH07aGXoNwJEED",
+      "cover": "187YALdv50ERFId9zbmHT6tqXaghXxdCE",
       "individuals": [
         {
           "label": "",
-          "cover": "15gNLJYVKvQnzUL3NovZH07aGXoNwJEED",
+          "cover": "187YALdv50ERFId9zbmHT6tqXaghXxdCE",
           "timeline": [
             {
               "date": "2026.03.06",
               "tag": "紀錄",
               "note": "",
-              "photo": "15gNLJYVKvQnzUL3NovZH07aGXoNwJEED"
+              "photo": "187YALdv50ERFId9zbmHT6tqXaghXxdCE"
             },
             {
               "date": "2026.03.06",
               "tag": "紀錄",
               "note": "",
-              "photo": "187YALdv50ERFId9zbmHT6tqXaghXxdCE"
+              "photo": "15gNLJYVKvQnzUL3NovZH07aGXoNwJEED"
             },
             {
               "date": "2026.02.26",
@@ -1219,56 +1851,6 @@
       ]
     },
     {
-      "name": "二叉",
-      "latin": "Platycerium bifurcatum",
-      "category": "鹿角蕨",
-      "date": "2026.04.13",
-      "note": "",
-      "cover": "1Ko4WUO9xmEgVv4s8HQWpbkFcW5EZ08oY",
-      "individuals": [
-        {
-          "label": "",
-          "cover": "1Ko4WUO9xmEgVv4s8HQWpbkFcW5EZ08oY",
-          "timeline": [
-            {
-              "date": "2026.04.13",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "1Ko4WUO9xmEgVv4s8HQWpbkFcW5EZ08oY"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "爪哇",
-      "latin": "Platycerium willinckii",
-      "category": "鹿角蕨",
-      "date": "2026.03.06",
-      "note": "",
-      "cover": "1ZiMQAQfSuQLmvw7kRHFiLxckMbW7P3lJ",
-      "individuals": [
-        {
-          "label": "#01",
-          "cover": "1ZiMQAQfSuQLmvw7kRHFiLxckMbW7P3lJ",
-          "timeline": [
-            {
-              "date": "2026.03.06",
-              "tag": "#01",
-              "note": "",
-              "photo": "1ZiMQAQfSuQLmvw7kRHFiLxckMbW7P3lJ"
-            },
-            {
-              "date": "2026.03.06",
-              "tag": "#01",
-              "note": "",
-              "photo": "1vQgHbBgHqppento_JgCP8JPtKZ9wmkv2"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "name": "YAL",
       "latin": "Platycerium YAL",
       "category": "鹿角蕨",
@@ -1313,168 +1895,6 @@
               "tag": "紀錄",
               "note": "",
               "photo": "1pZVvgwIOkTNj70YnaQloMZCiUgfBz9ud"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "巨獸",
-      "latin": "Platycerium grande",
-      "category": "鹿角蕨",
-      "date": "2026.06.27",
-      "note": "",
-      "cover": "1nXeWNsbzkyOEIzGCVn8kZDRjIbl4D9n3",
-      "individuals": [
-        {
-          "label": "",
-          "cover": "1nXeWNsbzkyOEIzGCVn8kZDRjIbl4D9n3",
-          "timeline": [
-            {
-              "date": "2026.06.27",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "1nXeWNsbzkyOEIzGCVn8kZDRjIbl4D9n3"
-            },
-            {
-              "date": "2026.06.11",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "14CTbIUkxOTDAkooOpEeRgIDwmNhcTs19"
-            },
-            {
-              "date": "2026.06.03",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "12lVEQ4gQFNgBHyYQBow6SzE6_Z5Erba2"
-            },
-            {
-              "date": "2026.04.13",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "1B-jG4GiJNpPAZXQZ2kiiSolPgMaoehlj"
-            },
-            {
-              "date": "2026.02.26",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "1YsDRVcW-EyMPMaLMc6rrMlseb9Wo03lh"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "奧銀",
-      "latin": "Platycerium veitchii",
-      "category": "鹿角蕨",
-      "date": "2026.04.29",
-      "note": "",
-      "cover": "1lC0oE4lf22CWyfwLbaQFyHNOaZdad-Cq",
-      "individuals": [
-        {
-          "label": "#01",
-          "cover": "1wX3aLKWhhWagy06DNx9YTDnWYjkND2_d",
-          "timeline": [
-            {
-              "date": "2026.04.29",
-              "tag": "#01",
-              "note": "",
-              "photo": "1wX3aLKWhhWagy06DNx9YTDnWYjkND2_d"
-            },
-            {
-              "date": "2026.03.06",
-              "tag": "#01",
-              "note": "",
-              "photo": "1AX8GWm0cN51g5eAS2eemYGKi7Yl5G1UW"
-            },
-            {
-              "date": "2026.03.02",
-              "tag": "#01",
-              "note": "",
-              "photo": "1Ls3zwm5mLaluTDXgL0eLCyYr1L00Yo8u"
-            }
-          ]
-        },
-        {
-          "label": "#04",
-          "cover": "1lC0oE4lf22CWyfwLbaQFyHNOaZdad-Cq",
-          "timeline": [
-            {
-              "date": "2026.04.29",
-              "tag": "#04",
-              "note": "",
-              "photo": "1lC0oE4lf22CWyfwLbaQFyHNOaZdad-Cq"
-            },
-            {
-              "date": "2026.03.19",
-              "tag": "#04",
-              "note": "",
-              "photo": "1U6MKsXrxRvvLq3JPJ4VgCytfK0otxBxl"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "象耳",
-      "latin": "Platycerium elephantotis",
-      "category": "鹿角蕨",
-      "date": "2026.06.03",
-      "note": "",
-      "cover": "1lNGlbfoPfyEN_9sXT9Y84fVHulagkOSC",
-      "individuals": [
-        {
-          "label": "#01",
-          "cover": "1lNGlbfoPfyEN_9sXT9Y84fVHulagkOSC",
-          "timeline": [
-            {
-              "date": "2026.06.03",
-              "tag": "#01",
-              "note": "",
-              "photo": "1lNGlbfoPfyEN_9sXT9Y84fVHulagkOSC"
-            },
-            {
-              "date": "2026.04.29",
-              "tag": "#01",
-              "note": "",
-              "photo": "1Ue8P7c0qhmx6tL-qKp_PMuS3WqAKW5nN"
-            },
-            {
-              "date": "2026.04.29",
-              "tag": "#01",
-              "note": "",
-              "photo": "1c5naZBEZTCeVo8tDZYljrDzZJvdKRKGk"
-            },
-            {
-              "date": "2026.04.13",
-              "tag": "#01",
-              "note": "",
-              "photo": "16QyQJJnGgayY3vqkiqihW1WQghysyUlU"
-            },
-            {
-              "date": "2026.03.26",
-              "tag": "#01",
-              "note": "",
-              "photo": "1XF_bDCESophE5SGBumpLtUqXfGplLQIQ"
-            },
-            {
-              "date": "2026.02.23",
-              "tag": "#01",
-              "note": "",
-              "photo": "12OoWK3uoyfoq2GsEIHJfvhWBIeVeekCK"
-            }
-          ]
-        },
-        {
-          "label": "#02",
-          "cover": "1Cd03WtPAx9PA5DoBdDADL0YpDIlSCV3_",
-          "timeline": [
-            {
-              "date": "2026.05.23",
-              "tag": "#02",
-              "note": "",
-              "photo": "1Cd03WtPAx9PA5DoBdDADL0YpDIlSCV3_"
             }
           ]
         }
@@ -1537,6 +1957,46 @@
       ]
     },
     {
+      "name": "史迪奇",
+      "latin": "Platycerium 'Stitch'",
+      "category": "鹿角蕨",
+      "date": "2026.03.06",
+      "note": "",
+      "cover": "1sj9h3naKZWHJp5JTfHwqWUISLRDDln2L",
+      "individuals": [
+        {
+          "label": "#01",
+          "cover": "1sj9h3naKZWHJp5JTfHwqWUISLRDDln2L",
+          "timeline": [
+            {
+              "date": "2026.03.06",
+              "tag": "#01",
+              "note": "",
+              "photo": "1sj9h3naKZWHJp5JTfHwqWUISLRDDln2L"
+            },
+            {
+              "date": "2026.02.23",
+              "tag": "#01",
+              "note": "",
+              "photo": "1jgjCe3LSRZqZvbm9OSb5qb3ox5z-DPbp"
+            }
+          ]
+        },
+        {
+          "label": "#02",
+          "cover": "1BZxpali-uR-GmtG4tMC7wvi-B4uQkgcT",
+          "timeline": [
+            {
+              "date": "2026.03.06",
+              "tag": "#02",
+              "note": "",
+              "photo": "1BZxpali-uR-GmtG4tMC7wvi-B4uQkgcT"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "獅子座",
       "latin": "Platycerium willinckii 'Leo'",
       "category": "鹿角蕨",
@@ -1565,56 +2025,6 @@
       ]
     },
     {
-      "name": "艾沙",
-      "latin": "Platycerium 'Elsa'",
-      "category": "鹿角蕨",
-      "date": "2026.05.21",
-      "note": "",
-      "cover": "13slQiCjPhB1JvEnF_sZB3Vgpd1MD_IGQ",
-      "individuals": [
-        {
-          "label": "",
-          "cover": "13slQiCjPhB1JvEnF_sZB3Vgpd1MD_IGQ",
-          "timeline": [
-            {
-              "date": "2026.05.21",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "13slQiCjPhB1JvEnF_sZB3Vgpd1MD_IGQ"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Nano",
-      "latin": "Platycerium willinckii 'Nano'",
-      "category": "鹿角蕨",
-      "date": "2026.05.19",
-      "note": "",
-      "cover": "148z8W0rLaU0QA59or6oReGW2O_XbdCEo",
-      "individuals": [
-        {
-          "label": "",
-          "cover": "148z8W0rLaU0QA59or6oReGW2O_XbdCEo",
-          "timeline": [
-            {
-              "date": "2026.05.19",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "148z8W0rLaU0QA59or6oReGW2O_XbdCEo"
-            },
-            {
-              "date": "2026.05.15",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "1UwYzMEgMa1bDaZiFPaZFRpPaJbOphrZO"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "name": "三角四叉",
       "latin": "Platycerium 'African Oddity'",
       "category": "鹿角蕨",
@@ -1631,28 +2041,6 @@
               "tag": "紀錄",
               "note": "",
               "photo": "103NDHw1Q5V2sRktgX_UaUAJJDQRMlnzO"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "銀華",
-      "latin": "Platycerium Ginka",
-      "category": "鹿角蕨",
-      "date": "2026.06.03",
-      "note": "",
-      "cover": "1iV_Rivz2HtBMEbdJ7of2e9UZaS2JMWE6",
-      "individuals": [
-        {
-          "label": "",
-          "cover": "1iV_Rivz2HtBMEbdJ7of2e9UZaS2JMWE6",
-          "timeline": [
-            {
-              "date": "2026.06.03",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "1iV_Rivz2HtBMEbdJ7of2e9UZaS2JMWE6"
             }
           ]
         }
@@ -1686,23 +2074,23 @@
       "category": "棒槌",
       "date": "2026.07.13",
       "note": "",
-      "cover": "11aTxO7a1W-kqN_Sv2F0dVv5YiuPP7aiB",
+      "cover": "1HheqdrX9G2C1n0BxvbJUozFm80t4Bt48",
       "individuals": [
         {
           "label": "",
-          "cover": "11aTxO7a1W-kqN_Sv2F0dVv5YiuPP7aiB",
+          "cover": "1HheqdrX9G2C1n0BxvbJUozFm80t4Bt48",
           "timeline": [
             {
               "date": "2026.07.13",
               "tag": "紀錄",
               "note": "",
-              "photo": "11aTxO7a1W-kqN_Sv2F0dVv5YiuPP7aiB"
+              "photo": "1HheqdrX9G2C1n0BxvbJUozFm80t4Bt48"
             },
             {
               "date": "2026.07.13",
               "tag": "紀錄",
               "note": "",
-              "photo": "1HheqdrX9G2C1n0BxvbJUozFm80t4Bt48"
+              "photo": "11aTxO7a1W-kqN_Sv2F0dVv5YiuPP7aiB"
             }
           ]
         }
@@ -1937,56 +2325,28 @@
       ]
     },
     {
-      "name": "大黑惠比須",
-      "latin": "Pachypodium densicaule",
-      "category": "棒槌",
-      "date": "2026.05.09",
-      "note": "",
-      "cover": "1T-zxi1zXGSQv1mez5YMtP5RnoYQJQFRJ",
-      "individuals": [
-        {
-          "label": "#01",
-          "cover": "1T-zxi1zXGSQv1mez5YMtP5RnoYQJQFRJ",
-          "timeline": [
-            {
-              "date": "2026.05.09",
-              "tag": "#01",
-              "note": "",
-              "photo": "1T-zxi1zXGSQv1mez5YMtP5RnoYQJQFRJ"
-            },
-            {
-              "date": "2026.04.29",
-              "tag": "#01",
-              "note": "",
-              "photo": "1BhesgJ248ZwCqBJa99XJsY8Edf9EbYum"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "name": "席巴女王玉櫛",
       "latin": "Pachypodium densiflorum",
       "category": "棒槌",
       "date": "2026.06.19",
       "note": "",
-      "cover": "1NnTqa0KCspuVF0humn8Z0Qtre0ihIuoH",
+      "cover": "11_pYxsMbQAC_qF5zhO9LLSDbRlhAIjSf",
       "individuals": [
         {
           "label": "",
-          "cover": "1NnTqa0KCspuVF0humn8Z0Qtre0ihIuoH",
+          "cover": "11_pYxsMbQAC_qF5zhO9LLSDbRlhAIjSf",
           "timeline": [
             {
               "date": "2026.06.19",
               "tag": "紀錄",
               "note": "",
-              "photo": "1NnTqa0KCspuVF0humn8Z0Qtre0ihIuoH"
+              "photo": "11_pYxsMbQAC_qF5zhO9LLSDbRlhAIjSf"
             },
             {
               "date": "2026.06.19",
               "tag": "紀錄",
               "note": "",
-              "photo": "11_pYxsMbQAC_qF5zhO9LLSDbRlhAIjSf"
+              "photo": "1NnTqa0KCspuVF0humn8Z0Qtre0ihIuoH"
             },
             {
               "date": "2026.06.09",
@@ -2011,6 +2371,34 @@
               "tag": "紀錄",
               "note": "",
               "photo": "1TN8SQ5hXh3GHPXvP1gMDU49B218-DrPy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "大黑惠比須",
+      "latin": "Pachypodium densicaule",
+      "category": "棒槌",
+      "date": "2026.05.09",
+      "note": "",
+      "cover": "1T-zxi1zXGSQv1mez5YMtP5RnoYQJQFRJ",
+      "individuals": [
+        {
+          "label": "#01",
+          "cover": "1T-zxi1zXGSQv1mez5YMtP5RnoYQJQFRJ",
+          "timeline": [
+            {
+              "date": "2026.05.09",
+              "tag": "#01",
+              "note": "",
+              "photo": "1T-zxi1zXGSQv1mez5YMtP5RnoYQJQFRJ"
+            },
+            {
+              "date": "2026.04.29",
+              "tag": "#01",
+              "note": "",
+              "photo": "1BhesgJ248ZwCqBJa99XJsY8Edf9EbYum"
             }
           ]
         }
@@ -2073,124 +2461,6 @@
       ]
     },
     {
-      "name": "銀冠玉",
-      "latin": "Cactaceae fricii",
-      "category": "仙人掌",
-      "date": "2026.07.17",
-      "note": "",
-      "cover": "1T9QeAOf0uHyLxeWB-cVOSvrfC4KIg5sp",
-      "individuals": [
-        {
-          "label": "#01",
-          "cover": "1ECoXupVsMfSNcVE6T-qlddqTlTlBDtV5",
-          "timeline": [
-            {
-              "date": "2026.07.15",
-              "tag": "#01",
-              "note": "",
-              "photo": "1ECoXupVsMfSNcVE6T-qlddqTlTlBDtV5"
-            },
-            {
-              "date": "2026.07.13",
-              "tag": "#01",
-              "note": "",
-              "photo": "1qxqa5d_Cz_geg6CZkAf81Lxytwx-Ly39"
-            },
-            {
-              "date": "2026.06.15",
-              "tag": "#01",
-              "note": "",
-              "photo": "1Uw9W7gMyoroNZBxbCUA8ZokEHfNMIT_L"
-            },
-            {
-              "date": "2026.06.05",
-              "tag": "#01",
-              "note": "",
-              "photo": "1E0N0VnnMtSEKb0ol7PANz6OaMezt0pg4"
-            },
-            {
-              "date": "2026.06.04",
-              "tag": "#01",
-              "note": "",
-              "photo": "1Y-KNcCy1qLD9o5tWUNft7r1TKtIpKCOu"
-            },
-            {
-              "date": "2026.06.03",
-              "tag": "#01",
-              "note": "",
-              "photo": "1yOvBFk5UAiqnAw1wL8Z4wRhsTwW19c6M"
-            }
-          ]
-        },
-        {
-          "label": "#2",
-          "cover": "1HAqRBWumNEgHsi8cn7tE5-5evNHygaTN",
-          "timeline": [
-            {
-              "date": "2026.07.13",
-              "tag": "#2",
-              "note": "",
-              "photo": "1HAqRBWumNEgHsi8cn7tE5-5evNHygaTN"
-            },
-            {
-              "date": "2026.05.19",
-              "tag": "#2",
-              "note": "",
-              "photo": "1YF-yrTYIp9tiZhkwfI9kT5Qq4YD9lSgt"
-            },
-            {
-              "date": "2026.05.18",
-              "tag": "#2",
-              "note": "",
-              "photo": "1vLevM5Lyo8FpMpeyk1biqG5pEYy5UVvg"
-            },
-            {
-              "date": "2026.05.17",
-              "tag": "#2",
-              "note": "",
-              "photo": "1uzdNBIhuP00MpE6Mamqc0cd9Y8HdNgFo"
-            }
-          ]
-        },
-        {
-          "label": "#03",
-          "cover": "1T9QeAOf0uHyLxeWB-cVOSvrfC4KIg5sp",
-          "timeline": [
-            {
-              "date": "2026.07.17",
-              "tag": "#03",
-              "note": "",
-              "photo": "1T9QeAOf0uHyLxeWB-cVOSvrfC4KIg5sp"
-            },
-            {
-              "date": "2026.07.16",
-              "tag": "#03",
-              "note": "",
-              "photo": "1SIDj2C9EU7FvtOCLJHhGoomHcJAhy5Ya"
-            },
-            {
-              "date": "2026.07.15",
-              "tag": "#03",
-              "note": "",
-              "photo": "1XMwM006kpmcCFHWo8dagIaQ2prRc_UNE"
-            },
-            {
-              "date": "2026.06.07",
-              "tag": "#03",
-              "note": "",
-              "photo": "1LcgUB8gC-Y9zcTPVtcEbmkO4FkaP21Ha"
-            },
-            {
-              "date": "2026.06.02",
-              "tag": "#03",
-              "note": "",
-              "photo": "1vv942rGhlQFRgMlXXWEpsZgX1_cqRU7P"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "name": "紫兜",
       "latin": "Cactaceae asterias",
       "category": "仙人掌",
@@ -2224,13 +2494,13 @@
               "date": "2026.06.05",
               "tag": "紀錄",
               "note": "",
-              "photo": "1bqAluPz_JfY4nX-TRru-PMt-bxqM8rHk"
+              "photo": "1JDcgvRdxb7U3WY43qPpbbg_3mCQ2z6q2"
             },
             {
               "date": "2026.06.05",
               "tag": "紀錄",
               "note": "",
-              "photo": "1JDcgvRdxb7U3WY43qPpbbg_3mCQ2z6q2"
+              "photo": "1bqAluPz_JfY4nX-TRru-PMt-bxqM8rHk"
             },
             {
               "date": "2026.06.03",
@@ -2359,34 +2629,6 @@
       ]
     },
     {
-      "name": "士童",
-      "latin": "Cactaceae castanea",
-      "category": "仙人掌",
-      "date": "2026.07.17",
-      "note": "",
-      "cover": "12EGRXkjvPz-0o8026gc5mn1yrCotJYgs",
-      "individuals": [
-        {
-          "label": "#01",
-          "cover": "12EGRXkjvPz-0o8026gc5mn1yrCotJYgs",
-          "timeline": [
-            {
-              "date": "2026.07.17",
-              "tag": "#01",
-              "note": "",
-              "photo": "12EGRXkjvPz-0o8026gc5mn1yrCotJYgs"
-            },
-            {
-              "date": "2026.05.19",
-              "tag": "#01",
-              "note": "",
-              "photo": "1O43g7HkfQnzR7KVYmaXshX1laa04aML1"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "name": "疣仙人",
       "latin": "Mammillaria",
       "category": "仙人掌",
@@ -2475,84 +2717,232 @@
       ]
     },
     {
-      "name": "吉祥冠覆輪龍舌蘭",
-      "latin": "Agave potatorum",
-      "category": "龍舌蘭",
-      "date": "2026.05.23",
+      "name": "銀冠玉",
+      "latin": "Cactaceae fricii",
+      "category": "仙人掌",
+      "date": "2026.07.17",
       "note": "",
-      "cover": "1eTKJefiQCvDC9deRJN2WLiUd1lBFW3Kl",
+      "cover": "1T9QeAOf0uHyLxeWB-cVOSvrfC4KIg5sp",
       "individuals": [
         {
           "label": "#01",
-          "cover": "1eTKJefiQCvDC9deRJN2WLiUd1lBFW3Kl",
+          "cover": "1ECoXupVsMfSNcVE6T-qlddqTlTlBDtV5",
           "timeline": [
             {
-              "date": "2026.05.23",
+              "date": "2026.07.15",
               "tag": "#01",
               "note": "",
-              "photo": "1eTKJefiQCvDC9deRJN2WLiUd1lBFW3Kl"
+              "photo": "1ECoXupVsMfSNcVE6T-qlddqTlTlBDtV5"
             },
             {
-              "date": "2026.05.23",
+              "date": "2026.07.13",
               "tag": "#01",
               "note": "",
-              "photo": "1zirQ0lo_HUJM6234eREFakyxZlL9sopc"
+              "photo": "1qxqa5d_Cz_geg6CZkAf81Lxytwx-Ly39"
             },
             {
-              "date": "2026.05.23",
+              "date": "2026.06.15",
               "tag": "#01",
               "note": "",
-              "photo": "10EyXPrfCHjIzmfKwAGIN7COaQvpmAL2B"
+              "photo": "1Uw9W7gMyoroNZBxbCUA8ZokEHfNMIT_L"
+            },
+            {
+              "date": "2026.06.05",
+              "tag": "#01",
+              "note": "",
+              "photo": "1E0N0VnnMtSEKb0ol7PANz6OaMezt0pg4"
+            },
+            {
+              "date": "2026.06.04",
+              "tag": "#01",
+              "note": "",
+              "photo": "1Y-KNcCy1qLD9o5tWUNft7r1TKtIpKCOu"
+            },
+            {
+              "date": "2026.06.03",
+              "tag": "#01",
+              "note": "",
+              "photo": "1yOvBFk5UAiqnAw1wL8Z4wRhsTwW19c6M"
             }
           ]
-        }
-      ]
-    },
-    {
-      "name": "安哥拉葡萄甕",
-      "latin": "Cyphostemma uter var. macropus",
-      "category": "塊根",
-      "date": "2026.07.13",
-      "note": "",
-      "cover": "1-W_jSa4GzefpzlGbMH1ZL-7T5jbsJ8ER",
-      "individuals": [
+        },
         {
-          "label": "",
-          "cover": "1-W_jSa4GzefpzlGbMH1ZL-7T5jbsJ8ER",
+          "label": "#03",
+          "cover": "1T9QeAOf0uHyLxeWB-cVOSvrfC4KIg5sp",
+          "timeline": [
+            {
+              "date": "2026.07.17",
+              "tag": "#03",
+              "note": "",
+              "photo": "1T9QeAOf0uHyLxeWB-cVOSvrfC4KIg5sp"
+            },
+            {
+              "date": "2026.07.16",
+              "tag": "#03",
+              "note": "",
+              "photo": "1SIDj2C9EU7FvtOCLJHhGoomHcJAhy5Ya"
+            },
+            {
+              "date": "2026.07.15",
+              "tag": "#03",
+              "note": "",
+              "photo": "1XMwM006kpmcCFHWo8dagIaQ2prRc_UNE"
+            },
+            {
+              "date": "2026.06.07",
+              "tag": "#03",
+              "note": "",
+              "photo": "1LcgUB8gC-Y9zcTPVtcEbmkO4FkaP21Ha"
+            },
+            {
+              "date": "2026.06.02",
+              "tag": "#03",
+              "note": "",
+              "photo": "1vv942rGhlQFRgMlXXWEpsZgX1_cqRU7P"
+            }
+          ]
+        },
+        {
+          "label": "#2",
+          "cover": "1HAqRBWumNEgHsi8cn7tE5-5evNHygaTN",
           "timeline": [
             {
               "date": "2026.07.13",
-              "tag": "紀錄",
+              "tag": "#2",
               "note": "",
-              "photo": "1-W_jSa4GzefpzlGbMH1ZL-7T5jbsJ8ER"
+              "photo": "1HAqRBWumNEgHsi8cn7tE5-5evNHygaTN"
+            },
+            {
+              "date": "2026.05.19",
+              "tag": "#2",
+              "note": "",
+              "photo": "1YF-yrTYIp9tiZhkwfI9kT5Qq4YD9lSgt"
+            },
+            {
+              "date": "2026.05.18",
+              "tag": "#2",
+              "note": "",
+              "photo": "1vLevM5Lyo8FpMpeyk1biqG5pEYy5UVvg"
+            },
+            {
+              "date": "2026.05.17",
+              "tag": "#2",
+              "note": "",
+              "photo": "1uzdNBIhuP00MpE6Mamqc0cd9Y8HdNgFo"
             }
           ]
         }
       ]
     },
     {
-      "name": "阿拉伯沙枚",
-      "latin": "Adenium arabicum",
-      "category": "塊根",
-      "date": "2026.03.15",
+      "name": "士童",
+      "latin": "Cactaceae castanea",
+      "category": "仙人掌",
+      "date": "2026.07.17",
       "note": "",
-      "cover": "15yB2IIOZnKBZd-aIwal3MHPH9HRglONb",
+      "cover": "12EGRXkjvPz-0o8026gc5mn1yrCotJYgs",
       "individuals": [
         {
           "label": "#01",
-          "cover": "15yB2IIOZnKBZd-aIwal3MHPH9HRglONb",
+          "cover": "12EGRXkjvPz-0o8026gc5mn1yrCotJYgs",
           "timeline": [
             {
-              "date": "2026.03.15",
+              "date": "2026.07.17",
               "tag": "#01",
               "note": "",
-              "photo": "15yB2IIOZnKBZd-aIwal3MHPH9HRglONb"
+              "photo": "12EGRXkjvPz-0o8026gc5mn1yrCotJYgs"
             },
             {
-              "date": "2026.03.15",
+              "date": "2026.05.19",
               "tag": "#01",
               "note": "",
-              "photo": "1ghpB0moeL7NU302YUoUdmTwDOfY_ORqt"
+              "photo": "1O43g7HkfQnzR7KVYmaXshX1laa04aML1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "圓葉山烏龜",
+      "latin": "Caudex erecta",
+      "category": "塊根",
+      "date": "2026.05.23",
+      "note": "",
+      "cover": "1vqrJfPEK_hLPNFaV9Gz6ar9PoqyeqBTY",
+      "individuals": [
+        {
+          "label": "",
+          "cover": "1vqrJfPEK_hLPNFaV9Gz6ar9PoqyeqBTY",
+          "timeline": [
+            {
+              "date": "2026.05.23",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1vqrJfPEK_hLPNFaV9Gz6ar9PoqyeqBTY"
+            },
+            {
+              "date": "2026.05.09",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1dFUvQkmK9us-5lMB-mxoKiDceMR6PTdm"
+            },
+            {
+              "date": "2025.10.27",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1buy9kaUAEo1fBOfBZDKtshIG12lybrh_"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "龜甲摩蘿",
+      "latin": "Caudex cyclophylla",
+      "category": "塊根",
+      "date": "2026.05.09",
+      "note": "",
+      "cover": "1KbsSoLmoGdj8WIKGq-NsoR3TZqUrCN8w",
+      "individuals": [
+        {
+          "label": "",
+          "cover": "1KbsSoLmoGdj8WIKGq-NsoR3TZqUrCN8w",
+          "timeline": [
+            {
+              "date": "2026.05.09",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1KbsSoLmoGdj8WIKGq-NsoR3TZqUrCN8w"
+            },
+            {
+              "date": "2026.05.09",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "10bD4-XpB3zgL0hIHdBYgH4IdPj3OESGX"
+            },
+            {
+              "date": "2026.05.03",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1UMMbTVzT50OsxW_cKvuOrSI1X1W73eQn"
+            },
+            {
+              "date": "2025.11.05",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1_htrQyMH4kFgHgPVzs9xB-Mk7dPejvJ0"
+            },
+            {
+              "date": "2025.10.19",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1-puEIqLCmuzzxPsn9106RWdIUxqHN0l6"
+            },
+            {
+              "date": "2025.10.19",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1aJmYHFCGWWOTHlnPcInmCt-xYZkBPF_J"
             }
           ]
         }
@@ -2608,47 +2998,19 @@
               "date": "2026.06.01",
               "tag": "紀錄",
               "note": "",
-              "photo": "104CaNsxi-ZX_syonQnEBQlYC8CGyFpmj"
+              "photo": "1-0d7xxLyhOFsISQDEI_FhttEk0mqlewJ"
             },
             {
               "date": "2026.06.01",
               "tag": "紀錄",
               "note": "",
-              "photo": "1-0d7xxLyhOFsISQDEI_FhttEk0mqlewJ"
+              "photo": "104CaNsxi-ZX_syonQnEBQlYC8CGyFpmj"
             },
             {
               "date": "2026.04.12",
               "tag": "紀錄",
               "note": "",
               "photo": "1FKitkJblaa_sEy7WMFOS7xU2y_LTkWaQ"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "圓葉山烏龜",
-      "latin": "Caudex erecta",
-      "category": "塊根",
-      "date": "2026.05.23",
-      "note": "",
-      "cover": "1vqrJfPEK_hLPNFaV9Gz6ar9PoqyeqBTY",
-      "individuals": [
-        {
-          "label": "",
-          "cover": "1vqrJfPEK_hLPNFaV9Gz6ar9PoqyeqBTY",
-          "timeline": [
-            {
-              "date": "2026.05.23",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "1vqrJfPEK_hLPNFaV9Gz6ar9PoqyeqBTY"
-            },
-            {
-              "date": "2026.05.09",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "1dFUvQkmK9us-5lMB-mxoKiDceMR6PTdm"
             }
           ]
         }
@@ -2727,34 +3089,50 @@
       ]
     },
     {
-      "name": "龜甲摩蘿",
-      "latin": "Caudex cyclophylla",
+      "name": "安哥拉葡萄甕",
+      "latin": "Cyphostemma uter var. macropus",
       "category": "塊根",
-      "date": "2026.05.09",
+      "date": "2026.07.13",
       "note": "",
-      "cover": "1KbsSoLmoGdj8WIKGq-NsoR3TZqUrCN8w",
+      "cover": "1-W_jSa4GzefpzlGbMH1ZL-7T5jbsJ8ER",
       "individuals": [
         {
           "label": "",
-          "cover": "1KbsSoLmoGdj8WIKGq-NsoR3TZqUrCN8w",
+          "cover": "1-W_jSa4GzefpzlGbMH1ZL-7T5jbsJ8ER",
           "timeline": [
             {
-              "date": "2026.05.09",
+              "date": "2026.07.13",
               "tag": "紀錄",
               "note": "",
-              "photo": "1KbsSoLmoGdj8WIKGq-NsoR3TZqUrCN8w"
+              "photo": "1-W_jSa4GzefpzlGbMH1ZL-7T5jbsJ8ER"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "阿拉伯沙枚",
+      "latin": "Adenium arabicum",
+      "category": "塊根",
+      "date": "2026.03.15",
+      "note": "",
+      "cover": "15yB2IIOZnKBZd-aIwal3MHPH9HRglONb",
+      "individuals": [
+        {
+          "label": "#01",
+          "cover": "15yB2IIOZnKBZd-aIwal3MHPH9HRglONb",
+          "timeline": [
+            {
+              "date": "2026.03.15",
+              "tag": "#01",
+              "note": "",
+              "photo": "15yB2IIOZnKBZd-aIwal3MHPH9HRglONb"
             },
             {
-              "date": "2026.05.09",
-              "tag": "紀錄",
+              "date": "2026.03.15",
+              "tag": "#01",
               "note": "",
-              "photo": "10bD4-XpB3zgL0hIHdBYgH4IdPj3OESGX"
-            },
-            {
-              "date": "2026.05.03",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "1UMMbTVzT50OsxW_cKvuOrSI1X1W73eQn"
+              "photo": "1ghpB0moeL7NU302YUoUdmTwDOfY_ORqt"
             }
           ]
         }
@@ -2811,40 +3189,6 @@
       ]
     },
     {
-      "name": "布紋球",
-      "latin": "Euphorbia meloformis",
-      "category": "大戟",
-      "date": "2026.07.13",
-      "note": "",
-      "cover": "175yPZqwVxuEfSbxCy32teNe4JBRninPL",
-      "individuals": [
-        {
-          "label": "#01",
-          "cover": "1T4PX5r6QchbTYIS8rExyM7JPdLx2tKJd",
-          "timeline": [
-            {
-              "date": "2026.07.13",
-              "tag": "#01",
-              "note": "",
-              "photo": "1T4PX5r6QchbTYIS8rExyM7JPdLx2tKJd"
-            }
-          ]
-        },
-        {
-          "label": "#02",
-          "cover": "175yPZqwVxuEfSbxCy32teNe4JBRninPL",
-          "timeline": [
-            {
-              "date": "2026.07.13",
-              "tag": "#02",
-              "note": "",
-              "photo": "175yPZqwVxuEfSbxCy32teNe4JBRninPL"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "name": "法利達",
       "latin": "Euphorbia valida",
       "category": "大戟",
@@ -2861,40 +3205,6 @@
               "tag": "紀錄",
               "note": "",
               "photo": "1mSeYmEHnWcxiTgGk1TyIjP6TJRn4J3iS"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "群星冠",
-      "latin": "Euphorbia stellispina",
-      "category": "大戟",
-      "date": "2026.07.13",
-      "note": "",
-      "cover": "1wcTug31UmTejcuhcQJESXwMr8aW54UyB",
-      "individuals": [
-        {
-          "label": "#01",
-          "cover": "1wcTug31UmTejcuhcQJESXwMr8aW54UyB",
-          "timeline": [
-            {
-              "date": "2026.07.13",
-              "tag": "#01",
-              "note": "",
-              "photo": "1wcTug31UmTejcuhcQJESXwMr8aW54UyB"
-            }
-          ]
-        },
-        {
-          "label": "#02",
-          "cover": "1OtMtxj3Yl78-GrRFlOLf3tn9E1XxVQp6",
-          "timeline": [
-            {
-              "date": "2026.07.13",
-              "tag": "#02",
-              "note": "",
-              "photo": "1OtMtxj3Yl78-GrRFlOLf3tn9E1XxVQp6"
             }
           ]
         }
@@ -2923,34 +3233,6 @@
       ]
     },
     {
-      "name": "綠鬼玉",
-      "latin": "Euphorbia decepta",
-      "category": "大戟",
-      "date": "2026.07.15",
-      "note": "",
-      "cover": "1sHdk2jevfI7GDgKg69plwnXRNwMcONX4",
-      "individuals": [
-        {
-          "label": "#03",
-          "cover": "1sHdk2jevfI7GDgKg69plwnXRNwMcONX4",
-          "timeline": [
-            {
-              "date": "2026.07.15",
-              "tag": "#03",
-              "note": "",
-              "photo": "1sHdk2jevfI7GDgKg69plwnXRNwMcONX4"
-            },
-            {
-              "date": "2026.07.13",
-              "tag": "#03",
-              "note": "",
-              "photo": "1EWL_Vial5Sr4bB7QGKC9WoAIeyTZd65f"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "name": "九頭龍",
       "latin": "Euphorbia inermis",
       "category": "大戟",
@@ -2973,28 +3255,6 @@
               "tag": "紀錄",
               "note": "",
               "photo": "1wdmn2-MaUulnU6_dOLG2miRucTri8xRr"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "群星際",
-      "latin": "Euphorbia",
-      "category": "大戟",
-      "date": "2026.07.13",
-      "note": "",
-      "cover": "1JtInKMpoPQKBR3BDMXwg7cpfIyJ9UUna",
-      "individuals": [
-        {
-          "label": "#01",
-          "cover": "1JtInKMpoPQKBR3BDMXwg7cpfIyJ9UUna",
-          "timeline": [
-            {
-              "date": "2026.07.13",
-              "tag": "#01",
-              "note": "",
-              "photo": "1JtInKMpoPQKBR3BDMXwg7cpfIyJ9UUna"
             }
           ]
         }
@@ -3063,6 +3323,124 @@
       ]
     },
     {
+      "name": "布紋球",
+      "latin": "Euphorbia meloformis",
+      "category": "大戟",
+      "date": "2026.07.13",
+      "note": "",
+      "cover": "1T4PX5r6QchbTYIS8rExyM7JPdLx2tKJd",
+      "individuals": [
+        {
+          "label": "#01",
+          "cover": "1T4PX5r6QchbTYIS8rExyM7JPdLx2tKJd",
+          "timeline": [
+            {
+              "date": "2026.07.13",
+              "tag": "#01",
+              "note": "",
+              "photo": "1T4PX5r6QchbTYIS8rExyM7JPdLx2tKJd"
+            }
+          ]
+        },
+        {
+          "label": "#02",
+          "cover": "175yPZqwVxuEfSbxCy32teNe4JBRninPL",
+          "timeline": [
+            {
+              "date": "2026.07.13",
+              "tag": "#02",
+              "note": "",
+              "photo": "175yPZqwVxuEfSbxCy32teNe4JBRninPL"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "群星冠",
+      "latin": "Euphorbia stellispina",
+      "category": "大戟",
+      "date": "2026.07.13",
+      "note": "",
+      "cover": "1wcTug31UmTejcuhcQJESXwMr8aW54UyB",
+      "individuals": [
+        {
+          "label": "#01",
+          "cover": "1wcTug31UmTejcuhcQJESXwMr8aW54UyB",
+          "timeline": [
+            {
+              "date": "2026.07.13",
+              "tag": "#01",
+              "note": "",
+              "photo": "1wcTug31UmTejcuhcQJESXwMr8aW54UyB"
+            }
+          ]
+        },
+        {
+          "label": "#02",
+          "cover": "1OtMtxj3Yl78-GrRFlOLf3tn9E1XxVQp6",
+          "timeline": [
+            {
+              "date": "2026.07.13",
+              "tag": "#02",
+              "note": "",
+              "photo": "1OtMtxj3Yl78-GrRFlOLf3tn9E1XxVQp6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "綠鬼玉",
+      "latin": "Euphorbia decepta",
+      "category": "大戟",
+      "date": "2026.07.15",
+      "note": "",
+      "cover": "1sHdk2jevfI7GDgKg69plwnXRNwMcONX4",
+      "individuals": [
+        {
+          "label": "#03",
+          "cover": "1sHdk2jevfI7GDgKg69plwnXRNwMcONX4",
+          "timeline": [
+            {
+              "date": "2026.07.15",
+              "tag": "#03",
+              "note": "",
+              "photo": "1sHdk2jevfI7GDgKg69plwnXRNwMcONX4"
+            },
+            {
+              "date": "2026.07.13",
+              "tag": "#03",
+              "note": "",
+              "photo": "1EWL_Vial5Sr4bB7QGKC9WoAIeyTZd65f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "群星際",
+      "latin": "Euphorbia",
+      "category": "大戟",
+      "date": "2026.07.13",
+      "note": "",
+      "cover": "1JtInKMpoPQKBR3BDMXwg7cpfIyJ9UUna",
+      "individuals": [
+        {
+          "label": "#01",
+          "cover": "1JtInKMpoPQKBR3BDMXwg7cpfIyJ9UUna",
+          "timeline": [
+            {
+              "date": "2026.07.13",
+              "tag": "#01",
+              "note": "",
+              "photo": "1JtInKMpoPQKBR3BDMXwg7cpfIyJ9UUna"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "子吹布紋球",
       "latin": "Euphorbia meloformis",
       "category": "大戟",
@@ -3097,28 +3475,6 @@
               "tag": "紀錄",
               "note": "",
               "photo": "1ySW-yLgkYzCwfndVGYGZv21QHiaBEV-4"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "鬼棲閣",
-      "latin": "Euphorbia guillauminiana",
-      "category": "大戟",
-      "date": "2026.05.22",
-      "note": "",
-      "cover": "17d_ob09dUoRHuCTMOahvBqvp5ij-jsfT",
-      "individuals": [
-        {
-          "label": "#03",
-          "cover": "17d_ob09dUoRHuCTMOahvBqvp5ij-jsfT",
-          "timeline": [
-            {
-              "date": "2026.05.22",
-              "tag": "#03",
-              "note": "",
-              "photo": "17d_ob09dUoRHuCTMOahvBqvp5ij-jsfT"
             }
           ]
         }
@@ -3181,28 +3537,6 @@
       ]
     },
     {
-      "name": "寶塔摩蘿",
-      "latin": "",
-      "category": "多肉",
-      "date": "2026.07.13",
-      "note": "",
-      "cover": "15p8cHjyNjXO06hs3D9m8YvyrzH4oAFX1",
-      "individuals": [
-        {
-          "label": "",
-          "cover": "15p8cHjyNjXO06hs3D9m8YvyrzH4oAFX1",
-          "timeline": [
-            {
-              "date": "2026.07.13",
-              "tag": "紀錄",
-              "note": "",
-              "photo": "15p8cHjyNjXO06hs3D9m8YvyrzH4oAFX1"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "name": "萬象",
       "latin": "Haworthia maughanii",
       "category": "多肉",
@@ -3225,17 +3559,113 @@
       ]
     },
     {
-      "name": "美照",
+      "name": "寶塔摩蘿",
       "latin": "",
-      "category": "美照",
-      "date": "2026.06.15",
+      "category": "多肉",
+      "date": "2026.07.13",
       "note": "",
-      "cover": "1RanlYWqvpIbttRrxrBfq0SCmK9tzV7eb",
+      "cover": "15p8cHjyNjXO06hs3D9m8YvyrzH4oAFX1",
       "individuals": [
         {
           "label": "",
-          "cover": "1RanlYWqvpIbttRrxrBfq0SCmK9tzV7eb",
+          "cover": "15p8cHjyNjXO06hs3D9m8YvyrzH4oAFX1",
           "timeline": [
+            {
+              "date": "2026.07.13",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "15p8cHjyNjXO06hs3D9m8YvyrzH4oAFX1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "鬼棲閣",
+      "latin": "Euphorbia guillauminiana",
+      "category": "大戟",
+      "date": "2026.05.22",
+      "note": "",
+      "cover": "17d_ob09dUoRHuCTMOahvBqvp5ij-jsfT",
+      "individuals": [
+        {
+          "label": "#03",
+          "cover": "17d_ob09dUoRHuCTMOahvBqvp5ij-jsfT",
+          "timeline": [
+            {
+              "date": "2026.05.22",
+              "tag": "#03",
+              "note": "",
+              "photo": "17d_ob09dUoRHuCTMOahvBqvp5ij-jsfT"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "吉祥冠覆輪龍舌蘭",
+      "latin": "Agave potatorum",
+      "category": "龍舌蘭",
+      "date": "2026.05.23",
+      "note": "",
+      "cover": "1zirQ0lo_HUJM6234eREFakyxZlL9sopc",
+      "individuals": [
+        {
+          "label": "#01",
+          "cover": "1zirQ0lo_HUJM6234eREFakyxZlL9sopc",
+          "timeline": [
+            {
+              "date": "2026.05.23",
+              "tag": "#01",
+              "note": "",
+              "photo": "1zirQ0lo_HUJM6234eREFakyxZlL9sopc"
+            },
+            {
+              "date": "2026.05.23",
+              "tag": "#01",
+              "note": "",
+              "photo": "10EyXPrfCHjIzmfKwAGIN7COaQvpmAL2B"
+            },
+            {
+              "date": "2026.05.23",
+              "tag": "#01",
+              "note": "",
+              "photo": "1eTKJefiQCvDC9deRJN2WLiUd1lBFW3Kl"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "美照",
+      "latin": "",
+      "category": "美照",
+      "date": "2026.07.21",
+      "note": "",
+      "cover": "1Y58VXWhLFpxQGc8Kx-f3sL9OJBc2koQI",
+      "individuals": [
+        {
+          "label": "",
+          "cover": "1Y58VXWhLFpxQGc8Kx-f3sL9OJBc2koQI",
+          "timeline": [
+            {
+              "date": "2026.07.21",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1Y58VXWhLFpxQGc8Kx-f3sL9OJBc2koQI"
+            },
+            {
+              "date": "2026.07.21",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1G-_o_nT192UbS4KvrwvDs-s9zuCdv5X0"
+            },
+            {
+              "date": "2026.07.21",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1N9wmI6xsUIqDyjHsXcqYodW7SzVPnQDY"
+            },
             {
               "date": "2026.06.15",
               "tag": "紀錄",
@@ -3259,6 +3689,98 @@
               "tag": "紀錄",
               "note": "",
               "photo": "1O6H9Dx5mObl3nhfVBMEnJU2P2g_D-9VC"
+            },
+            {
+              "date": "2025.10.31",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1fKAW_i8wxTsnxcjvFsVRV05Yc6L-_0lE"
+            },
+            {
+              "date": "2025.10.31",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1BlmfGNjM2y2t2Lto6fIl0CX5N1BI7ttP"
+            },
+            {
+              "date": "2025.10.31",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1JWs_3K5gp9PjwM24zNApdRoD4CTIpJZ1"
+            },
+            {
+              "date": "2025.10.31",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1zWOzTpr1TMD0qjmJ7f8fPK9vO1zeWHfH"
+            },
+            {
+              "date": "2025.10.31",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1HtXLtGmlRbPKNbeyBM6g1mYty8C23-_S"
+            },
+            {
+              "date": "2025.10.31",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "108j1BAHBMYpCuOsXEZ9S5b57D5s9HbqW"
+            },
+            {
+              "date": "2025.10.19",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "10DGVcw51ym6IOnJDPJd5rFkY2ST-noIh"
+            },
+            {
+              "date": "2025.10.19",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1mrSOctzPfW3MoB8BGAi6UrqD2jOWaceJ"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Namo",
+      "latin": "Platycerium 'Namo'",
+      "category": "鹿角蕨",
+      "date": "2025.10.19",
+      "note": "",
+      "cover": "1_KEDqva2gi5qmU5DDwxa8mhO9Xsk7XQK",
+      "individuals": [
+        {
+          "label": "",
+          "cover": "1_KEDqva2gi5qmU5DDwxa8mhO9Xsk7XQK",
+          "timeline": [
+            {
+              "date": "2025.10.19",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1_KEDqva2gi5qmU5DDwxa8mhO9Xsk7XQK"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "藍景",
+      "latin": "Platycerium 'Blue Vista'",
+      "category": "鹿角蕨",
+      "date": "2025.10.19",
+      "note": "",
+      "cover": "1BDvb3jSJ-OhOBoH5VfynYTe3RddYYd36",
+      "individuals": [
+        {
+          "label": "",
+          "cover": "1BDvb3jSJ-OhOBoH5VfynYTe3RddYYd36",
+          "timeline": [
+            {
+              "date": "2025.10.19",
+              "tag": "紀錄",
+              "note": "",
+              "photo": "1BDvb3jSJ-OhOBoH5VfynYTe3RddYYd36"
             }
           ]
         }
