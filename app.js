@@ -27,11 +27,16 @@
     return String(s == null ? '' : s)
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
-  // 筆記格式:先轉義,再套用 **粗體** 與換行(讓成長筆記能多行 + 重點粗體)。
+  // 筆記格式:先轉義,再套用 ***斜體***(學名)、**粗體** 與換行。
   function fmtNote(s) {
     var e = esc(s || '');
+    e = e.replace(/\*\*\*([^*\n]+)\*\*\*/g, '<em>$1</em>');
     e = e.replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>');
     return e.replace(/\n/g, '<br>');
+  }
+  // 植物筆記:優先取獨立筆記檔 plant-notes.js(不受 Drive 重建影響),沒有才用 data.json 的 note。
+  function noteOf(p) {
+    return (window.PLANT_NOTES && p && window.PLANT_NOTES[p.name]) || (p && p.note) || '';
   }
   function driveImg(v, w) {
     if (!v) return null;
@@ -292,7 +297,7 @@
           '<div class="rule"></div>' +
           '<div class="pc-foot"><span class="pc-date">入手 ' + esc(p.date || '') + '</span>' +
             '<span class="pc-go">看成長 →</span></div>' +
-          (p.note ? '<div class="pc-note">— ' + esc(p.note.replace(/\*\*/g, '').replace(/\s+/g, ' ').trim().slice(0, 48)) + (p.note.length > 48 ? '…' : '') + '</div>' : '') +
+          (noteOf(p) ? '<div class="pc-note">— ' + esc(noteOf(p).replace(/\*/g, '').replace(/\s+/g, ' ').trim().slice(0, 48)) + (noteOf(p).length > 48 ? '…' : '') + '</div>' : '') +
           shopRow(p, x.i, false) +
         '</div></div>';
     }).join('');
@@ -382,7 +387,7 @@
       '</div>' +
       shopRow(sel, state.selected, true) +
       picker +
-      (sel.note ? '<div class="plant-intro">' + fmtNote(sel.note) + '</div>' : '') +
+      (noteOf(sel) ? '<div class="plant-intro">' + fmtNote(noteOf(sel)) + '</div>' : '') +
       '<div class="tl-head"><h2>成長時間軸</h2><div class="tl-order">最新 → 最早</div></div>' +
       '<div>' + rows + '</div>' +
       '<div class="detail-footer"><span class="pill-btn" data-act="back-grid">↑ 回到照片牆</span></div>' +
