@@ -224,7 +224,7 @@
     },
     {
       "name": "OMG",
-      "latin": "Platycerium OMG",
+      "latin": "Platycerium willinckii 'OMG'",
       "category": "鹿角蕨",
       "date": "2026.07.17",
       "note": "",
@@ -1397,18 +1397,18 @@
           ]
         },
         {
-          "label": "#02",
+          "label": "#04",
           "cover": "1lC0oE4lf22CWyfwLbaQFyHNOaZdad-Cq",
           "timeline": [
             {
               "date": "2026.04.29",
-              "tag": "#02",
+              "tag": "#04",
               "note": "",
               "photo": "1lC0oE4lf22CWyfwLbaQFyHNOaZdad-Cq"
             },
             {
               "date": "2026.03.19",
-              "tag": "#02",
+              "tag": "#04",
               "note": "",
               "photo": "1U6MKsXrxRvvLq3JPJ4VgCytfK0otxBxl"
             }
@@ -1588,7 +1588,7 @@
     },
     {
       "name": "Nano",
-      "latin": "Platycerium Nano",
+      "latin": "Platycerium willinckii 'Nano'",
       "category": "鹿角蕨",
       "date": "2026.05.19",
       "note": "",

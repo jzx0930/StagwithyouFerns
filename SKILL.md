@@ -101,4 +101,5 @@ description: 當使用者說「開始更新」時觸發。檢查 Google Drive「
 - 鹿角蕨品種(2026-07-17 詳查補):三角四叉=`'African Oddity'`(quadridichotomum×stemaria)、雷達=`'Raider'`、艾沙(艾莎)=`'Elsa'`、獅子座=`willinckii 'Leo'`、多佛朗明哥(佛朗明哥)=`hillii × coronarium 'Flamenco'`、史迪奇=`'Stitch'`(FSQ×Rydeen)、奶油獅=`willinckii 'Cream Lion'`、白玫瑰=`willinckii 'White Rose'`、白妖爪=`willinckii 'Unguis Albi'`、二叉=`bifurcatum`、爪哇=`willinckii`。
 - **這些暱稱株的完整 latin 以 data.json 為準(含品種引號)。全樹重建時,資料夾名只切得出屬名,務必套上本對照表補回正確 latin,不要用資料夾名蓋掉。**
 - 2026-07-20 開始更新新植物:亞阿相界=`Pachypodium geayi`、安哥拉葡萄甕=`Cyphostemma uter var. macropus`、綠鬼玉=`Euphorbia decepta`、金輪際=`Euphorbia gorgonis`、法利達=`Euphorbia valida`、九頭龍=`Euphorbia inermis`、貴清玉/布紋球=`Euphorbia meloformis`、群星冠=`Euphorbia stellispina`、萬象=`Haworthia maughanii`、三叉戟=`Platycerium 'Trident'`(Mt Lewis×hillii)、玉女=`Platycerium willinckii 'Jade Girl'`、珍妮=`Platycerium willinckii 'Jenny'`、侏儒塔蘇塔=`Platycerium willinckii 'Dwarf Tatsuta'`。查不到維持中文:蒼鬼塔、群星際、寶塔摩蘿。
-- 純英文不動:Akki、Nano、E、YAL、OMG。仍待補:情花few。
+- 純英文不動:Akki、E、YAL。仍待補:情花few。
+- Nano/OMG:Drive 夾已改成 `P. Willinckii Nano`/`P. Willinckii OMG`,但**網站顯示名維持短的 `Nano`/`OMG`**,latin=`Platycerium willinckii 'Nano'`/`Platycerium willinckii 'OMG'`(全樹重建時別用資料夾長名蓋掉顯示名)。
