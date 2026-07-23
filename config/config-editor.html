@@ -74,8 +74,8 @@
     <div class="sec">
       <div class="st">effects 特效 <span class="badge">即時</span></div>
       <div class="row"><div class="lb"><span>螢火蟲亮度 particle_brightness</span><b id="v_par">220</b></div><input type="range" id="par" min="0" max="300" step="5" value="220"></div>
-      <div class="row"><div class="lb"><span>玻璃面板透明度 panel_opacity</span><b id="v_pan">180</b></div><input type="range" id="pan" min="0" max="300" step="5" value="180"><p class="hint">作用在植物卡/時間軸卡/植物介紹卡 → 右邊點分類或進植物才看得到。</p></div>
-      <div class="row"><div class="lb"><span>指標卡透明度 metric_opacity</span><b id="v_met">100</b></div><input type="range" id="met" min="0" max="300" step="5" value="100"><p class="hint">只作用在詳情頁那三張指標卡 → 右邊要點進一株植物才看得到。</p></div>
+      <div class="row"><div class="lb"><span>面板卡明顯度 panel_opacity</span><b id="v_pan">180</b></div><input type="range" id="pan" min="0" max="300" step="5" value="180"><p class="hint">植物卡/時間軸卡/植物介紹的邊框+陰影+霧面整體強度 → 右邊點分類或進植物看。</p></div>
+      <div class="row"><div class="lb"><span>指標卡明顯度 metric_opacity</span><b id="v_met">100</b></div><input type="range" id="met" min="0" max="300" step="5" value="100"><p class="hint">那三張指標卡的邊框+陰影+霧面整體強度 → 右邊要點進一株植物才看得到。</p></div>
       <div class="checks">
         <label><input type="checkbox" id="particles" checked>螢火蟲</label>
         <label><input type="checkbox" id="tilt" checked>卡片傾斜 <span class="badge">重載</span></label>
@@ -192,9 +192,9 @@
 'particles = '+b('particles'),'',
 '; 背景粒子(螢火蟲)亮度:0~100(100 = 原亮度,越大越亮)',
 'particle_brightness = '+d('par'),'',
-'; 玻璃卡片/面板(植物卡、時間軸卡、植物介紹…)不透明度:0~100(100 = 原本,越大越實)',
+'; 面板卡「明顯度」(植物卡/時間軸卡/植物介紹):同時縮放邊框+內光+陰影+霧面 0~100(100=現狀,越大越顯眼)',
 'panel_opacity = '+d('pan'),'',
-'; 詳情頁指標卡(入手/累積照片/目前個體那三張)不透明度:0~100(100 = 原本,越大越實)',
+'; 指標卡「明顯度」(入手/累積照片/目前個體那三張):同時縮放邊框+內光+陰影+霧面 0~100(100=現狀,越大越顯眼)',
 'metric_opacity = '+d('met'),'',
 '; 卡片跟隨滑鼠 3D 傾斜',
 'card_tilt = '+b('tilt'),'',

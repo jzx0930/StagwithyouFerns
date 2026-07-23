@@ -12,9 +12,9 @@
   --serif: 'Newsreader', Georgia, serif;
   --sans: 'Space Grotesk', system-ui, sans-serif;
   --mono: 'Space Mono', ui-monospace, monospace;
-  --panel-op: 1;   /* 玻璃面板不透明度倍率(由 config.ini panel_opacity 控制;越大越實、越小越透) */
+  --panel-op: 1;   /* 面板卡「明顯度」倍率(植物卡/時間軸卡/植物介紹):同時縮放邊框+內光+陰影+霧面。由 config.ini panel_opacity 控制;100=現狀,越大越顯眼、越小越融入背景 */
   --glass: linear-gradient(160deg, rgba(255,255,255, min(1, calc(0.075 * var(--panel-op)))), rgba(255,255,255, min(1, calc(0.02 * var(--panel-op)))));
-  --metric-op: 1; /* 詳情頁指標卡(入手/累積照片/目前個體)不透明度(由 config.ini metric_opacity 控制;100=清楚可見的預設) */
+  --metric-op: 1; /* 指標卡「明顯度」倍率(入手/累積照片/目前個體):同時縮放邊框+內光+陰影+霧面。由 config.ini metric_opacity 控制;100=現狀 */
   --glass-metric: linear-gradient(160deg, rgba(255,255,255, min(1, calc(0.20 * var(--metric-op)))), rgba(255,255,255, min(1, calc(0.08 * var(--metric-op)))));
   --glass-border: rgba(255,255,255,0.10);
 }
@@ -147,8 +147,8 @@ body {
 /* ---- 植物卡 ---- */
 .plant-card {
   border-radius: 22px; overflow: hidden; background: var(--glass);
-  backdrop-filter: blur(18px) saturate(1.3); border: 1px solid var(--glass-border);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.14);
+  backdrop-filter: blur(18px) saturate(1.3); border: 1px solid rgba(255,255,255, min(1, calc(0.10 * var(--panel-op))));
+  box-shadow: 0 12px 40px rgba(0,0,0, min(1, calc(0.4 * var(--panel-op)))), inset 0 1px 0 rgba(255,255,255, min(1, calc(0.14 * var(--panel-op))));
   transition: transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s, border-color 0.35s; cursor: pointer;
 }
 .plant-card:hover { transform: translateY(-8px); box-shadow: 0 26px 64px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.22); border-color: rgba(154,216,171,0.32); }
@@ -166,7 +166,7 @@ body {
 /* ---- 詳情 / 時間軸 ---- */
 .detail-latin { font-family: var(--serif); font-style: italic; font-size: 20px; color: rgba(154,216,171,0.82); }
 .metrics { display: flex; flex-wrap: wrap; gap: 14px; margin: 26px 0 8px; }
-.metric { flex: 1; min-width: 140px; padding: 16px 18px; border-radius: 16px; background: var(--glass-metric); backdrop-filter: blur(16px) saturate(1.2); -webkit-backdrop-filter: blur(16px) saturate(1.2); border: 1.5px solid rgba(210,232,220,0.5); box-shadow: 0 18px 42px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.28); }
+.metric { flex: 1; min-width: 140px; padding: 16px 18px; border-radius: 16px; background: var(--glass-metric); backdrop-filter: blur(16px) saturate(1.2); -webkit-backdrop-filter: blur(16px) saturate(1.2); border: 1.5px solid rgba(210,232,220, min(1, calc(0.5 * var(--metric-op)))); box-shadow: 0 18px 42px rgba(0,0,0, min(1, calc(0.55 * var(--metric-op)))), inset 0 1px 0 rgba(255,255,255, min(1, calc(0.28 * var(--metric-op)))); }
 .metric .k { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; color: #c2d3ca; }
 .metric .v { font-family: var(--serif); font-size: 22px; color: #eef4ef; margin-top: 4px; }
 /* 植物介紹(照片張數之下、成長時間軸之上,置中) */
@@ -174,8 +174,8 @@ body {
   margin: 30px auto 8px; max-width: 660px; text-align: center;
   padding: 26px 32px; border-radius: 20px;
   background: var(--glass);
-  backdrop-filter: blur(14px) saturate(1.2); border: 1px solid var(--glass-border);
-  box-shadow: 0 14px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.12);
+  backdrop-filter: blur(14px) saturate(1.2); border: 1.5px solid rgba(210,232,220, min(1, calc(0.5 * var(--panel-op))));
+  box-shadow: 0 18px 44px rgba(0,0,0, min(1, calc(0.55 * var(--panel-op)))), inset 0 1px 0 rgba(255,255,255, min(1, calc(0.28 * var(--panel-op))));
   color: #dfe8e2; font-size: 15px; line-height: 1.75;
 }
 .plant-intro strong { color: var(--green-soft); font-weight: 600; }
@@ -191,7 +191,7 @@ body {
 .tl-axis .line { position: absolute; top: 0; bottom: 0; width: 2px; background: linear-gradient(rgba(154,216,171,0.35), rgba(154,216,171,0.08)); }
 .tl-axis .dot { position: relative; margin-top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 5px rgba(154,216,171,0.14); }
 .tl-main { flex: 1; padding-bottom: 30px; }
-.tl-card { border-radius: 20px; overflow: hidden; background: var(--glass); backdrop-filter: blur(18px) saturate(1.3); border: 1px solid var(--glass-border); box-shadow: 0 14px 44px rgba(0,0,0,0.42), inset 0 1px 0 rgba(255,255,255,0.14); }
+.tl-card { border-radius: 20px; overflow: hidden; background: var(--glass); backdrop-filter: blur(18px) saturate(1.3); border: 1px solid rgba(255,255,255, min(1, calc(0.10 * var(--panel-op)))); box-shadow: 0 14px 44px rgba(0,0,0, min(1, calc(0.42 * var(--panel-op)))), inset 0 1px 0 rgba(255,255,255, min(1, calc(0.14 * var(--panel-op)))); }
 .tl-photo { position: relative; background: #0c1210; line-height: 0; font-size: 0; }
 .tl-photo img { display: block; width: 100%; height: auto; }
 .tl-empty { height: 300px; position: relative; background-color: #0c1210; background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 12px); display: flex; align-items: center; justify-content: center; }
