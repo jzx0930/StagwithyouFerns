@@ -51,7 +51,7 @@
     <p class="lead">右邊就是你的真網站。視覺類(亮度/螢火蟲/透明度)拖了立刻變;結構類(飛越、手寫、文字)會自動重載預覽,可看到飛越與手寫動畫。調好按「複製 config.ini」貼回存檔。</p>
 
     <div class="actions">
-      <button id="copy">複製 config.ini</button>
+      <button id="copy">儲存 config.ini</button>
       <button class="ghost" id="layedit">⤢ 版面編輯 ↗</button>
       <button class="ghost" id="replay">▷ 重播開場</button>
       <button class="ghost" id="reload">↻ 重載</button>
@@ -277,9 +277,12 @@
   });
 
   $('copy').addEventListener('click',function(){
-    var t=$('out'); t.select(); t.setSelectionRange(0,99999);
-    try{ navigator.clipboard.writeText(t.value); }catch(e){ document.execCommand('copy'); }
-    var c=$('copied'); c.classList.add('on'); setTimeout(function(){c.classList.remove('on');},1400);
+    var t=$('out').value, btn=$('copy'), c=$('copied');
+    btn.textContent='儲存中…';
+    fetch('/save/config',{method:'POST',headers:{'Content-Type':'text/plain'},body:t})
+      .then(function(r){ if(!r.ok) throw 0; btn.textContent='已儲存 config.ini'; c.textContent='已寫入 ✓'; c.classList.add('on'); })
+      .catch(function(){ try{navigator.clipboard.writeText(t);}catch(e){} btn.textContent='無法自動存·已複製'; c.textContent='請手動貼上'; c.classList.add('on'); })
+      .then(function(){ setTimeout(function(){ btn.textContent='儲存 config.ini'; c.classList.remove('on'); },1800); });
   });
   $('reload').addEventListener('click',reload);
   $('replay').addEventListener('click',reload);

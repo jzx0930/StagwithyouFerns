@@ -24,7 +24,7 @@ echo *** KEEP THIS WINDOW OPEN while you edit. Close it when you are done. ***
 echo.
 
 start "" "http://localhost:8137/config/config-editor.html"
-%PY% -m http.server 8137
+%PY% "%~dp0serve.py"
 if errorlevel 1 (
   echo.
   echo [ERROR] Could not start the server. Port 8137 may be in use.
