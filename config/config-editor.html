@@ -72,6 +72,24 @@
     </div>
 
     <div class="sec">
+      <div class="st">fonts 字型 <span class="badge">即時</span></div>
+      <div class="row"><div class="lb"><span>快速套用組合</span></div>
+        <select id="fontpreset" style="width:100%;background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:8px 10px;font-size:13px;font-family:inherit;">
+          <option value="">— 自訂 —</option>
+          <option value="Newsreader|Space Grotesk">預設(Newsreader + Space Grotesk)</option>
+          <option value="Noto Serif TC|Noto Sans TC">中文襯線(思源宋 + 思源黑)</option>
+          <option value="LXGW WenKai TC|Noto Sans TC">中文手寫(霞鶩文楷 + 思源黑)</option>
+          <option value="Playfair Display|Noto Sans TC">優雅襯線(Playfair + 思源黑)</option>
+          <option value="Cormorant|Noto Sans TC">古典襯線(Cormorant + 思源黑)</option>
+          <option value="Space Grotesk|Space Grotesk">現代無襯線</option>
+        </select>
+      </div>
+      <div class="row"><div class="lb"><span>標題字型 title_font</span></div><input type="text" id="titlefont" value="Newsreader"></div>
+      <div class="row"><div class="lb"><span>內文字型 body_font</span></div><input type="text" id="bodyfont" value="Space Grotesk"><p class="hint">可填任何 Google Fonts 名稱(如 Noto Serif TC)。</p></div>
+      <div class="row"><div class="lb"><span>字級大小 font_scale</span><b id="v_fscale">100</b></div><input type="range" id="fscale" min="60" max="180" step="5" value="100"><p class="hint">60~180,100 = 現狀。</p></div>
+    </div>
+
+    <div class="sec">
       <div class="st">effects 特效 <span class="badge">即時</span></div>
       <div class="row"><div class="lb"><span>螢火蟲亮度 particle_brightness</span><b id="v_par">220</b></div><input type="range" id="par" min="0" max="300" step="5" value="220"></div>
       <div class="row"><div class="lb"><span>面板卡明顯度 panel_opacity</span><b id="v_pan">180</b></div><input type="range" id="pan" min="0" max="300" step="5" value="180"><p class="hint">植物卡/時間軸卡/植物介紹的邊框+陰影+霧面整體強度 → 右邊點分類或進植物看。</p></div>
@@ -128,7 +146,8 @@
       intro:{ show:$('show').checked, sceneDuration:+$('scene').value, landDuration:+$('land').value, lobbyEnterDelay:+$('lobby').value },
       effects:{ particles:$('particles').checked, particleBrightness:(+$('par').value)/100, panelOpacity:(+$('pan').value)/100, metricOpacity:(+$('met').value)/100, cardTilt:$('tilt').checked, magneticButtons:$('mag').checked, cardEntrance:$('ent').checked },
       shop:{ enabled:$('shop').checked, currency:$('currency').value },
-      handwriting:{ cjkSpeed:+$('cjk').value, cjkStrokeDelay:+$('delay').value, latinDuration:+$('latin').value }
+      handwriting:{ cjkSpeed:+$('cjk').value, cjkStrokeDelay:+$('delay').value, latinDuration:+$('latin').value },
+      fonts:{ titleFont:$('titlefont').value, bodyFont:$('bodyfont').value, fontScale:(+$('fscale').value)/100 }
     };
   }
 
@@ -148,7 +167,10 @@
       particleBrightness:(+$('par').value)/100,
       panelOpacity:(+$('pan').value)/100,
       metricOpacity:(+$('met').value)/100,
-      particles:$('particles').checked };
+      particles:$('particles').checked,
+      titleFont:$('titlefont').value,
+      bodyFont:$('bodyfont').value,
+      fontScale:(+$('fscale').value)/100 };
     try{ site.contentWindow.postMessage(m,'*'); }catch(e){}
   }
 
@@ -214,7 +236,14 @@
 '; 中文每一筆之間的間隔毫秒:越小越快(建議 0.0~40.0)',
 'cjk_stroke_delay = '+d('delay'),'',
 '; 英文/數字書寫的時間(秒):越小越快',
-'latin_duration = '+d('latin'),''
+'latin_duration = '+d('latin'),'','',
+'[fonts]','',
+'; 標題/大字字型:可填任何 Google Fonts 名稱(自動載入)',
+'title_font = '+g('titlefont'),'',
+'; 內文/一般文字字型',
+'body_font = '+g('bodyfont'),'',
+'; 全站主要文字字級:0~100 以上(100 = 現狀,120 = 放大 1.2 倍)',
+'font_scale = '+d('fscale'),''
     ].join('\n');
   }
 
@@ -225,18 +254,26 @@
     $('v_lobby').textContent=(+$('lobby').value).toFixed(1);
     $('v_cjk').textContent=(+$('cjk').value).toFixed(1); $('v_delay').textContent=+$('delay').value;
     $('v_latin').textContent=(+$('latin').value).toFixed(1);
+    $('v_fscale').textContent=+$('fscale').value;
     $('out').value=ini();
   }
 
-  var VISUAL={bri:1,par:1,pan:1,met:1,particles:1};
+  var VISUAL={bri:1,par:1,pan:1,met:1,particles:1,titlefont:1,bodyfont:1,fscale:1};
   function onChange(id){
     readouts();
     if(VISUAL[id]) live(); else scheduleReload();
   }
 
   ['title','eyebrow','subtitle','imageid','bri','par','pan','met','scene','land','lobby',
-   'cjk','delay','latin','particles','tilt','mag','ent','show','shop','currency']
+   'cjk','delay','latin','particles','tilt','mag','ent','show','shop','currency',
+   'titlefont','bodyfont','fscale']
    .forEach(function(id){$(id).addEventListener('input',function(){onChange(id);});});
+
+  $('fontpreset').addEventListener('change',function(){
+    var v=$('fontpreset').value; if(!v) return;
+    var p=v.split('|'); $('titlefont').value=p[0]; $('bodyfont').value=p[1]||p[0];
+    onChange('titlefont');
+  });
 
   $('copy').addEventListener('click',function(){
     var t=$('out'); t.select(); t.setSelectionRange(0,99999);
@@ -248,8 +285,9 @@
   $('reset').addEventListener('click',function(){
     var D={title:'StagwithyouFerns',eyebrow:'HERBARIUM · 成長紀錄',subtitle:'選一個分類,進入觀看。',
       imageid:'1fgb-BT8G4-nd_HuItDWEFv0w51fgmjHE',bri:100,par:220,pan:180,met:100,scene:400,land:1400,lobby:1.5,
-      cjk:3.5,delay:10,latin:1.0,currency:'NT$'};
+      cjk:3.5,delay:10,latin:1.0,currency:'NT$',titlefont:'Newsreader',bodyfont:'Space Grotesk',fscale:100};
     for(var k in D){$(k).value=D[k];}
+    $('fontpreset').value='';
     ['particles','tilt','mag','ent','show'].forEach(function(id){$(id).checked=true;});
     $('shop').checked=false; readouts(); reload();
   });

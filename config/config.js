@@ -9,7 +9,8 @@
     intro: { show: true, sceneDuration: 460, landDuration: 1400, lobbyEnterDelay: 1.5 },
     effects: { particles: true, cardTilt: true, magneticButtons: true, cardEntrance: true, particleBrightness: 1, panelOpacity: 1, metricOpacity: 1 },
     shop: { enabled: true, currency: 'NT$' },
-    handwriting: { cjkSpeed: 3.5, cjkStrokeDelay: 10, latinDuration: 0.42 }
+    handwriting: { cjkSpeed: 3.5, cjkStrokeDelay: 10, latinDuration: 0.42 },
+    fonts: { titleFont: 'Newsreader', bodyFont: 'Space Grotesk', fontScale: 1 }
   };
 
   function coerce(s) {
@@ -37,13 +38,34 @@
   function num(v, dflt) { var n = Number(v); return isNaN(n) ? dflt : n; }
   function str(v, dflt) { return (v == null || v === '') ? dflt : String(v); }
 
+  // 依名稱從 Google Fonts 載入字型(去重;字重不齊時自動退回只載 regular,避免 404)
+  var _gf = {};
+  function loadGoogleFont(name) {
+    if (!name) return;
+    var key = String(name).toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    if (_gf[key]) return; _gf[key] = 1;
+    var fam = encodeURIComponent(name).replace(/%20/g, '+');
+    var l = document.createElement('link');
+    l.rel = 'stylesheet';
+    l.href = 'https://fonts.googleapis.com/css2?family=' + fam + ':ital,wght@0,400;0,500;0,600;1,400&display=swap';
+    l.onerror = function () { l.href = 'https://fonts.googleapis.com/css2?family=' + fam + '&display=swap'; };
+    document.head.appendChild(l);
+  }
+  function applyFonts(titleFont, bodyFont, scale) {
+    loadGoogleFont(titleFont); loadGoogleFont(bodyFont);
+    var r = document.documentElement.style;
+    if (titleFont) r.setProperty('--serif', "'" + titleFont + "', Georgia, serif");
+    if (bodyFont) r.setProperty('--sans', "'" + bodyFont + "', system-ui, sans-serif");
+    if (typeof scale === 'number') r.setProperty('--fs-scale', String(scale));
+  }
+
   try {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'config/config.ini?t=' + Date.now(), false);
     xhr.send();
     if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 0) {
       var ini = parseIni(xhr.responseText || '');
-      var S = ini.site || {}, B = ini.background || {}, I = ini.intro || {}, E = ini.effects || {}, SH = ini.shop || {}, H = ini.handwriting || {};
+      var S = ini.site || {}, B = ini.background || {}, I = ini.intro || {}, E = ini.effects || {}, SH = ini.shop || {}, H = ini.handwriting || {}, FO = ini.fonts || {};
       if ('title' in S) C.site.title = str(S.title, C.site.title);
       if ('eyebrow' in S) C.site.eyebrow = str(S.eyebrow, C.site.eyebrow);
       if ('lobby_subtitle' in S) C.site.lobbySubtitle = str(S.lobby_subtitle, C.site.lobbySubtitle);
@@ -65,6 +87,9 @@
       if ('cjk_speed' in H) C.handwriting.cjkSpeed = num(H.cjk_speed, C.handwriting.cjkSpeed);
       if ('cjk_stroke_delay' in H) C.handwriting.cjkStrokeDelay = num(H.cjk_stroke_delay, C.handwriting.cjkStrokeDelay);
       if ('latin_duration' in H) C.handwriting.latinDuration = num(H.latin_duration, C.handwriting.latinDuration);
+      if ('title_font' in FO) C.fonts.titleFont = str(FO.title_font, C.fonts.titleFont);
+      if ('body_font' in FO) C.fonts.bodyFont = str(FO.body_font, C.fonts.bodyFont);
+      if ('font_scale' in FO) C.fonts.fontScale = num(FO.font_scale, 100) / 100;   // 0~100(100=現狀)
     }
   } catch (e) { /* 讀不到 config.ini:全部用預設 */ }
 
@@ -73,7 +98,7 @@
     var mQ = (location.search || '').match(/[?&]cfg=([^&]+)/);
     if (mQ) {
       var ov = JSON.parse(decodeURIComponent(mQ[1]));
-      ['site', 'background', 'intro', 'effects', 'shop', 'handwriting'].forEach(function (g) {
+      ['site', 'background', 'intro', 'effects', 'shop', 'handwriting', 'fonts'].forEach(function (g) {
         if (ov[g]) for (var k in ov[g]) if (Object.prototype.hasOwnProperty.call(ov[g], k)) C[g][k] = ov[g][k];
       });
     }
@@ -89,6 +114,7 @@
     if (C.site.title) document.title = C.site.title;
     document.documentElement.style.setProperty('--panel-op', String(C.effects.panelOpacity));
     document.documentElement.style.setProperty('--metric-op', String(C.effects.metricOpacity));
+    applyFonts(C.fonts.titleFont, C.fonts.bodyFont, C.fonts.fontScale);
   } catch (e) {}
 
   // ── 購買功能:把主開關與幣別同步到 SHOP_CONFIG(蓋過 shop-config.js)──
@@ -106,6 +132,8 @@
       if ('panelOpacity' in d) document.documentElement.style.setProperty('--panel-op', String(d.panelOpacity));
       if ('metricOpacity' in d) document.documentElement.style.setProperty('--metric-op', String(d.metricOpacity));
       if ('particles' in d) { var fx = document.getElementById('fx3d'); if (fx) fx.style.display = d.particles ? '' : 'none'; }
+      if ('titleFont' in d || 'bodyFont' in d) applyFonts(d.titleFont || C.fonts.titleFont, d.bodyFont || C.fonts.bodyFont, null);
+      if ('fontScale' in d) document.documentElement.style.setProperty('--fs-scale', String(d.fontScale));
     } catch (e) {}
   });
 })();
