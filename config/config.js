@@ -39,7 +39,7 @@
 
   try {
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'config.ini?t=' + Date.now(), false);
+    xhr.open('GET', 'config/config.ini?t=' + Date.now(), false);
     xhr.send();
     if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 0) {
       var ini = parseIni(xhr.responseText || '');

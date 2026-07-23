@@ -1,6 +1,7 @@
 @echo off
 setlocal
-pushd "%~dp0"
+REM Serve the PROJECT ROOT (one level up) so index.html / data.json are reachable
+pushd "%~dp0.."
 echo ============================================
 echo    StagwithyouFerns - config.ini live editor
 echo ============================================
@@ -22,7 +23,7 @@ echo.
 echo *** KEEP THIS WINDOW OPEN while you edit. Close it when you are done. ***
 echo.
 
-start "" "http://localhost:8137/config-editor.html"
+start "" "http://localhost:8137/config/config-editor.html"
 %PY% -m http.server 8137
 if errorlevel 1 (
   echo.

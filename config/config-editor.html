@@ -134,7 +134,7 @@
 
   function reload(){
     var cfg=encodeURIComponent(JSON.stringify(buildCfg()));
-    site.src='index.html?cfg='+cfg+'&t='+Date.now();
+    site.src='../index.html?cfg='+cfg+'&t='+Date.now();
   }
   var rt=null;
   function scheduleReload(){
