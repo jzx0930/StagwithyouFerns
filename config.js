@@ -14,10 +14,10 @@
 
   function coerce(s) {
     s = String(s).trim();
-    if (/^(true|yes|on|1)$/i.test(s)) return true;
-    if (/^(false|no|off|0)$/i.test(s)) return false;
-    var n = parseFloat(s);
-    return (isNaN(n) || String(n) !== s) ? s : n;   // 純數字才轉數字,否則保留字串
+    if (/^(true|yes|on)$/i.test(s)) return true;         // bool
+    if (/^(false|no|off)$/i.test(s)) return false;
+    if (/^[+-]?(\d+\.?\d*|\.\d+)$/.test(s)) return parseFloat(s);  // double/整數 → 數字(如 460.0、0.82、1.5)
+    return s;                                            // 其餘當文字(title、image_id、currency…)
   }
   function parseIni(text) {
     var out = {}, sec = '';
@@ -75,7 +75,7 @@
       bp.style.filter = 'brightness(' + C.background.brightness + ') saturate(0.95) contrast(1.05)';
     }
     if (C.site.title) document.title = C.site.title;
-    document.documentElement.style.setProperty('--panel-op', C.effects.panelOpacity);
+    document.documentElement.style.setProperty('--panel-op', String(C.effects.panelOpacity));
   } catch (e) {}
 
   // ── 購買功能:把主開關與幣別同步到 SHOP_CONFIG(蓋過 shop-config.js)──
