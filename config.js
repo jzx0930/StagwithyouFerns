@@ -68,6 +68,17 @@
     }
   } catch (e) { /* 讀不到 config.ini:全部用預設 */ }
 
+  // ── 預覽覆蓋:網址帶 ?cfg=<JSON> 時,把值蓋進 C(僅供 config-editor.html 即時預覽用;正式網站沒帶就無作用)──
+  try {
+    var mQ = (location.search || '').match(/[?&]cfg=([^&]+)/);
+    if (mQ) {
+      var ov = JSON.parse(decodeURIComponent(mQ[1]));
+      ['site', 'background', 'intro', 'effects', 'shop', 'handwriting'].forEach(function (g) {
+        if (ov[g]) for (var k in ov[g]) if (Object.prototype.hasOwnProperty.call(ov[g], k)) C[g][k] = ov[g][k];
+      });
+    }
+  } catch (e) {}
+
   // ── 立即套用:背景圖 / 亮度 / 分頁標題 ──
   try {
     var bp = document.querySelector('.bg-photo');
@@ -84,4 +95,17 @@
   window.SHOP_CONFIG = window.SHOP_CONFIG || {};
   window.SHOP_CONFIG.enabled = C.shop.enabled;
   window.SHOP_CONFIG.currency = C.shop.currency;
+
+  // ── 預覽即時接口:config-editor.html 用 postMessage 即時改視覺參數(不重載)。正式使用不會收到此訊息 ──
+  window.addEventListener('message', function (ev) {
+    var d = ev && ev.data;
+    if (!d || d.__preview !== 'stagwithyouferns') return;
+    try {
+      if ('brightness' in d) { var bp = document.querySelector('.bg-photo'); if (bp) bp.style.filter = 'brightness(' + d.brightness + ') saturate(0.95) contrast(1.05)'; }
+      if ('particleBrightness' in d && window.SITE_CONFIG) SITE_CONFIG.effects.particleBrightness = d.particleBrightness;
+      if ('panelOpacity' in d) document.documentElement.style.setProperty('--panel-op', String(d.panelOpacity));
+      if ('metricOpacity' in d) document.documentElement.style.setProperty('--metric-op', String(d.metricOpacity));
+      if ('particles' in d) { var fx = document.getElementById('fx3d'); if (fx) fx.style.display = d.particles ? '' : 'none'; }
+    } catch (e) {}
+  });
 })();

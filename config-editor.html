@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>config.ini 即時調整器(真網站預覽)· StagwithyouFerns</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#e9f3ec;--sub:#9fb4a8;--line:rgba(255,255,255,.1);--acc:#5ecb8a;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:#070b0c;color:var(--ink);font-family:'Space Grotesk',system-ui,sans-serif;}
+  .wrap{display:grid;grid-template-columns:minmax(330px,400px) 1fr;min-height:100vh;}
+
+  .panel{padding:20px 20px 60px;overflow-y:auto;max-height:100vh;border-right:1px solid var(--line);}
+  .panel h1{font-size:16px;font-weight:600;margin:0 0 2px;}
+  .lead{font-size:12px;color:var(--sub);margin:0 0 14px;line-height:1.6;}
+  .sec{margin:0 0 16px;padding:13px 13px 5px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02);}
+  .st{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:#8fd6a6;margin:0 0 10px;}
+  .row{margin:0 0 12px;}
+  .lb{display:flex;justify-content:space-between;font-size:12px;color:var(--sub);margin-bottom:5px;}
+  .lb b{color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums;}
+  input[type=range]{width:100%;accent-color:var(--acc);height:22px;}
+  input[type=text]{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:8px 10px;font-size:13px;font-family:inherit;}
+  input[type=text]:focus{outline:none;border-color:var(--acc);}
+  .checks{display:flex;flex-wrap:wrap;gap:9px 16px;}
+  .checks label{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--sub);cursor:pointer;}
+  .checks input{accent-color:var(--acc);width:15px;height:15px;}
+  .hint{font-size:11px;color:#6f857b;margin:3px 0 0;line-height:1.5;}
+  .badge{font-size:10px;color:#7fd6a0;border:1px solid rgba(94,203,138,.35);border-radius:20px;padding:1px 7px;margin-left:6px;vertical-align:1px;}
+  .actions{display:flex;gap:8px;margin:4px 0 14px;flex-wrap:wrap;}
+  button{background:rgba(94,203,138,.14);border:1px solid rgba(94,203,138,.4);color:#c8f5d8;padding:9px 12px;border-radius:9px;font-size:12.5px;font-family:inherit;cursor:pointer;}
+  button:hover{background:rgba(94,203,138,.24);}
+  button.ghost{background:rgba(255,255,255,.04);border-color:var(--line);color:var(--sub);}
+  .copied{font-size:11px;color:#8fd6a6;align-self:center;opacity:0;transition:opacity .2s;}
+  .copied.on{opacity:1;}
+  textarea{width:100%;height:190px;background:#04070a;border:1px solid var(--line);color:#bfe9cd;border-radius:10px;padding:12px;font-family:'Space Mono',monospace;font-size:11.5px;line-height:1.55;resize:vertical;}
+
+  .stagewrap{position:sticky;top:0;height:100vh;padding:16px;display:flex;flex-direction:column;gap:10px;}
+  .bar{display:flex;align-items:center;gap:8px;font-size:11.5px;color:#6f857b;}
+  .bar .sp{flex:1;}
+  iframe{flex:1;width:100%;border:1px solid var(--line);border-radius:14px;background:#05080a;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="panel">
+    <h1>config.ini 即時調整器</h1>
+    <p class="lead">右邊就是你的真網站。視覺類(亮度/螢火蟲/透明度)拖了立刻變;結構類(飛越、手寫、文字)會自動重載預覽,可看到飛越與手寫動畫。調好按「複製 config.ini」貼回存檔。</p>
+
+    <div class="actions">
+      <button id="copy">複製 config.ini</button>
+      <button class="ghost" id="replay">▷ 重播開場</button>
+      <button class="ghost" id="reload">↻ 重載</button>
+      <button class="ghost" id="reset">重設</button>
+      <span class="copied" id="copied">已複製 ✓</span>
+    </div>
+
+    <div class="sec">
+      <div class="st">site 文字 <span class="badge">重載</span></div>
+      <div class="row"><div class="lb"><span>大標題 title</span></div><input type="text" id="title" value="StagwithyouFerns"></div>
+      <div class="row"><div class="lb"><span>副標 eyebrow</span></div><input type="text" id="eyebrow" value="HERBARIUM · 成長紀錄"></div>
+      <div class="row"><div class="lb"><span>大廳小字 lobby_subtitle</span></div><input type="text" id="subtitle" value="選一個分類,進入觀看。"></div>
+    </div>
+
+    <div class="sec">
+      <div class="st">background 背景</div>
+      <div class="row"><div class="lb"><span>背景圖 image_id <span class="badge">重載</span></span></div><input type="text" id="imageid" value="1fgb-BT8G4-nd_HuItDWEFv0w51fgmjHE"></div>
+      <div class="row"><div class="lb"><span>亮度 brightness <span class="badge">即時</span></span><b id="v_bri">100</b></div><input type="range" id="bri" min="0" max="150" step="1" value="100"><p class="hint">0~150,100 = 原亮度。</p></div>
+    </div>
+
+    <div class="sec">
+      <div class="st">effects 特效 <span class="badge">即時</span></div>
+      <div class="row"><div class="lb"><span>螢火蟲亮度 particle_brightness</span><b id="v_par">220</b></div><input type="range" id="par" min="0" max="300" step="5" value="220"></div>
+      <div class="row"><div class="lb"><span>玻璃面板透明度 panel_opacity</span><b id="v_pan">180</b></div><input type="range" id="pan" min="0" max="300" step="5" value="180"></div>
+      <div class="row"><div class="lb"><span>指標卡透明度 metric_opacity</span><b id="v_met">100</b></div><input type="range" id="met" min="0" max="300" step="5" value="100"></div>
+      <div class="checks">
+        <label><input type="checkbox" id="particles" checked>螢火蟲</label>
+        <label><input type="checkbox" id="tilt" checked>卡片傾斜 <span class="badge">重載</span></label>
+        <label><input type="checkbox" id="mag" checked>按鈕磁吸 <span class="badge">重載</span></label>
+        <label><input type="checkbox" id="ent" checked>進場動畫 <span class="badge">重載</span></label>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="st">intro 開場飛越 <span class="badge">重載</span></div>
+      <div class="checks" style="margin-bottom:12px;"><label><input type="checkbox" id="show" checked>播放開場飛越</label></div>
+      <div class="row"><div class="lb"><span>每段毫秒 scene_duration</span><b id="v_scene">400</b></div><input type="range" id="scene" min="150" max="1200" step="10" value="400"></div>
+      <div class="row"><div class="lb"><span>落地毫秒 land_duration</span><b id="v_land">1400</b></div><input type="range" id="land" min="400" max="3000" step="50" value="1400"></div>
+      <div class="row"><div class="lb"><span>自動進大廳秒數 lobby_enter_delay</span><b id="v_lobby">1.5</b></div><input type="range" id="lobby" min="0" max="6" step="0.5" value="1.5"></div>
+    </div>
+
+    <div class="sec">
+      <div class="st">handwriting 名稱手寫 <span class="badge">重載</span></div>
+      <div class="row"><div class="lb"><span>中文筆順速度 cjk_speed</span><b id="v_cjk">3.5</b></div><input type="range" id="cjk" min="1" max="5" step="0.1" value="3.5"><p class="hint">越大越快。改完點右邊任一植物看效果。</p></div>
+      <div class="row"><div class="lb"><span>中文每筆間隔ms cjk_stroke_delay</span><b id="v_delay">10</b></div><input type="range" id="delay" min="0" max="40" step="1" value="10"></div>
+      <div class="row"><div class="lb"><span>英文書寫秒數 latin_duration</span><b id="v_latin">1.0</b></div><input type="range" id="latin" min="0.2" max="3" step="0.1" value="1.0"></div>
+    </div>
+
+    <div class="sec">
+      <div class="st">shop 購買 <span class="badge">重載</span></div>
+      <div class="checks" style="margin-bottom:12px;"><label><input type="checkbox" id="shop">開啟購買功能</label></div>
+      <div class="row"><div class="lb"><span>幣別 currency</span></div><input type="text" id="currency" value="NT$"></div>
+    </div>
+
+    <div class="st">產生的 config.ini</div>
+    <textarea id="out" readonly></textarea>
+  </div>
+
+  <div class="stagewrap">
+    <div class="bar"><span>右側 = 真網站即時預覽</span><span class="sp"></span><label style="display:flex;align-items:center;gap:5px;"><input type="checkbox" id="autoreload" checked>結構改動自動重載</label></div>
+    <iframe id="site" title="網站預覽"></iframe>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var site=$('site');
+
+  function buildCfg(){
+    return {
+      site:{ title:$('title').value, eyebrow:$('eyebrow').value, lobbySubtitle:$('subtitle').value },
+      background:{ imageId:$('imageid').value, brightness:(+$('bri').value)/100 },
+      intro:{ show:$('show').checked, sceneDuration:+$('scene').value, landDuration:+$('land').value, lobbyEnterDelay:+$('lobby').value },
+      effects:{ particles:$('particles').checked, particleBrightness:(+$('par').value)/100, panelOpacity:(+$('pan').value)/100, metricOpacity:(+$('met').value)/100, cardTilt:$('tilt').checked, magneticButtons:$('mag').checked, cardEntrance:$('ent').checked },
+      shop:{ enabled:$('shop').checked, currency:$('currency').value },
+      handwriting:{ cjkSpeed:+$('cjk').value, cjkStrokeDelay:+$('delay').value, latinDuration:+$('latin').value }
+    };
+  }
+
+  function reload(){
+    var cfg=encodeURIComponent(JSON.stringify(buildCfg()));
+    site.src='index.html?cfg='+cfg+'&t='+Date.now();
+  }
+  var rt=null;
+  function scheduleReload(){
+    if(!$('autoreload').checked) return;
+    clearTimeout(rt); rt=setTimeout(reload,650);
+  }
+
+  function live(){
+    var m={ __preview:'stagwithyouferns',
+      brightness:(+$('bri').value)/100,
+      particleBrightness:(+$('par').value)/100,
+      panelOpacity:(+$('pan').value)/100,
+      metricOpacity:(+$('met').value)/100,
+      particles:$('particles').checked };
+    try{ site.contentWindow.postMessage(m,'*'); }catch(e){}
+  }
+
+  function ini(){
+    var g=function(id){return $(id).value;};
+    var b=function(id){return $(id).checked?'true':'false';};
+    var d=function(id){var v=parseFloat($(id).value);return (v%1===0)?v.toFixed(1):String(v);};
+    return [
+'; ===================================================================',
+';  網站狀態設定  config.ini   ——  改這個檔就能控制網站行為與外觀',
+';  改完存檔 → GitHub Desktop commit + push 就生效(重新整理即可)',
+';  ; 或 # 開頭是註解。',
+';',
+';  ✱ 開關(bool):一律用  true / false',
+';  ✱ 比例/亮度/透明度:一律用  0~100 的數字(100 = 原本;可超過 100 加強)',
+';  ✱ 其他數值(毫秒、秒、速度):一律帶小數點,例如 460.0、1.5',
+'; ===================================================================','','',
+'[site]','',
+'; 開場大標題(也會當瀏覽器分頁標題)',
+'title = '+g('title'),'',
+'; 開場副標小字',
+'eyebrow = '+g('eyebrow'),'',
+'; 大廳「選一個分類」下方那行小字',
+'lobby_subtitle = '+g('subtitle'),'','',
+'[background]','',
+'; 背景夜景照片的 Google Drive 檔案 ID(換背景改這個就好)',
+'image_id = '+g('imageid'),'',
+'; 背景亮度:0~100(100 = 原亮度,越小越暗)',
+'brightness = '+d('bri'),'','',
+'[intro]','',
+'; 要不要播開場飛越(false = 直接進大廳)',
+'show = '+b('show'),'',
+'; 飛越每個分類的毫秒數(越大越慢)',
+'scene_duration = '+d('scene'),'',
+'; 落地動畫毫秒數',
+'land_duration = '+d('land'),'',
+'; 落地後「自動進大廳」的等待秒數(手動點一樣立即進)',
+'lobby_enter_delay = '+d('lobby'),'','',
+'[effects]','',
+'; 背景粒子(螢火蟲光點)開關',
+'particles = '+b('particles'),'',
+'; 背景粒子(螢火蟲)亮度:0~100(100 = 原亮度,越大越亮)',
+'particle_brightness = '+d('par'),'',
+'; 玻璃卡片/面板(植物卡、時間軸卡、植物介紹…)不透明度:0~100(100 = 原本,越大越實)',
+'panel_opacity = '+d('pan'),'',
+'; 詳情頁指標卡(入手/累積照片/目前個體那三張)不透明度:0~100(100 = 原本,越大越實)',
+'metric_opacity = '+d('met'),'',
+'; 卡片跟隨滑鼠 3D 傾斜',
+'card_tilt = '+b('tilt'),'',
+'; 按鈕磁吸',
+'magnetic_buttons = '+b('mag'),'',
+'; 卡片進場交錯動畫',
+'card_entrance = '+b('ent'),'','',
+'[shop]','',
+'; 購買功能主開關(蓋過 shop-config.js;Web3Forms key 與價格仍放 shop-config.js)',
+'enabled = '+b('shop'),'',
+'; 幣別前綴(文字)',
+'currency = '+g('currency'),'','',
+'[handwriting]','',
+'; 進入植物後名稱手寫的速度','',
+'; 中文筆順速度:數字越大越快(建議 1.0~5.0)',
+'cjk_speed = '+d('cjk'),'',
+'; 中文每一筆之間的間隔毫秒:越小越快(建議 0.0~40.0)',
+'cjk_stroke_delay = '+d('delay'),'',
+'; 英文/數字書寫的時間(秒):越小越快',
+'latin_duration = '+d('latin'),''
+    ].join('\n');
+  }
+
+  function readouts(){
+    $('v_bri').textContent=+$('bri').value; $('v_par').textContent=+$('par').value;
+    $('v_pan').textContent=+$('pan').value; $('v_met').textContent=+$('met').value;
+    $('v_scene').textContent=+$('scene').value; $('v_land').textContent=+$('land').value;
+    $('v_lobby').textContent=(+$('lobby').value).toFixed(1);
+    $('v_cjk').textContent=(+$('cjk').value).toFixed(1); $('v_delay').textContent=+$('delay').value;
+    $('v_latin').textContent=(+$('latin').value).toFixed(1);
+    $('out').value=ini();
+  }
+
+  var VISUAL={bri:1,par:1,pan:1,met:1,particles:1};
+  function onChange(id){
+    readouts();
+    if(VISUAL[id]) live(); else scheduleReload();
+  }
+
+  ['title','eyebrow','subtitle','imageid','bri','par','pan','met','scene','land','lobby',
+   'cjk','delay','latin','particles','tilt','mag','ent','show','shop','currency']
+   .forEach(function(id){$(id).addEventListener('input',function(){onChange(id);});});
+
+  $('copy').addEventListener('click',function(){
+    var t=$('out'); t.select(); t.setSelectionRange(0,99999);
+    try{ navigator.clipboard.writeText(t.value); }catch(e){ document.execCommand('copy'); }
+    var c=$('copied'); c.classList.add('on'); setTimeout(function(){c.classList.remove('on');},1400);
+  });
+  $('reload').addEventListener('click',reload);
+  $('replay').addEventListener('click',reload);
+  $('reset').addEventListener('click',function(){
+    var D={title:'StagwithyouFerns',eyebrow:'HERBARIUM · 成長紀錄',subtitle:'選一個分類,進入觀看。',
+      imageid:'1fgb-BT8G4-nd_HuItDWEFv0w51fgmjHE',bri:100,par:220,pan:180,met:100,scene:400,land:1400,lobby:1.5,
+      cjk:3.5,delay:10,latin:1.0,currency:'NT$'};
+    for(var k in D){$(k).value=D[k];}
+    ['particles','tilt','mag','ent','show'].forEach(function(id){$(id).checked=true;});
+    $('shop').checked=false; readouts(); reload();
+  });
+
+  // 每次預覽載入完,補推一次視覺值(確保即時參數與拉桿一致)
+  site.addEventListener('load',function(){ setTimeout(live,400); });
+
+  readouts();
+  reload();  // 首次以目前設定載入真網站
+})();
+</script>
+</body>
+</html>

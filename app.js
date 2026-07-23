@@ -508,9 +508,10 @@
     parallax();
 
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var pB = (window.SITE_CONFIG && SITE_CONFIG.effects && typeof SITE_CONFIG.effects.particleBrightness === 'number') ? SITE_CONFIG.effects.particleBrightness : 1;  // 螢火蟲亮度倍率
+    function curPB() { return (window.SITE_CONFIG && SITE_CONFIG.effects && typeof SITE_CONFIG.effects.particleBrightness === 'number') ? SITE_CONFIG.effects.particleBrightness : 1; }  // 螢火蟲亮度倍率(每幀讀,調整器可即時改)
 
     function frame() {
+      var pB = curPB();
       if (window.__introActive) { requestAnimationFrame(frame); return; }   // 開場飛越期間暫停(看不到,省效能)
       t += 0.006;
       if (!reduce) autoYaw += 0.0003;
