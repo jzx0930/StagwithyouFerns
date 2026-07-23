@@ -52,6 +52,7 @@
 
     <div class="actions">
       <button id="copy">複製 config.ini</button>
+      <button class="ghost" id="layedit">⤢ 版面編輯 ↗</button>
       <button class="ghost" id="replay">▷ 重播開場</button>
       <button class="ghost" id="reload">↻ 重載</button>
       <button class="ghost" id="reset">重設</button>
@@ -282,6 +283,7 @@
   });
   $('reload').addEventListener('click',reload);
   $('replay').addEventListener('click',reload);
+  $('layedit').addEventListener('click',function(){ window.open('../index.html?edit=1','_blank'); });
   $('reset').addEventListener('click',function(){
     var D={title:'StagwithyouFerns',eyebrow:'HERBARIUM · 成長紀錄',subtitle:'選一個分類,進入觀看。',
       imageid:'1fgb-BT8G4-nd_HuItDWEFv0w51fgmjHE',bri:100,par:220,pan:180,met:100,scene:400,land:1400,lobby:1.5,

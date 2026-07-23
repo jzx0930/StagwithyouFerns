@@ -264,8 +264,8 @@
     }).join('');
 
     app.innerHTML = '<div class="wrap">' +
-      headerHTML('Herbarium · 分類選單', '', ((window.SITE_CONFIG && SITE_CONFIG.site && SITE_CONFIG.site.lobbySubtitle) || '選一個分類,進入觀看。'), true, totalPlants, totalPhotos) +
-      '<div class="card-grid">' + cards + '</div></div>';
+      '<div data-lay="lobby.header">' + headerHTML('Herbarium · 分類選單', '', ((window.SITE_CONFIG && SITE_CONFIG.site && SITE_CONFIG.site.lobbySubtitle) || '選一個分類,進入觀看。'), true, totalPlants, totalPhotos) + '</div>' +
+      '<div class="card-grid" data-lay="lobby.cards">' + cards + '</div></div>';
     animCards('#app .cat-card', 26);
   }
 
@@ -310,10 +310,10 @@
       '<p class="subtitle" style="margin-top:8px;">這個分類還沒有植物。</p>';
 
     app.innerHTML = '<div class="wrap">' +
-      '<div class="back-row"><span class="pill-btn" data-act="lobby">← 回到分類大廳</span></div>' +
-      headerHTML('Herbarium · 成長紀錄', activeCat, '點任一株,進入牠的成長時間軸。', true, indexed.length, totalPhotos, hero) +
-      '<div class="tabs">' + tabs + '</div>' +
-      '<div class="card-grid">' + cards + '</div>' + empty +
+      '<div class="back-row" data-lay="grid.back"><span class="pill-btn" data-act="lobby">← 回到分類大廳</span></div>' +
+      '<div data-lay="grid.header">' + headerHTML('Herbarium · 成長紀錄', activeCat, '點任一株,進入牠的成長時間軸。', true, indexed.length, totalPhotos, hero) + '</div>' +
+      '<div class="tabs" data-lay="grid.tabs">' + tabs + '</div>' +
+      '<div class="card-grid" data-lay="grid.cards">' + cards + '</div>' + empty +
       '</div>';
     animCards('#app .plant-card', 20);
   }
@@ -374,22 +374,22 @@
       : '';
 
     app.innerHTML = '<div class="wrap narrow">' +
-      '<span class="pill-btn" data-act="lobby-from-detail">← 回到照片牆</span>' +
-      '<div style="margin:34px 0 12px;">' +
+      '<span class="pill-btn" data-act="lobby-from-detail" data-lay="detail.back">← 回到照片牆</span>' +
+      '<div style="margin:34px 0 12px;" data-lay="detail.title">' +
         '<div class="eyebrow">No. ' + no + ' · Growth Log</div>' +
         '<h1 class="title" id="sf-dtitle">' + esc(sel.name) + '</h1>' +
         '<div class="detail-latin" id="sf-dlatin">' + esc(sel.latin || '') + '</div>' +
       '</div>' +
-      '<div class="metrics">' +
+      '<div class="metrics" data-lay="detail.metrics">' +
         '<div class="metric"><div class="k">入手 / 種植</div><div class="v">' + esc(sel.date || '') + '</div></div>' +
         '<div class="metric"><div class="k">累積照片</div><div class="v">' + photoCount(sel) + ' 張</div></div>' +
         indivMetric +
       '</div>' +
       shopRow(sel, state.selected, true) +
-      picker +
-      (noteOf(sel) ? '<div class="plant-intro">' + fmtNote(noteOf(sel)) + '</div>' : '') +
-      '<div class="tl-head"><h2>成長時間軸</h2><div class="tl-order">最新 → 最早</div></div>' +
-      '<div>' + rows + '</div>' +
+      (picker ? '<div data-lay="detail.picker">' + picker + '</div>' : '') +
+      (noteOf(sel) ? '<div class="plant-intro" data-lay="detail.intro">' + fmtNote(noteOf(sel)) + '</div>' : '') +
+      '<div class="tl-head" data-lay="detail.timelineHead"><h2>成長時間軸</h2><div class="tl-order">最新 → 最早</div></div>' +
+      '<div data-lay="detail.timeline">' + rows + '</div>' +
       '<div class="detail-footer"><span class="pill-btn" data-act="back-grid">↑ 回到照片牆</span></div>' +
     '</div>';
   }
