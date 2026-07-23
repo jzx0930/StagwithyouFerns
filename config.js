@@ -7,7 +7,7 @@
     site: { title: 'StagwithyouFerns', eyebrow: 'HERBARIUM · 成長紀錄', lobbySubtitle: '選一個分類,進入觀看。' },
     background: { imageId: '1fgb-BT8G4-nd_HuItDWEFv0w51fgmjHE', brightness: 0.82 },
     intro: { show: true, sceneDuration: 460, landDuration: 1400, lobbyEnterDelay: 1.5 },
-    effects: { particles: true, cardTilt: true, magneticButtons: true, cardEntrance: true, particleBrightness: 1, panelOpacity: 1 },
+    effects: { particles: true, cardTilt: true, magneticButtons: true, cardEntrance: true, particleBrightness: 1, panelOpacity: 1, metricOpacity: 1 },
     shop: { enabled: true, currency: 'NT$' },
     handwriting: { cjkSpeed: 3.5, cjkStrokeDelay: 10, latinDuration: 0.42 }
   };
@@ -59,6 +59,7 @@
       if ('card_entrance' in E) C.effects.cardEntrance = !!E.card_entrance;
       if ('particle_brightness' in E) C.effects.particleBrightness = num(E.particle_brightness, C.effects.particleBrightness);
       if ('panel_opacity' in E) C.effects.panelOpacity = num(E.panel_opacity, C.effects.panelOpacity);
+      if ('metric_opacity' in E) C.effects.metricOpacity = num(E.metric_opacity, C.effects.metricOpacity);
       if ('enabled' in SH) C.shop.enabled = !!SH.enabled;
       if ('currency' in SH) C.shop.currency = str(SH.currency, C.shop.currency);
       if ('cjk_speed' in H) C.handwriting.cjkSpeed = num(H.cjk_speed, C.handwriting.cjkSpeed);
@@ -76,6 +77,7 @@
     }
     if (C.site.title) document.title = C.site.title;
     document.documentElement.style.setProperty('--panel-op', String(C.effects.panelOpacity));
+    document.documentElement.style.setProperty('--metric-op', String(C.effects.metricOpacity));
   } catch (e) {}
 
   // ── 購買功能:把主開關與幣別同步到 SHOP_CONFIG(蓋過 shop-config.js)──

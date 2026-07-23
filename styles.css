@@ -14,6 +14,8 @@
   --mono: 'Space Mono', ui-monospace, monospace;
   --panel-op: 1;   /* 玻璃面板不透明度倍率(由 config.ini panel_opacity 控制;越大越實、越小越透) */
   --glass: linear-gradient(160deg, rgba(255,255,255, calc(0.075 * var(--panel-op))), rgba(255,255,255, calc(0.02 * var(--panel-op))));
+  --metric-op: 1; /* 詳情頁指標卡(入手/累積照片/目前個體)不透明度(由 config.ini metric_opacity 控制) */
+  --glass-metric: linear-gradient(160deg, rgba(255,255,255, calc(0.075 * var(--metric-op))), rgba(255,255,255, calc(0.02 * var(--metric-op))));
   --glass-border: rgba(255,255,255,0.10);
 }
 
@@ -164,7 +166,7 @@ body {
 /* ---- 詳情 / 時間軸 ---- */
 .detail-latin { font-family: var(--serif); font-style: italic; font-size: 20px; color: rgba(154,216,171,0.82); }
 .metrics { display: flex; flex-wrap: wrap; gap: 14px; margin: 26px 0 8px; }
-.metric { flex: 1; min-width: 140px; padding: 16px 18px; border-radius: 16px; background: var(--glass); backdrop-filter: blur(14px); border: 1px solid var(--glass-border); }
+.metric { flex: 1; min-width: 140px; padding: 16px 18px; border-radius: 16px; background: var(--glass-metric); backdrop-filter: blur(14px); border: 1px solid var(--glass-border); }
 .metric .k { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; color: var(--muted); }
 .metric .v { font-family: var(--serif); font-size: 22px; color: #eef4ef; margin-top: 4px; }
 /* 植物介紹(照片張數之下、成長時間軸之上,置中) */
