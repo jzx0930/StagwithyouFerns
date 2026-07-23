@@ -48,7 +48,7 @@
       if ('eyebrow' in S) C.site.eyebrow = str(S.eyebrow, C.site.eyebrow);
       if ('lobby_subtitle' in S) C.site.lobbySubtitle = str(S.lobby_subtitle, C.site.lobbySubtitle);
       if ('image_id' in B) C.background.imageId = str(B.image_id, C.background.imageId);
-      if ('brightness' in B) C.background.brightness = num(B.brightness, C.background.brightness);
+      if ('brightness' in B) C.background.brightness = num(B.brightness, 82) / 100;   // 0~100(100=原亮度)
       if ('show' in I) C.intro.show = !!I.show;
       if ('scene_duration' in I) C.intro.sceneDuration = num(I.scene_duration, C.intro.sceneDuration);
       if ('land_duration' in I) C.intro.landDuration = num(I.land_duration, C.intro.landDuration);
@@ -57,9 +57,9 @@
       if ('card_tilt' in E) C.effects.cardTilt = !!E.card_tilt;
       if ('magnetic_buttons' in E) C.effects.magneticButtons = !!E.magnetic_buttons;
       if ('card_entrance' in E) C.effects.cardEntrance = !!E.card_entrance;
-      if ('particle_brightness' in E) C.effects.particleBrightness = num(E.particle_brightness, C.effects.particleBrightness);
-      if ('panel_opacity' in E) C.effects.panelOpacity = num(E.panel_opacity, C.effects.panelOpacity);
-      if ('metric_opacity' in E) C.effects.metricOpacity = num(E.metric_opacity, C.effects.metricOpacity);
+      if ('particle_brightness' in E) C.effects.particleBrightness = num(E.particle_brightness, 100) / 100;  // 0~100(100=原本)
+      if ('panel_opacity' in E) C.effects.panelOpacity = num(E.panel_opacity, 100) / 100;                    // 0~100(100=原本)
+      if ('metric_opacity' in E) C.effects.metricOpacity = num(E.metric_opacity, 100) / 100;                 // 0~100(100=原本)
       if ('enabled' in SH) C.shop.enabled = !!SH.enabled;
       if ('currency' in SH) C.shop.currency = str(SH.currency, C.shop.currency);
       if ('cjk_speed' in H) C.handwriting.cjkSpeed = num(H.cjk_speed, C.handwriting.cjkSpeed);

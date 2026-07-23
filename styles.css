@@ -14,8 +14,8 @@
   --mono: 'Space Mono', ui-monospace, monospace;
   --panel-op: 1;   /* 玻璃面板不透明度倍率(由 config.ini panel_opacity 控制;越大越實、越小越透) */
   --glass: linear-gradient(160deg, rgba(255,255,255, calc(0.075 * var(--panel-op))), rgba(255,255,255, calc(0.02 * var(--panel-op))));
-  --metric-op: 1; /* 詳情頁指標卡(入手/累積照片/目前個體)不透明度(由 config.ini metric_opacity 控制) */
-  --glass-metric: linear-gradient(160deg, rgba(255,255,255, calc(0.075 * var(--metric-op))), rgba(255,255,255, calc(0.02 * var(--metric-op))));
+  --metric-op: 1; /* 詳情頁指標卡(入手/累積照片/目前個體)不透明度(由 config.ini metric_opacity 控制;100=清楚可見的預設) */
+  --glass-metric: linear-gradient(160deg, rgba(20,32,28, calc(0.55 * var(--metric-op))), rgba(12,22,20, calc(0.4 * var(--metric-op))));
   --glass-border: rgba(255,255,255,0.10);
 }
 
