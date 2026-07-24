@@ -339,14 +339,14 @@
       if (e.photo) {
         var url = driveImg(e.photo, 1600);
         var big = driveImg(e.photo, 2600);
-        photo = '<div class="tl-photo">' +
+        photo = '<div class="tl-photo" data-lay="detail.photo">' +
           '<img src="' + esc(url) + '" alt="' + esc(e.tag || '') + '" onerror="this.style.display=\'none\'">' +
           '<span class="tag">' + esc(e.tag || '') + '</span>' +
           '<span class="idx">' + num + ' / ' + tot + '</span>' +
           '<span class="fs-btn" data-act="zoom" data-url="' + esc(big) + '">⤢ 全螢幕</span>' +
         '</div>';
       } else {
-        photo = '<div class="tl-empty"><span>尚未加入照片</span><span class="tag">' + esc(e.tag || '') + '</span></div>';
+        photo = '<div class="tl-empty" data-lay="detail.photo"><span>尚未加入照片</span><span class="tag">' + esc(e.tag || '') + '</span></div>';
       }
       return '<div class="tl-row">' +
         '<div class="tl-when"><div class="y">' + esc(y) + '</div><div class="md">' + esc(md) + '</div></div>' +
