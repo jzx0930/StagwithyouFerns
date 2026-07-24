@@ -55,12 +55,7 @@
     + '#sf-load .t{font-family:"Space Mono",monospace;font-size:13px;letter-spacing:.2em;color:#bfe6cb;}'
     + '#sf-load .track{width:200px;height:3px;background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden;}'
     + '#sf-load .fill{height:100%;width:0;background:linear-gradient(90deg,#9ad8ab,#bfe6cb);transition:width .3s ease;}'
-    + '#sf-load .orb{width:118px;height:118px;border-radius:50%;position:relative;filter:blur(2px);margin-bottom:6px;'
-    +   'background:conic-gradient(from 0deg,#9ad8ab,#4dd0e1,#bfe6cb,#6ee7b7,#9ad8ab);'
-    +   'box-shadow:0 0 64px 12px rgba(120,220,170,.35);animation:sforbspin 6s linear infinite,sforbbreathe 3.2s ease-in-out infinite;}'
-    + '#sf-load .orb::after{content:"";position:absolute;inset:16px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#fff,transparent 62%);opacity:.75;filter:blur(6px);}'
-    + '@keyframes sforbspin{to{rotate:360deg;}}'
-    + '@keyframes sforbbreathe{0%,100%{scale:.9;}50%{scale:1.08;}}'
+    + '#sf-load .orb{width:132px;height:132px;position:relative;display:flex;align-items:center;justify-content:center;margin-bottom:4px;}'
     + 'body.sf-on{overflow:hidden;}';
   var st = document.createElement('style'); st.id = 'sf-intro-style'; st.textContent = CSS; document.head.appendChild(st);
 
@@ -102,6 +97,10 @@
     root.appendChild(c);
     mv.push(v); scn.push(d); cap.push(c);
   });
+
+  // 載入畫面的點陣思考球體
+  var _orb = null;
+  try { var _oc = root.querySelector('#sf-load .orb'); if (_oc && window.SFOrb) _orb = SFOrb.mount(_oc, { size: 130, count: 300 }); } catch (e) {}
 
   var bgp = document.getElementById('sf-p'), land = document.getElementById('sf-land'),
       bar = document.getElementById('sf-bar'), loadBox = document.getElementById('sf-load'),
@@ -145,7 +144,7 @@
     if (flightStarted) return;
     flightStarted = true;
     loadBox.style.opacity = '0';
-    setTimeout(function () { if (loadBox.parentNode) loadBox.style.display = 'none'; }, 500);
+    setTimeout(function () { if (loadBox.parentNode) loadBox.style.display = 'none'; if (_orb) { _orb.stop(); _orb = null; } }, 500);
     running = true; t0 = null;
     if (window.gsap) runFlightGSAP(); else requestAnimationFrame(frame);
     warmLobby();   // 飛越同時,把沒被飛越用到的分類模型預抓進快取,進大廳才不會慢
