@@ -55,6 +55,12 @@
     + '#sf-load .t{font-family:"Space Mono",monospace;font-size:13px;letter-spacing:.2em;color:#bfe6cb;}'
     + '#sf-load .track{width:200px;height:3px;background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden;}'
     + '#sf-load .fill{height:100%;width:0;background:linear-gradient(90deg,#9ad8ab,#bfe6cb);transition:width .3s ease;}'
+    + '#sf-load .orb{width:118px;height:118px;border-radius:50%;position:relative;filter:blur(2px);margin-bottom:6px;'
+    +   'background:conic-gradient(from 0deg,#9ad8ab,#4dd0e1,#bfe6cb,#6ee7b7,#9ad8ab);'
+    +   'box-shadow:0 0 64px 12px rgba(120,220,170,.35);animation:sforbspin 6s linear infinite,sforbbreathe 3.2s ease-in-out infinite;}'
+    + '#sf-load .orb::after{content:"";position:absolute;inset:16px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#fff,transparent 62%);opacity:.75;filter:blur(6px);}'
+    + '@keyframes sforbspin{to{rotate:360deg;}}'
+    + '@keyframes sforbbreathe{0%,100%{scale:.9;}50%{scale:1.08;}}'
     + 'body.sf-on{overflow:hidden;}';
   var st = document.createElement('style'); st.id = 'sf-intro-style'; st.textContent = CSS; document.head.appendChild(st);
 
@@ -70,7 +76,7 @@
     + '<div class="eb">' + (_SCS.eyebrow || 'HERBARIUM · 成長紀錄') + '</div><h1>' + (_SCS.title || 'StagwithyouFerns') + '</h1>'
     + '<div class="chips"><span>鹿角蕨</span><span>棒槌</span><span>仙人掌</span><span>龍舌蘭</span><span>塊根</span><span>大戟</span><span>觀葉</span><span>美照</span></div>'
     + '<a class="enter" id="sf-enter"><span class="rip"></span>進入大廳 →</a></div></div>'
-    + '<div id="sf-load"><div class="t" id="sf-loadt">載入中 0 / ' + N + '</div><div class="track"><div class="fill" id="sf-loadf"></div></div></div>'
+    + '<div id="sf-load"><div class="orb"></div><div class="t" id="sf-loadt">載入中 0 / ' + N + '</div><div class="track"><div class="fill" id="sf-loadf"></div></div></div>'
     + '<div class="bar" id="sf-bar"></div>'
     + '<div class="skip" id="sf-skip">跳過開場 →</div>';
   document.body.appendChild(root);
