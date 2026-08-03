@@ -18,7 +18,7 @@ description: 當使用者說「開始更新」時觸發。檢查 Google Drive「
 ### Drive 資料夾格式(硬碟上,連字號 `-`)
 - **分類夾** = `屬名-中文`,例 `Platycerium-鹿角蕨`、`Cactaceae-仙人掌`、`Agave-龍舌蘭`。
 - **植物夾** = `種小名/園藝名-中文`,例 `elephantotis-象耳`、`Geisha-藝伎`、`williamsii-烏羽玉`。
-- **個體夾** = `#01`、`#02`…(**不改**)。
+- **個體夾** = `#01`、`#02`…(**不改**)。個體夾也可帶暱稱:`#編號-暱稱`(中或英),例 `#04-彩虹野銀`、`#01-Auburn River`、`#14-鹿角有毒的野銀7號 SBD#7`。**資料夾一律不改**;寫入 data.json 時把它拆成 `label="#編號"` + 新欄位 `name="暱稱"`。
 - **已是純英文**(如 `Akki`、`Nano`、`E`)→ **不動**。
 
 ### 分類屬名對照
@@ -81,6 +81,7 @@ description: 當使用者說「開始更新」時觸發。檢查 Google Drive「
 - **植物**:植物夾名用**第一個 `-`** 切:左=latin、右=中文=`name`(無中文就用整個資料夾名,如 `P.willinckii Yellow moon…`)。`category` = 分類中文部分,但**棒槌類一律填「棒槌」**(對應 data.json 的 `棒槌Pachypodium`,app.js 用 `c.zh` 精確比對;填「棒槌樹」會對不上而消失)。
 - **latin** = 屬名 + 種名。屬名取分類夾 latin,**但這幾類要用該株「真正的屬」而非分類名**:仙人掌(Cactaceae 是科)→ 用真正屬如 `Lophophora`/`Astrophytum`;塊根(Caudex)、大戟(Euphorbiaceae 是科)→ 用真正屬;**觀葉(Foliage)→ 用 `Alocasia` 等真正屬,不是 Foliage**。鹿角蕨/棒槌/龍舌蘭的分類夾 latin 本就是正確屬名。植物夾 latin 已含屬名(如 `Platycerium wandae`)就不重複加。
 - **個體**:`#NN` 夾 → `{ "label":"#NN", "cover":<該個體最新照片ID>, "timeline":[...] }`;直接放植物夾的照片 → 未編號個體(`label:""`)。巢狀 `#01/#01` 用最外層 label。
+  - **個體帶暱稱** `#NN-暱稱`(如 `#04-彩虹野銀`):拆成 `label="#NN"` + `name="暱稱"`(暱稱可中可英,連字號後整串都算暱稱,連 `SBD#7` 這種也照收)。app.js 詳情頁「選擇個體」與「目前個體」用 `indivLabel()` 顯示成「**暱稱（#NN)**」(暱稱為主、編號括號小字);無暱稱則只顯示 `#NN`。
 - **時間軸節點**:`date` 由檔名解析(`YYYY:M:D HH:MM:SS` / `YYYY年M月D日` / `YYYY M D HH MM SS` → `YYYY.MM.DD`);`photo`=Drive 檔案 ID;`tag`/`note` 可系統化。app.js 自動依日期排序、最新在最上。
 - **空資料夾(無照片)不產生植物**。
 - **cover**:用該株最新一張照片 ID;分類 `cover` 可留空。
@@ -105,5 +106,9 @@ description: 當使用者說「開始更新」時觸發。檢查 Google Drive「
 - **這些暱稱株的完整 latin 以 data.json 為準(含品種引號)。全樹重建時,資料夾名只切得出屬名,務必套上本對照表補回正確 latin,不要用資料夾名蓋掉。**
 - 2026-07-20 開始更新新植物:亞阿相界=`Pachypodium geayi`、安哥拉葡萄甕=`Cyphostemma uter var. macropus`、綠鬼玉=`Euphorbia decepta`、金輪際=`Euphorbia gorgonis`、法利達=`Euphorbia valida`、九頭龍=`Euphorbia inermis`、貴清玉/布紋球=`Euphorbia meloformis`、群星冠=`Euphorbia stellispina`、萬象=`Haworthia maughanii`、三叉戟=`Platycerium 'Trident'`(Mt Lewis×hillii)、玉女=`Platycerium willinckii 'Jade Girl'`、珍妮=`Platycerium willinckii 'Jenny'`、侏儒塔蘇塔=`Platycerium willinckii 'Dwarf Tatsuta'`。查不到維持中文:蒼鬼塔、群星際、寶塔摩蘿。
 - 2026-07-22 新植物(鹿角蕨,英文名多為飼主自訂):捲捲鹿=`Platycerium 'Foong Si Qi'`、北猴=`Platycerium 'Monkoy North'`、黃月=`Platycerium willinckii 'Yellow Moon'`、馬塔塔=`Platycerium 'Hakuna Matata'`、藍景=`Platycerium 'Blue Vista'`、Blue Ribbon #1/#2=`Platycerium bifurcatum 'Blue Ribbon'`(#1 含 Mt.Sugim sporelings 交)、Namo=`Platycerium 'Namo'`、雷電xK銀x小手指x白爪哇=交種(維持中文,latin=`Platycerium hybrid`)。
+- 2026-08-03 大批新增(使用者確認暱稱 + 修正打錯字):
+  - 鹿角蕨:爆米花='Popcorn'、愛麗絲='Alice'、細葉皇冠=coronarium(細葉型)、捲捲皇冠=coronarium(捲葉型)、馬達加斯加圓盾=alcicorne、非洲圓盾=alcicorne、侏儒捲葉亞猴=ridleyi、細葉亞猴=ridleyi、高冠女王=wandae、侏儒捲葉女王=wandae、深綠龍(Hilli Drang)=`hillii 'Drang'`、深綠=hillii、雷神='Thor'、月光='Moonlight'、清姬='Kiyohime'。**打錯字修正**:非非達爾文→飛飛達爾文(Darwin)、銀鹿立葉→銀葉立葉(veitchii)。**查不到維持中文**:細菌、深綠龍x野銀(交種)。
+  - 非鹿角蕨:南非龜甲龍=`Dioscorea elephantipes`(塊根)、黑騎士=`Echeveria 'Black Knight'`(多肉)、斑馬=`Alocasia zebrina`(觀葉)。**查不到維持中文**:單刺蓬萊宮(仙人掌)、鬼精棒(棒槌空夾)。
+  - **個體暱稱**(奧銀 veitchii-奧銀 多株,`#NN-暱稱` 格式):#01/#05/#06=Auburn River、#02=野銀、#04=彩虹野銀、#07=炎陽、#08=傑克森、#09=Katsu、#10=Wild AUS、#11/#12/#13=Wild、#14=鹿角有毒的野銀7號 SBD#7、#03(無暱稱)。
 - 純英文不動:Akki、E、YAL、Namo、Blue Ribbon(#1/#2)。仍待補:情花few。
 - Nano/OMG:Drive 夾已改成 `P. Willinckii Nano`/`P. Willinckii OMG`,但**網站顯示名維持短的 `Nano`/`OMG`**,latin=`Platycerium willinckii 'Nano'`/`Platycerium willinckii 'OMG'`(全樹重建時別用資料夾長名蓋掉顯示名)。

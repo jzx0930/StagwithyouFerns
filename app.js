@@ -73,6 +73,12 @@
     if (Array.isArray(p.individuals) && p.individuals.length) return p.individuals;
     return [{ label: '', cover: p.cover || '', timeline: p.timeline || [] }];
   }
+  // 個體顯示:有暱稱→「暱稱（#NN）」;只有編號→「#NN」;只有暱稱→「暱稱」;都沒有→「未編號」
+  function indivLabel(iv) {
+    var nm = iv && iv.name, lb = iv && iv.label;
+    if (nm && lb) return nm + '（' + lb + '）';
+    return nm || lb || '未編號';
+  }
   function photoCount(p) {
     return normIndiv(p).reduce(function (s, iv) { return s + ((iv.timeline || []).length); }, 0);
   }
@@ -357,20 +363,19 @@
     }).join('');
     if (!total) rows = '<p class="subtitle" style="margin-left:108px;">這個個體還沒有照片。</p>';
 
-    var showIndiv = indivs.length > 1 || (indivs.length === 1 && !!cur.label);
+    var showIndiv = indivs.length > 1 || (indivs.length === 1 && (!!cur.label || !!cur.name));
     var picker = '';
     if (showIndiv) {
       picker = '<div class="tl-head"><h2>選擇個體</h2><div class="tl-order">共 ' + indivs.length + ' 株</div></div>' +
         '<div class="tabs">' + indivs.map(function (iv, i) {
-          var lbl = iv.label || '未編號';
           return '<div class="tab' + (i === ii ? ' active' : '') + '" data-act="indiv" data-i="' + i + '">' +
-            esc(lbl) + '<span class="c">' + ((iv.timeline || []).length) + '</span></div>';
+            esc(indivLabel(iv)) + '<span class="c">' + ((iv.timeline || []).length) + '</span></div>';
         }).join('') + '</div>';
     }
 
     var no = String(state.selected + 1).padStart(3, '0');
     var indivMetric = showIndiv
-      ? '<div class="metric"><div class="k">目前個體</div><div class="v">' + esc(cur.label || '未編號') + '</div></div>'
+      ? '<div class="metric"><div class="k">目前個體</div><div class="v">' + esc(indivLabel(cur)) + '</div></div>'
       : '';
 
     app.innerHTML = '<div class="wrap narrow">' +
