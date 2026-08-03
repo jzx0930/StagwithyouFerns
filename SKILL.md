@@ -68,6 +68,7 @@ description: 當使用者說「開始更新」時觸發。檢查 Google Drive「
   2. 有 append 的話,是否已請使用者跑 `tools/run_rename.bat` 並**重新 Glob 驗證**每個資料夾都變成「英文-中文」?
   3. Drive 是否**已無**純中文暱稱夾(YAL/OMG/Akki/Nano 等純英文除外)?
   4. data.json 是否也同步正確(name 中文、latin 帶品種名)?
+  5. 這次新增的植物,是否都在 `plant-notes.js` 補了介紹小筆記(美照相簿除外)?
   只要有一項沒做到,就是沒收尾完。
 
 ## 更新 data.json(保留 categories/_說明,只動 plants)
@@ -92,6 +93,20 @@ description: 當使用者說「開始更新」時觸發。檢查 Google Drive「
 - `run_rename.bat`:**純 ASCII**、`chcp 65001`、以 `-ExecutionPolicy Bypass` 依序呼叫兩支 `.ps1`。
 - **累加式**:每次「開始更新」只 **append** 新的 `Rn` 行,**不刪**舊行;重跑整支腳本時,已改好的自動跳過。
 - **`optimize_models.bat` 換電腦前提**:此腳本只依賴 **Node.js + gltf-transform**(bat 會自動 `npm install -g @gltf-transform/cli`),**與桌面的 `glb-optimization-master-main` 無關**(那套沒被引用,可刪)。換電腦要壓縮需:(1) 裝 Node.js、(2) 把各模型原始檔放回 `models\<屬名>\未壓縮\<屬名>.glb`(這些被 `.gitignore` 擋住、不會隨 repo 過去)。若新電腦只是瀏覽/部署網站,壓好的 glb 已在 repo 內,**不用跑壓縮**。
+
+## 植物介紹筆記(plant-notes.js)——每株都要有
+
+- **筆記系統獨立於 data.json**:放在 repo 根目錄 `plant-notes.js` 的 `window.PLANT_NOTES`,key = 植物中文名(要與 data.json 的 `name` 一致)。**Drive 重建不會覆蓋它**,所以筆記寫這裡最安全。詳情頁把它顯示成置中的「植物介紹」區塊。
+- **規範:每一株植物都應有一則介紹小筆記**(相簿「美照」除外)。「開始更新」新增植物後,要檢查 `plant-notes.js` 有沒有涵蓋新株,缺的補上。
+- **筆記格式**(照 `阿拉伯沙枚` / 塊根那批的既定風格):
+  1. 第一行 `***學名***`(斜體);第二行 `**中文名 — 科/屬,一句特色定位**`(粗體)。
+  2. 一段 2–3 句生動描述(外觀、由來、玩家眼中的定位)。
+  3. 分隔線一行:`˚°˖✿˖°˚ ˚°˖✿˖°˚ ˚°˖✿˖°˚ ˚°˖✿˖°˚ ˚°˖✿˖°˚`。
+  4. `小知識💡`:原產地、夏型/冬型與生長/休眠節奏。
+  5. `📝養護筆記`:難度(⭐️ 星等)、光照、澆水、休眠、介質,各一行。
+  - 語法:`**粗體**`、`***斜體***`、換行用 `\n`。
+- **使用者可能會自己寫**(像 `四叉` 是第一人稱手記);已有內容不要覆蓋,只補缺的。
+- **鹿角蕨品種/交種**養護大同小異,可用 Platycerium 通用養護 + 該株特色(原生種→產地習性、品種/交種→辨識與由來);原生種可寫該種的具體產地與休眠特性。
 
 ## 今日已建立的對照(範例,供延用)
 - 分類:仙人掌→Cactaceae、塊根→Caudex、大戟→Euphorbiaceae、龍舌蘭→Agave、美照→Gallery。

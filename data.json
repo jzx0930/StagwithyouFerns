@@ -94,7 +94,7 @@
     },
     {
       "name": "愛麗絲",
-      "latin": "Platycerium 'Alice'",
+      "latin": "Platycerium ellisii",
       "category": "鹿角蕨",
       "date": "2026.08.02",
       "note": "",
@@ -166,7 +166,7 @@
     },
     {
       "name": "飛飛達爾文",
-      "latin": "Platycerium Darwin",
+      "latin": "Platycerium 'Darwin'",
       "category": "鹿角蕨",
       "date": "2026.08.02",
       "note": "",
@@ -330,7 +330,7 @@
     },
     {
       "name": "雷神",
-      "latin": "Platycerium 'Thor'",
+      "latin": "Platycerium hillii cv. 'Raijin'",
       "category": "鹿角蕨",
       "date": "2026.08.02",
       "note": "",
@@ -452,7 +452,7 @@
     },
     {
       "name": "月光",
-      "latin": "Platycerium 'Moonlight'",
+      "latin": "Platycerium willinckii cv. 'Moonlight'",
       "category": "鹿角蕨",
       "date": "2026.08.02",
       "note": "",
@@ -530,7 +530,7 @@
     },
     {
       "name": "深綠龍x野銀",
-      "latin": "Platycerium hybrid",
+      "latin": "Platycerium hillii 'Drang' × willinckii",
       "category": "鹿角蕨",
       "date": "2026.08.02",
       "note": "",
@@ -552,7 +552,7 @@
     },
     {
       "name": "細菌",
-      "latin": "Platycerium",
+      "latin": "Platycerium willinckii cv.",
       "category": "鹿角蕨",
       "date": "2026.08.02",
       "note": "",
@@ -574,7 +574,7 @@
     },
     {
       "name": "雷電xK銀x小手指x白爪哇",
-      "latin": "Platycerium hybrid",
+      "latin": "Platycerium (雷電 × K銀 × 小手指 × 白爪哇) hybrid",
       "category": "鹿角蕨",
       "date": "2026.08.02",
       "note": "",
@@ -972,7 +972,7 @@
     },
     {
       "name": "金童",
-      "latin": "Platycerium GoldenBoy",
+      "latin": "Platycerium willinckii dwarf cv. 'Golden Boy'",
       "category": "鹿角蕨",
       "date": "2026.08.02",
       "note": "",
@@ -1389,7 +1389,7 @@
     },
     {
       "name": "獨角獸",
-      "latin": "Platycerium Unicorn",
+      "latin": "Platycerium 'Unicorn'",
       "category": "鹿角蕨",
       "date": "2026.08.02",
       "note": "",
@@ -1487,7 +1487,7 @@
     },
     {
       "name": "E-1 Katsu",
-      "latin": "Platycerium E-1 Katsu",
+      "latin": "Platycerium cv. 'Katsu'",
       "category": "鹿角蕨",
       "date": "2026.08.02",
       "note": "",
@@ -1879,7 +1879,7 @@
     },
     {
       "name": "Blue Ribbon #1 / Mt.Sugim Sporelings",
-      "latin": "Platycerium bifurcatum 'Blue Ribbon' × Mt.Sugim sporelings",
+      "latin": "Platycerium bifurcatum 'Blue Ribbon' × Mt.Sugim sporeling",
       "category": "鹿角蕨",
       "date": "2026.08.02",
       "note": "",
@@ -2351,7 +2351,7 @@
     },
     {
       "name": "YAL",
-      "latin": "Platycerium YAL",
+      "latin": "Platycerium willinckii 'YAL'",
       "category": "鹿角蕨",
       "date": "2026.08.02",
       "note": "",
@@ -2379,7 +2379,7 @@
     },
     {
       "name": "三角四叉",
-      "latin": "Platycerium 'African Oddity'",
+      "latin": "Platycerium 'African Oddity' (quadridichotomum × stemaria)",
       "category": "鹿角蕨",
       "date": "2026.08.02",
       "note": "",
@@ -2567,7 +2567,7 @@
     },
     {
       "name": "P.willinckii Yellow moon x FSQ sporeling",
-      "latin": "Platycerium willinckii 'Yellow Moon' × FSQ sporeling",
+      "latin": "Platycerium willinckii 'Yellow Moon' × 'Foong Si Qi' sporeling",
       "category": "鹿角蕨",
       "date": "2026.08.02",
       "note": "",
@@ -2595,7 +2595,7 @@
     },
     {
       "name": "Akki",
-      "latin": "Platycerium Akki",
+      "latin": "Platycerium 'Akki'",
       "category": "鹿角蕨",
       "date": "2026.08.02",
       "note": "",
@@ -2707,7 +2707,7 @@
     },
     {
       "name": "銀華",
-      "latin": "Platycerium Ginka",
+      "latin": "Platycerium 'Ginka'",
       "category": "鹿角蕨",
       "date": "2026.08.02",
       "note": "",
@@ -2741,7 +2741,7 @@
     },
     {
       "name": "藝伎",
-      "latin": "Platycerium Geisha",
+      "latin": "Platycerium 'Geisha'",
       "category": "鹿角蕨",
       "date": "2026.08.02",
       "note": "",
@@ -3691,7 +3691,7 @@
     },
     {
       "name": "單刺蓬萊宮",
-      "latin": "",
+      "latin": "Mammillaria schumannii",
       "category": "仙人掌",
       "date": "2026.08.02",
       "note": "",
@@ -3713,7 +3713,7 @@
     },
     {
       "name": "銀冠玉",
-      "latin": "Cactaceae fricii",
+      "latin": "Lophophora fricii",
       "category": "仙人掌",
       "date": "2026.07.31",
       "note": "",
@@ -3849,7 +3849,7 @@
     },
     {
       "name": "烏羽玉",
-      "latin": "Cactaceae williamsii",
+      "latin": "Lophophora williamsii",
       "category": "仙人掌",
       "date": "2026.08.02",
       "note": "",
@@ -3919,7 +3919,7 @@
     },
     {
       "name": "猴尾柱",
-      "latin": "Cactaceae colademononis",
+      "latin": "Cleistocactus colademononis",
       "category": "仙人掌",
       "date": "2026.07.27",
       "note": "",
@@ -3953,7 +3953,7 @@
     },
     {
       "name": "紫兜",
-      "latin": "Cactaceae asterias",
+      "latin": "Astrophytum asterias",
       "category": "仙人掌",
       "date": "2026.07.16",
       "note": "",
@@ -4029,7 +4029,7 @@
     },
     {
       "name": "直刺佩雷",
-      "latin": "Cactaceae perezdelarosae",
+      "latin": "Mammillaria perezdelarosae subsp. andersoniana",
       "category": "仙人掌",
       "date": "2026.07.13",
       "note": "",
@@ -4057,7 +4057,7 @@
     },
     {
       "name": "士童",
-      "latin": "Cactaceae castanea",
+      "latin": "Frailea castanea",
       "category": "仙人掌",
       "date": "2026.07.17",
       "note": "",
@@ -4085,7 +4085,7 @@
     },
     {
       "name": "疣仙人",
-      "latin": "Mammillaria",
+      "latin": "Mammillaria sp.",
       "category": "仙人掌",
       "date": "2026.03.19",
       "note": "",
@@ -4129,7 +4129,7 @@
     },
     {
       "name": "子吹烏羽玉",
-      "latin": "Cactaceae williamsii",
+      "latin": "Lophophora williamsii",
       "category": "仙人掌",
       "date": "2026.06.11",
       "note": "",
@@ -4151,7 +4151,7 @@
     },
     {
       "name": "吉祥冠覆輪龍舌蘭",
-      "latin": "Agave potatorum",
+      "latin": "Agave potatorum 'Kissho-kan' f. variegata",
       "category": "龍舌蘭",
       "date": "2026.07.27",
       "note": "",
@@ -4230,7 +4230,7 @@
       ]
     },
     {
-      "name": "阿拉伯沙枚",
+      "name": "阿拉伯沙漠玫瑰",
       "latin": "Adenium arabicum",
       "category": "塊根",
       "date": "2026.07.10",
@@ -4265,7 +4265,7 @@
     },
     {
       "name": "圓葉山烏龜",
-      "latin": "Caudex erecta",
+      "latin": "Stephania erecta",
       "category": "塊根",
       "date": "2026.05.23",
       "note": "",
@@ -4299,7 +4299,7 @@
     },
     {
       "name": "龜甲摩蘿",
-      "latin": "Caudex cyclophylla",
+      "latin": "Matelea cyclophylla",
       "category": "塊根",
       "date": "2026.05.09",
       "note": "",
@@ -4373,7 +4373,7 @@
     },
     {
       "name": "象足漆樹",
-      "latin": "Caudex decaryi",
+      "latin": "Operculicarya pachypus",
       "category": "塊根",
       "date": "2026.05.18",
       "note": "",
@@ -4401,7 +4401,7 @@
     },
     {
       "name": "台灣侏儒羊角玫瑰",
-      "latin": "Caudex obesum",
+      "latin": "Adenium obesum",
       "category": "塊根",
       "date": "2026.06.03",
       "note": "",
@@ -4441,7 +4441,7 @@
     },
     {
       "name": "彎彎曲曲樹",
-      "latin": "Caudex madagascariensis",
+      "latin": "Decarya madagascariensis",
       "category": "塊根",
       "date": "2026.04.29",
       "note": "",
@@ -4463,7 +4463,7 @@
     },
     {
       "name": "沙漠蘇木",
-      "latin": "Caudex meridionalis",
+      "latin": "Senna meridionalis",
       "category": "塊根",
       "date": "2026.05.20",
       "note": "",
@@ -4491,7 +4491,7 @@
     },
     {
       "name": "墨西哥龜甲龍",
-      "latin": "Caudex mexicana",
+      "latin": "Dioscorea mexicana",
       "category": "塊根",
       "date": "2026.05.09",
       "note": "",
@@ -4513,7 +4513,7 @@
     },
     {
       "name": "奇異油甘",
-      "latin": "Caudex mirabilis",
+      "latin": "Phyllanthus mirabilis",
       "category": "塊根",
       "date": "2026.06.05",
       "note": "",
@@ -4847,7 +4847,7 @@
     },
     {
       "name": "白衣魁偉玉",
-      "latin": "Euphorbia horrida",
+      "latin": "Euphorbia horrida var. alba",
       "category": "大戟",
       "date": "2026.07.13",
       "note": "",
@@ -4881,7 +4881,7 @@
     },
     {
       "name": "子吹布紋球",
-      "latin": "Euphorbia meloformis",
+      "latin": "Euphorbia meloformis(子吹/群生型)",
       "category": "大戟",
       "date": "2026.07.13",
       "note": "",
@@ -4965,7 +4965,7 @@
     },
     {
       "name": "絨葉斑葉觀音蓮",
-      "latin": "Alocasia micholitziana",
+      "latin": "Alocasia micholitziana 'Frydek'",
       "category": "觀葉",
       "date": "2026.07.16",
       "note": "",
@@ -4993,7 +4993,7 @@
     },
     {
       "name": "黑葉觀音蓮",
-      "latin": "Alocasia amazonica",
+      "latin": "Alocasia × amazonica",
       "category": "觀葉",
       "date": "2026.07.16",
       "note": "",
