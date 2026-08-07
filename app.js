@@ -391,8 +391,8 @@
         indivMetric +
       '</div>' +
       shopRow(sel, state.selected, true) +
-      (picker ? '<div data-lay="detail.picker">' + picker + '</div>' : '') +
       (noteOf(sel) ? '<div class="plant-intro" data-lay="detail.intro">' + fmtNote(noteOf(sel)) + '</div>' : '') +
+      (picker ? '<div data-lay="detail.picker">' + picker + '</div>' : '') +
       '<div class="tl-head" data-lay="detail.timelineHead"><h2>成長時間軸</h2><div class="tl-order">最新 → 最早</div></div>' +
       '<div data-lay="detail.timeline">' + rows + '</div>' +
       '<div class="detail-footer"><span class="pill-btn" data-act="back-grid">↑ 回到照片牆</span></div>' +
