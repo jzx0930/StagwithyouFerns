@@ -270,3 +270,7 @@ body {
   .tl-card:hover .tl-photo img, .pill-btn:active, .tab:active, .plant-card:active,
   .fs-btn:active, .lb-close:active { transform: none !important; }
 }
+
+/* 個體切換:撕貼紙動畫 */
+[data-lay="detail.timeline"].peeling { position: relative; z-index: 6; }
+.tab.tab-tear { transform: scale(.94) rotate(-2deg); transition: transform .12s ease; }

@@ -407,7 +407,7 @@
     if (window.__fxMode) window.__fxMode(state.view);
     wireInteractions();   // 掛上滑鼠傾斜 / 磁吸(每次重繪後重掛)
     mountModelOrbs();     // 3D 模型 poster 放點陣光球,載入後停掉
-    if (state.view === 'detail') runDetailIntro();
+    if (state.view === 'detail') { runDetailIntro(); wirePeel(); if (_settleIn) { _settleIn = false; settleInTimeline(); } }
   }
 
   // 在每個 <model-viewer> 的 poster 插槽放一顆點陣光球,模型載好(load 事件)或逾時就停掉
@@ -427,6 +427,61 @@
     }
   }
 
+  // ---- 個體切換:撕貼紙動畫(點一下自動撕 / 按住拖曳手動撕;成長時間軸整區被撕走再換新個體)----
+  var _suppressClickUntil = 0, _settleIn = false;
+  function _prepPeel(el) { el.style.transformOrigin = '100% 0%'; el.style.willChange = 'transform,opacity,filter'; el.style.transition = 'none'; el.classList.add('peeling'); }
+  function _applyPeel(el, p) {
+    var rot = p * 11, tx = p * 56, ty = -p * 26, sc = 1 - p * 0.05;
+    el.style.transform = 'perspective(1200px) translate(' + tx + 'px,' + ty + 'px) rotate(' + rot + 'deg) scale(' + sc + ')';
+    el.style.filter = 'drop-shadow(0 ' + (6 + p * 28) + 'px ' + (10 + p * 34) + 'px rgba(0,0,0,' + (0.42 * p) + '))';
+    el.style.opacity = String(1 - p * 0.5);
+  }
+  function _clearPeel(el) { el.style.transform = ''; el.style.filter = ''; el.style.opacity = ''; el.style.transition = ''; el.style.willChange = ''; el.classList.remove('peeling'); }
+  function _animPeel(el, from, to, dur, cb) {
+    var start = performance.now();
+    function step(now) { var t = Math.min(1, (now - start) / dur), e = 1 - Math.pow(1 - t, 3); _applyPeel(el, from + (to - from) * e); if (t < 1) requestAnimationFrame(step); else if (cb) cb(); }
+    requestAnimationFrame(step);
+  }
+  function switchIndiv(i) { _settleIn = true; state.indiv = i; render(); }
+  function settleInTimeline() {
+    var el = app.querySelector('[data-lay="detail.timeline"]'); if (!el) return;
+    _prepPeel(el); _applyPeel(el, 0.5);
+    requestAnimationFrame(function () { _animPeel(el, 0.5, 0, 440, function () { _clearPeel(el); }); });
+  }
+  function wirePeel() {
+    var tl = app.querySelector('[data-lay="detail.timeline"]'); if (!tl) return;
+    var tabs = app.querySelectorAll('[data-act="indiv"]');
+    for (var k = 0; k < tabs.length; k++) (function (tab) {
+      if (tab.__peel) return; tab.__peel = 1;
+      var idx = parseInt(tab.getAttribute('data-i'), 10);
+      var dragging = false, sx = 0, sy = 0, moved = false, peeled = 0, pid = null;
+      tab.addEventListener('pointerdown', function (e) {
+        if (idx === state.indiv) return;
+        e.preventDefault(); dragging = true; moved = false; peeled = 0; pid = e.pointerId; sx = e.clientX; sy = e.clientY;
+        try { tab.setPointerCapture(pid); } catch (_) {}
+        tab.classList.add('tab-tear'); _prepPeel(tl);
+      });
+      tab.addEventListener('pointermove', function (e) {
+        if (!dragging) return;
+        var d = Math.hypot(e.clientX - sx, e.clientY - sy);
+        if (d > 6) moved = true;
+        peeled = Math.max(0, Math.min(1, d / 220));
+        _applyPeel(tl, peeled);
+      });
+      function end() {
+        if (!dragging) return; dragging = false;
+        try { tab.releasePointerCapture(pid); } catch (_) {}
+        tab.classList.remove('tab-tear');
+        _suppressClickUntil = Date.now() + 500;
+        if (!moved) { _animPeel(tl, 0, 1, 360, function () { switchIndiv(idx); }); }
+        else if (peeled > 0.5) { _animPeel(tl, peeled, 1, 300, function () { switchIndiv(idx); }); }
+        else { tl.style.transition = 'transform .3s cubic-bezier(.2,.8,.2,1),opacity .3s,filter .3s'; _applyPeel(tl, 0); setTimeout(function () { _clearPeel(tl); }, 320); }
+      }
+      tab.addEventListener('pointerup', end);
+      tab.addEventListener('pointercancel', end);
+    })(tabs[k]);
+  }
+
   // ---- 事件委派 ----
   app.addEventListener('click', function (ev) {
     var t = ev.target.closest('[data-act]');
@@ -436,7 +491,7 @@
     if (act === 'enter') { state.tab = i; go('grid'); }
     else if (act === 'tab') { state.tab = i; render(); }
     else if (act === 'open') { state.selected = i; state.indiv = 0; go('detail'); }
-    else if (act === 'indiv') { state.indiv = i; render(); }
+    else if (act === 'indiv') { if (Date.now() < _suppressClickUntil) return; state.indiv = i; render(); }
     else if (act === 'lobby' || act === 'lobby-from-detail') { go('lobby'); }
     else if (act === 'back-grid') { go('grid'); }
     else if (act === 'zoom') { openLightbox(t.getAttribute('data-url')); }
