@@ -271,6 +271,13 @@ body {
   .fs-btn:active, .lb-close:active { transform: none !important; }
 }
 
-/* 個體切換:撕貼紙動畫 */
-[data-lay="detail.timeline"].peeling { position: relative; z-index: 6; }
+/* 個體切換:撕貼紙 3D 折翻(正面時間軸 / 背面深綠玻璃) */
+[data-lay="detail.timeline"].peeling { position: relative; z-index: 6; transform-style: preserve-3d; }
+.tl-inner { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.peel-back { position: absolute; inset: 0; transform: rotateX(180deg); backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  border-radius: 20px; border: 1px solid rgba(154,216,171,0.28);
+  background:
+    repeating-linear-gradient(135deg, rgba(255,255,255,0.02) 0 2px, transparent 2px 9px),
+    linear-gradient(158deg, rgba(22,44,37,0.96), rgba(11,24,20,0.96));
+  box-shadow: inset 0 2px 34px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.04); }
 .tab.tab-tear { transform: scale(.94) rotate(-2deg); transition: transform .12s ease; }
