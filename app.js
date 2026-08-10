@@ -407,7 +407,7 @@
     if (window.__fxMode) window.__fxMode(state.view);
     wireInteractions();   // 掛上滑鼠傾斜 / 磁吸(每次重繪後重掛)
     mountModelOrbs();     // 3D 模型 poster 放點陣光球,載入後停掉
-    if (state.view === 'detail') { runDetailIntro(); wirePeel(); preparePeel(); }
+    if (state.view === 'detail') { runDetailIntro(); wirePeel(); }
   }
 
   // 在每個 <model-viewer> 的 poster 插槽放一顆點陣光球,模型載好(load 事件)或逾時就停掉
@@ -427,40 +427,38 @@
     }
   }
 
-  // ---- 個體切換:撕貼紙真捲曲(委派 SFPeel;截不到材質就瞬間切換)----
+  // ---- 個體切換:撕貼紙(撕個體按鈕小貼紙 → 甩飛 → 換個體;截不到就瞬間切換)----
   var _suppressClickUntil = 0;
-  function _tl() { return app.querySelector('[data-lay="detail.timeline"]'); }
-  function preparePeel() { var tl = _tl(); if (tl && window.SFPeel) setTimeout(function () { if (_tl() === tl) SFPeel.prepare(tl); }, 550); }
   function switchIndiv(i) { state.indiv = i; render(); }
   function wirePeel() {
-    var base = _tl(); if (!base) return;
     var tabs = app.querySelectorAll('[data-act="indiv"]');
     for (var k = 0; k < tabs.length; k++) (function (tab) {
       if (tab.__peel) return; tab.__peel = 1;
       var idx = parseInt(tab.getAttribute('data-i'), 10);
-      var ctrl = null, dragging = false, sx = 0, sy = 0, moved = false, pid = null;
-      tab.addEventListener('pointerdown', function (e) {
-        if (idx === state.indiv) return;
-        e.preventDefault(); dragging = true; moved = false; pid = e.pointerId; sx = e.clientX; sy = e.clientY;
-        try { tab.setPointerCapture(pid); } catch (_) {}
-        tab.classList.add('tab-tear');
-        ctrl = (window.SFPeel && _tl()) ? SFPeel.begin(_tl(), function () { switchIndiv(idx); }) : null;
-      });
-      tab.addEventListener('pointermove', function (e) {
+      var ctrl = null, dragging = false, sx = 0, sy = 0, moved = false;
+      function onMove(e) {
         if (!dragging) return;
         var dx = e.clientX - sx, dy = e.clientY - sy;
-        if (Math.hypot(dx, dy) > 6) moved = true;
-        if (ctrl) ctrl.move(dy);
-      });
-      function end() {
+        if (Math.hypot(dx, dy) > 5) moved = true;
+        if (ctrl) ctrl.move(Math.max(dy, Math.hypot(dx, dy) * 0.6));
+      }
+      function onUp() {
         if (!dragging) return; dragging = false;
-        try { tab.releasePointerCapture(pid); } catch (_) {}
-        tab.classList.remove('tab-tear'); _suppressClickUntil = Date.now() + 700;
+        window.removeEventListener('pointermove', onMove, true);
+        window.removeEventListener('pointerup', onUp, true);
+        window.removeEventListener('pointercancel', onUp, true);
+        _suppressClickUntil = Date.now() + 700;
         if (!ctrl) { switchIndiv(idx); return; }
         if (!moved) ctrl.auto(); else ctrl.release();
       }
-      tab.addEventListener('pointerup', end);
-      tab.addEventListener('pointercancel', end);
+      tab.addEventListener('pointerdown', function (e) {
+        if (idx === state.indiv) return;
+        e.preventDefault(); dragging = true; moved = false; sx = e.clientX; sy = e.clientY;
+        ctrl = window.SFPeel ? SFPeel.peelButton(tab, function () { switchIndiv(idx); }) : null;
+        window.addEventListener('pointermove', onMove, true);
+        window.addEventListener('pointerup', onUp, true);
+        window.addEventListener('pointercancel', onUp, true);
+      });
     })(tabs[k]);
   }
 

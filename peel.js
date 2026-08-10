@@ -1,92 +1,102 @@
-/* ===== SFPeel:成長時間軸「撕貼紙真捲曲」引擎 =====
-   prepare(el):用 html2canvas 把 el 截成材質快取(進詳情頁時預先做,撕的時候才即時)。
-   begin(el, onComplete):以快取材質蓋一張 canvas、隱藏 el,回傳控制器 {move(dy)/auto()/release()};
-     沿頂邊把材質畫成圓筒捲曲(前面時間軸、過頂露深綠背面),過半或點擊→甩飛→onComplete。
-   截不到材質(未 prepare 完)時 begin 回 null,呼叫端就退回瞬間切換。 */
+/* ===== SFPeel:撕貼紙捲曲 =====
+   peelButton(tab, onComplete):把個體按鈕畫成一張乾淨小貼紙,沿頂邊捲成圓筒(正面按鈕、翻過頂露深綠背面),
+     跟手指捲、過半甩飛→onComplete;點擊自動捲完甩飛;不夠彈回。直接畫(不截圖),清晰不糊。
+   (舊的整片時間軸截圖捲曲 begin/prepare 仍保留,目前未使用。) */
 (function () {
   'use strict';
-  var H2C = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
-  var R = 48;            // 卷曲半徑(越大越鬆)
-  var h2cP = null;
-  function loadH2C() {
-    if (window.html2canvas) return Promise.resolve();
-    if (h2cP) return h2cP;
-    h2cP = new Promise(function (res, rej) {
-      var s = document.createElement('script'); s.src = H2C; s.onload = function () { res(); }; s.onerror = rej;
-      document.head.appendChild(s);
-    });
-    return h2cP;
-  }
-  function prepare(el) {
-    if (!el) return;
-    loadH2C().then(function () {
-      return window.html2canvas(el, { backgroundColor: null, useCORS: true, scale: Math.min(2, window.devicePixelRatio || 1), logging: false });
-    }).then(function (cv) { el.__tex = cv; }).catch(function () { el.__tex = null; });
+
+  function roundRect(c, x, y, w, h, r) {
+    r = Math.min(r, w / 2, h / 2);
+    c.beginPath();
+    c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r);
+    c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath();
   }
 
-  function drawCurl(octx, tex, W, H, peelY) {
-    var ts = tex.width / W;   // 材質對元件像素比
-    octx.clearRect(-4, -Math.ceil(R * 2) - 60, W + 8, H + Math.ceil(R * 2) + 120);
-    // 未捲的下半(還黏著)
-    if (peelY < H) {
+  // 把材質 tex 依 peelY(頂邊往下的捲線)畫成圓筒捲曲;R=捲曲半徑
+  function drawCurl(octx, tex, W, H, peelY, R) {
+    var ts = tex.width / W, HALF = Math.PI / 2;
+    octx.clearRect(-40, -Math.ceil(R * 2) - 80, W + 80, H + Math.ceil(R * 2) + 160);
+    if (peelY < H) {                                   // 還黏著的下半
       octx.save(); octx.beginPath(); octx.rect(0, peelY, W, H - peelY); octx.clip();
       octx.drawImage(tex, 0, 0, tex.width, tex.height, 0, 0, W, H); octx.restore();
-      var g = octx.createLinearGradient(0, peelY, 0, peelY + 46);   // 捲摺下方陰影
-      g.addColorStop(0, 'rgba(0,0,0,0.40)'); g.addColorStop(1, 'rgba(0,0,0,0)');
-      octx.fillStyle = g; octx.fillRect(0, peelY, W, 46);
+      var g = octx.createLinearGradient(0, peelY, 0, peelY + Math.min(46, R)); // 捲摺下陰影
+      g.addColorStop(0, 'rgba(0,0,0,0.42)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+      octx.fillStyle = g; octx.fillRect(0, peelY, W, Math.min(46, R));
     }
-    // 捲起的上半:只畫「可見捲弧」那段(約 3.5R),更上面的已捲進滾筒內側(隱藏),省效能
-    var HALF = Math.PI / 2, y0 = Math.max(0, Math.floor(peelY - 3.5 * R));
+    var y0 = Math.max(0, Math.floor(peelY - 3.5 * R));  // 只畫可見捲弧
     for (var y = y0; y < peelY; y++) {
       var a = peelY - y, th = a / R;
-      if (th > 3.4) continue;                       // 超過 ~195° 不畫
-      var dy = peelY - R * Math.sin(th);            // 目的 y(頂邊在 peelY-R)
+      if (th > 3.4) continue;
+      var dy = peelY - R * Math.sin(th);
       var hh = Math.max(0.5, Math.abs(Math.cos(th)) * 1.35);
-      if (th <= HALF + 0.02) {                       // 正面(時間軸)
+      if (th <= HALF + 0.02) {                          // 正面
         octx.drawImage(tex, 0, Math.floor(y * ts), tex.width, Math.max(1, Math.ceil(ts)), 0, dy, W, hh);
         var c = Math.cos(th);
         if (c < 0.99) { octx.fillStyle = 'rgba(0,0,0,' + ((1 - c) * 0.34) + ')'; octx.fillRect(0, dy, W, hh); }
-      } else {                                        // 背面(深綠玻璃)
+      } else {                                          // 背面(深綠)
         octx.fillStyle = 'rgba(20,42,35,0.97)'; octx.fillRect(0, dy, W, hh);
         octx.fillStyle = 'rgba(154,216,171,0.10)'; octx.fillRect(0, dy, W, Math.min(hh, 1));
       }
     }
-    // 頂邊高光(捲脊)
-    var cy = peelY - R;
-    var hg = octx.createLinearGradient(0, cy - 7, 0, cy + 7);
-    hg.addColorStop(0, 'rgba(255,255,255,0)'); hg.addColorStop(0.5, 'rgba(255,255,255,0.16)'); hg.addColorStop(1, 'rgba(255,255,255,0)');
-    octx.fillStyle = hg; octx.fillRect(0, cy - 7, W, 14);
+    var cy = peelY - R;                                 // 捲脊高光
+    var hg = octx.createLinearGradient(0, cy - 6, 0, cy + 6);
+    hg.addColorStop(0, 'rgba(255,255,255,0)'); hg.addColorStop(0.5, 'rgba(255,255,255,0.18)'); hg.addColorStop(1, 'rgba(255,255,255,0)');
+    octx.fillStyle = hg; octx.fillRect(0, cy - 6, W, 12);
   }
 
-  function begin(el, onComplete) {
-    var tex = el.__tex; if (!tex) return null;
-    var r = el.getBoundingClientRect(), W = r.width, H = r.height;
-    var pad = Math.ceil(R * 2) + 60, dpr = Math.min(2, window.devicePixelRatio || 1);
+  function drawSticker(fx, W, H, text, active, dpr) {
+    fx.setTransform(dpr, 0, 0, dpr, 0, 0); fx.clearRect(0, 0, W, H);
+    var r = H / 2;
+    // 軟陰影(貼紙下方)
+    roundRect(fx, 1, 2.5, W - 2, H - 2, r); fx.fillStyle = 'rgba(0,0,0,0.28)'; fx.fill();
+    roundRect(fx, 0.75, 0.75, W - 1.5, H - 1.5, r);
+    if (active) { var g = fx.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#a8e2b9'); g.addColorStop(1, '#7cc894'); fx.fillStyle = g; }
+    else { fx.fillStyle = 'rgba(24,34,30,0.92)'; }
+    fx.fill();
+    fx.lineWidth = 1; fx.strokeStyle = active ? 'rgba(255,255,255,0.32)' : 'rgba(255,255,255,0.18)'; fx.stroke();
+    // 上緣一道高光,像貼紙的乙烯反光
+    var sh = fx.createLinearGradient(0, 0, 0, H * 0.5); sh.addColorStop(0, 'rgba(255,255,255,0.16)'); sh.addColorStop(1, 'rgba(255,255,255,0)');
+    roundRect(fx, 0.75, 0.75, W - 1.5, H - 1.5, r); fx.fillStyle = sh; fx.fill();
+    fx.fillStyle = active ? '#06110b' : '#cfe9d6';
+    fx.font = '500 13px "Space Grotesk", system-ui, sans-serif';
+    fx.textAlign = 'center'; fx.textBaseline = 'middle';
+    fx.fillText(text, W / 2, H / 2 + 0.5);
+  }
+
+  function peelButton(tab, onComplete) {
+    var r = tab.getBoundingClientRect(), W = r.width, H = r.height;
+    if (!W || !H) return null;
+    var R = Math.max(20, H * 0.75);                     // 小貼紙的捲曲半徑
+    var dpr = Math.min(2, window.devicePixelRatio || 1);
+    var padT = Math.ceil(R * 2) + 26, padX = 26, padB = 22;
+    var text = (tab.textContent || '').replace(/\s+/g, ' ').trim();
+    var active = tab.classList.contains('active');
+    // 前面材質(直接畫,清晰)
+    var fc = document.createElement('canvas'); fc.width = Math.round(W * dpr); fc.height = Math.round(H * dpr);
+    drawSticker(fc.getContext('2d'), W, H, text, active, dpr);
+    // 疊在按鈕上的畫布
     var cv = document.createElement('canvas');
-    cv.width = Math.round(W * dpr); cv.height = Math.round((H + pad) * dpr);
-    cv.style.cssText = 'position:fixed;left:' + r.left + 'px;top:' + (r.top - pad) + 'px;width:' + W + 'px;height:' + (H + pad) + 'px;z-index:50;pointer-events:none;will-change:transform,opacity;';
+    cv.width = Math.round((W + padX * 2) * dpr); cv.height = Math.round((H + padT + padB) * dpr);
+    cv.style.cssText = 'position:fixed;left:' + (r.left - padX) + 'px;top:' + (r.top - padT) + 'px;width:' + (W + padX * 2) + 'px;height:' + (H + padT + padB) + 'px;z-index:60;pointer-events:none;will-change:transform,opacity;';
     document.body.appendChild(cv);
-    var octx = cv.getContext('2d'); octx.setTransform(dpr, 0, 0, dpr, 0, 0); octx.translate(0, pad);   // 讓 y=0 = 元件頂
-    el.style.visibility = 'hidden';
-    var peelY = 0, alive = true;
-    function render() { drawCurl(octx, tex, W, H, peelY); }
+    var octx = cv.getContext('2d'); octx.setTransform(dpr, 0, 0, dpr, 0, 0); octx.translate(padX, padT);
+    tab.style.visibility = 'hidden';
+    var peelY = 0, alive = true, SPAN = H * 1.35;
+    function render() { drawCurl(octx, fc, W, H, peelY, R); }
     render();
-    function cleanup(restore) { alive = false; if (cv.parentNode) cv.parentNode.removeChild(cv); if (restore) el.style.visibility = ''; }
+    function cleanup(restore) { alive = false; if (cv.parentNode) cv.parentNode.removeChild(cv); if (restore) tab.style.visibility = ''; }
     function fling() {
-      cv.style.transition = 'transform .52s cubic-bezier(.4,0,.7,-0.12), opacity .52s ease-in';
-      cv.style.transform = 'translate(12%,-132%) rotate(13deg) scale(.82)'; cv.style.opacity = '0';
-      setTimeout(function () { cleanup(false); if (onComplete) onComplete(); }, 500);
+      cv.style.transition = 'transform .5s cubic-bezier(.4,0,.7,-0.15), opacity .5s ease-in';
+      cv.style.transform = 'translate(6%,-150%) rotate(10deg) scale(.8)'; cv.style.opacity = '0';
+      setTimeout(function () { cleanup(false); if (onComplete) onComplete(); }, 480);
     }
-    function snapBack() {
-      var from = peelY, s = performance.now();
-      (function step(n) { var t = Math.min(1, (n - s) / 300), e = 1 - Math.pow(1 - t, 3); peelY = from * (1 - e); render(); if (t < 1) requestAnimationFrame(step); else cleanup(true); })(performance.now());
-    }
+    function snapBack() { var f = peelY, s = performance.now(); (function step(n) { var t = Math.min(1, (n - s) / 260), e = 1 - Math.pow(1 - t, 3); peelY = f * (1 - e); render(); if (t < 1) requestAnimationFrame(step); else cleanup(true); })(performance.now()); }
     return {
-      move: function (dy) { if (!alive) return; peelY = Math.max(0, Math.min(H, dy)); render(); },
-      auto: function () { var s = performance.now(); (function step(n) { if (!alive) return; var t = Math.min(1, (n - s) / 440), e = 1 - Math.pow(1 - t, 3); peelY = H * e; render(); if (t < 1) requestAnimationFrame(step); else fling(); })(performance.now()); },
-      release: function () { if (!alive) return; if (peelY > H * 0.42) fling(); else snapBack(); }
+      move: function (dy) { if (!alive) return; peelY = Math.max(0, Math.min(H, dy / SPAN * H)); render(); },
+      auto: function () { var s = performance.now(); (function step(n) { if (!alive) return; var t = Math.min(1, (n - s) / 380), e = 1 - Math.pow(1 - t, 3); peelY = H * e; render(); if (t < 1) requestAnimationFrame(step); else fling(); })(performance.now()); },
+      release: function () { if (!alive) return; if (peelY > H * 0.5) fling(); else snapBack(); }
     };
   }
 
-  window.SFPeel = { prepare: prepare, begin: begin };
+  window.SFPeel = { peelButton: peelButton };
 })();
