@@ -407,7 +407,7 @@
     if (window.__fxMode) window.__fxMode(state.view);
     wireInteractions();   // 掛上滑鼠傾斜 / 磁吸(每次重繪後重掛)
     mountModelOrbs();     // 3D 模型 poster 放點陣光球,載入後停掉
-    if (state.view === 'detail') { runDetailIntro(); wirePeel(); if (_settleIn) { _settleIn = false; settleInTimeline(); } }
+    if (state.view === 'detail') { runDetailIntro(); wirePeel(); preparePeel(); }
   }
 
   // 在每個 <model-viewer> 的 poster 插槽放一顆點陣光球,模型載好(load 事件)或逾時就停掉
@@ -427,78 +427,37 @@
     }
   }
 
-  // ---- 個體切換:撕貼紙 3D 折翻(沿頂邊從手指位置翻折露出深綠背面 → 整片甩飛 → 換新個體)----
-  var _suppressClickUntil = 0, _settleIn = false, MAXA = 168;
+  // ---- 個體切換:撕貼紙真捲曲(委派 SFPeel;截不到材質就瞬間切換)----
+  var _suppressClickUntil = 0;
   function _tl() { return app.querySelector('[data-lay="detail.timeline"]'); }
-  function _startPeel(tl, gxPct) {
-    tl.style.transformStyle = 'preserve-3d';
-    tl.style.transformOrigin = (gxPct == null ? 50 : gxPct) + '% 0%';
-    tl.style.transition = 'none'; tl.style.willChange = 'transform,opacity';
-    if (!tl.querySelector('.peel-back')) { var b = document.createElement('div'); b.className = 'peel-back'; tl.appendChild(b); }
-    tl.classList.add('peeling');
-  }
-  function _fold(tl, ang) {
-    tl.__ang = ang;
-    tl.style.transform = 'perspective(1500px) rotateX(' + ang + 'deg)';
-    var p = Math.min(1, -ang / MAXA);
-    tl.style.filter = 'drop-shadow(0 ' + (8 + p * 30) + 'px ' + (14 + p * 40) + 'px rgba(0,0,0,' + (0.14 + 0.42 * p) + '))';
-  }
-  function _foldTo(tl, target, dur, cb) {
-    var from = tl.__ang || 0, start = performance.now();
-    function step(now) { var t = Math.min(1, (now - start) / dur), e = 1 - Math.pow(1 - t, 3); _fold(tl, from + (target - from) * e); if (t < 1) requestAnimationFrame(step); else if (cb) cb(); }
-    requestAnimationFrame(step);
-  }
-  function _fling(tl, cb) {
-    tl.style.transition = 'transform .5s cubic-bezier(.36,0,.66,-0.2), opacity .5s ease-in';
-    tl.style.transform = 'perspective(1500px) rotateX(-140deg) translate3d(18%, -170%, 260px) rotate(16deg) scale(.82)';
-    tl.style.opacity = '0';
-    setTimeout(function () { if (cb) cb(); }, 470);
-  }
-  function _clearPeel(tl) {
-    var b = tl.querySelector('.peel-back'); if (b) b.remove();
-    tl.style.transform = ''; tl.style.filter = ''; tl.style.opacity = ''; tl.style.transition = '';
-    tl.style.transformStyle = ''; tl.style.transformOrigin = ''; tl.style.willChange = ''; tl.__ang = 0;
-    tl.classList.remove('peeling');
-  }
-  function switchIndiv(i) { _settleIn = true; state.indiv = i; render(); }
-  function settleInTimeline() {                 // 新個體時間軸從深綠背面翻回正面
-    var tl = _tl(); if (!tl) return;
-    _startPeel(tl, 50); _fold(tl, -150); tl.style.opacity = '0';
-    requestAnimationFrame(function () {
-      tl.style.transition = 'transform .5s cubic-bezier(.2,.9,.25,1), opacity .38s';
-      tl.style.opacity = '1'; _foldTo(tl, 0, 500, function () { _clearPeel(tl); });
-    });
-  }
+  function preparePeel() { var tl = _tl(); if (tl && window.SFPeel) setTimeout(function () { if (_tl() === tl) SFPeel.prepare(tl); }, 550); }
+  function switchIndiv(i) { state.indiv = i; render(); }
   function wirePeel() {
-    var tl = _tl(); if (!tl) return;
+    var base = _tl(); if (!base) return;
     var tabs = app.querySelectorAll('[data-act="indiv"]');
     for (var k = 0; k < tabs.length; k++) (function (tab) {
       if (tab.__peel) return; tab.__peel = 1;
       var idx = parseInt(tab.getAttribute('data-i'), 10);
-      var dragging = false, sy = 0, sx = 0, moved = false, pid = null;
+      var ctrl = null, dragging = false, sx = 0, sy = 0, moved = false, pid = null;
       tab.addEventListener('pointerdown', function (e) {
         if (idx === state.indiv) return;
         e.preventDefault(); dragging = true; moved = false; pid = e.pointerId; sx = e.clientX; sy = e.clientY;
         try { tab.setPointerCapture(pid); } catch (_) {}
-        var r = tl.getBoundingClientRect();
-        var gx = Math.max(4, Math.min(96, (e.clientX - r.left) / r.width * 100));   // 從手指的水平位置起折
-        tab.classList.add('tab-tear'); _startPeel(tl, gx); _fold(tl, 0);
+        tab.classList.add('tab-tear');
+        ctrl = (window.SFPeel && _tl()) ? SFPeel.begin(_tl(), function () { switchIndiv(idx); }) : null;
       });
       tab.addEventListener('pointermove', function (e) {
         if (!dragging) return;
         var dx = e.clientX - sx, dy = e.clientY - sy;
         if (Math.hypot(dx, dy) > 6) moved = true;
-        var prog = Math.max(0, Math.min(1, dy / 300));   // 往下拖 300px = 折滿
-        _fold(tl, -prog * MAXA);
+        if (ctrl) ctrl.move(dy);
       });
       function end() {
         if (!dragging) return; dragging = false;
         try { tab.releasePointerCapture(pid); } catch (_) {}
         tab.classList.remove('tab-tear'); _suppressClickUntil = Date.now() + 700;
-        var a = -(tl.__ang || 0);
-        if (!moved) { _foldTo(tl, -150, 340, function () { _fling(tl, function () { switchIndiv(idx); }); }); }  // 點擊:固定自動撕完再甩飛
-        else if (a > MAXA * 0.5) { _fling(tl, function () { switchIndiv(idx); }); }                              // 拖過半:甩飛
-        else { _foldTo(tl, 0, 300, function () { _clearPeel(tl); }); }                                           // 不夠:彈回
+        if (!ctrl) { switchIndiv(idx); return; }
+        if (!moved) ctrl.auto(); else ctrl.release();
       }
       tab.addEventListener('pointerup', end);
       tab.addEventListener('pointercancel', end);

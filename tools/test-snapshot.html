@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Drive 截圖 CORS 檢測</title>
+<style>
+  body{margin:0;background:#0a0f0d;color:#eef4ef;font-family:system-ui,"PingFang TC","Microsoft JhengHei",sans-serif;padding:24px;line-height:1.6;}
+  h1{font-size:18px;margin:0 0 4px;} .sub{color:#8fb0a0;font-size:13px;margin:0 0 20px;}
+  #verdict{font-size:22px;font-weight:700;padding:16px 18px;border-radius:12px;margin:18px 0;border:1px solid rgba(255,255,255,.12);}
+  .ok{background:rgba(60,180,110,.18);color:#8bf0b4;} .bad{background:rgba(230,80,80,.16);color:#ff9a9a;} .wait{background:rgba(255,255,255,.06);color:#cfe9d6;}
+  .row{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start;}
+  .box{flex:1;min-width:220px;} .box b{display:block;font-size:12px;color:#9fb2a8;margin-bottom:6px;}
+  img,canvas{max-width:100%;border-radius:10px;border:1px solid rgba(255,255,255,.12);display:block;}
+  code{background:rgba(255,255,255,.08);padding:1px 6px;border-radius:5px;font-size:12px;}
+</style></head>
+<body>
+<h1>Drive 照片截圖 CORS 檢測</h1>
+<p class="sub">測試「成長時間軸截圖(WebGL 真捲曲)」是否可行:能不能把 Google Drive 的照片畫進 canvas 並讀取像素。</p>
+
+<div id="verdict" class="wait">檢測中… 請稍候</div>
+
+<div class="row">
+  <div class="box"><b>① 原圖(直接 &lt;img&gt;,一定看得到)</b><img id="plain" alt=""></div>
+  <div class="box"><b>② canvas 重繪(截圖模擬;看得到=可截圖)</b><canvas id="cv" width="400" height="300"></canvas></div>
+</div>
+
+<p class="sub" style="margin-top:20px">結果說明:<br>
+✅ <b>可截圖</b> → 右邊 canvas 會出現照片、且能讀像素 → WebGL 真捲曲可行(走方案 1)。<br>
+❌ <b>截不到</b> → canvas 空白或報 tainted → Drive 照片無法截圖 → 改走方案 2(只讓個體按鈕做真撕貼紙)。</p>
+
+<script>
+  // 用一張真實的植物照片(捲捲鹿封面)測試
+  var ID = "1dAkvsMeBZ8jNKB--lK0fhR79U2NtJBZI";
+  var URL = "https://lh3.googleusercontent.com/d/" + ID + "=w400";
+  var v = document.getElementById('verdict');
+  function set(cls, txt){ v.className = cls; v.textContent = txt; }
+
+  // ① 純顯示(不設 crossOrigin,一定顯示)
+  document.getElementById('plain').src = URL;
+
+  // ② 測 CORS:crossOrigin=anonymous 載入 → 畫到 canvas → getImageData
+  var test = new Image();
+  test.crossOrigin = "anonymous";
+  test.onload = function(){
+    try{
+      var cv = document.getElementById('cv'), ctx = cv.getContext('2d');
+      cv.width = test.naturalWidth; cv.height = test.naturalHeight;
+      ctx.drawImage(test, 0, 0);
+      ctx.getImageData(0, 0, 2, 2);            // 若 tainted 會丟例外
+      set('ok', "✅ 可截圖!Drive 照片能畫進 canvas 並讀像素 → WebGL 真捲曲可行(方案 1)");
+    }catch(err){
+      set('bad', "❌ 截不到:canvas 被 tainted(" + err.name + ")→ 改走方案 2");
+    }
+  };
+  test.onerror = function(){
+    set('bad', "❌ 截不到:crossOrigin 載入失敗(Drive 沒給 CORS 標頭)→ 改走方案 2");
+  };
+  test.src = URL;
+</script>
+</body></html>
