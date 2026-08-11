@@ -44,15 +44,15 @@
   function drawSticker(fx, W, H, text, active, dpr) {
     fx.setTransform(dpr, 0, 0, dpr, 0, 0); fx.clearRect(0, 0, W, H);
     var r = H / 2;
+    // 乾淨綠色乙烯貼紙(不分選中,避免深色本體看起來像陰影暗塊)
     roundRect(fx, 0.75, 0.75, W - 1.5, H - 1.5, r);
-    if (active) { var g = fx.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#a8e2b9'); g.addColorStop(1, '#7cc894'); fx.fillStyle = g; }
-    else { fx.fillStyle = 'rgba(24,34,30,0.92)'; }
+    var g = fx.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#ace3bd'); g.addColorStop(1, '#7ec996'); fx.fillStyle = g;
     fx.fill();
-    fx.lineWidth = 1; fx.strokeStyle = active ? 'rgba(255,255,255,0.32)' : 'rgba(255,255,255,0.18)'; fx.stroke();
+    fx.lineWidth = 1; fx.strokeStyle = 'rgba(255,255,255,0.5)'; fx.stroke();
     // 上緣一道高光,像貼紙的乙烯反光
-    var sh = fx.createLinearGradient(0, 0, 0, H * 0.5); sh.addColorStop(0, 'rgba(255,255,255,0.16)'); sh.addColorStop(1, 'rgba(255,255,255,0)');
+    var sh = fx.createLinearGradient(0, 0, 0, H * 0.5); sh.addColorStop(0, 'rgba(255,255,255,0.28)'); sh.addColorStop(1, 'rgba(255,255,255,0)');
     roundRect(fx, 0.75, 0.75, W - 1.5, H - 1.5, r); fx.fillStyle = sh; fx.fill();
-    fx.fillStyle = active ? '#06110b' : '#cfe9d6';
+    fx.fillStyle = '#06110b';
     fx.font = '500 13px "Space Grotesk", system-ui, sans-serif';
     fx.textAlign = 'center'; fx.textBaseline = 'middle';
     fx.fillText(text, W / 2, H / 2 + 0.5);
