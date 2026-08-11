@@ -21,13 +21,13 @@
     }
 
     var cx = cv.width / 2, cy = cv.height / 2, R = size * 0.42 * dpr, focal = size * 2.0 * dpr;
-    var tilt = -0.30, cX = Math.cos(tilt), sX = Math.sin(tilt);   // 固定俯角
     var t = 0, raf = 0, alive = true;
 
     function frame() {
       if (!alive) return;
       t += 0.005;
-      var ay = t * 0.5, cY = Math.cos(ay), sY = Math.sin(ay);   // 繞垂直軸自轉
+      var ay = t * 0.5, cY = Math.cos(ay), sY = Math.sin(ay);    // 繞垂直軸(水平自轉)
+      var ax = t * 0.35, cX = Math.cos(ax), sX = Math.sin(ax);   // 繞橫軸(垂直旋轉,點會上下翻滾)
       var breathe = 0.97 + 0.03 * Math.sin(t * 1.4);
       ctx.clearRect(0, 0, cv.width, cv.height);
       var proj = [], pp, x1, z1, y1, z2;
