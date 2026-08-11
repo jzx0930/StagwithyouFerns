@@ -24,13 +24,13 @@
       }
     }
     var cx = cv.width / 2, cy = cv.height / 2, R = size * 0.42 * dpr, focal = size * 2.0 * dpr;
-    var tilt = -0.42, cX = Math.cos(tilt), sX = Math.sin(tilt);   // 固定俯角,讓緯線環看得出來
     var t = 0, raf = 0, alive = true;
 
     function frame() {
       if (!alive) return;
       t += 0.005;
-      var ay = t * 0.8, cY = Math.cos(ay), sY = Math.sin(ay);
+      var ay = t * 0.32, cY = Math.cos(ay), sY = Math.sin(ay);   // 慢速自轉
+      var ax = t * 0.85, cX = Math.cos(ax), sX = Math.sin(ax);   // 主要翻轉:繞橫軸,緯線環滾過去,明顯在轉
       var breathe = 0.97 + 0.03 * Math.sin(t * 1.4);
       ctx.clearRect(0, 0, cv.width, cv.height);
       var proj = [], i, p, x1, z1, y1, z2;
@@ -42,6 +42,8 @@
         proj.push({ sx: cx + x1 * rb * depth, sy: cy + y1 * rb * depth, d: z2, p: p });
       }
       proj.sort(function (a, b) { return a.d - b.d; });   // 後 → 前,乾淨層疊
+      ctx.save();
+      ctx.translate(cx, cy); ctx.rotate(t * 0.4); ctx.translate(-cx, -cy);   // 整顆在螢幕平面內旋轉(俄羅斯方塊式)
       for (i = 0; i < proj.length; i++) {
         var q = proj[i], front = (q.d + 1) / 2;
         var tw = 0.85 + 0.15 * Math.sin(t * 2.5 + q.p.ph);
@@ -50,6 +52,7 @@
         ctx.fillStyle = 'rgba(' + col + ',' + a.toFixed(3) + ')';
         ctx.beginPath(); ctx.arc(q.sx, q.sy, rad, 0, 6.2832); ctx.fill();
       }
+      ctx.restore();
       raf = requestAnimationFrame(frame);
     }
     raf = requestAnimationFrame(frame);

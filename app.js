@@ -394,7 +394,7 @@
       (noteOf(sel) ? '<div class="plant-intro" data-lay="detail.intro">' + fmtNote(noteOf(sel)) + '</div>' : '') +
       (picker ? '<div data-lay="detail.picker">' + picker + '</div>' : '') +
       '<div class="tl-head" data-lay="detail.timelineHead"><h2>成長時間軸</h2><div class="tl-order">最新 → 最早</div></div>' +
-      '<div data-lay="detail.timeline"><div class="tl-inner">' + rows + '</div></div>' +
+      '<div data-lay="detail.timeline">' + rows + '</div>' +
       '<div class="detail-footer"><span class="pill-btn" data-act="back-grid">↑ 回到照片牆</span></div>' +
     '</div>';
   }
@@ -407,7 +407,7 @@
     if (window.__fxMode) window.__fxMode(state.view);
     wireInteractions();   // 掛上滑鼠傾斜 / 磁吸(每次重繪後重掛)
     mountModelOrbs();     // 3D 模型 poster 放點陣光球,載入後停掉
-    if (state.view === 'detail') { runDetailIntro(); wirePeel(); }
+    if (state.view === 'detail') runDetailIntro();
   }
 
   // 在每個 <model-viewer> 的 poster 插槽放一顆點陣光球,模型載好(load 事件)或逾時就停掉
@@ -427,41 +427,6 @@
     }
   }
 
-  // ---- 個體切換:撕貼紙(撕個體按鈕小貼紙 → 甩飛 → 換個體;截不到就瞬間切換)----
-  var _suppressClickUntil = 0;
-  function switchIndiv(i) { state.indiv = i; render(); }
-  function wirePeel() {
-    var tabs = app.querySelectorAll('[data-act="indiv"]');
-    for (var k = 0; k < tabs.length; k++) (function (tab) {
-      if (tab.__peel) return; tab.__peel = 1;
-      var idx = parseInt(tab.getAttribute('data-i'), 10);
-      var ctrl = null, dragging = false, sx = 0, sy = 0, moved = false;
-      function onMove(e) {
-        if (!dragging) return;
-        var dx = e.clientX - sx, dy = e.clientY - sy;
-        if (Math.hypot(dx, dy) > 5) moved = true;
-        if (ctrl) ctrl.move(Math.max(dy, Math.hypot(dx, dy) * 0.6));
-      }
-      function onUp() {
-        if (!dragging) return; dragging = false;
-        window.removeEventListener('pointermove', onMove, true);
-        window.removeEventListener('pointerup', onUp, true);
-        window.removeEventListener('pointercancel', onUp, true);
-        _suppressClickUntil = Date.now() + 700;
-        if (!ctrl) { switchIndiv(idx); return; }
-        if (!moved) ctrl.auto(); else ctrl.release();
-      }
-      tab.addEventListener('pointerdown', function (e) {
-        if (idx === state.indiv) return;
-        e.preventDefault(); dragging = true; moved = false; sx = e.clientX; sy = e.clientY;
-        ctrl = window.SFPeel ? SFPeel.peelButton(tab, function () { switchIndiv(idx); }) : null;
-        window.addEventListener('pointermove', onMove, true);
-        window.addEventListener('pointerup', onUp, true);
-        window.addEventListener('pointercancel', onUp, true);
-      });
-    })(tabs[k]);
-  }
-
   // ---- 事件委派 ----
   app.addEventListener('click', function (ev) {
     var t = ev.target.closest('[data-act]');
@@ -471,7 +436,7 @@
     if (act === 'enter') { state.tab = i; go('grid'); }
     else if (act === 'tab') { state.tab = i; render(); }
     else if (act === 'open') { state.selected = i; state.indiv = 0; go('detail'); }
-    else if (act === 'indiv') { if (Date.now() < _suppressClickUntil) return; state.indiv = i; render(); }
+    else if (act === 'indiv') { state.indiv = i; render(); }
     else if (act === 'lobby' || act === 'lobby-from-detail') { go('lobby'); }
     else if (act === 'back-grid') { go('grid'); }
     else if (act === 'zoom') { openLightbox(t.getAttribute('data-url')); }
