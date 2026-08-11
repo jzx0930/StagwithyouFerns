@@ -19,9 +19,6 @@
     if (peelY < H) {                                   // 還黏著的下半
       octx.save(); octx.beginPath(); octx.rect(0, peelY, W, H - peelY); octx.clip();
       octx.drawImage(tex, 0, 0, tex.width, tex.height, 0, 0, W, H); octx.restore();
-      var g = octx.createLinearGradient(0, peelY, 0, peelY + Math.min(46, R)); // 捲摺下陰影
-      g.addColorStop(0, 'rgba(0,0,0,0.42)'); g.addColorStop(1, 'rgba(0,0,0,0)');
-      octx.fillStyle = g; octx.fillRect(0, peelY, W, Math.min(46, R));
     }
     var y0 = Math.max(0, Math.floor(peelY - 3.5 * R));  // 只畫可見捲弧
     for (var y = y0; y < peelY; y++) {
@@ -47,8 +44,6 @@
   function drawSticker(fx, W, H, text, active, dpr) {
     fx.setTransform(dpr, 0, 0, dpr, 0, 0); fx.clearRect(0, 0, W, H);
     var r = H / 2;
-    // 軟陰影(貼紙下方)
-    roundRect(fx, 1, 2.5, W - 2, H - 2, r); fx.fillStyle = 'rgba(0,0,0,0.28)'; fx.fill();
     roundRect(fx, 0.75, 0.75, W - 1.5, H - 1.5, r);
     if (active) { var g = fx.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#a8e2b9'); g.addColorStop(1, '#7cc894'); fx.fillStyle = g; }
     else { fx.fillStyle = 'rgba(24,34,30,0.92)'; }
