@@ -1,42 +1,59 @@
-/* ===== SFOrb:載入球體(官方 thinking-orbs 元件,orbs.jakubantalik.com,MIT)=====
-   來源:index.html 會先同步載入 vendor/thinking-orbs.js(自帶 React)→ window.__ORB__。
-     有 → 直接同步用(球能立刻顯示,不錯過短命的載入畫面)。
-     沒有(還沒 vendor / 檔案缺)→ 退回 esm.sh CDN 動態載入(非同步,需連網)。
-   用法:var o = SFOrb.mount(container, { size:120, state:'solving' }); 結束時 o.stop();
-   states:working / searching / solving / listening / connecting / weaving / composing / breathing / shaping */
+/* ===== SFOrb:載入球體(自製 canvas 點陣球,零依賴、同步顯示、永久可用)=====
+   單色白點均勻散佈在球面(費氏球面),繞垂直軸自轉 + 固定俯角 → 點會飄移、明顯在轉;
+   前亮後淡的深度層次、微呼吸、輕微明滅。
+   用法:var o = SFOrb.mount(container, { size:130, count:340, color:'232,244,238' }); 結束時 o.stop(); */
 (function () {
   'use strict';
-  var ready = false, failed = false, Rt = null, cr = null, Orb = null, queue = [];
-
-  function ok(R, CR, O) { Rt = R; cr = CR; Orb = O; ready = true; queue.forEach(render); queue = []; }
-  function render(e) { try { var root = cr(e.container); root.render(Rt.createElement(Orb, e.props)); e.root = root; } catch (x) {} }
-
-  var v = window.__ORB__;
-  if (v && v.ThinkingOrb && v.createRoot) {
-    ok(v.React || (v.ThinkingOrb && v.React), v.createRoot, v.ThinkingOrb);   // 本機 vendor:同步就緒
-  } else {
-    var RV = '18.3.1', TV = '0.2.0';                                         // 後備:esm.sh
-    Promise.all([
-      import('https://esm.sh/react@' + RV),
-      import('https://esm.sh/react-dom@' + RV + '/client'),
-      import('https://esm.sh/thinking-orbs@' + TV + '?deps=react@' + RV + ',react-dom@' + RV)
-    ]).then(function (m) {
-      ok(m[0].default || m[0], m[1].createRoot, m[2].ThinkingOrb || m[2].default);
-    }).catch(function () { failed = true; });
-  }
-
   function mount(container, opts) {
     opts = opts || {};
-    var e = { container: container, props: { state: opts.state || 'solving', size: opts.size || 120 }, root: null };
-    if (opts.speed) e.props.speed = opts.speed;
-    if (ready) render(e); else if (!failed) queue.push(e);
-    return {
-      el: container,
-      stop: function () {
-        if (e.root) { try { e.root.unmount(); } catch (x) {} }
-        else { var i = queue.indexOf(e); if (i >= 0) queue.splice(i, 1); }
-        if (container) container.innerHTML = '';
+    var size = opts.size || 130, count = opts.count || 340, col = opts.color || '232,244,238';
+    var dpr = Math.min(2, window.devicePixelRatio || 1);
+    var cv = document.createElement('canvas');
+    cv.width = Math.round(size * dpr); cv.height = Math.round(size * dpr);
+    cv.style.width = size + 'px'; cv.style.height = size + 'px'; cv.style.display = 'block';
+    container.appendChild(cv);
+    var ctx = cv.getContext('2d');
+
+    var pts = [], ga = Math.PI * (3 - Math.sqrt(5)), i;   // 費氏球面:點均勻散佈(非對稱→轉得看得出來)
+    for (i = 0; i < count; i++) {
+      var y = 1 - (i / (count - 1)) * 2, r = Math.sqrt(Math.max(0, 1 - y * y)), th = i * ga;
+      pts.push({ x: Math.cos(th) * r, y: y, z: Math.sin(th) * r, ph: Math.random() * 6.2832 });
+    }
+
+    var cx = cv.width / 2, cy = cv.height / 2, R = size * 0.42 * dpr, focal = size * 2.0 * dpr;
+    var tilt = -0.30, cX = Math.cos(tilt), sX = Math.sin(tilt);   // 固定俯角
+    var t = 0, raf = 0, alive = true;
+
+    function frame() {
+      if (!alive) return;
+      t += 0.005;
+      var ay = t * 0.5, cY = Math.cos(ay), sY = Math.sin(ay);   // 繞垂直軸自轉
+      var breathe = 0.97 + 0.03 * Math.sin(t * 1.4);
+      ctx.clearRect(0, 0, cv.width, cv.height);
+      var proj = [], pp, x1, z1, y1, z2;
+      for (i = 0; i < pts.length; i++) {
+        pp = pts[i];
+        x1 = pp.x * cY - pp.z * sY; z1 = pp.x * sY + pp.z * cY;
+        y1 = pp.y * cX - z1 * sX; z2 = pp.y * sX + z1 * cX;
+        var rb = R * breathe, depth = focal / (focal - z2 * rb);
+        proj.push({ sx: cx + x1 * rb * depth, sy: cy + y1 * rb * depth, d: z2, p: pp });
       }
+      proj.sort(function (a, b) { return a.d - b.d; });
+      for (i = 0; i < proj.length; i++) {
+        var q = proj[i], front = (q.d + 1) / 2;
+        var tw = 0.82 + 0.18 * Math.sin(t * 2.5 + q.p.ph);
+        var a = (0.28 + 0.72 * front) * tw;
+        var rad = (0.55 + 1.25 * front) * dpr;
+        ctx.fillStyle = 'rgba(' + col + ',' + a.toFixed(3) + ')';
+        ctx.beginPath(); ctx.arc(q.sx, q.sy, rad, 0, 6.2832); ctx.fill();
+      }
+      raf = requestAnimationFrame(frame);
+    }
+    raf = requestAnimationFrame(frame);
+
+    return {
+      el: cv,
+      stop: function () { alive = false; cancelAnimationFrame(raf); if (cv.parentNode) cv.parentNode.removeChild(cv); }
     };
   }
   window.SFOrb = { mount: mount };
