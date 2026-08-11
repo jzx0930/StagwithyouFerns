@@ -26,3 +26,8 @@ models/**/Meshy_*.glb
 
 # 子代理重建 data.json 的暫存檔(本機刪即可)
 _new_plants.json
+
+# orb vendor 打包產物(執行 tools/orb-vendor/build.bat 產生;vendor/thinking-orbs.js 要 commit)
+tools/orb-vendor/node_modules/
+tools/orb-vendor/package.json
+tools/orb-vendor/package-lock.json

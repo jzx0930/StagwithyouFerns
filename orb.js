@@ -1,40 +1,51 @@
-/* ===== SFOrb:載入球體 =====
-   直接使用官方 npm 元件「thinking-orbs」(orbs.jakubantalik.com,MIT,作者 Jakub Antalik)——原版效果。
-   我們是純 script 無打包站,故用 esm.sh CDN 動態載入 React + 元件,掛進容器。
+/* ===== SFOrb:載入球體(官方 thinking-orbs 元件,orbs.jakubantalik.com,MIT)=====
+   來源優先序:
+     1) 本機 vendor:vendor/thinking-orbs.js(自帶 React,離線可用)— 由 tools/orb-vendor/build.bat 產生。
+     2) 抓不到才退回 esm.sh CDN 動態載入(需連網)。
+   兩者都失敗就不顯示,不影響其他功能。
    用法:var o = SFOrb.mount(container, { size:120, state:'solving' }); 結束時 o.stop();
-   states:working / searching / solving / listening / connecting / weaving / composing / breathing / shaping
-   載不到(離線/CDN 擋)時不顯示,不影響其他功能。 */
+   states:working / searching / solving / listening / connecting / weaving / composing / breathing / shaping */
 (function () {
   'use strict';
-  var ready = false, failed = false, React = null, createRoot = null, Orb = null, queue = [];
-  var RV = '18.3.1', TV = '0.2.0';
+  var ready = false, failed = false, Rt = null, cr = null, Orb = null, queue = [];
 
-  Promise.all([
-    import('https://esm.sh/react@' + RV),
-    import('https://esm.sh/react-dom@' + RV + '/client'),
-    import('https://esm.sh/thinking-orbs@' + TV + '?deps=react@' + RV + ',react-dom@' + RV)
-  ]).then(function (mods) {
-    React = mods[0].default || mods[0];
-    createRoot = mods[1].createRoot;
-    Orb = mods[2].ThinkingOrb || mods[2].default;
-    ready = true;
-    queue.forEach(render); queue = [];
-  }).catch(function () { failed = true; });
+  function ok(R, CR, O) { Rt = R; cr = CR; Orb = O; ready = true; queue.forEach(render); queue = []; }
+  function render(e) { try { var root = cr(e.container); root.render(Rt.createElement(Orb, e.props)); e.root = root; } catch (x) {} }
 
-  function render(entry) {
-    try { var root = createRoot(entry.container); root.render(React.createElement(Orb, entry.props)); entry.root = root; } catch (e) {}
+  // 1) 本機 vendor 優先
+  var s = document.createElement('script');
+  s.src = 'vendor/thinking-orbs.js?v=1';
+  s.onload = function () {
+    var v = window.__ORB__;
+    if (v && v.ThinkingOrb && v.createRoot) ok(v.React, v.createRoot, v.ThinkingOrb);
+    else esmFallback();
+  };
+  s.onerror = esmFallback;
+  document.head.appendChild(s);
+
+  // 2) 退回 esm.sh
+  function esmFallback() {
+    var RV = '18.3.1', TV = '0.2.0';
+    Promise.all([
+      import('https://esm.sh/react@' + RV),
+      import('https://esm.sh/react-dom@' + RV + '/client'),
+      import('https://esm.sh/thinking-orbs@' + TV + '?deps=react@' + RV + ',react-dom@' + RV)
+    ]).then(function (m) {
+      ok(m[0].default || m[0], m[1].createRoot, m[2].ThinkingOrb || m[2].default);
+    }).catch(function () { failed = true; });
   }
+
   function mount(container, opts) {
     opts = opts || {};
-    var entry = { container: container, props: { state: opts.state || 'solving', size: opts.size || 120 }, root: null };
-    if (opts.speed) entry.props.speed = opts.speed;
-    if (ready) render(entry); else if (!failed) queue.push(entry);
+    var e = { container: container, props: { state: opts.state || 'solving', size: opts.size || 120 }, root: null };
+    if (opts.speed) e.props.speed = opts.speed;
+    if (ready) render(e); else if (!failed) queue.push(e);
     return {
-      el: entry.container,
+      el: container,
       stop: function () {
-        if (entry.root) { try { entry.root.unmount(); } catch (e) {} }
-        else { var i = queue.indexOf(entry); if (i >= 0) queue.splice(i, 1); }
-        if (entry.container) entry.container.innerHTML = '';
+        if (e.root) { try { e.root.unmount(); } catch (x) {} }
+        else { var i = queue.indexOf(e); if (i >= 0) queue.splice(i, 1); }
+        if (container) container.innerHTML = '';
       }
     };
   }
