@@ -1,8 +1,7 @@
 /* ===== SFOrb:載入球體(官方 thinking-orbs 元件,orbs.jakubantalik.com,MIT)=====
-   來源優先序:
-     1) 本機 vendor:vendor/thinking-orbs.js(自帶 React,離線可用)— 由 tools/orb-vendor/build.bat 產生。
-     2) 抓不到才退回 esm.sh CDN 動態載入(需連網)。
-   兩者都失敗就不顯示,不影響其他功能。
+   來源:index.html 會先同步載入 vendor/thinking-orbs.js(自帶 React)→ window.__ORB__。
+     有 → 直接同步用(球能立刻顯示,不錯過短命的載入畫面)。
+     沒有(還沒 vendor / 檔案缺)→ 退回 esm.sh CDN 動態載入(非同步,需連網)。
    用法:var o = SFOrb.mount(container, { size:120, state:'solving' }); 結束時 o.stop();
    states:working / searching / solving / listening / connecting / weaving / composing / breathing / shaping */
 (function () {
@@ -12,20 +11,11 @@
   function ok(R, CR, O) { Rt = R; cr = CR; Orb = O; ready = true; queue.forEach(render); queue = []; }
   function render(e) { try { var root = cr(e.container); root.render(Rt.createElement(Orb, e.props)); e.root = root; } catch (x) {} }
 
-  // 1) 本機 vendor 優先
-  var s = document.createElement('script');
-  s.src = 'vendor/thinking-orbs.js?v=1';
-  s.onload = function () {
-    var v = window.__ORB__;
-    if (v && v.ThinkingOrb && v.createRoot) ok(v.React, v.createRoot, v.ThinkingOrb);
-    else esmFallback();
-  };
-  s.onerror = esmFallback;
-  document.head.appendChild(s);
-
-  // 2) 退回 esm.sh
-  function esmFallback() {
-    var RV = '18.3.1', TV = '0.2.0';
+  var v = window.__ORB__;
+  if (v && v.ThinkingOrb && v.createRoot) {
+    ok(v.React || (v.ThinkingOrb && v.React), v.createRoot, v.ThinkingOrb);   // 本機 vendor:同步就緒
+  } else {
+    var RV = '18.3.1', TV = '0.2.0';                                         // 後備:esm.sh
     Promise.all([
       import('https://esm.sh/react@' + RV),
       import('https://esm.sh/react-dom@' + RV + '/client'),
