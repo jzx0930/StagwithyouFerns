@@ -26,10 +26,8 @@
       if (th > 3.4) continue;
       var dy = peelY - R * Math.sin(th);
       var hh = Math.max(0.5, Math.abs(Math.cos(th)) * 1.35);
-      if (th <= HALF + 0.02) {                          // 正面
+      if (th <= HALF + 0.02) {                          // 正面(不加任何變暗/陰影)
         octx.drawImage(tex, 0, Math.floor(y * ts), tex.width, Math.max(1, Math.ceil(ts)), 0, dy, W, hh);
-        var c = Math.cos(th);
-        if (c < 0.99) { octx.fillStyle = 'rgba(0,0,0,' + ((1 - c) * 0.34) + ')'; octx.fillRect(0, dy, W, hh); }
       } else {                                          // 背面(深綠)
         octx.fillStyle = 'rgba(20,42,35,0.97)'; octx.fillRect(0, dy, W, hh);
         octx.fillStyle = 'rgba(154,216,171,0.10)'; octx.fillRect(0, dy, W, Math.min(hh, 1));
