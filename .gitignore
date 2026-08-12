@@ -27,6 +27,9 @@ models/**/Meshy_*.glb
 # 子代理重建 data.json 的暫存檔(本機刪即可)
 _new_plants.json
 
+# 交接文件(依使用者要求只留本機、不推上庫;若已被追蹤需 git rm --cached SKILL.md 一次)
+SKILL.md
+
 # orb vendor 打包產物(執行 tools/orb-vendor/build.bat 產生;vendor/thinking-orbs.js 要 commit)
 tools/orb-vendor/node_modules/
 tools/orb-vendor/package.json
