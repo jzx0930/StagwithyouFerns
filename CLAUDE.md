@@ -21,7 +21,7 @@
   "categories": [ { "name": "鹿角蕨Platycerium", "cover": "<Drive ID 或網址>", "model": true } ],
   "plants": [{
     "name": "一本尼", "latin": "Pachypodium eburneum",
-    "category": "棒槌樹",            // 必須等於某個 category.name
+    "category": "棒槌",            // 必須等於某個 category.name
     "date": "2026.06.07", "note": "", "cover": "<Drive ID>",
     "individuals": [                 // 個體:同種不同株,可在詳情頁切換
       { "label": "#99", "cover": "<Drive ID>",
@@ -41,7 +41,7 @@
 ## 由 Google Drive 自動產生 data.json
 
 資料夾階層即資料模型(連 Google Drive 連接器後走訪):
-- 根資料夾「植物照片」→ 第一層資料夾 = **分類**(如 `Pachypodium-棒槌樹`,取中文「棒槌樹」當分類名、`Pachypodium` 當屬名)。
+- 根資料夾「植物照片」→ 第一層資料夾 = **分類**(如 `Pachypodium-棒槌`,取中文「棒槌」當分類名、`Pachypodium` 當屬名)。
 - 第二層 = **植物**(如 `eburneum-一本尼`:名稱「一本尼」、`latin` = 屬名+種小名 = `Pachypodium eburneum`)。
 - 第三層 `#數字` 資料夾 = **個體**;直接放在植物夾的照片 = 未編號個體。
 - 照片檔名帶日期時當節點 `date`(支援 `2026年6月7日` 與 `2026:6:7 14:28:45`),否則用上傳日。`note`/`tag` 目前系統化產生(要依畫面內容寫需另外逐張看圖)。
