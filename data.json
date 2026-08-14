@@ -3730,13 +3730,13 @@
       "name": "單刺蓬萊宮",
       "latin": "Mammillaria schumannii",
       "category": "仙人掌",
-      "date": "2026.08.09",
+      "date": "2026.08.10",
       "note": "",
-      "cover": "1ujtSkMHmjSMKNKYfDESZ3CUczlmJQCc6",
+      "cover": "1k0PAxW0VzUn-nq2mjlCpHSMjqnvvOI6N",
       "individuals": [
         {
           "label": "",
-          "cover": "1ujtSkMHmjSMKNKYfDESZ3CUczlmJQCc6",
+          "cover": "1k0PAxW0VzUn-nq2mjlCpHSMjqnvvOI6N",
           "timeline": [
             {
               "date": "2026.08.02",
@@ -3749,6 +3749,12 @@
               "tag": "",
               "note": "",
               "photo": "1ujtSkMHmjSMKNKYfDESZ3CUczlmJQCc6"
+            },
+            {
+              "date": "2026.08.10",
+              "tag": "",
+              "note": "",
+              "photo": "1k0PAxW0VzUn-nq2mjlCpHSMjqnvvOI6N"
             }
           ]
         }
@@ -4633,8 +4639,8 @@
       ]
     },
     {
-      "name": "寶塔摩蘿",
-      "latin": "",
+      "name": "寶塔蘿藦",
+      "latin": "Stapelianthus decaryi",
       "category": "多肉",
       "date": "2026.07.13",
       "note": "",
@@ -4792,10 +4798,22 @@
       "name": "綠鬼玉",
       "latin": "Euphorbia decepta",
       "category": "大戟",
-      "date": "2026.07.15",
+      "date": "2026.07.21",
       "note": "",
-      "cover": "1sHdk2jevfI7GDgKg69plwnXRNwMcONX4",
+      "cover": "1BEZF27IWLmc5WjOYTeENYtYqS_zkM4SB",
       "individuals": [
+        {
+          "label": "#01",
+          "cover": "1BEZF27IWLmc5WjOYTeENYtYqS_zkM4SB",
+          "timeline": [
+            {
+              "date": "2026.07.21",
+              "tag": "#01",
+              "note": "",
+              "photo": "1BEZF27IWLmc5WjOYTeENYtYqS_zkM4SB"
+            }
+          ]
+        },
         {
           "label": "#03",
           "cover": "1sHdk2jevfI7GDgKg69plwnXRNwMcONX4",
@@ -4845,7 +4863,7 @@
       ]
     },
     {
-      "name": "群星際",
+      "name": "群星祭",
       "latin": "Euphorbia",
       "category": "大戟",
       "date": "2026.07.13",
@@ -4861,34 +4879,6 @@
               "tag": "#01",
               "note": "",
               "photo": "1JtInKMpoPQKBR3BDMXwg7cpfIyJ9UUna"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "蒼鬼塔",
-      "latin": "Euphorbia",
-      "category": "大戟",
-      "date": "2026.07.15",
-      "note": "",
-      "cover": "1rvMo8-UTF-JJB-bwxyWyvval6JDlvf8m",
-      "individuals": [
-        {
-          "label": "",
-          "cover": "1rvMo8-UTF-JJB-bwxyWyvval6JDlvf8m",
-          "timeline": [
-            {
-              "date": "2026.07.13",
-              "tag": "",
-              "note": "",
-              "photo": "1crkX-Ip4JlgEGxHjlvnty8_K_LuJfdes"
-            },
-            {
-              "date": "2026.07.15",
-              "tag": "",
-              "note": "",
-              "photo": "1rvMo8-UTF-JJB-bwxyWyvval6JDlvf8m"
             }
           ]
         }
@@ -4999,14 +4989,32 @@
       "cover": "105pxtI0EwLNhrTb9gPBPA7CxLSHUUiN5",
       "individuals": [
         {
-          "label": "",
+          "label": "#01",
           "cover": "105pxtI0EwLNhrTb9gPBPA7CxLSHUUiN5",
           "timeline": [
             {
               "date": "2026.08.05",
-              "tag": "",
+              "tag": "#01",
               "note": "",
               "photo": "105pxtI0EwLNhrTb9gPBPA7CxLSHUUiN5"
+            }
+          ]
+        },
+        {
+          "label": "#02",
+          "cover": "1rvMo8-UTF-JJB-bwxyWyvval6JDlvf8m",
+          "timeline": [
+            {
+              "date": "2026.07.15",
+              "tag": "#02",
+              "note": "",
+              "photo": "1rvMo8-UTF-JJB-bwxyWyvval6JDlvf8m"
+            },
+            {
+              "date": "2026.07.13",
+              "tag": "#02",
+              "note": "",
+              "photo": "1crkX-Ip4JlgEGxHjlvnty8_K_LuJfdes"
             }
           ]
         }

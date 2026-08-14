@@ -89,5 +89,12 @@ Rn 'Caudex-塊根\arabicum-阿拉伯沙枚' 'arabicum-阿拉伯沙漠玫瑰'
 # 查不到維持中文(不改):Cactaceae-仙人掌\單刺蓬萊宮、Pachypodium-棒槌樹\鬼精棒(空夾)
 
 Write-Host ''
+Write-Host '=== 2026-08-14 開始更新(補到學名改名)==='
+# 寶塔蘿藦 = Stapelianthus decaryi
+Rn 'Succulent-多肉\寶塔摩蘿' 'decaryi-寶塔蘿藦'
+# 單刺蓬萊宮 = Mammillaria schumannii
+Rn 'Cactaceae-仙人掌\單刺蓬萊宮' 'schumannii-單刺蓬萊宮'
+
+Write-Host ''
 Write-Host '完成。品種名鹿角蕨(巨獸/三角/雷達等)因無學名,維持中文未改。'
 Read-Host '按 Enter 關閉'
