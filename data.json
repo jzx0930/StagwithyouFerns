@@ -42,7 +42,7 @@
       "model": true
     },
     {
-      "name": "美照Gallery",
+      "name": "日記diary",
       "cover": "1-Q5XjB2StaXy0qCnWeIRtv52mnHjjeTV",
       "model": true
     }
@@ -5099,9 +5099,9 @@
       ]
     },
     {
-      "name": "美照",
+      "name": "日記",
       "latin": "",
-      "category": "美照",
+      "category": "日記",
       "date": "2026.08.09",
       "note": "",
       "cover": "13V77rxt1pgSby7RIpNZ674MtVpdN7BQ7",

@@ -96,5 +96,9 @@ Rn 'Succulent-多肉\寶塔摩蘿' 'decaryi-寶塔蘿藦'
 Rn 'Cactaceae-仙人掌\單刺蓬萊宮' 'schumannii-單刺蓬萊宮'
 
 Write-Host ''
+Write-Host '=== 2026-08-14 分類改名:美照 -> 日記(diary) ==='
+Rn 'Gallery-美照' 'diary-日記'
+
+Write-Host ''
 Write-Host '完成。品種名鹿角蕨(巨獸/三角/雷達等)因無學名,維持中文未改。'
 Read-Host '按 Enter 關閉'

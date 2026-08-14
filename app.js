@@ -2,7 +2,7 @@
 (function () {
   'use strict';
 
-  var DEFAULT_CATS = ['鹿角蕨', '棒槌', '美照'];
+  var DEFAULT_CATS = ['鹿角蕨', '棒槌', '日記'];
   // 模型 CDN 開關:留空=用同源(GitHub Pages,本身就是 Fastly CDN)。
   // 要改用 jsDelivr:設成 'https://cdn.jsdelivr.net/gh/jzx0930/StagwithyouFerns@main/'
   // 注意:jsDelivr @main 會快取最久 7 天,還在改模型時先別開,免得看到舊檔。

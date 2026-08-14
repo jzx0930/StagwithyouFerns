@@ -19,7 +19,7 @@
 
 ## 二、把 ID 填進 data.json
 - 分類:`categories` 每項 `{ "name": "鹿角蕨Platycerium", "cover": "<檔案ID>", "model": true }`。
-  - `name` 寫成「**中文+屬名**」(例 `鹿角蕨Platycerium`、`龍舌蘭Agave`;沒屬名者用英文,如 `多肉Succulent`、`美照Gallery`)。網站顯示時中文為主、屬名為斜體小字。
+  - `name` 寫成「**中文+屬名**」(例 `鹿角蕨Platycerium`、`龍舌蘭Agave`;沒屬名者用英文,如 `多肉Succulent`、`日記diary`)。網站顯示時中文為主、屬名為斜體小字。
   - `cover` 是大廳分類卡的代表照(留空自動用該類第一株植物封面)。
   - `model` 見下面「四、3D 模型」;沒有就填 `false`。
 - 植物:`cover` = 卡片封面;每個時間軸節點的 `photo` = 那天的照片。

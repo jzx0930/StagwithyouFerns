@@ -69,7 +69,7 @@
     + '<div id="sf-scenes"></div>'
     + '<div class="land" id="sf-land"><div class="land-in">'
     + '<div class="eb">' + (_SCS.eyebrow || 'HERBARIUM · 成長紀錄') + '</div><h1>' + (_SCS.title || 'StagwithyouFerns') + '</h1>'
-    + '<div class="chips"><span>鹿角蕨</span><span>棒槌</span><span>仙人掌</span><span>龍舌蘭</span><span>塊根</span><span>大戟</span><span>觀葉</span><span>美照</span></div>'
+    + '<div class="chips"><span>鹿角蕨</span><span>棒槌</span><span>仙人掌</span><span>龍舌蘭</span><span>塊根</span><span>大戟</span><span>觀葉</span><span>日記</span></div>'
     + '<a class="enter" id="sf-enter"><span class="rip"></span>進入大廳 →</a></div></div>'
     + '<div id="sf-load"><div class="orb"></div><div class="t" id="sf-loadt">載入中 0 / ' + N + '</div><div class="track"><div class="fill" id="sf-loadf"></div></div></div>'
     + '<div class="bar" id="sf-bar"></div>'
@@ -152,7 +152,7 @@
 
   // 大廳全部 9 顆分類模型;飛越已載 SCENES 那 5 顆,這裡補抓其餘,寫進瀏覽器快取。
   function warmLobby() {
-    var all = ['Platycerium', 'Pachypodium', 'Cactaceae', 'Agave', 'Caudex', 'Succulent', 'Euphorbiaceae', 'Foliage', 'Gallery'];
+    var all = ['Platycerium', 'Pachypodium', 'Cactaceae', 'Agave', 'Caudex', 'Succulent', 'Euphorbiaceae', 'Foliage', 'diary'];
     all.forEach(function (g) {
       var url = 'models/' + g + '/' + g + '.glb';
       try { fetch(url, { cache: 'force-cache' }); } catch (e) {}
