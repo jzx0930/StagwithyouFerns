@@ -3754,9 +3754,9 @@
       "name": "銀冠玉",
       "latin": "Lophophora fricii",
       "category": "仙人掌",
-      "date": "2026.07.31",
+      "date": "2026.08.17",
       "note": "",
-      "cover": "1G2CIMIrtXzOYmHNCFvVkSWC-Qr-88Zod",
+      "cover": "18Veeg7U_kRRkDlGJx9oJIzIeABVGRzPJ",
       "individuals": [
         {
           "label": "#01",
@@ -3820,7 +3820,7 @@
         },
         {
           "label": "#03",
-          "cover": "1T9QeAOf0uHyLxeWB-cVOSvrfC4KIg5sp",
+          "cover": "18Veeg7U_kRRkDlGJx9oJIzIeABVGRzPJ",
           "timeline": [
             {
               "date": "2026.06.02",
@@ -3851,12 +3851,18 @@
               "tag": "#03",
               "note": "",
               "photo": "1T9QeAOf0uHyLxeWB-cVOSvrfC4KIg5sp"
+            },
+            {
+              "date": "2026.08.17",
+              "tag": "#03",
+              "note": "",
+              "photo": "18Veeg7U_kRRkDlGJx9oJIzIeABVGRzPJ"
             }
           ]
         },
         {
           "label": "#2",
-          "cover": "1HAqRBWumNEgHsi8cn7tE5-5evNHygaTN",
+          "cover": "1G1j6LN-AzDnlKNZaNrb_Ja5kqWN9WN63",
           "timeline": [
             {
               "date": "2026.05.17",
@@ -3881,6 +3887,12 @@
               "tag": "#2",
               "note": "",
               "photo": "1HAqRBWumNEgHsi8cn7tE5-5evNHygaTN"
+            },
+            {
+              "date": "2026.08.14",
+              "tag": "#2",
+              "note": "",
+              "photo": "1G1j6LN-AzDnlKNZaNrb_Ja5kqWN9WN63"
             }
           ]
         }
@@ -4303,6 +4315,34 @@
               "tag": "#01",
               "note": "",
               "photo": "1PvBKMOcCUJ8r6X14qK0Q2pBgZhD8fpbG"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "荒皮沙漠玫瑰",
+      "latin": "Adenium arabicum",
+      "category": "塊根",
+      "date": "2026.08.17",
+      "note": "",
+      "cover": "1AkaLtOzyDiNOl9cy7suJRLYQ7ckdgjCq",
+      "individuals": [
+        {
+          "label": "",
+          "cover": "1AkaLtOzyDiNOl9cy7suJRLYQ7ckdgjCq",
+          "timeline": [
+            {
+              "date": "2026.08.17",
+              "tag": "",
+              "note": "",
+              "photo": "1AkaLtOzyDiNOl9cy7suJRLYQ7ckdgjCq"
+            },
+            {
+              "date": "2026.08.14",
+              "tag": "",
+              "note": "",
+              "photo": "1pSdPQv05TjpvgGHRKD7X1r2LPJejQtTa"
             }
           ]
         }
@@ -5092,13 +5132,13 @@
       "name": "日記",
       "latin": "",
       "category": "日記",
-      "date": "2026.08.09",
+      "date": "2026.08.14",
       "note": "",
-      "cover": "13V77rxt1pgSby7RIpNZ674MtVpdN7BQ7",
+      "cover": "1R0G87DsDCPzMqKYYt5LfTRtxr3GK8PkB",
       "individuals": [
         {
           "label": "",
-          "cover": "13V77rxt1pgSby7RIpNZ674MtVpdN7BQ7",
+          "cover": "1R0G87DsDCPzMqKYYt5LfTRtxr3GK8PkB",
           "timeline": [
             {
               "date": "2025.10.19",
@@ -5225,6 +5265,18 @@
               "tag": "",
               "note": "",
               "photo": "13V77rxt1pgSby7RIpNZ674MtVpdN7BQ7"
+            },
+            {
+              "date": "2026.08.14",
+              "tag": "",
+              "note": "",
+              "photo": "1R0G87DsDCPzMqKYYt5LfTRtxr3GK8PkB"
+            },
+            {
+              "date": "2026.08.14",
+              "tag": "",
+              "note": "",
+              "photo": "10f7HYscIgrpwBdNG-MU7El6aZXCxrGnO"
             }
           ]
         }

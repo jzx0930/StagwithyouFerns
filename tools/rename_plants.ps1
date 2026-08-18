@@ -100,5 +100,10 @@ Write-Host '=== 2026-08-14 分類改名:美照 -> 日記(diary) ==='
 Rn 'Gallery-美照' 'diary-日記'
 
 Write-Host ''
+Write-Host '=== 2026-08-18 開始更新(新植物改名)==='
+# 荒皮沙漠玫瑰 = Adenium arabicum(粗皮系)
+Rn 'Caudex-塊根\荒皮沙漠玫瑰' 'arabicum-荒皮沙漠玫瑰'
+
+Write-Host ''
 Write-Host '完成。品種名鹿角蕨(巨獸/三角/雷達等)因無學名,維持中文未改。'
 Read-Host '按 Enter 關閉'
