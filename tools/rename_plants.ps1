@@ -105,5 +105,11 @@ Write-Host '=== 2026-08-18 開始更新(新植物改名)==='
 Rn 'Caudex-塊根\荒皮沙漠玫瑰' 'arabicum-荒皮沙漠玫瑰'
 
 Write-Host ''
+Write-Host '=== 2026-08-23 大重整新植物改名(塊根)==='
+# 裂紋山烏龜=Stephania(種名待考)、哥吉拉沙漠玫瑰=Adenium arabicum(哥吉拉選型)
+Rn 'Caudex-塊根\裂紋山烏龜' 'Stephania-裂紋山烏龜'
+Rn 'Caudex-塊根\哥吉拉沙漠玫瑰' 'arabicum-哥吉拉沙漠玫瑰'
+
+Write-Host ''
 Write-Host '完成。品種名鹿角蕨(巨獸/三角/雷達等)因無學名,維持中文未改。'
 Read-Host '按 Enter 關閉'

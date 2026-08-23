@@ -82,9 +82,15 @@ Rn '雷神' 'Thor-雷神'
 Rn '月光' 'Moonlight-月光'
 Rn '清姬' 'Kiyohime-清姬'
 # 打錯字修正
-Rn 'Darwin-非非達爾文' 'Darwin-飛飛達爾文'
+# 停用:使用者已在 Drive 改回「非非達爾文」,不再翻回飛飛 -> Rn 'Darwin-非非達爾文' 'Darwin-飛飛達爾文'
 Rn 'veitchii-銀鹿立葉' 'veitchii-銀葉立葉'
 # 查不到維持中文(不改):細菌、深綠龍x野銀
+
+Write-Host ''
+Write-Host '=== 2026-08-23 大重整新植物改名(鹿角蕨)==='
+# 千手皇冠/珊瑚亞猴:依中文對應種名(coronarium/ridleyi),品系推測
+Rn '千手皇冠' 'coronarium-千手皇冠'
+Rn '珊瑚亞猴' 'ridleyi-珊瑚亞猴'
 
 Write-Host ''
 Write-Host '完成。純英文(Akki/Nano/E/YAL/OMG/Namo/Blue Ribbon)未動;雷電交種式維持中文。'
