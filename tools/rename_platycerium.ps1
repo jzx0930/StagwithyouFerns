@@ -93,5 +93,10 @@ Rn '千手皇冠' 'coronarium-千手皇冠'
 Rn '珊瑚亞猴' 'ridleyi-珊瑚亞猴'
 
 Write-Host ''
+Write-Host '=== 2026-08-31 查名改名 ==='
+# 賽爾索 = Platycerium willinckii 'Celso'
+Rn '賽爾索' 'Celso-賽爾索'
+
+Write-Host ''
 Write-Host '完成。純英文(Akki/Nano/E/YAL/OMG/Namo/Blue Ribbon)未動;雷電交種式維持中文。'
 Read-Host '按 Enter 關閉'
