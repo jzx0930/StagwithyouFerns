@@ -348,7 +348,6 @@
         photo = '<div class="tl-photo" data-lay="detail.photo">' +
           '<img src="' + esc(url) + '" alt="' + esc(e.tag || '') + '" onerror="this.style.display=\'none\'">' +
           '<span class="tag">' + esc(e.tag || '') + '</span>' +
-          '<span class="idx">' + num + ' / ' + tot + '</span>' +
           '<span class="fs-btn" data-act="zoom" data-url="' + esc(big) + '">⤢ 全螢幕</span>' +
         '</div>';
       } else {
