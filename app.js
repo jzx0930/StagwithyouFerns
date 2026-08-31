@@ -345,7 +345,7 @@
       if (e.photo) {
         var url = driveImg(e.photo, 1600);
         var big = driveImg(e.photo, 2600);
-        photo = '<div class="tl-photo" data-lay="detail.photo">' +
+        photo = '<div class="tl-photo" data-lay="detail.photo" data-act="zoom" data-url="' + esc(big) + '">' +
           '<img src="' + esc(url) + '" alt="' + esc(e.tag || '') + '" onerror="this.style.display=\'none\'">' +
           '<span class="tag">' + esc(e.tag || '') + '</span>' +
           '<span class="fs-btn" data-act="zoom" data-url="' + esc(big) + '">⤢ 全螢幕</span>' +
@@ -356,8 +356,9 @@
       return '<div class="tl-row">' +
         '<div class="tl-when"><div class="y">' + esc(y) + '</div><div class="md">' + esc(md) + '</div></div>' +
         '<div class="tl-axis"><div class="line"></div><div class="dot"></div></div>' +
-        '<div class="tl-main"><div class="tl-card">' + photo +
-          '<div class="tl-note">' + fmtNote(e.note || '') + '</div></div></div>' +
+        '<div class="tl-main"><div class="tl-card">' + photo + '</div>' +
+          (e.note ? '<div class="tl-note">' + fmtNote(e.note) + '</div>' : '') +
+        '</div>' +
       '</div>';
     }).join('');
     if (!total) rows = '<p class="subtitle" style="margin-left:108px;">這個個體還沒有照片。</p>';
