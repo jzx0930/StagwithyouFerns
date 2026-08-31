@@ -356,9 +356,9 @@
       return '<div class="tl-row">' +
         '<div class="tl-when"><div class="y">' + esc(y) + '</div><div class="md">' + esc(md) + '</div></div>' +
         '<div class="tl-axis"><div class="line"></div><div class="dot"></div></div>' +
-        '<div class="tl-main"><div class="tl-card">' + photo + '</div>' +
+        '<div class="tl-main"><div class="tl-card">' + photo +
           (e.note ? '<div class="tl-note">' + fmtNote(e.note) + '</div>' : '') +
-        '</div>' +
+        '</div></div>' +
       '</div>';
     }).join('');
     if (!total) rows = '<p class="subtitle" style="margin-left:108px;">這個個體還沒有照片。</p>';

@@ -203,7 +203,7 @@ body {
 .tag { position: absolute; top: 12px; left: 12px; font-family: var(--mono); font-size: 10px; color: #0a0f0d; background: var(--green); border-radius: 6px; padding: 3px 9px; }
 .idx { position: absolute; bottom: 12px; right: 14px; font-family: var(--mono); font-size: 10px; color: rgba(255,255,255,0.55); background: rgba(0,0,0,0.4); border-radius: 5px; padding: 2px 7px; backdrop-filter: blur(6px); }
 .fs-btn { position: absolute; top: 12px; right: 12px; font-family: var(--mono); font-size: 11px; color: var(--green-soft); background: rgba(0,0,0,0.45); border: 1px solid rgba(154,216,171,0.3); border-radius: 999px; padding: 5px 13px; cursor: pointer; backdrop-filter: blur(8px); }
-.tl-note { margin-top: 12px; padding: 14px 18px; font-size: calc(15px * var(--fs-scale)); color: #dfe8e2; line-height: 1.55; background: var(--glass); border: 1px solid rgba(255,255,255, min(1, calc(0.08 * var(--panel-op)))); border-radius: 16px; backdrop-filter: blur(14px) saturate(1.2); box-shadow: 0 10px 30px rgba(0,0,0, min(1, calc(0.30 * var(--panel-op)))); }
+.tl-note { padding: 14px 18px 16px; font-size: calc(15px * var(--fs-scale)); color: #dfe8e2; line-height: 1.55; border-top: 1px solid rgba(255,255,255, min(1, calc(0.10 * var(--panel-op)))); }
 .detail-footer { margin-top: 10px; margin-left: 108px; }
 .detail-footer .pill-btn { background: transparent; border: none; color: var(--muted2); padding: 0; }
 .detail-footer .pill-btn:hover { color: var(--green-soft); }
