@@ -278,3 +278,7 @@ body {
 .social-link svg { display: block; width: 24px; height: 24px; }
 .social-link:hover { background: rgba(154,216,171,0.18); border-color: rgba(154,216,171,0.55); color: #eafff0; transform: translateY(-3px); }
 @media (max-width: 640px) { .social-link span { display: none; } .social-link { padding: 14px; } }
+
+/* 大廳頂部留白:讓背景 logo「StagwithyouFerns」露出來,header 往下 */
+.wrap.lobby { padding-top: 188px; }
+@media (max-width: 640px) { .wrap.lobby { padding-top: 128px; } }
