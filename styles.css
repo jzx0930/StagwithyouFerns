@@ -273,8 +273,8 @@ body {
 
 
 /* ===== 社群連結列(大廳底部)===== */
-.social-bar { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 46px auto 6px; }
-.social-link { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; text-decoration: none; color: var(--green-soft); background: var(--glass); border: 1px solid rgba(154,216,171,0.25); backdrop-filter: blur(10px) saturate(1.2); transition: background .3s, border-color .3s, color .3s, transform .2s cubic-bezier(.2,.8,.2,1); }
-.social-link svg { display: block; }
-.social-link:hover { background: rgba(154,216,171,0.16); border-color: rgba(154,216,171,0.5); color: #eafff0; transform: translateY(-2px); }
-@media (max-width: 640px) { .social-link span { display: none; } .social-link { padding: 11px; } }
+.social-bar { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin: 0 auto 34px; }
+.social-link { display: inline-flex; align-items: center; gap: 11px; padding: 13px 26px; border-radius: 999px; font-family: var(--mono); font-size: 15px; letter-spacing: 0.06em; text-decoration: none; color: var(--green-soft); background: var(--glass); border: 1px solid rgba(154,216,171,0.28); backdrop-filter: blur(10px) saturate(1.2); transition: background .3s, border-color .3s, color .3s, transform .2s cubic-bezier(.2,.8,.2,1); }
+.social-link svg { display: block; width: 24px; height: 24px; }
+.social-link:hover { background: rgba(154,216,171,0.18); border-color: rgba(154,216,171,0.55); color: #eafff0; transform: translateY(-3px); }
+@media (max-width: 640px) { .social-link span { display: none; } .social-link { padding: 14px; } }
