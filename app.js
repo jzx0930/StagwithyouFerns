@@ -285,8 +285,7 @@
     }).join('');
 
     app.innerHTML = '<div class="wrap">' +
-      socialBar() +
-      '<div data-lay="lobby.header">' + headerHTML('Herbarium · 分類選單', '', ((window.SITE_CONFIG && SITE_CONFIG.site && SITE_CONFIG.site.lobbySubtitle) || '選一個分類,進入觀看。'), true, totalPlants, totalPhotos) + '</div>' +
+      '<div data-lay="lobby.header">' + headerHTML('Herbarium · 分類選單', '', ((window.SITE_CONFIG && SITE_CONFIG.site && SITE_CONFIG.site.lobbySubtitle) || '選一個分類,進入觀看。'), true, totalPlants, totalPhotos, socialBar()) + '</div>' +
       '<div class="card-grid" data-lay="lobby.cards">' + cards + '</div></div>';
     animCards('#app .cat-card', 26);
   }
