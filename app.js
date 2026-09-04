@@ -8,6 +8,21 @@
   // 注意:jsDelivr @main 會快取最久 7 天,還在改模型時先別開,免得看到舊檔。
   var MODEL_CDN = '';
 
+  // 社群連結(大廳底部)。要改網址/增減平台改這裡即可。
+  var SOCIAL = [
+    { name: 'Instagram', url: 'https://www.instagram.com/stagwithyou.ferns/',
+      icon: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>' },
+    { name: 'Threads', url: 'https://www.threads.com/@stagwithyou.ferns',
+      icon: '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.1 11.2c-.1 0-.2-.1-.3-.1-.2-3-1.8-4.8-4.6-4.8-1.7 0-3.1.7-3.9 2.1l1.5 1c.6-.9 1.5-1.2 2.4-1.2 1.4 0 2.5 1 2.7 2.5-.6-.1-1.2-.2-1.9-.2-2.5 0-4.1 1.4-4 3.4.1 1.7 1.5 2.7 3.2 2.7 1.5 0 3-.8 3.5-2.7.3.6.5 1.3.5 1.9 0 2-1.6 4-5 4-3.1 0-5-2-5-5.7 0-3.7 1.9-5.8 5-5.8 2.2 0 4 1 4.9 3l1.6-.6C16.9 5.4 14.6 4 11.6 4 7.3 4 4.5 6.9 4.5 12s2.8 7.9 7.1 7.9c4.5 0 6.8-2.9 6.8-5.7 0-1.6-.7-2.8-1.3-3zm-4.7 3.3c-.9 0-1.5-.4-1.5-1.1 0-.7.7-1.2 2-1.2.5 0 1 .1 1.5.2-.2 1.4-1.1 2.1-2 2.1z"/></svg>' },
+    { name: 'Facebook', url: 'https://www.facebook.com/profile.php?id=61562676299178',
+      icon: '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M13.6 21v-7.1h2.4l.4-2.9h-2.8V9.1c0-.8.3-1.4 1.5-1.4h1.4V5.1c-.7-.1-1.5-.2-2.4-.2-2.4 0-3.9 1.4-3.9 4v2.1H7.7v2.9h2.5V21h3.4z"/></svg>' }
+  ];
+  function socialBar() {
+    return '<div class="social-bar" data-lay="lobby.social">' + SOCIAL.map(function (s) {
+      return '<a class="social-link" href="' + s.url + '" target="_blank" rel="noopener noreferrer" aria-label="' + s.name + '" title="' + s.name + '">' + s.icon + '<span>' + s.name + '</span></a>';
+    }).join('') + '</div>';
+  }
+
   var state = {
     view: 'lobby',
     tab: 0,
@@ -271,7 +286,8 @@
 
     app.innerHTML = '<div class="wrap">' +
       '<div data-lay="lobby.header">' + headerHTML('Herbarium · 分類選單', '', ((window.SITE_CONFIG && SITE_CONFIG.site && SITE_CONFIG.site.lobbySubtitle) || '選一個分類,進入觀看。'), true, totalPlants, totalPhotos) + '</div>' +
-      '<div class="card-grid" data-lay="lobby.cards">' + cards + '</div></div>';
+      '<div class="card-grid" data-lay="lobby.cards">' + cards + '</div>' +
+      socialBar() + '</div>';
     animCards('#app .cat-card', 26);
   }
 
