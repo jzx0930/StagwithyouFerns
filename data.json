@@ -4047,40 +4047,6 @@
       ]
     },
     {
-      "name": "細葉亞猴",
-      "latin": "Platycerium Ridleyi",
-      "category": "鹿角蕨",
-      "date": "2026.08.02",
-      "note": "",
-      "cover": "1oC6HEqiAruuVwlBKOPFpsB8ABBw9XHI-",
-      "individuals": [
-        {
-          "label": "#01",
-          "cover": "1oC6HEqiAruuVwlBKOPFpsB8ABBw9XHI-",
-          "timeline": [
-            {
-              "date": "2026.08.02",
-              "tag": "#01",
-              "note": "",
-              "photo": "1oC6HEqiAruuVwlBKOPFpsB8ABBw9XHI-"
-            }
-          ]
-        },
-        {
-          "label": "#02",
-          "cover": "1YHGUPrtBtmUeS26dH9eX87bwkdnJjopf",
-          "timeline": [
-            {
-              "date": "2026.08.02",
-              "tag": "#02",
-              "note": "",
-              "photo": "1YHGUPrtBtmUeS26dH9eX87bwkdnJjopf"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "name": "爪哇",
       "latin": "Platycerium Willinckii",
       "category": "鹿角蕨",
