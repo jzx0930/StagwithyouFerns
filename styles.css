@@ -286,17 +286,21 @@ body {
 /* ===== 關於頁(獨立整頁 · 霞鶩文楷 · 黃山料式排版)===== */
 .social-link.about-link{cursor:pointer}   /* 關於:併入社群列、放在最左(IG 左邊)*/
 .about-wrap{max-width:640px;margin:0 auto}
-/* 深色遮罩:壓掉背景圖與粒子,讓文字看得清楚 */
+/* 極淡整體遮罩:只把背景稍微壓一階,四周仍看得到美圖 */
 .about-scrim{position:fixed;inset:0;pointer-events:none;z-index:0;
-  background:linear-gradient(180deg, rgba(6,9,10,.86), rgba(6,9,10,.93));
-  -webkit-backdrop-filter:blur(2px); backdrop-filter:blur(2px);}
+  background:linear-gradient(180deg, rgba(6,9,10,.30), rgba(6,9,10,.44));}
 .about-wrap .back-row, .about-doc{position:relative; z-index:1}
+/* 文字區塊後面一塊柔邊暗光暈:中間夠暗好讀,邊緣淡出、透出背景 */
 .about-doc{
   font-family:"LXGW WenKai TC", var(--serif);
   text-align:center; color:var(--ink);
   font-size:calc(18px * var(--fs-scale)); line-height:1.95; letter-spacing:.04em;
-  padding:26px 8px 120px;
-  text-shadow:0 1px 12px rgba(0,0,0,.6), 0 0 2px rgba(0,0,0,.5);
+  padding:44px 26px 120px;
+  text-shadow:0 1px 10px rgba(0,0,0,.55), 0 0 2px rgba(0,0,0,.5);
+  background:radial-gradient(125% 82% at 50% 40%,
+    rgba(6,10,10,.74) 0%, rgba(6,10,10,.62) 42%, rgba(6,10,10,.30) 72%, rgba(6,10,10,0) 100%);
+  border-radius:26px;
+  -webkit-backdrop-filter:blur(3px); backdrop-filter:blur(3px);
 }
 .about-doc .ab-gap{height:1.1em}
 .about-doc .ab-sig{margin-top:.5em; color:var(--ink); letter-spacing:.12em}
