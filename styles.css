@@ -284,7 +284,7 @@ body {
 @media (max-width: 640px) { .wrap.lobby { padding-top: 128px; } }
 
 /* ===== 關於頁(獨立整頁 · 霞鶩文楷 · 黃山料式排版)===== */
-.lobby-about{max-width:1100px;margin:2px auto 10px;padding:0 6px;text-align:right}
+.social-link.about-link{cursor:pointer}   /* 關於:併入社群列、放在最左(IG 左邊)*/
 .about-wrap{max-width:640px;margin:0 auto}
 .about-doc{
   font-family:"LXGW WenKai TC", var(--serif);

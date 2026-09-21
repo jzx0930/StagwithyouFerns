@@ -18,7 +18,8 @@
       icon: '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M13.6 21v-7.1h2.4l.4-2.9h-2.8V9.1c0-.8.3-1.4 1.5-1.4h1.4V5.1c-.7-.1-1.5-.2-2.4-.2-2.4 0-3.9 1.4-3.9 4v2.1H7.7v2.9h2.5V21h3.4z"/></svg>' }
   ];
   function socialBar() {
-    return '<div class="social-bar" data-lay="lobby.social">' + SOCIAL.map(function (s) {
+    var about = '<span class="social-link about-link" data-act="about" role="button" tabindex="0" aria-label="關於" title="關於">關於</span>';
+    return '<div class="social-bar" data-lay="lobby.social">' + about + SOCIAL.map(function (s) {
       return '<a class="social-link" href="' + s.url + '" target="_blank" rel="noopener noreferrer" aria-label="' + s.name + '" title="' + s.name + '">' + s.icon + '<span>' + s.name + '</span></a>';
     }).join('') + '</div>';
   }
@@ -286,7 +287,6 @@
 
     app.innerHTML = '<div class="wrap lobby">' +
       '<div data-lay="lobby.header">' + headerHTML('Herbarium · 分類選單', '', ((window.SITE_CONFIG && SITE_CONFIG.site && SITE_CONFIG.site.lobbySubtitle) || '選一個分類,進入觀看。'), true, totalPlants, totalPhotos, socialBar()) + '</div>' +
-      '<div class="lobby-about" data-lay="lobby.about"><span class="pill-btn" data-act="about">關於</span></div>' +
       '<div class="card-grid" data-lay="lobby.cards">' + cards + '</div></div>';
     animCards('#app .cat-card', 26);
   }

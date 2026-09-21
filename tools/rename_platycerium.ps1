@@ -7,9 +7,24 @@ $base = 'C:\Users\MyUser\Google 雲端硬碟檔案串流\我的雲端硬碟\植�
 function Rn($old, $new) {
   $full = Join-Path $base $old
   if (-not (Test-Path -LiteralPath $full)) { Write-Host ("找不到(跳過): {0}" -f $old); return }
-  $target = Join-Path $base $new
-  if (Test-Path -LiteralPath $target) { Write-Host ("已存在(跳過): {0}" -f $new); return }
-  try { Rename-Item -LiteralPath $full -NewName $new -ErrorAction Stop; Write-Host ("OK  {0}  ->  {1}" -f $old, $new) }
+  $parent = Split-Path -LiteralPath $full
+  $cur = Split-Path -Leaf $full
+  if ($cur -ceq $new) { Write-Host ("已是目標名(跳過): {0}" -f $new); return }
+  # Windows 檔名不分大小寫:只差大小寫時 Test-Path 會誤判「已存在」,
+  # 直接 Rename-Item 也可能失敗 → 先改暫時名再改回,兩段式繞過。
+  $caseOnly = ($cur -ieq $new)
+  $target = Join-Path $parent $new
+  if ((Test-Path -LiteralPath $target) -and (-not $caseOnly)) { Write-Host ("已存在(跳過): {0}" -f $new); return }
+  try {
+    if ($caseOnly) {
+      $tmp = "$new~tmp"
+      Rename-Item -LiteralPath $full -NewName $tmp -ErrorAction Stop
+      Rename-Item -LiteralPath (Join-Path $parent $tmp) -NewName $new -ErrorAction Stop
+    } else {
+      Rename-Item -LiteralPath $full -NewName $new -ErrorAction Stop
+    }
+    Write-Host ("OK  {0}  ->  {1}" -f $old, $new)
+  }
   catch { Write-Host ("失敗 {0} : {1}" -f $old, $_.Exception.Message) }
 }
 
