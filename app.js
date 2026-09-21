@@ -311,6 +311,7 @@
       return '<div class="ab-line">' + esc(ln) + '</div>';
     }).join('');
     app.innerHTML = '<div class="wrap about-wrap">' +
+      '<div class="about-scrim"></div>' +
       '<div class="back-row" data-lay="about.back"><span class="pill-btn" data-act="lobby">← 回到分類大廳</span></div>' +
       '<div class="about-doc" data-lay="about.doc">' + body + '</div>' +
     '</div>';
