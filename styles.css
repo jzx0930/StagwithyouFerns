@@ -282,3 +282,18 @@ body {
 /* 大廳頂部留白:讓背景 logo「StagwithyouFerns」露出來,header 往下 */
 .wrap.lobby { padding-top: 188px; }
 @media (max-width: 640px) { .wrap.lobby { padding-top: 128px; } }
+
+/* ===== 關於頁(獨立整頁 · 霞鶩文楷 · 黃山料式排版)===== */
+.lobby-about{max-width:1100px;margin:2px auto 10px;padding:0 6px;text-align:right}
+.about-wrap{max-width:640px;margin:0 auto}
+.about-doc{
+  font-family:"LXGW WenKai TC", var(--serif);
+  text-align:center; color:var(--ink);
+  font-size:calc(18px * var(--fs-scale)); line-height:1.95; letter-spacing:.04em;
+  padding:26px 8px 120px;
+}
+.about-doc .ab-gap{height:1.1em}
+.about-doc .ab-sig{margin-top:.5em; color:var(--ink); letter-spacing:.12em}
+@media (max-width:640px){
+  .about-doc{font-size:calc(17px * var(--fs-scale)); line-height:2.0; padding-bottom:96px}
+}

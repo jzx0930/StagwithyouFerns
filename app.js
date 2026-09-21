@@ -286,8 +286,35 @@
 
     app.innerHTML = '<div class="wrap lobby">' +
       '<div data-lay="lobby.header">' + headerHTML('Herbarium · 分類選單', '', ((window.SITE_CONFIG && SITE_CONFIG.site && SITE_CONFIG.site.lobbySubtitle) || '選一個分類,進入觀看。'), true, totalPlants, totalPhotos, socialBar()) + '</div>' +
+      '<div class="lobby-about" data-lay="lobby.about"><span class="pill-btn" data-act="about">關於</span></div>' +
       '<div class="card-grid" data-lay="lobby.cards">' + cards + '</div></div>';
     animCards('#app .cat-card', 26);
+  }
+
+  // ---- 關於頁(獨立整頁;文案在 about.js,字型延遲載入)----
+  var _wenkaiLoaded = false;
+  function loadAboutFont() {
+    if (_wenkaiLoaded) return;
+    _wenkaiLoaded = true;
+    var url = window.SF_ABOUT_FONT;
+    if (!url) return;                       // 留空=用網站預設襯線
+    var l = document.createElement('link');
+    l.rel = 'stylesheet'; l.href = url;
+    document.head.appendChild(l);
+  }
+  function renderAbout() {
+    loadAboutFont();
+    var lines = (window.SF_ABOUT && window.SF_ABOUT.length) ? window.SF_ABOUT : ['（關於文案待補:編輯 about.js）'];
+    var body = lines.map(function (ln) {
+      if (ln === '' || ln == null) return '<div class="ab-gap"></div>';
+      if (/^—/.test(ln)) return '<div class="ab-sig">' + esc(ln) + '</div>';
+      return '<div class="ab-line">' + esc(ln) + '</div>';
+    }).join('');
+    app.innerHTML = '<div class="wrap about-wrap">' +
+      '<div class="back-row" data-lay="about.back"><span class="pill-btn" data-act="lobby">← 回到分類大廳</span></div>' +
+      '<div class="about-doc" data-lay="about.doc">' + body + '</div>' +
+    '</div>';
+    animCards('#app .ab-line', 14);
   }
 
   function renderGrid() {
@@ -418,6 +445,7 @@
     if (state.view !== 'detail') _lastTyped = -1;   // 離開詳情後,下次再進同一株會重打
     if (state.view === 'lobby') renderLobby();
     else if (state.view === 'grid') renderGrid();
+    else if (state.view === 'about') renderAbout();
     else renderDetail();
     if (window.__fxMode) window.__fxMode(state.view);
     wireInteractions();   // 掛上滑鼠傾斜 / 磁吸(每次重繪後重掛)
@@ -448,7 +476,8 @@
     if (!t) return;
     var act = t.getAttribute('data-act');
     var i = parseInt(t.getAttribute('data-i'), 10);
-    if (act === 'enter') { state.tab = i; go('grid'); }
+    if (act === 'about') { go('about'); }
+    else if (act === 'enter') { state.tab = i; go('grid'); }
     else if (act === 'tab') { state.tab = i; render(); }
     else if (act === 'open') { state.selected = i; state.indiv = 0; go('detail'); }
     else if (act === 'indiv') { state.indiv = i; render(); }
