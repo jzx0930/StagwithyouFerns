@@ -116,5 +116,12 @@ Write-Host '=== 2026-08-31 查名改名(塊根)==='
 Rn 'Caudex-塊根\足球樹' 'ellipticum-足球樹'
 
 Write-Host ''
+
+Write-Host ''
+Write-Host '=== 2026-09-21 新植物改名 ==='
+# 惠比須笑 = Pachypodium brevicaule(棒槌)；角疣巨象 = Coryphantha cornifera(仙人掌，巨象屬帶角種)
+Rn '棒槌-Pachypodium\惠比須笑' '惠比須笑-Pachypodium brevicaule'
+Rn '仙人掌-Cactaceae\角疣巨象' '角疣巨象-Coryphantha cornifera'
+
 Write-Host '完成。品種名鹿角蕨(巨獸/三角/雷達等)因無學名,維持中文未改。'
 Read-Host '按 Enter 關閉'
