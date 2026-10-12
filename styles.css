@@ -284,7 +284,14 @@ body {
 @media (max-width: 640px) { .wrap.lobby { padding-top: 128px; } }
 
 /* ===== 關於頁(獨立整頁 · 霞鶩文楷 · 黃山料式排版)===== */
-.social-link.about-link{cursor:pointer}   /* 關於:併入社群列、放在最左(IG 左邊)*/
+.social-link.about-link{cursor:pointer}   /* 關於/知識庫:併入社群列 */
+.nav-links{display:contents}   /* 桌機:關於+知識庫 當作社群列的一般成員(維持原樣)*/
+/* 手機:社群圖示在上,關於+知識庫 另起一列置中在下 */
+@media (max-width:640px){
+  .social-bar{flex-wrap:wrap; justify-content:center}
+  .social-bar > .social-link{order:1}
+  .nav-links{display:flex; order:2; flex-basis:100%; width:100%; justify-content:center; gap:12px; margin-top:4px}
+}
 .about-wrap{max-width:640px;margin:0 auto}
 /* 關於頁:保留大廳夜景照,遮罩調亮讓背景透出更多;文字靠模糊底+強陰影維持清楚 */
 .about-scrim{position:fixed;inset:0;pointer-events:none;z-index:0;

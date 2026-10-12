@@ -20,7 +20,8 @@
   function socialBar() {
     var about = '<span class="social-link about-link" data-act="about" role="button" tabindex="0" aria-label="關於" title="關於">關於</span>';
     var kb = '<span class="social-link about-link" data-act="knowledge" role="button" tabindex="0" aria-label="知識庫" title="知識庫">知識庫</span>';
-    return '<div class="social-bar" data-lay="lobby.social">' + about + kb + SOCIAL.map(function (s) {
+    var nav = '<span class="nav-links">' + about + kb + '</span>';
+    return '<div class="social-bar" data-lay="lobby.social">' + nav + SOCIAL.map(function (s) {
       return '<a class="social-link" href="' + s.url + '" target="_blank" rel="noopener noreferrer" aria-label="' + s.name + '" title="' + s.name + '">' + s.icon + '<span>' + s.name + '</span></a>';
     }).join('') + '</div>';
   }
