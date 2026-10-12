@@ -254,6 +254,54 @@
     if (pending === 0 && la) la.style.opacity = '1';
   }
 
+  // ---- 搜尋:打中文/學名/分類,點結果直接跳到該株成長頁 ----
+  function plantCatIndex(p) {
+    var cats = normCats(), zh = catOf(p, cats);
+    for (var i = 0; i < cats.length; i++) { if (cats[i].zh === zh) return i; }
+    return 0;
+  }
+  function searchMatches(q) {
+    q = (q || '').trim().toLowerCase();
+    if (!q) return [];
+    var data = state.data || [], out = [];
+    for (var i = 0; i < data.length; i++) {
+      var p = data[i];
+      var hay = ((p.name || '') + ' ' + (p.latin || '') + ' ' + (p.category || '')).toLowerCase();
+      if (hay.indexOf(q) >= 0) { out.push({ i: i, p: p }); if (out.length >= 16) break; }
+    }
+    return out;
+  }
+  function renderSearchResults(q) {
+    var box = document.getElementById('sf-results');
+    if (!box) return;
+    if (!q || !q.trim()) { box.innerHTML = ''; box.classList.remove('open'); return; }
+    var ms = searchMatches(q), cats = normCats();
+    if (!ms.length) { box.innerHTML = '<div class="search-empty">找不到「' + esc(q) + '」</div>'; box.classList.add('open'); return; }
+    box.innerHTML = ms.map(function (m) {
+      var zh = catOf(m.p, cats);
+      return '<div class="search-item" data-act="search-open" data-i="' + m.i + '">' +
+        '<span class="si-name">' + esc(m.p.name) + '</span>' +
+        (m.p.latin ? '<span class="si-latin">' + esc(m.p.latin) + '</span>' : '<span class="si-latin"></span>') +
+        '<span class="si-cat">' + esc(zh) + '</span></div>';
+    }).join('');
+    box.classList.add('open');
+  }
+  function openFromSearch(i) {
+    var p = (state.data || [])[i];
+    if (!p) return;
+    state.selected = i; state.indiv = 0; state.tab = plantCatIndex(p);
+    go('detail');
+  }
+  function wireSearch() {
+    var inp = document.getElementById('sf-search');
+    if (!inp) return;
+    inp.addEventListener('input', function () { renderSearchResults(inp.value); });
+    inp.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { var ms = searchMatches(inp.value); if (ms.length) openFromSearch(ms[0].i); }
+      else if (e.key === 'Escape') { inp.value = ''; renderSearchResults(''); }
+    });
+  }
+
   function renderLobby() {
     var cats = normCats();
     var data = state.data || [];
@@ -287,8 +335,13 @@
 
     app.innerHTML = '<div class="wrap lobby">' +
       '<div data-lay="lobby.header">' + headerHTML('Herbarium · 分類選單', '', ((window.SITE_CONFIG && SITE_CONFIG.site && SITE_CONFIG.site.lobbySubtitle) || '選一個分類,進入觀看。'), true, totalPlants, totalPhotos, socialBar()) + '</div>' +
+      '<div class="lobby-search" data-lay="lobby.search">' +
+        '<input id="sf-search" type="search" placeholder="🔍 搜尋植物(中文 / 學名 / 分類)…" autocomplete="off" aria-label="搜尋植物">' +
+        '<div id="sf-results" class="search-results"></div>' +
+      '</div>' +
       '<div class="card-grid" data-lay="lobby.cards">' + cards + '</div></div>';
     animCards('#app .cat-card', 26);
+    wireSearch();
   }
 
   // ---- 關於頁(獨立整頁;文案在 about.js,字型延遲載入)----
@@ -478,6 +531,7 @@
     var act = t.getAttribute('data-act');
     var i = parseInt(t.getAttribute('data-i'), 10);
     if (act === 'about') { go('about'); }
+    else if (act === 'search-open') { openFromSearch(i); }
     else if (act === 'enter') { state.tab = i; go('grid'); }
     else if (act === 'tab') { state.tab = i; render(); }
     else if (act === 'open') { state.selected = i; state.indiv = 0; go('detail'); }
