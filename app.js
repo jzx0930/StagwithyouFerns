@@ -19,7 +19,8 @@
   ];
   function socialBar() {
     var about = '<span class="social-link about-link" data-act="about" role="button" tabindex="0" aria-label="關於" title="關於">關於</span>';
-    return '<div class="social-bar" data-lay="lobby.social">' + about + SOCIAL.map(function (s) {
+    var kb = '<span class="social-link about-link" data-act="knowledge" role="button" tabindex="0" aria-label="知識庫" title="知識庫">知識庫</span>';
+    return '<div class="social-bar" data-lay="lobby.social">' + about + kb + SOCIAL.map(function (s) {
       return '<a class="social-link" href="' + s.url + '" target="_blank" rel="noopener noreferrer" aria-label="' + s.name + '" title="' + s.name + '">' + s.icon + '<span>' + s.name + '</span></a>';
     }).join('') + '</div>';
   }
@@ -252,6 +253,54 @@
       }
     });
     if (pending === 0 && la) la.style.opacity = '1';
+  }
+
+  // ---- 知識庫(文章在 knowledge.js)----
+  function kbBodyHTML(body) {
+    var html = '', inUl = false;
+    function closeUl() { if (inUl) { html += '</ul>'; inUl = false; } }
+    (body || []).forEach(function (ln) {
+      if (ln == null || ln === '') { closeUl(); html += '<div class="kb-gap"></div>'; return; }
+      if (/^#\s/.test(ln)) { closeUl(); html += '<h3 class="kb-h">' + esc(ln.replace(/^#\s/, '')) + '</h3>'; return; }
+      if (/^[•\-]\s/.test(ln)) { if (!inUl) { html += '<ul class="kb-ul">'; inUl = true; } html += '<li>' + esc(ln.replace(/^[•\-]\s/, '')) + '</li>'; return; }
+      closeUl(); html += '<p class="kb-p">' + esc(ln) + '</p>';
+    });
+    closeUl();
+    return html;
+  }
+  function renderKnowledge() {
+    var cats = (window.SF_KNOWLEDGE_CATS || []), arts = (window.SF_KNOWLEDGE || []);
+    var secs = cats.map(function (c) {
+      var items = arts.filter(function (a) { return a.cat === c; });
+      if (!items.length) return '';
+      return '<div class="kb-sec"><div class="kb-cat">' + esc(c) + '</div><div class="kb-grid">' +
+        items.map(function (a) {
+          return '<div class="kb-card" data-act="article" data-id="' + esc(a.id) + '">' +
+            '<div class="kb-ctitle">' + esc(a.title) + '</div>' +
+            (a.lead ? '<div class="kb-clead">' + esc(a.lead) + '</div>' : '') +
+            '<div class="kb-more">閱讀 →</div></div>';
+        }).join('') + '</div></div>';
+    }).join('');
+    app.innerHTML = '<div class="wrap kb-wrap">' +
+      '<div class="back-row" data-lay="kb.back"><span class="pill-btn" data-act="lobby">← 回到分類大廳</span></div>' +
+      '<div data-lay="kb.header">' + headerHTML('Knowledge · 鹿角蕨知識庫', '知識庫', '照護、病蟲害、繁殖與科普——把經驗整理成一篇篇。', false) + '</div>' +
+      secs + '</div>';
+    animCards('#app .kb-card', 18);
+  }
+  function renderArticle() {
+    var arts = (window.SF_KNOWLEDGE || []), a = null;
+    for (var i = 0; i < arts.length; i++) { if (arts[i].id === state.article) { a = arts[i]; break; } }
+    if (!a) { go('knowledge'); return; }
+    var cover = a.img ? '<div class="kb-cover">' + coverImg(a.img, 1400, a.title) + '</div>' : '';
+    app.innerHTML = '<div class="wrap narrow kb-article">' +
+      '<div class="back-row" data-lay="kb.abk"><span class="pill-btn" data-act="knowledge">← 回到知識庫</span></div>' +
+      '<div class="eyebrow">' + esc(a.cat) + '</div>' +
+      '<h1 class="title kb-arttitle">' + esc(a.title) + '</h1>' +
+      (a.lead ? '<div class="kb-artlead">' + esc(a.lead) + '</div>' : '') +
+      cover +
+      '<div class="kb-body">' + kbBodyHTML(a.body) + '</div>' +
+      '<div class="detail-footer"><span class="pill-btn" data-act="knowledge">↑ 回到知識庫</span></div>' +
+    '</div>';
   }
 
   // ---- 搜尋:打中文/學名/分類,點結果直接跳到該株成長頁 ----
@@ -500,6 +549,8 @@
     if (state.view === 'lobby') renderLobby();
     else if (state.view === 'grid') renderGrid();
     else if (state.view === 'about') renderAbout();
+    else if (state.view === 'knowledge') renderKnowledge();
+    else if (state.view === 'article') renderArticle();
     else renderDetail();
     if (window.__fxMode) window.__fxMode(state.view);
     wireInteractions();   // 掛上滑鼠傾斜 / 磁吸(每次重繪後重掛)
@@ -531,6 +582,8 @@
     var act = t.getAttribute('data-act');
     var i = parseInt(t.getAttribute('data-i'), 10);
     if (act === 'about') { go('about'); }
+    else if (act === 'knowledge') { go('knowledge'); }
+    else if (act === 'article') { state.article = t.getAttribute('data-id'); go('article'); }
     else if (act === 'search-open') { openFromSearch(i); }
     else if (act === 'enter') { state.tab = i; go('grid'); }
     else if (act === 'tab') { state.tab = i; render(); }

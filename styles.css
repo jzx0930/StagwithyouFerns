@@ -327,3 +327,34 @@ body {
 .si-cat{color:var(--green-soft);font-size:11px;border:1px solid var(--glass-border);border-radius:999px;padding:2px 9px;flex:0 0 auto}
 .search-empty{padding:12px;color:var(--muted2);font-size:14px;text-align:center}
 @media (max-width:640px){ .lobby-search{max-width:none} .si-latin{display:none} }
+
+/* ===== 知識庫 ===== */
+.kb-wrap{max-width:1000px;margin:0 auto}
+.kb-sec{margin:0 0 30px}
+.kb-cat{font-family:var(--sans);font-size:13px;letter-spacing:.24em;color:var(--green-soft);
+  margin:0 0 14px;padding-bottom:8px;border-bottom:1px solid var(--glass-border)}
+.kb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.kb-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;
+  padding:18px 18px 16px;cursor:pointer;transition:border-color .2s,transform .2s,background .2s;display:flex;flex-direction:column;gap:8px}
+.kb-card:hover{border-color:var(--green);transform:translateY(-3px)}
+.kb-ctitle{font-family:var(--serif);font-size:18px;color:var(--ink-strong);line-height:1.4}
+.kb-clead{font-size:13px;color:var(--muted2);line-height:1.7;flex:1}
+.kb-more{font-family:var(--sans);font-size:12px;letter-spacing:.1em;color:var(--green-soft)}
+
+/* 文章內文 */
+.kb-article{max-width:680px}
+.kb-arttitle{margin:6px 0 10px}
+.kb-artlead{font-size:15px;color:var(--muted2);line-height:1.9;margin:0 0 22px;
+  padding-bottom:18px;border-bottom:1px solid var(--glass-border)}
+.kb-cover{margin:0 0 22px;border-radius:14px;overflow:hidden}
+.kb-cover img{width:100%;display:block}
+.kb-body{font-family:var(--serif);color:var(--ink);font-size:calc(16px * var(--fs-scale));line-height:2}
+.kb-body .kb-h{font-family:var(--sans);font-size:15px;letter-spacing:.06em;color:var(--green-mint);
+  margin:26px 0 10px;font-weight:600}
+.kb-body .kb-p{margin:0 0 14px}
+.kb-body .kb-ul{margin:0 0 14px;padding-left:4px;list-style:none}
+.kb-body .kb-ul li{position:relative;padding-left:20px;margin:0 0 9px;line-height:1.9}
+.kb-body .kb-ul li::before{content:'';position:absolute;left:4px;top:.85em;width:5px;height:5px;
+  border-radius:50%;background:var(--green)}
+.kb-body .kb-gap{height:.5em}
+@media (max-width:640px){ .kb-grid{grid-template-columns:1fr} .kb-body{font-size:calc(15px * var(--fs-scale))} }
