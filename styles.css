@@ -365,3 +365,20 @@ body {
   border-radius:50%;background:var(--green)}
 .kb-body .kb-gap{height:.5em}
 @media (max-width:640px){ .kb-grid{grid-template-columns:1fr} .kb-body{font-size:calc(15px * var(--fs-scale))} }
+
+/* ===== 來源 · 母株 ===== */
+.mother-sec{margin:14px 0 6px}
+.mother-body{background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;padding:16px 18px}
+.mother-row{display:flex;gap:12px;margin:0 0 10px;line-height:1.8;font-size:15px}
+.mother-row:last-child{margin-bottom:0}
+.mother-row .mk{flex:0 0 auto;font-family:var(--sans);font-size:12px;letter-spacing:.14em;color:var(--green-soft);
+  border:1px solid var(--glass-border);border-radius:999px;padding:3px 11px;height:fit-content}
+.mother-row .mv{color:var(--ink);white-space:pre-wrap}
+.mother-photos{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.m-photo{position:relative;width:140px;height:140px;border-radius:12px;overflow:hidden;cursor:zoom-in;
+  border:1px solid var(--glass-border);background:rgba(255,255,255,.03)}
+.m-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.m-photo .fs-btn{position:absolute;right:6px;bottom:6px;font-family:var(--sans);font-size:11px;
+  background:rgba(0,0,0,.55);color:#fff;padding:3px 7px;border-radius:8px;opacity:0;transition:opacity .2s}
+.m-photo:hover .fs-btn{opacity:1}
+@media (max-width:640px){ .m-photo{width:calc(50% - 5px);height:120px} }

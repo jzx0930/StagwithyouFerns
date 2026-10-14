@@ -470,6 +470,26 @@
     animCards('#app .plant-card', 20);
   }
 
+  // 來源 · 母株:文字取自 sources.js(不被 Drive 重建覆蓋),照片取自個體的 mother(由 Drive「母株」夾同步)
+  function motherSection(sel, cur) {
+    var src = (window.PLANT_SOURCES && PLANT_SOURCES[sel.name] && PLANT_SOURCES[sel.name][(cur && cur.label) || '']) || null;
+    var photos = (cur && cur.mother) || [];
+    var hasText = src && (src.source || src.mother);
+    if (!hasText && !photos.length) return '';
+    var rows = '';
+    if (src && src.source) rows += '<div class="mother-row"><span class="mk">來源</span><span class="mv">' + fmtNote(src.source) + '</span></div>';
+    if (src && src.mother) rows += '<div class="mother-row"><span class="mk">母株</span><span class="mv">' + fmtNote(src.mother) + '</span></div>';
+    var pics = photos.length ? '<div class="mother-photos">' + photos.map(function (id) {
+      var url = driveImg(id, 1200), big = driveImg(id, 2400);
+      return '<div class="m-photo" data-act="zoom" data-url="' + esc(big) + '">' +
+        '<img src="' + esc(url) + '" alt="母株" loading="lazy" decoding="async" onerror="this.style.display=\'none\'">' +
+        '<span class="fs-btn" data-act="zoom" data-url="' + esc(big) + '">⤢ 全螢幕</span></div>';
+    }).join('') + '</div>' : '';
+    return '<div class="mother-sec" data-lay="detail.mother">' +
+      '<div class="tl-head"><h2>來源 · 母株</h2></div>' +
+      '<div class="mother-body">' + rows + pics + '</div></div>';
+  }
+
   function renderDetail() {
     var data = state.data || [];
     var sel = data[state.selected] || data[0] || { name: '', latin: '', date: '', individuals: [] };
@@ -539,6 +559,7 @@
       shopRow(sel, state.selected, true) +
       (noteOf(sel) ? '<div class="plant-intro" data-lay="detail.intro">' + fmtNote(noteOf(sel)) + '</div>' : '') +
       (picker ? '<div data-lay="detail.picker">' + picker + '</div>' : '') +
+      motherSection(sel, cur) +
       '<div class="tl-head" data-lay="detail.timelineHead"><h2>成長時間軸</h2><div class="tl-order">最新 → 最早</div></div>' +
       '<div data-lay="detail.timeline">' + rows + '</div>' +
       '<div class="detail-footer"><span class="pill-btn" data-act="back-grid">↑ 回到照片牆</span></div>' +
