@@ -875,6 +875,18 @@
           "cover": "1CO1rzxaNrpRQAJU-wUKIRwHQbfJOIwA8",
           "timeline": [
             {
+              "date": "2026.10.11",
+              "tag": "#01",
+              "note": "",
+              "photo": "1K-ldTDEGaXPJ5nfCH8Cq4jz-kgHfeolG"
+            },
+            {
+              "date": "2026.10.11",
+              "tag": "#01",
+              "note": "",
+              "photo": "16c0oBaQxEN1ROpkCi7flUP6DCA9STkgO"
+            },
+            {
               "date": "2026.09.12",
               "tag": "#01",
               "note": "",
@@ -958,6 +970,36 @@
           "label": "#02",
           "cover": "1N8DgYb42wonXNn_lW74sNAZuhUlZ1Qfy",
           "timeline": [
+            {
+              "date": "2026.10.09",
+              "tag": "#02",
+              "note": "",
+              "photo": "1M35cL8cg2wx7EEcXKetErHlwtP0bpDtY"
+            },
+            {
+              "date": "2026.10.09",
+              "tag": "#02",
+              "note": "",
+              "photo": "1Byxk4jTIkVSyeBwPsA-Qyr99maeu0VkZ"
+            },
+            {
+              "date": "2026.10.07",
+              "tag": "#02",
+              "note": "",
+              "photo": "1nV5aqudCyOUcZzkdIpK9kf0pQo7An-lp"
+            },
+            {
+              "date": "2026.10.07",
+              "tag": "#02",
+              "note": "",
+              "photo": "1Qln3vkiAu3iovTLdVkz7lBcKLTqKfp7j"
+            },
+            {
+              "date": "2026.10.07",
+              "tag": "#02",
+              "note": "",
+              "photo": "1LpHN3AcqYLDUmXJkEFJ0RTxrA_rHSOQ-"
+            },
             {
               "date": "2026.08.22",
               "tag": "#02",
@@ -1093,6 +1135,18 @@
               "photo": "1wPpGwea1-6-9OXOuLv2C59sDQaQBrA5-"
             }
           ]
+        },
+        {
+          "label": "#02",
+          "cover": "1bk2c3NLfHTSQGSw8cRsXo8agomEvBN56",
+          "timeline": [
+            {
+              "date": "2026.10.14",
+              "tag": "#02",
+              "note": "",
+              "photo": "1bk2c3NLfHTSQGSw8cRsXo8agomEvBN56"
+            }
+          ]
         }
       ]
     },
@@ -1108,6 +1162,24 @@
           "label": "",
           "cover": "1QYiH0HCwAEQg1z1mDAb6UgclnbR8CZyH",
           "timeline": [
+            {
+              "date": "2026.10.07",
+              "tag": "",
+              "note": "",
+              "photo": "1TmjbqXnugK18iBoWYtBzyWevAen51nYY"
+            },
+            {
+              "date": "2026.10.07",
+              "tag": "",
+              "note": "",
+              "photo": "1ma4bB2RYU_FTPO5iZ0KBzVaFXEhqooWa"
+            },
+            {
+              "date": "2026.10.07",
+              "tag": "",
+              "note": "",
+              "photo": "11Ih5AeoUmgX2bDQtU0wgmieFkkWPKZNL"
+            },
             {
               "date": "2026.08.22",
               "tag": "",
@@ -1208,6 +1280,12 @@
           "label": "",
           "cover": "1iFOF5UYi2MO8-JWjzhhEA_Mh4Qw2cZfD",
           "timeline": [
+            {
+              "date": "2026.10.09",
+              "tag": "",
+              "note": "",
+              "photo": "1y2fA3_V4CoZsQ4tsW9f_5NvzvWH7aZUy"
+            },
             {
               "date": "2026.09.06",
               "tag": "",
@@ -2051,6 +2129,72 @@
               "photo": "1BNr2GoR3mss6loyx-UX_hmZjblAmsTNS"
             }
           ]
+        },
+        {
+          "label": "#32",
+          "cover": "1Jc2jvWzVjF2hzJ5wEeJswxXIed8cqiuN",
+          "timeline": [
+            {
+              "date": "2026.10.14",
+              "tag": "#32",
+              "note": "",
+              "photo": "1Jc2jvWzVjF2hzJ5wEeJswxXIed8cqiuN"
+            }
+          ],
+          "mother": [
+            "1Qz8AHsTUXYDldFY3NBH66BgoX-ylewBL"
+          ]
+        },
+        {
+          "label": "#31",
+          "cover": "1eHm3-CiPU5ss2R5LuVJPrApdeoVRQ0eb",
+          "timeline": [
+            {
+              "date": "2026.10.11",
+              "tag": "#31",
+              "note": "",
+              "photo": "1eHm3-CiPU5ss2R5LuVJPrApdeoVRQ0eb"
+            },
+            {
+              "date": "2026.10.11",
+              "tag": "#31",
+              "note": "",
+              "photo": "1rrCyfE8N-65ptRf1gqTg--8G8MQ8_WR0"
+            },
+            {
+              "date": "2026.10.11",
+              "tag": "#31",
+              "note": "",
+              "photo": "1WB7WkQXtZgVclrvSuAzv--5JxL7Wc_Oy"
+            },
+            {
+              "date": "2026.10.09",
+              "tag": "#31",
+              "note": "",
+              "photo": "1-_EjqY8DauL3sIhYvopfjV5KuiuhqLfv"
+            },
+            {
+              "date": "2026.10.05",
+              "tag": "#31",
+              "note": "",
+              "photo": "1y3tx2XCRky_9rNt8Fq5P5XGA4pzUO7dW"
+            },
+            {
+              "date": "2026.10.05",
+              "tag": "#31",
+              "note": "",
+              "photo": "1QSURglhJUitdDHLgIHj2XElnYD5gzRas"
+            },
+            {
+              "date": "2026.10.05",
+              "tag": "#31",
+              "note": "",
+              "photo": "1x_TxDUmQ8JeS5-O16PLU5NJkz6grZyVZ"
+            }
+          ],
+          "mother": [
+            "1b8CZ8otveA2X3-AoxsDvvudlxcp4iBX4"
+          ]
         }
       ]
     },
@@ -2230,6 +2374,12 @@
           "label": "",
           "cover": "1yekZtsJDNsifFtHP9e0XUUSZv96fpc47",
           "timeline": [
+            {
+              "date": "2026.10.05",
+              "tag": "",
+              "note": "",
+              "photo": "1p8Ql-V_lTXEHIoN9ktutFoJksGJKx07d"
+            },
             {
               "date": "2026.08.22",
               "tag": "",
@@ -2503,6 +2653,45 @@
               "tag": "",
               "note": "",
               "photo": "1E1MNXusvRqwaaO_quBGs0xKQv7RrvgTy"
+            }
+          ],
+          "mother": [
+            "1Y-CHmwlHVUL401GlDfm8ZDaz4HKd2ktD"
+          ]
+        },
+        {
+          "label": "#04",
+          "cover": "1GGETlT1Gk-rAbQOPcAfaMi3MjLjTbgzv",
+          "timeline": [
+            {
+              "date": "2026.10.05",
+              "tag": "#04",
+              "note": "",
+              "photo": "1GGETlT1Gk-rAbQOPcAfaMi3MjLjTbgzv"
+            }
+          ]
+        },
+        {
+          "label": "#03",
+          "cover": "1lvhH8VurAAO4cMNIKhRWJ6JXdv_BbVkn",
+          "timeline": [
+            {
+              "date": "2026.10.05",
+              "tag": "#03",
+              "note": "",
+              "photo": "1lvhH8VurAAO4cMNIKhRWJ6JXdv_BbVkn"
+            }
+          ]
+        },
+        {
+          "label": "#02",
+          "cover": "1fQ7oQxv6FkeahHH3G3Oyd-VGxMdXHkvV",
+          "timeline": [
+            {
+              "date": "2026.10.05",
+              "tag": "#02",
+              "note": "",
+              "photo": "1fQ7oQxv6FkeahHH3G3Oyd-VGxMdXHkvV"
             }
           ]
         }
@@ -3052,6 +3241,12 @@
           "label": "",
           "cover": "1OeoLT953JhhVDGjxMekCd2_M9lEmGWJW",
           "timeline": [
+            {
+              "date": "2026.10.07",
+              "tag": "",
+              "note": "",
+              "photo": "1XqGQL1O_6PArSMdRUlOuL_Oce6zmJ_qY"
+            },
             {
               "date": "2026.08.22",
               "tag": "",
@@ -3633,6 +3828,24 @@
               "photo": "1UBAFwJAICvIdTM9LQotiPMANZu3pLU1s"
             }
           ]
+        },
+        {
+          "label": "#02",
+          "cover": "1ux0byw6N_ZNzoxYLODliRC05eOCYK2XK",
+          "timeline": [
+            {
+              "date": "2026.10.14",
+              "tag": "#02",
+              "note": "",
+              "photo": "1ux0byw6N_ZNzoxYLODliRC05eOCYK2XK"
+            },
+            {
+              "date": "2026.10.14",
+              "tag": "#02",
+              "note": "",
+              "photo": "1kzrDXHpQo52YTjdz7j5rj8y84t0WiOMt"
+            }
+          ]
         }
       ]
     },
@@ -4125,6 +4338,21 @@
               "photo": "1cDBuD8MIv5-S4eyta-9Xbq0W47eoUZFP"
             }
           ]
+        },
+        {
+          "label": "#01",
+          "cover": "10vAAnOUZmuzyJrzRzI5DOx0t4FU1ULzh",
+          "timeline": [
+            {
+              "date": "2026.10.14",
+              "tag": "#01",
+              "note": "",
+              "photo": "10vAAnOUZmuzyJrzRzI5DOx0t4FU1ULzh"
+            }
+          ],
+          "mother": [
+            "18p4hUYP4NATy7Ag8Z8yiSMo1nGzpFh8y"
+          ]
         }
       ]
     },
@@ -4167,6 +4395,24 @@
               "tag": "",
               "note": "",
               "photo": "1DXxEIbNEzpIpGvJJaUnf1iy60256ePUu"
+            }
+          ]
+        },
+        {
+          "label": "#02",
+          "cover": "1xDju9z6JOWV3-KyiyutXY41qCmRGq1hT",
+          "timeline": [
+            {
+              "date": "2026.10.14",
+              "tag": "#02",
+              "note": "",
+              "photo": "1xDju9z6JOWV3-KyiyutXY41qCmRGq1hT"
+            },
+            {
+              "date": "2026.10.14",
+              "tag": "#02",
+              "note": "",
+              "photo": "1_FL8Ph9hyNAIA1UEHxvJuGPXN7QOo_eZ"
             }
           ]
         }
@@ -4242,6 +4488,21 @@
               "note": "",
               "photo": "1RYsgSFni2xHSyTEQK_pRc6_YOzWs18AI"
             }
+          ]
+        },
+        {
+          "label": "#02",
+          "cover": "1r3_45r_uZZdZypu4SLHRggM6_4MGshyk",
+          "timeline": [
+            {
+              "date": "2026.10.14",
+              "tag": "#02",
+              "note": "",
+              "photo": "1r3_45r_uZZdZypu4SLHRggM6_4MGshyk"
+            }
+          ],
+          "mother": [
+            "1ju3pL_BRyyb33GKvGRN3Xqv8a-INBkvp"
           ]
         }
       ]
@@ -4458,6 +4719,12 @@
           "label": "#03",
           "cover": "1BrZHM0ano-zIT3HND4bUrehZXSwFAGKl",
           "timeline": [
+            {
+              "date": "2026.10.11",
+              "tag": "#03",
+              "note": "",
+              "photo": "1KFHmLZeQ3659EQN3ecuBhYwzUaIKCBeo"
+            },
             {
               "date": "2026.08.29",
               "tag": "#03",
@@ -5102,6 +5369,12 @@
           "cover": "1Uzfee8OcvYBhNnYyCGJ-OqM1ea-VdSRr",
           "timeline": [
             {
+              "date": "2026.10.05",
+              "tag": "",
+              "note": "",
+              "photo": "1eIcuR2eV_prakdNVQGKPraaL_-3YINkk"
+            },
+            {
               "date": "2026.08.26",
               "tag": "",
               "note": "",
@@ -5146,6 +5419,12 @@
           "cover": "1ePGGeqE5pfLmAb_T2E62-tb379k2j-aK",
           "timeline": [
             {
+              "date": "2026.10.05",
+              "tag": "",
+              "note": "",
+              "photo": "1vQP2YuTdy-9Dxrk1ocSfv6BiPd67ruZ_"
+            },
+            {
               "date": "2026.08.26",
               "tag": "",
               "note": "",
@@ -5167,6 +5446,12 @@
           "label": "",
           "cover": "1Eh_W9l8KK9Pm0QGEVqng8PVK3xkWmfIt",
           "timeline": [
+            {
+              "date": "2026.10.05",
+              "tag": "",
+              "note": "",
+              "photo": "1eBUWb51X1SDUh_70xAiZgOorig9HNxyV"
+            },
             {
               "date": "2026.09.26",
               "tag": "",
@@ -5434,6 +5719,18 @@
           "cover": "1ismrnD1WwOTYahaplVuI_WHjaBOb3X_E",
           "timeline": [
             {
+              "date": "2026.10.11",
+              "tag": "",
+              "note": "",
+              "photo": "1tBjGU9uH5m-6GWz_WD1d5T5dEwwIeUS_"
+            },
+            {
+              "date": "2026.10.05",
+              "tag": "",
+              "note": "",
+              "photo": "1kbLDxbPaiKc2zpWoYtuTg0-ZyvMdthQt"
+            },
+            {
               "date": "2026.09.26",
               "tag": "",
               "note": "",
@@ -5641,6 +5938,12 @@
           "label": "#01",
           "cover": "1qIZkGPviX95LD57ubphO4njiFAU0yrRZ",
           "timeline": [
+            {
+              "date": "2026.10.07",
+              "tag": "#01",
+              "note": "",
+              "photo": "1kh2u2eV1I6D2RYV41-jwdRUTWN716Ys3"
+            },
             {
               "date": "2026.09.05",
               "tag": "#01",
@@ -6376,6 +6679,18 @@
           "cover": "1PT3Xxz-QH_3UNvfPBbUyat8ZqOoee8J8",
           "timeline": [
             {
+              "date": "2026.10.07",
+              "tag": "",
+              "note": "",
+              "photo": "1rndNK9YgTLhnisB3YZcgBwx_NpXPuCzP"
+            },
+            {
+              "date": "2026.10.07",
+              "tag": "",
+              "note": "",
+              "photo": "1oEtzwlMx2-JggsSknaAUmorbWqMyEEDD"
+            },
+            {
               "date": "2026.09.17",
               "tag": "",
               "note": "",
@@ -6454,6 +6769,12 @@
               "tag": "#02",
               "note": "",
               "photo": "13tze8tP6pH3DkK8T7_2K0dayLlathybP"
+            },
+            {
+              "date": "2026.09.23",
+              "tag": "#02",
+              "note": "",
+              "photo": "1WNH1RcS5Dhu-u4TJPnnEt2db2CecRMBE"
             },
             {
               "date": "2026.09.17",
@@ -7933,6 +8254,12 @@
           "cover": "1KZ2d-et056lGk0TflfO1XJ0LiNHUEFhN",
           "timeline": [
             {
+              "date": "2026.10.05",
+              "tag": "",
+              "note": "",
+              "photo": "1bI83XFW4Fxx40PZR_v5YHPHELLa8pvgc"
+            },
+            {
               "date": "2026.08.28",
               "tag": "",
               "note": "",
@@ -8395,12 +8722,24 @@
               "photo": "1GyvALnNEYe4SjF6FXcQXQx6bg7te-eoM"
             }
           ]
+        },
+        {
+          "label": "#01",
+          "cover": "16lZEOGs6JDbcf7Q8vSprP0eG2x0HnGNe",
+          "timeline": [
+            {
+              "date": "2026.10.05",
+              "tag": "#01",
+              "note": "",
+              "photo": "16lZEOGs6JDbcf7Q8vSprP0eG2x0HnGNe"
+            }
+          ]
         }
       ]
     },
     {
       "name": "角疣巨象",
-      "latin": "Coryphantha Cornifera",
+      "latin": "Coryphantha Elephantidens 'Lem'",
       "category": "仙人掌",
       "date": "2026.09.17",
       "note": "",
@@ -8410,6 +8749,18 @@
           "label": "",
           "cover": "144z-DZeSuBRsCVZzA9GRz50L9yoXGhYh",
           "timeline": [
+            {
+              "date": "2026.10.07",
+              "tag": "",
+              "note": "",
+              "photo": "1L6t_nUf4_7yMN4PGLfUC8-3RwlPe-3Bo"
+            },
+            {
+              "date": "2026.10.05",
+              "tag": "",
+              "note": "",
+              "photo": "16UMk5cMfLgPpo-oChiwiyL5wI0lfqY6r"
+            },
             {
               "date": "2026.09.17",
               "tag": "",
@@ -8537,6 +8888,211 @@
               "tag": "",
               "note": "",
               "photo": "19kQySEj3paG9aL-daxX65ZgpasnCGFAM"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "紫豹頭",
+      "latin": "Eriosyce Napina",
+      "category": "仙人掌",
+      "date": "2026.10.11",
+      "note": "",
+      "cover": "1x-WXPBMV2sPxT2-bxGKnYqndqlBW4g5U",
+      "individuals": [
+        {
+          "label": "",
+          "cover": "1x-WXPBMV2sPxT2-bxGKnYqndqlBW4g5U",
+          "timeline": [
+            {
+              "date": "2026.10.11",
+              "tag": "",
+              "note": "",
+              "photo": "1x-WXPBMV2sPxT2-bxGKnYqndqlBW4g5U"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "鐵甲丸",
+      "latin": "Euphorbia Bupleurifolia",
+      "category": "大戟",
+      "date": "2026.10.14",
+      "note": "",
+      "cover": "1zFUyWfAoUw-MEaAW4TCwNAm4nV_Ud2Xh",
+      "individuals": [
+        {
+          "label": "#02",
+          "cover": "1zFUyWfAoUw-MEaAW4TCwNAm4nV_Ud2Xh",
+          "timeline": [
+            {
+              "date": "2026.10.14",
+              "tag": "#02",
+              "note": "",
+              "photo": "1zFUyWfAoUw-MEaAW4TCwNAm4nV_Ud2Xh"
+            }
+          ]
+        },
+        {
+          "label": "#01",
+          "cover": "1_fx9M53Pq4AOd0cWtDNmCr8k-hLcdtHx",
+          "timeline": [
+            {
+              "date": "2026.10.14",
+              "tag": "#01",
+              "note": "",
+              "photo": "1_fx9M53Pq4AOd0cWtDNmCr8k-hLcdtHx"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "瘋猴",
+      "latin": "",
+      "category": "鹿角蕨",
+      "date": "2026.10.05",
+      "note": "",
+      "cover": "1ttE5TznB0VGhCEZBw5sF2krwAwUqwegI",
+      "individuals": [
+        {
+          "label": "#02",
+          "cover": "1ttE5TznB0VGhCEZBw5sF2krwAwUqwegI",
+          "timeline": [
+            {
+              "date": "2026.10.05",
+              "tag": "#02",
+              "note": "",
+              "photo": "1ttE5TznB0VGhCEZBw5sF2krwAwUqwegI"
+            }
+          ],
+          "mother": [
+            "1_xW7gdcFlKQYHaczRalWa0tKitvUBSWf"
+          ]
+        },
+        {
+          "label": "#01",
+          "cover": "1Af1wA-BmG0CuHf88PDJxzZTFK4faTfE9",
+          "timeline": [
+            {
+              "date": "2026.10.05",
+              "tag": "#01",
+              "note": "",
+              "photo": "1Af1wA-BmG0CuHf88PDJxzZTFK4faTfE9"
+            }
+          ],
+          "mother": [
+            "1KjZV4ajgKx2-n12Hqv90dVqrkyi2cFJn"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "HFG*bogor sudden*Ginka",
+      "latin": "Platycerium Hybrid",
+      "category": "鹿角蕨",
+      "date": "",
+      "note": "",
+      "cover": "1lzB761GnEWjX_HJ44oNvaETJDy7yvvUq",
+      "individuals": [
+        {
+          "label": "",
+          "cover": "1lzB761GnEWjX_HJ44oNvaETJDy7yvvUq",
+          "timeline": [],
+          "mother": [
+            "1lzB761GnEWjX_HJ44oNvaETJDy7yvvUq",
+            "1c-fqVfxWxntQ_4KtrKk6INX2Wx44MORk",
+            "1uRLwPxHfUUGBAGpW0_3IALKvjjJLpoQf",
+            "1uaJmEuIsXCIcKwzDSauDnYfZheIUzBWo"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "野貓*玉女",
+      "latin": "Platycerium Willinckii 'Jade Girl' Wild Cat",
+      "category": "鹿角蕨",
+      "date": "",
+      "note": "",
+      "cover": "1ydnMd76TEkJi43qEZNCnHShcULeKpiZV",
+      "individuals": [
+        {
+          "label": "",
+          "cover": "1ydnMd76TEkJi43qEZNCnHShcULeKpiZV",
+          "timeline": [],
+          "mother": [
+            "1ydnMd76TEkJi43qEZNCnHShcULeKpiZV",
+            "1YdTt-hcqSzQtpJ3AqwNzO9TQv8Ij4ge5"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "白雪蘇丹 X pumila",
+      "latin": "Platycerium Hybrid",
+      "category": "鹿角蕨",
+      "date": "2026.10.14",
+      "note": "",
+      "cover": "1S0Krc_829A9SoNdpbtrAVS6OsXXoY2k7",
+      "individuals": [
+        {
+          "label": "",
+          "cover": "1S0Krc_829A9SoNdpbtrAVS6OsXXoY2k7",
+          "timeline": [
+            {
+              "date": "2026.10.14",
+              "tag": "",
+              "note": "",
+              "photo": "1S0Krc_829A9SoNdpbtrAVS6OsXXoY2k7"
+            }
+          ],
+          "mother": [
+            "1vDD6r3VFcCrIdiHREI1zPCYGkW4wNkg-"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "斯考菲塔蘇塔",
+      "latin": "Platycerium Willinckii 'Scofield Tatsuta'",
+      "category": "鹿角蕨",
+      "date": "2026.10.14",
+      "note": "",
+      "cover": "1z5jKXamVc3gaCopk8WkI_tUWcOdgsswY",
+      "individuals": [
+        {
+          "label": "",
+          "cover": "1z5jKXamVc3gaCopk8WkI_tUWcOdgsswY",
+          "timeline": [
+            {
+              "date": "2026.10.14",
+              "tag": "",
+              "note": "",
+              "photo": "1z5jKXamVc3gaCopk8WkI_tUWcOdgsswY"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "金鋼狼",
+      "latin": "Platycerium 'Wolverine'",
+      "category": "鹿角蕨",
+      "date": "2026.10.14",
+      "note": "",
+      "cover": "1wHxQ2fbxiLUF-cM7aKjrbopK14LX-OOT",
+      "individuals": [
+        {
+          "label": "",
+          "cover": "1wHxQ2fbxiLUF-cM7aKjrbopK14LX-OOT",
+          "timeline": [
+            {
+              "date": "2026.10.14",
+              "tag": "",
+              "note": "",
+              "photo": "1wHxQ2fbxiLUF-cM7aKjrbopK14LX-OOT"
             }
           ]
         }

@@ -137,6 +137,25 @@ Write-Host '=== 2026-09-21 新植物改名 ==='
 Rn '棒槌-Pachypodium\惠比須笑' '惠比須笑-Pachypodium brevicaule'
 Rn '仙人掌-Cactaceae\角疣巨象' '角疣巨象-Coryphantha cornifera'
 
+
+Write-Host ''
+Write-Host '=== 2026-10-14 新多肉/仙人掌/大戟 查名改名 ==='
+# 高/中信心學名(低信心:一本刺、怪魔玉、黃花古城 暫維持中文)
+Rn '仙人掌-Cactaceae\玉翁' '玉翁-Mammillaria hahniana'
+Rn '仙人掌-Cactaceae\新天地' '新天地-Gymnocalycium saglionis'
+Rn '仙人掌-Cactaceae\天晃' '天晃-Thelocactus hexaedrophorus'
+Rn '仙人掌-Cactaceae\大鳳玉' '大鳳玉-Astrophytum capricorne'
+Rn '仙人掌-Cactaceae\奇仙玉' '奇仙玉-Matucana madisoniorum'
+Rn '仙人掌-Cactaceae\紫豹頭' '紫豹頭-Eriosyce napina'
+Rn '仙人掌-Cactaceae\薄葉花籠' '薄葉花籠-Aztekium ritteri'
+Rn '仙人掌-Cactaceae\紅龍花籠' '紅龍花籠-Aztekium hintonii'
+Rn '仙人掌-Cactaceae\雪球' '雪球-Mammillaria candida'
+Rn '仙人掌-Cactaceae\短刺巨鷲玉' '短刺巨鷲玉-Ferocactus peninsulae'
+Rn '仙人掌-Cactaceae\魚鱗丸' '魚鱗丸-Euphorbia piscidermis'
+Rn '大戟-Euphorbiaceae\鐵甲丸' '鐵甲丸-Euphorbia bupleurifolia'
+Rn '大戟-Euphorbiaceae\孔雀丸' '孔雀丸-Euphorbia flanaganii'
+Rn '塊根-Caudex\索馬利亞痲瘋樹' '索馬利亞痲瘋樹-Jatropha somalensis'
+
 Write-Host '完成。品種名鹿角蕨(巨獸/三角/雷達等)因無學名,維持中文未改。'
 Read-Host '按 Enter 關閉'
 

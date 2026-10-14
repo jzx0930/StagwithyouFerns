@@ -1,7 +1,7 @@
 /* ===== 來源 · 母株 文字 =====
    記錄每株(每個個體)的「來源」與「母株」文字說明,不會被「開始更新」覆蓋。
    格式:PLANT_SOURCES["植物名"]["個體label"] = { source:"來源", mother:"母株" }
-   單株(無編號)個體的 label 用空字串 ""。沒要寫的留空字串即可;可用 \n 換行。
+   單株(無編號)個體的 label 用空字串 ""。可用 \n 換行。
    母株「照片」不在這裡——放進 Drive 各個體的「母株」資料夾,開始更新會同步顯示。
    改完把 index.html 的 sources.js?v= 數字 +1。
 */
@@ -54,7 +54,8 @@ window.PLANT_SOURCES = {
     "": { source: "", mother: "" }
   },
   "深綠龍": {
-    "": { source: "", mother: "" }
+    "": { source: "", mother: "" },
+    "#02": { source: "", mother: "" }
   },
   "雷電x野銀": {
     "": { source: "", mother: "" }
@@ -104,7 +105,9 @@ window.PLANT_SOURCES = {
     "#13": { source: "", mother: "" },
     "#05": { source: "", mother: "" },
     "#06": { source: "", mother: "" },
-    "#09": { source: "", mother: "" }
+    "#09": { source: "", mother: "" },
+    "#32": { source: "", mother: "" },
+    "#31": { source: "", mother: "" }
   },
   "珊瑚亞猴": {
     "#01": { source: "", mother: "" },
@@ -145,7 +148,10 @@ window.PLANT_SOURCES = {
     "": { source: "", mother: "" }
   },
   "獨角獸": {
-    "": { source: "", mother: "" }
+    "": { source: "", mother: "" },
+    "#04": { source: "", mother: "" },
+    "#03": { source: "", mother: "" },
+    "#02": { source: "", mother: "" }
   },
   "菲律賓皇冠": {
     "": { source: "", mother: "" }
@@ -216,7 +222,8 @@ window.PLANT_SOURCES = {
     "#03": { source: "", mother: "" }
   },
   "羅賓": {
-    "": { source: "", mother: "" }
+    "": { source: "", mother: "" },
+    "#02": { source: "", mother: "" }
   },
   "美猴王": {
     "": { source: "", mother: "" }
@@ -243,19 +250,22 @@ window.PLANT_SOURCES = {
     "": { source: "", mother: "" }
   },
   "月光": {
-    "": { source: "", mother: "" }
+    "": { source: "", mother: "" },
+    "#01": { source: "", mother: "" }
   },
   "清姬": {
     "": { source: "", mother: "" }
   },
   "細菌": {
-    "": { source: "", mother: "" }
+    "": { source: "", mother: "" },
+    "#02": { source: "", mother: "" }
   },
   "奶油獅": {
     "": { source: "", mother: "" }
   },
   "北猴": {
-    "": { source: "", mother: "" }
+    "": { source: "", mother: "" },
+    "#02": { source: "", mother: "" }
   },
   "Blue Ribbon #2": {
     "": { source: "", mother: "" }
@@ -271,6 +281,25 @@ window.PLANT_SOURCES = {
     "": { source: "", mother: "" }
   },
   "檸檬": {
+    "": { source: "", mother: "" }
+  },
+  "瘋猴": {
+    "#02": { source: "", mother: "" },
+    "#01": { source: "", mother: "" }
+  },
+  "HFG*bogor sudden*Ginka": {
+    "": { source: "", mother: "" }
+  },
+  "野貓*玉女": {
+    "": { source: "", mother: "" }
+  },
+  "白雪蘇丹 X pumila": {
+    "": { source: "", mother: "" }
+  },
+  "斯考菲塔蘇塔": {
+    "": { source: "", mother: "" }
+  },
+  "金鋼狼": {
     "": { source: "", mother: "" }
   }
 };
