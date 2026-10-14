@@ -382,3 +382,11 @@ body {
   background:rgba(0,0,0,.55);color:#fff;padding:3px 7px;border-radius:8px;opacity:0;transition:opacity .2s}
 .m-photo:hover .fs-btn{opacity:1}
 @media (max-width:640px){ .m-photo{width:calc(50% - 5px);height:120px} }
+
+/* 知識庫:植物類別篩選 */
+.kb-filter{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+.kb-chip{font-family:var(--sans);font-size:13px;letter-spacing:.06em;color:var(--muted2);
+  border:1px solid var(--glass-border);border-radius:999px;padding:7px 15px;cursor:pointer;
+  background:rgba(255,255,255,.04);transition:all .2s}
+.kb-chip:hover{border-color:var(--green);color:var(--green-soft)}
+.kb-chip.on{background:var(--green);color:#0c1310;border-color:var(--green);font-weight:600}

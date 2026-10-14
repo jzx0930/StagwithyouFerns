@@ -271,8 +271,17 @@
   }
   function renderKnowledge() {
     var cats = (window.SF_KNOWLEDGE_CATS || []), arts = (window.SF_KNOWLEDGE || []);
+    var cur = state.kbGroup || '全部';
+    // 依文章出現順序收集不重複的「植物類別」
+    var groups = [];
+    arts.forEach(function (a) { var g = a.group || '其他'; if (groups.indexOf(g) < 0) groups.push(g); });
+    var chips = '<div class="kb-filter" data-lay="kb.filter">' +
+      ['全部'].concat(groups).map(function (g) {
+        return '<span class="kb-chip' + (g === cur ? ' on' : '') + '" data-act="kb-group" data-id="' + esc(g) + '">' + esc(g) + '</span>';
+      }).join('') + '</div>';
+    var shown = arts.filter(function (a) { return cur === '全部' || (a.group || '其他') === cur; });
     var secs = cats.map(function (c) {
-      var items = arts.filter(function (a) { return a.cat === c; });
+      var items = shown.filter(function (a) { return a.cat === c; });
       if (!items.length) return '';
       return '<div class="kb-sec"><div class="kb-cat">' + esc(c) + '</div><div class="kb-grid">' +
         items.map(function (a) {
@@ -284,7 +293,8 @@
     }).join('');
     app.innerHTML = '<div class="wrap kb-wrap">' +
       '<div class="back-row" data-lay="kb.back"><span class="pill-btn" data-act="lobby">← 回到分類大廳</span></div>' +
-      '<div data-lay="kb.header">' + headerHTML('Knowledge · 鹿角蕨知識庫', '知識庫', '照護、病蟲害、繁殖與科普——把經驗整理成一篇篇。', false) + '</div>' +
+      '<div data-lay="kb.header">' + headerHTML('Knowledge · 植物知識庫', '知識庫', '照護、病蟲害、繁殖與科普——把經驗整理成一篇篇。', false) + '</div>' +
+      chips +
       secs + '</div>';
     animCards('#app .kb-card', 18);
   }
@@ -605,6 +615,7 @@
     var i = parseInt(t.getAttribute('data-i'), 10);
     if (act === 'about') { go('about'); }
     else if (act === 'knowledge') { go('knowledge'); }
+    else if (act === 'kb-group') { state.kbGroup = t.getAttribute('data-id'); render(); }
     else if (act === 'article') { state.article = t.getAttribute('data-id'); go('article'); }
     else if (act === 'search-open') { openFromSearch(i); }
     else if (act === 'enter') { state.tab = i; go('grid'); }
