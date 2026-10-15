@@ -423,3 +423,13 @@ body {
 #to-top.show{opacity:1;transform:none;pointer-events:auto}
 #to-top:hover{background:rgba(154,216,171,0.18);border-color:var(--green)}
 @media (max-width:640px){ #to-top{right:14px;bottom:16px;width:44px;height:44px} }
+
+/* 分類牆:把「回到大廳 + 種類標籤」放同一行(頂部),搜尋緊接在下 */
+.grid-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:0 0 12px}
+.grid-top .pill-btn{flex:0 0 auto}
+.grid-top .grid-tabs{flex:1 1 auto;margin:0}
+.grid-searchbar{margin:0 0 18px}
+@media (max-width:640px){
+  .grid-top{gap:10px}
+  .grid-top .grid-tabs{flex-basis:100%}
+}
