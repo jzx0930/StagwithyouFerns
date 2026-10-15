@@ -267,3 +267,10 @@ Write-Host ''
 Write-Host '=== 2026-09-21 補正 ==='
 # 惠比須笑 被更早的指令改成含屬名的形式,這裡統一成「只留種小名」
 Rn '棒槌-Pachypodium\惠比須笑-Pachypodium brevicaule' '惠比須笑-Brevicaule'
+
+Write-Host ''
+Write-Host '=== 2026-10-15 補正(純中文夾補學名) ==='
+# 這三夾原本只有中文、沒有學名,補上屬種名以符合「中文-學名」格式
+Rn '大戟-Euphorbiaceae\怪魔玉' '怪魔玉-Euphorbia ''Gabizan'''
+Rn '觀葉-Foliage\日本白斑龜背芋' '日本白斑龜背芋-Monstera Deliciosa ''Albo Variegata'''
+Rn '觀葉-Foliage\泰國斑葉龜背芋' '泰國斑葉龜背芋-Monstera Deliciosa ''Thai Constellation'''
