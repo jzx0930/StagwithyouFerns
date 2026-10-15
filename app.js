@@ -92,6 +92,8 @@
     return [{ label: '', cover: p.cover || '', timeline: p.timeline || [] }];
   }
   // 個體顯示:有暱稱→「暱稱（#NN）」;只有編號→「#NN」;只有暱稱→「暱稱」;都沒有→「未編號」
+  // 個體編號排序用:從 label 取出數字(#08→8);無編號→-1(排最前)
+  function indivNum(lb) { var m = String(lb == null ? '' : lb).match(/\d+/); return m ? parseInt(m[0], 10) : -1; }
   function indivLabel(iv) {
     var nm = iv && iv.name, lb = iv && iv.label;
     if (nm && lb) return nm + '（' + lb + '）';
@@ -349,7 +351,7 @@
   function openFromSearch(i) {
     var p = (state.data || [])[i];
     if (!p) return;
-    state.selected = i; state.indiv = 0; state.tab = plantCatIndex(p);
+    state.selected = i; state.indiv = 0; state.indivOpen = false; state.tab = plantCatIndex(p);
     go('detail');
   }
   function wireSearch() {
@@ -542,11 +544,24 @@
     var showIndiv = indivs.length > 1 || (indivs.length === 1 && (!!cur.label || !!cur.name));
     var picker = '';
     if (showIndiv) {
+      // 依個體編號(#NN)排序;保留原始 index 給 data-i
+      var order = indivs.map(function (iv, i) { return { iv: iv, i: i }; }).sort(function (a, b) {
+        return indivNum(a.iv.label) - indivNum(b.iv.label) || a.i - b.i;
+      });
+      var open = !!state.indivOpen;
+      var options = order.map(function (o) {
+        return '<div class="iv-opt' + (o.i === ii ? ' sel' : '') + '" data-act="indiv" data-i="' + o.i + '">' +
+          '<span class="iv-nm">' + esc(indivLabel(o.iv)) + '</span>' +
+          '<span class="iv-c">' + ((o.iv.timeline || []).length) + '</span></div>';
+      }).join('');
       picker = '<div class="tl-head"><h2>選擇個體</h2><div class="tl-order">共 ' + indivs.length + ' 株</div></div>' +
-        '<div class="tabs">' + indivs.map(function (iv, i) {
-          return '<div class="tab' + (i === ii ? ' active' : '') + '" data-act="indiv" data-i="' + i + '">' +
-            esc(indivLabel(iv)) + '<span class="c">' + ((iv.timeline || []).length) + '</span></div>';
-        }).join('') + '</div>';
+        '<div class="iv-dd' + (open ? ' open' : '') + '">' +
+          '<button class="iv-current" data-act="indiv-toggle" aria-expanded="' + (open ? 'true' : 'false') + '">' +
+            '<span class="iv-nm">' + esc(indivLabel(cur)) + '</span>' +
+            '<span class="iv-c">' + ((cur.timeline || []).length) + ' 張</span>' +
+            '<span class="iv-caret">▾</span></button>' +
+          '<div class="iv-list">' + options + '</div>' +
+        '</div>';
     }
 
     var no = String(state.selected + 1).padStart(3, '0');
@@ -620,8 +635,9 @@
     else if (act === 'search-open') { openFromSearch(i); }
     else if (act === 'enter') { state.tab = i; go('grid'); }
     else if (act === 'tab') { state.tab = i; render(); }
-    else if (act === 'open') { state.selected = i; state.indiv = 0; go('detail'); }
-    else if (act === 'indiv') { state.indiv = i; render(); }
+    else if (act === 'open') { state.selected = i; state.indiv = 0; state.indivOpen = false; go('detail'); }
+    else if (act === 'indiv') { state.indiv = i; state.indivOpen = false; render(); }
+    else if (act === 'indiv-toggle') { state.indivOpen = !state.indivOpen; render(); }
     else if (act === 'lobby' || act === 'lobby-from-detail') { go('lobby'); }
     else if (act === 'back-grid') { go('grid'); }
     else if (act === 'zoom') { openLightbox(t.getAttribute('data-url')); }

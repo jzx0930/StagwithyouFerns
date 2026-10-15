@@ -390,3 +390,26 @@ body {
   background:rgba(255,255,255,.04);transition:all .2s}
 .kb-chip:hover{border-color:var(--green);color:var(--green-soft)}
 .kb-chip.on{background:var(--green);color:#0c1310;border-color:var(--green);font-weight:600}
+
+/* ===== 選擇個體:摺疊下拉選單 ===== */
+.iv-dd{position:relative;max-width:440px;margin:2px 0 10px}
+.iv-current{width:100%;box-sizing:border-box;display:flex;align-items:center;gap:10px;
+  padding:13px 16px;border-radius:12px;border:1px solid var(--glass-border);background:var(--glass);
+  color:var(--ink);font-family:var(--mono);font-size:15px;letter-spacing:.02em;cursor:pointer;text-align:left}
+.iv-current:hover{border-color:var(--green)}
+.iv-current .iv-nm{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.iv-current .iv-c{color:var(--muted2);font-size:13px;flex:0 0 auto}
+.iv-caret{color:var(--muted2);transition:transform .2s;flex:0 0 auto}
+.iv-dd.open .iv-caret{transform:rotate(180deg)}
+.iv-list{display:none;position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:25;
+  max-height:54vh;overflow:auto;padding:6px;border-radius:12px;border:1px solid var(--glass-border);
+  background:rgba(12,18,16,.98);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  box-shadow:0 22px 54px rgba(0,0,0,.55)}
+.iv-dd.open .iv-list{display:block}
+.iv-opt{display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:9px;cursor:pointer;
+  font-family:var(--mono);font-size:14px;color:var(--ink)}
+.iv-opt:hover{background:rgba(255,255,255,.07)}
+.iv-opt.sel{background:var(--green);color:#0c1310;font-weight:600}
+.iv-opt .iv-nm{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.iv-opt .iv-c{color:var(--muted2);font-size:13px;flex:0 0 auto}
+.iv-opt.sel .iv-c{color:#0c1310}
