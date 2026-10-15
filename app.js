@@ -448,6 +448,21 @@
     var indexed = data.map(function (p, i) { return { p: p, i: i }; })
       .filter(function (x) { return catOf(x.p, cats) === activeCat; });
 
+    // 鹿角蕨:原生種(二名法、無品種/雜交)排最前,奧銀第一,其餘維持原順序
+    if (activeCat === '鹿角蕨') {
+      var isNative = function (p) {
+        var l = String(p.latin || '').trim();
+        return /^Platycerium\s+[A-Za-z]+$/.test(l) && !/hybrid/i.test(l);
+      };
+      var rank = function (x) {
+        if (x.p.name === '奧銀') return 0;
+        return isNative(x.p) ? 1 : 2;
+      };
+      indexed = indexed.map(function (x, k) { return { x: x, k: k, r: rank(x) }; })
+        .sort(function (a, b) { return a.r - b.r || a.k - b.k; })
+        .map(function (o) { return o.x; });
+    }
+
     var cards = indexed.map(function (x) {
       var p = x.p;
       var cover = coverImg(p.cover, 900, p.name);
