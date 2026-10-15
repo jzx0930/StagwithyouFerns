@@ -474,11 +474,11 @@
       '<p class="subtitle" style="margin-top:8px;">這個分類還沒有植物。</p>';
 
     app.innerHTML = '<div class="wrap">' +
-      '<div class="grid-top" data-lay="grid.back">' +
-        '<span class="pill-btn" data-act="lobby">← 回到分類大廳</span>' +
-        '<div class="tabs grid-tabs" data-lay="grid.tabs">' + tabs + '</div>' +
+      '<div class="back-row" data-lay="grid.back"><span class="pill-btn" data-act="lobby">← 回到分類大廳</span></div>' +
+      '<div class="grid-head-wrap" data-lay="grid.header">' +
+        headerHTML('Herbarium · 成長紀錄', activeCat, '點任一株,進入牠的成長時間軸。', true, indexed.length, totalPhotos, hero) +
+        '<div class="grid-tabs-side" data-lay="grid.tabs"><div class="tabs grid-tabs">' + tabs + '</div></div>' +
       '</div>' +
-      '<div data-lay="grid.header">' + headerHTML('Herbarium · 成長紀錄', activeCat, '點任一株,進入牠的成長時間軸。', true, indexed.length, totalPhotos, hero) + '</div>' +
       '<div class="lobby-search grid-searchbar" data-lay="grid.search">' +
         '<input id="sf-search" type="search" placeholder="🔍 搜尋植物(中文 / 學名 / 分類)…" autocomplete="off" aria-label="搜尋植物">' +
         '<div id="sf-results" class="search-results"></div>' +

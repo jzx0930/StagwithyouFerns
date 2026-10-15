@@ -424,13 +424,13 @@ body {
 #to-top:hover{background:rgba(154,216,171,0.18);border-color:var(--green)}
 @media (max-width:640px){ #to-top{right:14px;bottom:16px;width:44px;height:44px} }
 
-/* 分類牆:回到大廳靠左、種類標籤靠右(模型右上方空白區),搜尋置中於模型下方 */
-.grid-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin:0 0 6px}
-.grid-top .pill-btn{flex:0 0 auto}
-.grid-top .grid-tabs{flex:1 1 auto;justify-content:flex-end;margin:0}
+/* 分類牆:種類標籤貼在 header 右側、與模型同高(模型正右邊);搜尋置中於模型下方 */
+.grid-head-wrap{position:relative}
+.grid-tabs-side{position:absolute;right:0;top:50%;transform:translateY(-50%);max-width:44%;z-index:6}
+.grid-tabs-side .tabs{justify-content:flex-end;margin:0}
 .grid-searchbar{margin:4px auto 20px}
 @media (max-width:760px){
-  .grid-top{flex-direction:column;align-items:stretch}
-  .grid-top .pill-btn{align-self:flex-start}
-  .grid-top .grid-tabs{justify-content:center}
+  /* 窄螢幕:標籤回到正常流排、置中,不壓到模型 */
+  .grid-tabs-side{position:static;transform:none;max-width:none;margin:0 0 12px}
+  .grid-tabs-side .tabs{justify-content:center}
 }
