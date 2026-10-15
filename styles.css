@@ -413,3 +413,13 @@ body {
 .iv-opt .iv-nm{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .iv-opt .iv-c{color:var(--muted2);font-size:13px;flex:0 0 auto}
 .iv-opt.sel .iv-c{color:#0c1310}
+
+/* ===== 回到頂部浮動鈕 ===== */
+#to-top{position:fixed;right:18px;bottom:22px;z-index:60;width:46px;height:46px;border-radius:50%;
+  border:1px solid rgba(154,216,171,0.4);background:rgba(12,20,16,.72);color:var(--green-soft);
+  font-size:20px;line-height:1;cursor:pointer;display:grid;place-items:center;
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:0 8px 24px rgba(0,0,0,.45);
+  opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .25s,transform .25s,background .2s,border-color .2s}
+#to-top.show{opacity:1;transform:none;pointer-events:auto}
+#to-top:hover{background:rgba(154,216,171,0.18);border-color:var(--green)}
+@media (max-width:640px){ #to-top{right:14px;bottom:16px;width:44px;height:44px} }

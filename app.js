@@ -477,9 +477,14 @@
       '<div class="back-row" data-lay="grid.back"><span class="pill-btn" data-act="lobby">← 回到分類大廳</span></div>' +
       '<div data-lay="grid.header">' + headerHTML('Herbarium · 成長紀錄', activeCat, '點任一株,進入牠的成長時間軸。', true, indexed.length, totalPhotos, hero) + '</div>' +
       '<div class="tabs" data-lay="grid.tabs">' + tabs + '</div>' +
+      '<div class="lobby-search" data-lay="grid.search">' +
+        '<input id="sf-search" type="search" placeholder="🔍 搜尋植物(中文 / 學名 / 分類)…" autocomplete="off" aria-label="搜尋植物">' +
+        '<div id="sf-results" class="search-results"></div>' +
+      '</div>' +
       '<div class="card-grid" data-lay="grid.cards">' + cards + '</div>' + empty +
       '</div>';
     animCards('#app .plant-card', 20);
+    wireSearch();
   }
 
   // 來源 · 母株:文字取自 sources.js(不被 Drive 重建覆蓋),照片取自個體的 mother(由 Drive「母株」夾同步)
@@ -791,6 +796,23 @@
   }
 
   // ---- 啟動 ----
+  // 回到頂部浮動鈕:捲動超過一段距離才出現,點了平滑回到最上方
+  function initToTop() {
+    var btn = document.createElement('button');
+    btn.id = 'to-top';
+    btn.type = 'button';
+    btn.setAttribute('aria-label', '回到最上方');
+    btn.innerHTML = '↑';
+    btn.addEventListener('click', function () {
+      try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) { window.scrollTo(0, 0); }
+    });
+    document.body.appendChild(btn);
+    function onScroll() { btn.classList.toggle('show', (window.scrollY || window.pageYOffset || 0) > 360); }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
   if (!(window.SITE_CONFIG && SITE_CONFIG.effects && SITE_CONFIG.effects.particles === false)) init3D();
+  initToTop();
   load();
 })();
