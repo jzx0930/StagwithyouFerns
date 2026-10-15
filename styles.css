@@ -424,13 +424,13 @@ body {
 #to-top:hover{background:rgba(154,216,171,0.18);border-color:var(--green)}
 @media (max-width:640px){ #to-top{right:14px;bottom:16px;width:44px;height:44px} }
 
-/* 分類牆:回到大廳靠左(絕對定位),種類標籤與搜尋置中、與回到大廳同高 */
-.grid-top{position:relative;display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:10px;margin:0 0 12px;min-height:40px}
-.grid-top .pill-btn{position:absolute;left:0;top:50%;transform:translateY(-50%)}
-.grid-top .grid-tabs{justify-content:center;margin:0;max-width:calc(100% - 300px)}
-.grid-searchbar{margin:0 auto 18px}
+/* 分類牆:回到大廳靠左、種類標籤靠右(模型右上方空白區),搜尋置中於模型下方 */
+.grid-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin:0 0 6px}
+.grid-top .pill-btn{flex:0 0 auto}
+.grid-top .grid-tabs{flex:1 1 auto;justify-content:flex-end;margin:0}
+.grid-searchbar{margin:4px auto 20px}
 @media (max-width:760px){
-  .grid-top{display:block;min-height:0}
-  .grid-top .pill-btn{position:static;transform:none;display:inline-flex;margin-bottom:12px}
-  .grid-top .grid-tabs{max-width:none;justify-content:center}
+  .grid-top{flex-direction:column;align-items:stretch}
+  .grid-top .pill-btn{align-self:flex-start}
+  .grid-top .grid-tabs{justify-content:center}
 }
