@@ -473,12 +473,28 @@
     var empty = indexed.length ? '' :
       '<p class="subtitle" style="margin-top:8px;">這個分類還沒有植物。</p>';
 
+    var titleBlock = '<div class="grid-title">' +
+      '<div class="eyebrow">Herbarium · 成長紀錄</div>' +
+      '<h1 class="title">' + esc(activeCat) + '</h1>' +
+      '<p class="subtitle">點任一株,進入牠的成長時間軸。</p>' +
+    '</div>';
+    var statsBlock = '<div class="stats">' +
+      '<div class="stat"><div class="num">' + indexed.length + '</div><div class="lbl">種植物</div></div>' +
+      '<div class="stat"><div class="num">' + totalPhotos + '</div><div class="lbl">張照片</div></div>' +
+    '</div>';
     app.innerHTML = '<div class="wrap">' +
       '<div class="back-row" data-lay="grid.back"><span class="pill-btn" data-act="lobby">← 回到分類大廳</span></div>' +
-      '<div data-lay="grid.header">' + headerHTML('Herbarium · 成長紀錄', activeCat, '點任一株,進入牠的成長時間軸。', true, indexed.length, totalPhotos, hero + '<div class="tabs grid-tabs" data-lay="grid.tabs">' + tabs + '</div>') + '</div>' +
-      '<div class="lobby-search grid-searchbar" data-lay="grid.search">' +
-        '<input id="sf-search" type="search" placeholder="🔍 搜尋植物(中文 / 學名 / 分類)…" autocomplete="off" aria-label="搜尋植物">' +
-        '<div id="sf-results" class="search-results"></div>' +
+      '<div class="grid-head3" data-lay="grid.header">' +
+        titleBlock +
+        hero +
+        '<div class="tabs grid-tabs" data-lay="grid.tabs">' + tabs + '</div>' +
+      '</div>' +
+      '<div class="grid-bottom">' +
+        '<div class="lobby-search grid-searchbar" data-lay="grid.search">' +
+          '<input id="sf-search" type="search" placeholder="🔍 搜尋植物(中文 / 學名 / 分類)…" autocomplete="off" aria-label="搜尋植物">' +
+          '<div id="sf-results" class="search-results"></div>' +
+        '</div>' +
+        statsBlock +
       '</div>' +
       '<div class="card-grid" data-lay="grid.cards">' + cards + '</div>' + empty +
       '</div>';
