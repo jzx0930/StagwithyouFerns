@@ -156,8 +156,7 @@ body {
   transition: transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s, border-color 0.35s; cursor: pointer;
 }
 .plant-card:hover { transform: translateY(-8px); box-shadow: 0 26px 64px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.22); border-color: rgba(154,216,171,0.32); }
-.pc-cover { height: 300px; position: relative; background-color: #0c1210; }
-.pc-cover .cover-img { object-fit: contain; }   /* 植物卡封面完整顯示、不裁切 */
+.pc-cover { aspect-ratio: 3 / 4; position: relative; background-color: #0c1210; }   /* 直幅比例貼近照片,填滿不留黑邊 */
 .pc-count { position: absolute; top: 12px; right: 12px; font-family: var(--mono); font-size: 10px; color: var(--green-mint); background: rgba(0,0,0,0.35); border: 1px solid rgba(154,216,171,0.25); border-radius: 999px; padding: 3px 9px; backdrop-filter: blur(8px); }
 .pc-body { padding: 18px 20px 20px; }
 .pc-name { font-family: var(--serif); font-size: calc(22px * var(--fs-scale)); color: #f2f6f2; line-height: 1.12; }
