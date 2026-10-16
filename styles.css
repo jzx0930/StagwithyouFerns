@@ -376,8 +376,11 @@ body {
 .pokedex:not(.open) .pk-head{margin-bottom:0}
 .pokedex:not(.open) .pk-grid{display:none}
 .pk-prog{font-family:var(--mono);font-size:13px;color:var(--green-soft)}
-.pk-clear{cursor:pointer;color:var(--ink);border-bottom:1px dashed rgba(154,216,171,.5)}
-.pk-clear:hover{color:#eafff0}
+.pk-allbar{display:flex;justify-content:center;margin:0 0 14px}
+.pk-clear{cursor:pointer;font-family:var(--sans);font-size:13px;letter-spacing:.06em;color:var(--green-soft);
+  background:rgba(154,216,171,.08);border:1px solid rgba(154,216,171,.35);border-radius:999px;padding:7px 20px;
+  transition:background .25s,border-color .25s,color .25s}
+.pk-clear:hover{color:#eafff0;background:rgba(154,216,171,.16);border-color:var(--green)}
 .pk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px}
 .pk-cell{border:1px solid var(--glass-border);border-radius:12px;overflow:hidden;background:rgba(0,0,0,.18);cursor:pointer;
   transition:border-color .25s, transform .2s cubic-bezier(.2,.8,.2,1), box-shadow .25s}

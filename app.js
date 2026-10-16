@@ -50,14 +50,14 @@
     { epi: 'grande', zh: '巨獸' },
     { epi: 'hillii', zh: '深綠' },
     { epi: 'holttumii', zh: '何其美' },
-    { epi: 'madagascariense', zh: '非洲猴腦' },
     { epi: 'quadridichotomum', zh: '四叉' },
-    { epi: 'ridleyi', zh: '亞洲猴腦' },
     { epi: 'stemaria', zh: '三角' },
     { epi: 'superbum', zh: '巨大' },
     { epi: 'veitchii', zh: '銀鹿' },
     { epi: 'wallichii', zh: '蝴蝶' },
     { epi: 'wandae', zh: '女王' },
+    { epi: 'madagascariense', zh: '非洲猴腦' },
+    { epi: 'ridleyi', zh: '亞洲猴腦' },
     { epi: 'willinckii', zh: '爪哇' }
   ];
   var SP_SET = SPECIES_18.reduce(function (m, s) { m[s.epi] = 1; return m; }, {});
@@ -540,9 +540,8 @@
       pokedex = '<div class="pokedex' + (pkOpen ? ' open' : '') + '" data-lay="grid.pokedex">' +
         '<div class="pk-head" data-act="pk-toggle">' +
           '<h2>18 原種圖鑑 <span class="pk-caret">▾</span></h2>' +
-          '<div class="pk-prog">已收藏 ' + ownedCnt + ' / 18' +
-          (state.species ? ' · <span class="pk-clear" data-act="fern-sp" data-sp="">顯示全部 ✕</span>' : '') +
-          '</div></div>' +
+          '<div class="pk-prog">已收藏 ' + ownedCnt + ' / 18</div></div>' +
+        (state.species ? '<div class="pk-allbar"><span class="pk-clear" data-act="fern-sp" data-sp="">顯示全部 ✕</span></div>' : '') +
         '<div class="pk-grid">' + cells + '</div></div>';
       if (state.species) {
         indexed = indexed.filter(function (x) { return fernSpeciesOf(x.p.latin) === state.species; });
@@ -762,7 +761,7 @@
     else if (act === 'search-open') { openFromSearch(i); }
     else if (act === 'enter') { state.tab = i; state.species = null; go('grid'); }
     else if (act === 'tab') { state.tab = i; state.species = null; render(); }
-    else if (act === 'pk-toggle') { state.pokedexOpen = !state.pokedexOpen; render(); }
+    else if (act === 'pk-toggle') { state.pokedexOpen = !state.pokedexOpen; if (!state.pokedexOpen) state.species = null; render(); }
     else if (act === 'fern-sp') {
       var sp = t.getAttribute('data-sp') || '';
       state.species = (sp && state.species !== sp) ? sp : null;
