@@ -368,6 +368,13 @@ body {
 
 /* ===== 來源 · 母株 ===== */
 .mother-sec{margin:14px 0 6px}
+.detail-cols{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;margin:14px 0 6px}
+.dc-left{flex:1 1 340px;min-width:0}
+.dc-right{flex:1 1 300px;min-width:0}
+.detail-cols .mother-sec{margin:0}
+.detail-cols .iv-dd{margin:2px 0 0}
+.detail-cols .tl-head{margin-top:0}
+@media (max-width:640px){ .detail-cols{gap:14px} .dc-left,.dc-right{flex:1 1 100%} }
 .mother-body{background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;padding:16px 18px}
 .mother-row{display:flex;gap:12px;margin:0 0 10px;line-height:1.8;font-size:15px}
 .mother-row:last-child{margin-bottom:0}

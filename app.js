@@ -94,6 +94,15 @@
   // 個體顯示:有暱稱→「暱稱（#NN）」;只有編號→「#NN」;只有暱稱→「暱稱」;都沒有→「未編號」
   // 個體編號排序用:從 label 取出數字(#08→8);無編號→-1(排最前)
   function indivNum(lb) { var m = String(lb == null ? '' : lb).match(/\d+/); return m ? parseInt(m[0], 10) : -1; }
+  // 預設選最小編號的個體(#01 優先);無編號者排最後
+  function firstIndivIndex(indivs) {
+    var best = 0, bestn = Infinity;
+    for (var k = 0; k < (indivs || []).length; k++) {
+      var n = indivNum(indivs[k].label); if (n < 0) n = Infinity;
+      if (n < bestn) { bestn = n; best = k; }
+    }
+    return best;
+  }
   function indivLabel(iv) {
     var nm = iv && iv.name, lb = iv && iv.label;
     if (nm && lb) return nm + '（' + lb + '）';
@@ -351,7 +360,7 @@
   function openFromSearch(i) {
     var p = (state.data || [])[i];
     if (!p) return;
-    state.selected = i; state.indiv = 0; state.indivOpen = false; state.tab = plantCatIndex(p);
+    state.selected = i; state.indiv = firstIndivIndex(normIndiv(p)); state.indivOpen = false; state.tab = plantCatIndex(p);
     go('detail');
   }
   function wireSearch() {
@@ -528,9 +537,8 @@
     if (src && src.mother) rows += '<div class="mother-row"><span class="mk">母株</span><span class="mv">' + fmtNote(src.mother) + '</span></div>';
     var pics = photos.length ? '<div class="mother-photos">' + photos.map(function (id) {
       var url = driveImg(id, 1200), big = driveImg(id, 2400);
-      return '<div class="m-photo" data-act="zoom" data-url="' + esc(big) + '">' +
-        '<img src="' + esc(url) + '" alt="母株" loading="lazy" decoding="async" onerror="this.style.display=\'none\'">' +
-        '<span class="fs-btn" data-act="zoom" data-url="' + esc(big) + '">⤢ 全螢幕</span></div>';
+      return '<div class="m-photo" data-act="zoom" data-url="' + esc(big) + '" title="點擊放大">' +
+        '<img src="' + esc(url) + '" alt="母株" loading="lazy" decoding="async" onerror="this.style.display=\'none\'"></div>';
     }).join('') + '</div>' : '';
     return '<div class="mother-sec" data-lay="detail.mother">' +
       '<div class="tl-head"><h2>來源 · 母株</h2></div>' +
@@ -618,8 +626,14 @@
       '</div>' +
       shopRow(sel, state.selected, true) +
       (noteOf(sel) ? '<div class="plant-intro" data-lay="detail.intro">' + fmtNote(noteOf(sel)) + '</div>' : '') +
-      (picker ? '<div data-lay="detail.picker">' + picker + '</div>' : '') +
-      motherSection(sel, cur) +
+      (function () {
+        var m = motherSection(sel, cur);
+        if (!picker && !m) return '';
+        return '<div class="detail-cols">' +
+          (picker ? '<div class="dc-left" data-lay="detail.picker">' + picker + '</div>' : '') +
+          (m ? '<div class="dc-right">' + m + '</div>' : '') +
+        '</div>';
+      })() +
       '<div class="tl-head" data-lay="detail.timelineHead"><h2>成長時間軸</h2><div class="tl-order">最新 → 最早</div></div>' +
       '<div data-lay="detail.timeline">' + rows + '</div>' +
       '<div class="detail-footer"><span class="pill-btn" data-act="back-grid">↑ 回到照片牆</span></div>' +
@@ -670,7 +684,7 @@
     else if (act === 'search-open') { openFromSearch(i); }
     else if (act === 'enter') { state.tab = i; go('grid'); }
     else if (act === 'tab') { state.tab = i; render(); }
-    else if (act === 'open') { state.selected = i; state.indiv = 0; state.indivOpen = false; go('detail'); }
+    else if (act === 'open') { state.selected = i; state.indiv = firstIndivIndex(normIndiv((state.data || [])[i])); state.indivOpen = false; go('detail'); }
     else if (act === 'indiv') { state.indiv = i; state.indivOpen = false; render(); }
     else if (act === 'indiv-toggle') { state.indivOpen = !state.indivOpen; render(); }
     else if (act === 'lobby' || act === 'lobby-from-detail') { go('lobby'); }
