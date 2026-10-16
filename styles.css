@@ -368,7 +368,7 @@ body {
 
 /* ===== 來源 · 母株 ===== */
 .mother-sec{margin:14px 0 6px}
-.detail-cols{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;margin:14px 0 6px}
+.detail-cols{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;margin:30px 0 6px}
 .dc-left{flex:1 1 340px;min-width:0}
 .dc-right{flex:1 1 300px;min-width:0}
 .detail-cols .mother-sec{margin:0}
