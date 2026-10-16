@@ -34,8 +34,43 @@
     data: null,
     cats: null,
     lbUrl: null,
-    lbScale: 1
+    lbScale: 1,
+    species: null
   };
+
+  // 18 原生種(圖鑑用);順序依使用者指定
+  var SPECIES_18 = [
+    { epi: 'alcicorne', zh: '圓盾' },
+    { epi: 'andinum', zh: '安地斯' },
+    { epi: 'bifurcatum', zh: '二叉' },
+    { epi: 'coronarium', zh: '皇冠' },
+    { epi: 'elephantotis', zh: '象耳' },
+    { epi: 'ellisii', zh: '愛麗絲' },
+    { epi: 'grande', zh: '巨獸' },
+    { epi: 'hillii', zh: '深綠' },
+    { epi: 'holttumii', zh: '何其美' },
+    { epi: 'madagascariense', zh: '非洲猴腦' },
+    { epi: 'quadridichotomum', zh: '四叉' },
+    { epi: 'ridleyi', zh: '亞洲猴腦' },
+    { epi: 'stemaria', zh: '三角' },
+    { epi: 'superbum', zh: '巨大' },
+    { epi: 'veitchii', zh: '銀鹿' },
+    { epi: 'wallichii', zh: '蝴蝶' },
+    { epi: 'wandae', zh: '女王' },
+    { epi: 'willinckii', zh: '爪哇' }
+  ];
+  var SP_SET = SPECIES_18.reduce(function (m, s) { m[s.epi] = 1; return m; }, {});
+  // 從 latin 取原生種小名(交種 × 排除);回傳 epithet 或 ''
+  function fernSpeciesOf(latin) {
+    var l = String(latin || '');
+    if (/[×x]\s/i.test(l) || /\bHybrid\b/i.test(l) || l.indexOf('×') >= 0) return '';
+    var toks = l.replace(/^Platycerium/i, '').split(/[^A-Za-z]+/);
+    for (var i = 0; i < toks.length; i++) {
+      var w = toks[i].toLowerCase();
+      if (SP_SET[w]) return w;
+    }
+    return '';
+  }
 
   var app = document.getElementById('app');
   var lightbox = document.getElementById('lightbox');
@@ -472,6 +507,45 @@
         .map(function (o) { return o.x; });
     }
 
+    // 18 原種收藏圖鑑(僅鹿角蕨);點某種 → 篩選下方植物牆
+    var pokedex = '';
+    if (activeCat === '鹿角蕨') {
+      var bySp = {};
+      indexed.forEach(function (x) {
+        var sp = fernSpeciesOf(x.p.latin);
+        if (sp) { (bySp[sp] = bySp[sp] || []).push(x); }
+      });
+      var ownedCnt = SPECIES_18.filter(function (s) { return bySp[s.epi]; }).length;
+      var cells = SPECIES_18.map(function (s) {
+        var arr = bySp[s.epi] || [];
+        if (!arr.length) {
+          return '<div class="pk-cell miss">' +
+            '<div class="pk-thumb"><span class="pk-miss">未收藏</span></div>' +
+            '<div class="pk-nm">' + esc(s.zh) + '<span class="pk-latin">P. ' + s.epi + '</span></div></div>';
+        }
+        var rep = arr.slice().sort(function (a, b) {
+          var pa = /^Platycerium\s+[A-Za-z]+$/i.test(a.p.latin || '') ? 0 : 1;
+          var pb = /^Platycerium\s+[A-Za-z]+$/i.test(b.p.latin || '') ? 0 : 1;
+          return pa - pb;
+        })[0];
+        var cover = coverImg(rep.p.cover, 400, rep.p.name);
+        var active = state.species === s.epi;
+        return '<div class="pk-cell' + (active ? ' active' : '') + '" data-act="fern-sp" data-sp="' + s.epi + '">' +
+          '<div class="pk-thumb">' + (cover || '<span class="pk-miss">—</span>') + '</div>' +
+          '<div class="pk-nm">' + esc(s.zh) + '<span class="pk-latin">P. ' + s.epi + '</span></div>' +
+          '<div class="pk-ct">' + arr.length + ' 株</div></div>';
+      }).join('');
+      pokedex = '<div class="pokedex" data-lay="grid.pokedex">' +
+        '<div class="pk-head"><h2>18 原種圖鑑</h2>' +
+          '<div class="pk-prog">已收藏 ' + ownedCnt + ' / 18' +
+          (state.species ? ' · <span class="pk-clear" data-act="fern-sp" data-sp="">顯示全部 ✕</span>' : '') +
+          '</div></div>' +
+        '<div class="pk-grid">' + cells + '</div></div>';
+      if (state.species) {
+        indexed = indexed.filter(function (x) { return fernSpeciesOf(x.p.latin) === state.species; });
+      }
+    }
+
     var cards = indexed.map(function (x) {
       var p = x.p;
       var cover = coverImg(p.cover, 900, p.name);
@@ -513,6 +587,7 @@
         hero +
         '<div class="tabs grid-tabs" data-lay="grid.tabs">' + tabs + '</div>' +
       '</div>' +
+      pokedex +
       '<div class="grid-bottom">' +
         '<div class="lobby-search grid-searchbar" data-lay="grid.search">' +
           '<input id="sf-search" type="search" placeholder="🔍 搜尋植物(中文 / 學名 / 分類)…" autocomplete="off" aria-label="搜尋植物">' +
@@ -682,12 +757,18 @@
     else if (act === 'kb-group') { state.kbGroup = t.getAttribute('data-id'); render(); }
     else if (act === 'article') { state.article = t.getAttribute('data-id'); go('article'); }
     else if (act === 'search-open') { openFromSearch(i); }
-    else if (act === 'enter') { state.tab = i; go('grid'); }
-    else if (act === 'tab') { state.tab = i; render(); }
+    else if (act === 'enter') { state.tab = i; state.species = null; go('grid'); }
+    else if (act === 'tab') { state.tab = i; state.species = null; render(); }
+    else if (act === 'fern-sp') {
+      var sp = t.getAttribute('data-sp') || '';
+      state.species = (sp && state.species !== sp) ? sp : null;
+      render();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
     else if (act === 'open') { state.selected = i; state.indiv = firstIndivIndex(normIndiv((state.data || [])[i])); state.indivOpen = false; go('detail'); }
     else if (act === 'indiv') { state.indiv = i; state.indivOpen = false; render(); }
     else if (act === 'indiv-toggle') { state.indivOpen = !state.indivOpen; render(); }
-    else if (act === 'lobby' || act === 'lobby-from-detail') { go('lobby'); }
+    else if (act === 'lobby' || act === 'lobby-from-detail') { state.species = null; go('lobby'); }
     else if (act === 'back-grid') { go('grid'); }
     else if (act === 'zoom') { openLightbox(t.getAttribute('data-url')); }
     else if (act === 'add-cart') {
