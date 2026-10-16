@@ -369,8 +369,12 @@ body {
 /* ===== 來源 · 母株 ===== */
 /* 18 原種收藏圖鑑 */
 .pokedex{margin:20px 0 10px;background:var(--glass);border:1px solid var(--glass-border);border-radius:18px;padding:16px 18px 18px}
-.pk-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 14px}
+.pk-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 14px;cursor:pointer}
 .pk-head h2{margin:0;font-size:18px;letter-spacing:.04em}
+.pk-caret{display:inline-block;font-size:13px;color:var(--green-soft);transition:transform .25s;transform:rotate(-90deg)}
+.pokedex.open .pk-caret{transform:rotate(0deg)}
+.pokedex:not(.open) .pk-head{margin-bottom:0}
+.pokedex:not(.open) .pk-grid{display:none}
 .pk-prog{font-family:var(--mono);font-size:13px;color:var(--green-soft)}
 .pk-clear{cursor:pointer;color:var(--ink);border-bottom:1px dashed rgba(154,216,171,.5)}
 .pk-clear:hover{color:#eafff0}

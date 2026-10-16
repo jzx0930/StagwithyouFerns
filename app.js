@@ -35,7 +35,8 @@
     cats: null,
     lbUrl: null,
     lbScale: 1,
-    species: null
+    species: null,
+    pokedexOpen: false
   };
 
   // 18 原生種(圖鑑用);順序依使用者指定
@@ -535,8 +536,10 @@
           '<div class="pk-nm">' + esc(s.zh) + '<span class="pk-latin">P. ' + s.epi + '</span></div>' +
           '<div class="pk-ct">' + arr.length + ' 株</div></div>';
       }).join('');
-      pokedex = '<div class="pokedex" data-lay="grid.pokedex">' +
-        '<div class="pk-head"><h2>18 原種圖鑑</h2>' +
+      var pkOpen = !!state.pokedexOpen;
+      pokedex = '<div class="pokedex' + (pkOpen ? ' open' : '') + '" data-lay="grid.pokedex">' +
+        '<div class="pk-head" data-act="pk-toggle">' +
+          '<h2>18 原種圖鑑 <span class="pk-caret">▾</span></h2>' +
           '<div class="pk-prog">已收藏 ' + ownedCnt + ' / 18' +
           (state.species ? ' · <span class="pk-clear" data-act="fern-sp" data-sp="">顯示全部 ✕</span>' : '') +
           '</div></div>' +
@@ -759,11 +762,15 @@
     else if (act === 'search-open') { openFromSearch(i); }
     else if (act === 'enter') { state.tab = i; state.species = null; go('grid'); }
     else if (act === 'tab') { state.tab = i; state.species = null; render(); }
+    else if (act === 'pk-toggle') { state.pokedexOpen = !state.pokedexOpen; render(); }
     else if (act === 'fern-sp') {
       var sp = t.getAttribute('data-sp') || '';
       state.species = (sp && state.species !== sp) ? sp : null;
       render();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      requestAnimationFrame(function () {
+        var el = document.querySelector('#app .grid-bottom') || document.querySelector('#app .card-grid');
+        if (el && el.scrollIntoView) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
     }
     else if (act === 'open') { state.selected = i; state.indiv = firstIndivIndex(normIndiv((state.data || [])[i])); state.indivOpen = false; go('detail'); }
     else if (act === 'indiv') { state.indiv = i; state.indivOpen = false; render(); }
