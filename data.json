@@ -109,7 +109,7 @@
         {
           "label": "#02",
           "name": "",
-          "cover": "",
+          "cover": "1ABVhXwiLzJg8uO1zht2kRT0g8ILcO8x6",
           "timeline": [
             {
               "date": "2026.10.14",
@@ -487,8 +487,8 @@
         },
         {
           "label": "#04",
-          "name": "",
-          "cover": "",
+          "name": "愛玉",
+          "cover": "1afQuwHvJ5RAemmVXNuKTMpUp2J1RYV1q",
           "timeline": [
             {
               "date": "2026.10.14",
@@ -501,6 +501,12 @@
               "tag": "#04",
               "note": "",
               "photo": "1y1t_gKDbOJGK1H02GTHLOEG0mD-MRBp9"
+            },
+            {
+              "date": "2026.10.16",
+              "tag": "#04",
+              "note": "",
+              "photo": "1b1qXc_SdJz6iS7rPmluJjvq8ruRqT_UJ"
             }
           ]
         }
@@ -1183,7 +1189,7 @@
         {
           "label": "#01",
           "name": "",
-          "cover": "",
+          "cover": "1eQ6gNr3GXMx3EpONT4wMxezeq6subj4C",
           "timeline": [
             {
               "date": "2026.10.14",
@@ -2411,6 +2417,24 @@
           "mother": [
             "1b8CZ8otveA2X3-AoxsDvvudlxcp4iBX4"
           ]
+        },
+        {
+          "label": "#34",
+          "name": "Wild彩虹園子",
+          "cover": "13e8SGEPs-gm4CejPcTGdP9wxw8oVZQPg",
+          "timeline": [],
+          "mother": [
+            "13e8SGEPs-gm4CejPcTGdP9wxw8oVZQPg"
+          ]
+        },
+        {
+          "label": "#33",
+          "name": "High Finger AUS",
+          "cover": "1mzYW-lG7pCkxuqU-6Cy1otWPSPQBE7Wv",
+          "timeline": [],
+          "mother": [
+            "1mzYW-lG7pCkxuqU-6Cy1otWPSPQBE7Wv"
+          ]
         }
       ]
     },
@@ -2965,7 +2989,7 @@
         {
           "label": "#01",
           "name": "",
-          "cover": "",
+          "cover": "1Dk3zGDwJ601zIV2IW2qNJXRQzKwxT9rW",
           "timeline": [
             {
               "date": "2026.10.14",
@@ -4229,7 +4253,7 @@
         {
           "label": "#01",
           "name": "",
-          "cover": "",
+          "cover": "1ac6Xx_okIcJjj18r5U9n2YgJR7zFhT90",
           "timeline": [
             {
               "date": "2026.10.14",
@@ -4794,7 +4818,7 @@
         {
           "label": "#02",
           "name": "",
-          "cover": "",
+          "cover": "1vQht-QfonxlGlZ9Lkc2VUm3yWHmep-Ta",
           "timeline": [
             {
               "date": "2026.10.14",
@@ -4878,7 +4902,7 @@
         {
           "label": "#01",
           "name": "",
-          "cover": "",
+          "cover": "1CkdNMTzlgJwhBc0Y8sDygaGI_32ouzDF",
           "timeline": [
             {
               "date": "2026.10.14",
@@ -4980,7 +5004,7 @@
         {
           "label": "#03",
           "name": "",
-          "cover": "",
+          "cover": "18K6R540yU0QYvGzKpmw8XhUUEf4s2qf8",
           "timeline": [],
           "mother": [
             "18K6R540yU0QYvGzKpmw8XhUUEf4s2qf8"
@@ -6582,6 +6606,19 @@
               "photo": "18Veeg7U_kRRkDlGJx9oJIzIeABVGRzPJ"
             }
           ]
+        },
+        {
+          "label": "#04",
+          "name": "",
+          "cover": "16QtgehtjMzZq4MWlaj9cY8WYGDspbsic",
+          "timeline": [
+            {
+              "date": "2026.10.21",
+              "tag": "#04",
+              "note": "",
+              "photo": "16QtgehtjMzZq4MWlaj9cY8WYGDspbsic"
+            }
+          ]
         }
       ]
     },
@@ -6714,8 +6751,15 @@
               "tag": "#01",
               "note": "",
               "photo": "1LFJBTf__GwlvGkdbxAwHxNtdIULij8tB"
+            },
+            {
+              "date": "2026.10.16",
+              "tag": "#01",
+              "note": "",
+              "photo": "1u6C1kKsedfEoSqXsMyp7xBmllbiGNwcU"
             }
-          ]
+          ],
+          "name": "紫兜"
         },
         {
           "label": "#02",
@@ -8075,7 +8119,7 @@
         {
           "label": "#02",
           "name": "",
-          "cover": "",
+          "cover": "1_LPFK3b01h3ROJl6N4Kf1vr0CBia0iYs",
           "timeline": [
             {
               "date": "2026.10.14",
@@ -8088,7 +8132,7 @@
         {
           "label": "#01",
           "name": "",
-          "cover": "",
+          "cover": "1VaRV_QNRcDU96SVUoiBkG8Rqkfns13sv",
           "timeline": [
             {
               "date": "2026.10.14",
@@ -8258,6 +8302,12 @@
               "tag": "#01",
               "note": "",
               "photo": "1yjEbReCZeSy1KuX3GyuPra3Xi8XTTHt0"
+            },
+            {
+              "date": "2026.10.16",
+              "tag": "#01",
+              "note": "",
+              "photo": "11SvJSnHJobbMM00FL_8CxjOc89CUyZDS"
             }
           ]
         },
@@ -9772,7 +9822,7 @@
       "cover": "1wHxQ2fbxiLUF-cM7aKjrbopK14LX-OOT",
       "individuals": [
         {
-          "label": "",
+          "label": "#02",
           "cover": "1wHxQ2fbxiLUF-cM7aKjrbopK14LX-OOT",
           "timeline": [
             {
@@ -9781,6 +9831,15 @@
               "note": "",
               "photo": "1wHxQ2fbxiLUF-cM7aKjrbopK14LX-OOT"
             }
+          ]
+        },
+        {
+          "label": "#01",
+          "name": "",
+          "cover": "1ve23EWmBwaQP59Ut86bps9P56jmkgi2G",
+          "timeline": [],
+          "mother": [
+            "1ve23EWmBwaQP59Ut86bps9P56jmkgi2G"
           ]
         }
       ]
@@ -10675,7 +10734,7 @@
         {
           "label": "",
           "name": "",
-          "cover": "",
+          "cover": "1Nl_tL4Yx1k3-5GIqHaT5Fw386g9Arga2",
           "timeline": [],
           "mother": [
             "1Nl_tL4Yx1k3-5GIqHaT5Fw386g9Arga2"
@@ -10694,10 +10753,69 @@
         {
           "label": "",
           "name": "",
-          "cover": "",
+          "cover": "1laGiN9UAr7-mXsdedMiQV_wJWt0IMcNG",
           "timeline": [],
           "mother": [
             "1laGiN9UAr7-mXsdedMiQV_wJWt0IMcNG"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "P.Woot #9 sporeling",
+      "latin": "Platycerium 'Woot' Sporeling",
+      "category": "鹿角蕨",
+      "date": "2026.10.20",
+      "note": "",
+      "cover": "1-ZqsNXAO9Cn1aL_KZ7QcvQfbn4_rH0RI",
+      "individuals": [
+        {
+          "label": "",
+          "name": "",
+          "cover": "1-ZqsNXAO9Cn1aL_KZ7QcvQfbn4_rH0RI",
+          "timeline": [],
+          "mother": [
+            "1-ZqsNXAO9Cn1aL_KZ7QcvQfbn4_rH0RI"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "粉雪",
+      "latin": "Platycerium 'Konayuki'",
+      "category": "鹿角蕨",
+      "date": "2026.10.20",
+      "note": "",
+      "cover": "1dITHtvGDnF_LgAwuVb2lf_MxipzOBqm5",
+      "individuals": [
+        {
+          "label": "",
+          "name": "",
+          "cover": "1dITHtvGDnF_LgAwuVb2lf_MxipzOBqm5",
+          "timeline": [],
+          "mother": [
+            "1dITHtvGDnF_LgAwuVb2lf_MxipzOBqm5",
+            "1yIf9mk1yFr1BkhlLSDxrMgslaZ3obPAj",
+            "101Zb4lSCr3R6PtwhZNUMMsBxchNTDllS"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "P.Banna",
+      "latin": "Platycerium 'Banna'",
+      "category": "鹿角蕨",
+      "date": "2026.10.16",
+      "note": "",
+      "cover": "1o1a8vBxfevaNRHdeKDtY2pAKxgzxAraZ",
+      "individuals": [
+        {
+          "label": "",
+          "name": "",
+          "cover": "1o1a8vBxfevaNRHdeKDtY2pAKxgzxAraZ",
+          "timeline": [],
+          "mother": [
+            "1o1a8vBxfevaNRHdeKDtY2pAKxgzxAraZ"
           ]
         }
       ]
