@@ -36,8 +36,32 @@
     lbUrl: null,
     lbScale: 1,
     species: null,
-    pokedexOpen: false
+    pokedexOpen: false,
+    diaryDate: null
   };
+
+  var WEEKDAYS = ['日', '一', '二', '三', '四', '五', '六'];
+  function weekdayOf(dateStr) {
+    var p = String(dateStr || '').split('.');
+    if (p.length < 3) return '';
+    var dt = new Date(+p[0], +p[1] - 1, +p[2]);
+    return isNaN(dt) ? '' : '星期' + WEEKDAYS[dt.getDay()];
+  }
+  // 日記分類:把該類所有時間軸照片依日期分組 → 每個日期一篇
+  function diaryEntriesOf(indexed) {
+    var byDate = {};
+    indexed.forEach(function (x) {
+      normIndiv(x.p).forEach(function (iv) {
+        (iv.timeline || []).forEach(function (t) {
+          if (!t.date) return;
+          if (!byDate[t.date]) byDate[t.date] = { date: t.date, photos: [], note: '', i: x.i };
+          if (t.photo) byDate[t.date].photos.push(t.photo);
+          if (t.note && !byDate[t.date].note) byDate[t.date].note = t.note;
+        });
+      });
+    });
+    return Object.keys(byDate).sort().reverse().map(function (k) { return byDate[k]; });
+  }
 
   // 18 原生種(圖鑑用);順序依使用者指定
   var SPECIES_18 = [
@@ -396,7 +420,7 @@
   function openFromSearch(i) {
     var p = (state.data || [])[i];
     if (!p) return;
-    state.selected = i; state.indiv = firstIndivIndex(normIndiv(p)); state.indivOpen = false; state.tab = plantCatIndex(p);
+    state.selected = i; state.diaryDate = null; state.indiv = firstIndivIndex(normIndiv(p)); state.indivOpen = false; state.tab = plantCatIndex(p);
     go('detail');
   }
   function wireSearch() {
@@ -548,7 +572,25 @@
       }
     }
 
-    var cards = indexed.map(function (x) {
+    var isDiary = activeCat === '日記';
+    var diary = isDiary ? diaryEntriesOf(indexed) : [];
+
+    var cards = isDiary ? diary.map(function (e) {
+      var cover = coverImg(e.photos[0], 900, e.date);
+      var ph = cover ? '' : '<div class="placeholder"><span>＋ 封面照片</span></div>';
+      var note = String(e.note || '').replace(/\*/g, '').replace(/\s+/g, ' ').trim();
+      return '<div class="plant-card diary-card" data-act="open-diary" data-i="' + e.i + '" data-date="' + esc(e.date) + '">' +
+        '<div class="pc-cover">' + ph + cover +
+          '<span class="pc-count">' + e.photos.length + ' 張</span></div>' +
+        '<div class="pc-body">' +
+          '<div class="pc-name">' + esc(e.date) + '</div>' +
+          '<div class="pc-latin">' + esc(weekdayOf(e.date)) + '</div>' +
+          '<div class="rule"></div>' +
+          '<div class="pc-foot"><span class="pc-date">' + e.photos.length + ' 張照片</span>' +
+            '<span class="pc-go">看日記 →</span></div>' +
+          (note ? '<div class="pc-note">— ' + esc(note.slice(0, 48)) + (note.length > 48 ? '…' : '') + '</div>' : '') +
+        '</div></div>';
+    }).join('') : indexed.map(function (x) {
       var p = x.p;
       var cover = coverImg(p.cover, 900, p.name);
       var ph = cover ? '' : '<div class="placeholder"><span>＋ 封面照片</span></div>';
@@ -576,10 +618,10 @@
     var titleBlock = '<div class="grid-title">' +
       '<div class="eyebrow">Herbarium · 成長紀錄</div>' +
       '<h1 class="title">' + esc(activeCat) + '</h1>' +
-      '<p class="subtitle">點任一株,進入牠的成長時間軸。</p>' +
+      '<p class="subtitle">' + (isDiary ? '點任一篇,看當天的紀錄。' : '點任一株,進入牠的成長時間軸。') + '</p>' +
     '</div>';
     var statsBlock = '<div class="stats">' +
-      '<div class="stat"><div class="num">' + indexed.length + '</div><div class="lbl">種植物</div></div>' +
+      '<div class="stat"><div class="num">' + (isDiary ? diary.length : indexed.length) + '</div><div class="lbl">' + (isDiary ? '篇日記' : '種植物') + '</div></div>' +
       '<div class="stat"><div class="num">' + totalPhotos + '</div><div class="lbl">張照片</div></div>' +
     '</div>';
     app.innerHTML = '<div class="wrap">' +
@@ -630,8 +672,15 @@
     if (ii < 0) ii = 0;
     var cur = indivs[ii] || { label: '', timeline: [] };
 
-    var entries = (cur.timeline || []).slice().sort(function (a, b) { return a.date.localeCompare(b.date); });
-    entries.reverse();
+    var diaryMode = !!state.diaryDate && catOf(sel, normCats()) === '日記';
+    var entries = [];
+    if (diaryMode) {
+      // 日記:該日期、跨所有個體的照片
+      indivs.forEach(function (iv) { (iv.timeline || []).forEach(function (t) { if (t.date === state.diaryDate) entries.push(t); }); });
+    } else {
+      entries = (cur.timeline || []).slice().sort(function (a, b) { return a.date.localeCompare(b.date); });
+      entries.reverse();
+    }
     var total = entries.length;
 
     var rows = entries.map(function (e, i) {
@@ -661,7 +710,7 @@
     }).join('');
     if (!total) rows = '<p class="subtitle" style="margin-left:108px;">這個個體還沒有照片。</p>';
 
-    var showIndiv = indivs.length > 1 || (indivs.length === 1 && (!!cur.label || !!cur.name));
+    var showIndiv = !diaryMode && (indivs.length > 1 || (indivs.length === 1 && (!!cur.label || !!cur.name)));
     var picker = '';
     if (showIndiv) {
       // 依個體編號(#NN)排序;保留原始 index 給 data-i
@@ -689,18 +738,21 @@
       ? '<div class="metric"><div class="k">目前個體</div><div class="v">' + esc(indivLabel(cur)) + '</div></div>'
       : '';
 
-    app.innerHTML = '<div class="wrap narrow">' +
-      '<span class="pill-btn" data-act="lobby-from-detail" data-lay="detail.back">← 回到照片牆</span>' +
-      '<div style="margin:34px 0 12px;" data-lay="detail.title">' +
-        '<div class="eyebrow">No. ' + no + ' · Growth Log</div>' +
-        '<h1 class="title" id="sf-dtitle">' + esc(sel.name) + '</h1>' +
-        '<div class="detail-latin" id="sf-dlatin">' + esc(sel.latin || '') + '</div>' +
-      '</div>' +
-      '<div class="metrics" data-lay="detail.metrics">' +
-        '<div class="metric"><div class="k">入手 / 種植</div><div class="v">' + esc(sel.date || '') + '</div></div>' +
+    var metricsHtml = diaryMode
+      ? '<div class="metric"><div class="k">日期</div><div class="v">' + esc(state.diaryDate) + '</div></div>' +
+        '<div class="metric"><div class="k">本篇照片</div><div class="v">' + total + ' 張</div></div>'
+      : '<div class="metric"><div class="k">入手 / 種植</div><div class="v">' + esc(sel.date || '') + '</div></div>' +
         '<div class="metric"><div class="k">累積照片</div><div class="v">' + photoCount(sel) + ' 張</div></div>' +
-        indivMetric +
+        indivMetric;
+
+    app.innerHTML = '<div class="wrap narrow">' +
+      '<span class="pill-btn" data-act="' + (diaryMode ? 'back-grid' : 'lobby-from-detail') + '" data-lay="detail.back">' + (diaryMode ? '← 回到日記列表' : '← 回到照片牆') + '</span>' +
+      '<div style="margin:34px 0 12px;" data-lay="detail.title">' +
+        '<div class="eyebrow">' + (diaryMode ? 'Diary · ' + esc(state.diaryDate) : 'No. ' + no + ' · Growth Log') + '</div>' +
+        '<h1 class="title" id="sf-dtitle">' + esc(sel.name) + '</h1>' +
+        '<div class="detail-latin" id="sf-dlatin">' + esc(diaryMode ? (state.diaryDate + ' · ' + weekdayOf(state.diaryDate)) : (sel.latin || '')) + '</div>' +
       '</div>' +
+      '<div class="metrics" data-lay="detail.metrics">' + metricsHtml + '</div>' +
       shopRow(sel, state.selected, true) +
       (noteOf(sel) ? '<div class="plant-intro" data-lay="detail.intro">' + fmtNote(noteOf(sel)) + '</div>' : '') +
       (function () {
@@ -711,7 +763,7 @@
           (m ? '<div class="dc-right">' + m + '</div>' : '') +
         '</div>';
       })() +
-      '<div class="tl-head" data-lay="detail.timelineHead"><h2>成長時間軸</h2><div class="tl-order">最新 → 最早</div></div>' +
+      '<div class="tl-head" data-lay="detail.timelineHead"><h2>' + (diaryMode ? '當日紀錄' : '成長時間軸') + '</h2><div class="tl-order">' + (diaryMode ? total + ' 張' : '最新 → 最早') + '</div></div>' +
       '<div data-lay="detail.timeline">' + rows + '</div>' +
       '<div class="detail-footer"><span class="pill-btn" data-act="back-grid">↑ 回到照片牆</span></div>' +
     '</div>';
@@ -759,8 +811,8 @@
     else if (act === 'kb-group') { state.kbGroup = t.getAttribute('data-id'); render(); }
     else if (act === 'article') { state.article = t.getAttribute('data-id'); go('article'); }
     else if (act === 'search-open') { openFromSearch(i); }
-    else if (act === 'enter') { state.tab = i; state.species = null; go('grid'); }
-    else if (act === 'tab') { state.tab = i; state.species = null; render(); }
+    else if (act === 'enter') { state.tab = i; state.species = null; state.diaryDate = null; go('grid'); }
+    else if (act === 'tab') { state.tab = i; state.species = null; state.diaryDate = null; render(); }
     else if (act === 'pk-toggle') { state.pokedexOpen = !state.pokedexOpen; if (!state.pokedexOpen) state.species = null; render(); }
     else if (act === 'fern-sp') {
       var sp = t.getAttribute('data-sp') || '';
@@ -771,11 +823,12 @@
         if (el && el.scrollIntoView) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     }
-    else if (act === 'open') { state.selected = i; state.indiv = firstIndivIndex(normIndiv((state.data || [])[i])); state.indivOpen = false; go('detail'); }
+    else if (act === 'open') { state.selected = i; state.diaryDate = null; state.indiv = firstIndivIndex(normIndiv((state.data || [])[i])); state.indivOpen = false; go('detail'); }
+    else if (act === 'open-diary') { state.selected = i; state.diaryDate = t.getAttribute('data-date') || null; state.indiv = 0; state.indivOpen = false; go('detail'); }
     else if (act === 'indiv') { state.indiv = i; state.indivOpen = false; render(); }
     else if (act === 'indiv-toggle') { state.indivOpen = !state.indivOpen; render(); }
-    else if (act === 'lobby' || act === 'lobby-from-detail') { state.species = null; go('lobby'); }
-    else if (act === 'back-grid') { go('grid'); }
+    else if (act === 'lobby' || act === 'lobby-from-detail') { state.species = null; state.diaryDate = null; go('lobby'); }
+    else if (act === 'back-grid') { state.diaryDate = null; go('grid'); }
     else if (act === 'zoom') { openLightbox(t.getAttribute('data-url')); }
     else if (act === 'add-cart') {
       ev.stopPropagation();
