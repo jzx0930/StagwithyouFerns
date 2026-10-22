@@ -704,7 +704,7 @@
         '<div class="tl-when"><div class="y">' + esc(y) + '</div><div class="md">' + esc(md) + '</div></div>' +
         '<div class="tl-axis"><div class="line"></div><div class="dot"></div></div>' +
         '<div class="tl-main"><div class="tl-card">' + photo +
-          (e.note ? '<div class="tl-note">' + fmtNote(e.note) + '</div>' : '') +
+          (e.note && !diaryMode ? '<div class="tl-note">' + fmtNote(e.note) + '</div>' : '') +
         '</div></div>' +
       '</div>';
     }).join('');
@@ -762,6 +762,12 @@
           (picker ? '<div class="dc-left" data-lay="detail.picker">' + picker + '</div>' : '') +
           (m ? '<div class="dc-right">' + m + '</div>' : '') +
         '</div>';
+      })() +
+      (function () {
+        if (!diaryMode) return '';
+        var txt = '';
+        for (var k = 0; k < entries.length; k++) { if (entries[k].note) { txt = entries[k].note; break; } }
+        return txt ? '<div class="plant-intro diary-text" data-lay="detail.diaryText">' + fmtNote(txt) + '</div>' : '';
       })() +
       '<div class="tl-head" data-lay="detail.timelineHead"><h2>' + (diaryMode ? '當日紀錄' : '成長時間軸') + '</h2><div class="tl-order">' + (diaryMode ? total + ' 張' : '最新 → 最早') + '</div></div>' +
       '<div data-lay="detail.timeline">' + rows + '</div>' +
