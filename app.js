@@ -647,9 +647,12 @@
 
   // 來源 · 母株:文字取自 sources.js(不被 Drive 重建覆蓋),照片取自個體的 mother(由 Drive「母株」夾同步)
   function motherSection(sel, cur) {
-    var src = (window.PLANT_SOURCES && PLANT_SOURCES[sel.name] && PLANT_SOURCES[sel.name][(cur && cur.label) || '']) || null;
+    // 文字來源優先序:Drive「母株」夾的 .txt(同步進 individual.motherInfo)> sources.js
+    var fromJs = (window.PLANT_SOURCES && PLANT_SOURCES[sel.name] && PLANT_SOURCES[sel.name][(cur && cur.label) || '']) || {};
+    var fromDrive = (cur && cur.motherInfo) || {};
+    var src = { source: fromDrive.source || fromJs.source || '', mother: fromDrive.mother || fromJs.mother || '' };
     var photos = (cur && cur.mother) || [];
-    var hasText = src && (src.source || src.mother);
+    var hasText = src.source || src.mother;
     if (!hasText && !photos.length) return '';
     var rows = '';
     if (src && src.source) rows += '<div class="mother-row"><span class="mk">來源</span><span class="mv">' + fmtNote(src.source) + '</span></div>';
