@@ -391,13 +391,15 @@
     for (var i = 0; i < cats.length; i++) { if (cats[i].zh === zh) return i; }
     return 0;
   }
+  // 引號正規化:彎引號 ‘ ’ 與直引號 ' 視為相同(資料夾/學名用彎引號,使用者搜尋可能打直的)
+  function normQuotes(s) { return String(s == null ? '' : s).replace(/[‘’ʼ]/g, "'").replace(/[“”]/g, '"'); }
   function searchMatches(q) {
-    q = (q || '').trim().toLowerCase();
+    q = normQuotes(q || '').trim().toLowerCase();
     if (!q) return [];
     var data = state.data || [], out = [];
     for (var i = 0; i < data.length; i++) {
       var p = data[i];
-      var hay = ((p.name || '') + ' ' + (p.latin || '') + ' ' + (p.category || '')).toLowerCase();
+      var hay = normQuotes((p.name || '') + ' ' + (p.latin || '') + ' ' + (p.category || '')).toLowerCase();
       if (hay.indexOf(q) >= 0) { out.push({ i: i, p: p }); if (out.length >= 16) break; }
     }
     return out;
