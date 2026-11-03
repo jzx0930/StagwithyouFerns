@@ -88,9 +88,11 @@
               "note": "",
               "photo": "1PVl_a-DZxb0t78-ogUCnYnVLBqHbCckk"
             }
-          ]
+          ],
+          "id": "PL-035-001"
         }
-      ]
+      ],
+      "pid": "PL-035"
     },
     {
       "name": "賽爾索",
@@ -122,7 +124,8 @@
               "note": "",
               "photo": "1mzX1FzD9oSLocwZVZtnI7CI39oXXoRoX"
             }
-          ]
+          ],
+          "id": "PL-018-021"
         },
         {
           "label": "#02",
@@ -135,9 +138,11 @@
               "note": "",
               "photo": "1ABVhXwiLzJg8uO1zht2kRT0g8ILcO8x6"
             }
-          ]
+          ],
+          "id": "PL-018-022"
         }
-      ]
+      ],
+      "pid": "PL-018"
     },
     {
       "name": "立葉銀鹿",
@@ -235,9 +240,11 @@
               "note": "",
               "photo": "1ojlB5Y9aMjyeD1fI0JwZXb1KujZ2QHkA"
             }
-          ]
+          ],
+          "id": "PL-015-035"
         }
-      ]
+      ],
+      "pid": "PL-015"
     },
     {
       "name": "愛麗絲",
@@ -281,9 +288,11 @@
               "note": "",
               "photo": "1-aVgOStmxa_x4lNlFHtnfbsPBdDomF86"
             }
-          ]
+          ],
+          "id": "PL-006-001"
         }
-      ]
+      ],
+      "pid": "PL-006"
     },
     {
       "name": "藍景",
@@ -315,9 +324,11 @@
               "note": "",
               "photo": "1oOnLHmYDoioX4dKWVhSxhSpC6om_JrmY"
             }
-          ]
+          ],
+          "id": "PL-036-001"
         }
-      ]
+      ],
+      "pid": "PL-036"
     },
     {
       "name": "Namo",
@@ -349,9 +360,11 @@
               "note": "",
               "photo": "1WH-cyqZBB0ddJd_BofEHqGf65vtXHbRc"
             }
-          ]
+          ],
+          "id": "PL-037-001"
         }
-      ]
+      ],
+      "pid": "PL-037"
     },
     {
       "name": "Blue Ribbon #1",
@@ -395,9 +408,11 @@
               "note": "",
               "photo": "1LybBJAoiYJsIoQUX1N9i_kQj1wLFXlSH"
             }
-          ]
+          ],
+          "id": "PL-038-001"
         }
-      ]
+      ],
+      "pid": "PL-038"
     },
     {
       "name": "雷電 x K銀 x 小手指 x 白爪哇",
@@ -483,7 +498,8 @@
               "note": "",
               "photo": "10IYUo-LwQtq7i1NtMMVLmcznzITtsyZC"
             }
-          ]
+          ],
+          "id": "PL-039-001"
         },
         {
           "label": "#02",
@@ -561,7 +577,8 @@
               "note": "",
               "photo": "1HHSX4AVmKT1VP1sEzycy5c3kRjhtxbht"
             }
-          ]
+          ],
+          "id": "PL-039-002"
         },
         {
           "label": "#03",
@@ -585,7 +602,8 @@
               "note": "",
               "photo": "1lvm_6lA-05ltZVMejQ_uTNrrYd4hMnwk"
             }
-          ]
+          ],
+          "id": "PL-039-003"
         },
         {
           "label": "#04",
@@ -610,9 +628,11 @@
               "note": "",
               "photo": "1b1qXc_SdJz6iS7rPmluJjvq8ruRqT_UJ"
             }
-          ]
+          ],
+          "id": "PL-039-004"
         }
-      ]
+      ],
+      "pid": "PL-039"
     },
     {
       "name": "雷達",
@@ -746,9 +766,11 @@
               "note": "",
               "photo": "1IyK1LtCXfymy6Ix25pvPbHUfEM8czGj5"
             }
-          ]
+          ],
+          "id": "PL-040-001"
         }
-      ]
+      ],
+      "pid": "PL-040"
     },
     {
       "name": "巨獸",
@@ -840,9 +862,11 @@
               "note": "",
               "photo": "1xWU8APKmQXtr7ZUUPTyHG4apRR2tZBZ0"
             }
-          ]
+          ],
+          "id": "PL-007-001"
         }
-      ]
+      ],
+      "pid": "PL-007"
     },
     {
       "name": "巨大",
@@ -886,7 +910,8 @@
               "note": "",
               "photo": "1gDaTNvZTEQQnK-xD2u3BExvRAG_LeOPn"
             }
-          ]
+          ],
+          "id": "PL-014-001"
         },
         {
           "label": "#02",
@@ -904,9 +929,11 @@
               "note": "",
               "photo": "1WrnJDhXvDSNDo3Si47zdNzwyUTjhEDjT"
             }
-          ]
+          ],
+          "id": "PL-014-002"
         }
-      ]
+      ],
+      "pid": "PL-014"
     },
     {
       "name": "象耳",
@@ -1010,7 +1037,8 @@
               "note": "",
               "photo": "19WMHNfo2CBQOHs633FWJlJTGE1-KnZkR"
             }
-          ]
+          ],
+          "id": "PL-005-001"
         },
         {
           "label": "#02",
@@ -1046,9 +1074,11 @@
               "note": "",
               "photo": "1GCQJB68XXgLlGEDoLR0JERnvuDuD5WG2"
             }
-          ]
+          ],
+          "id": "PL-005-002"
         }
-      ]
+      ],
+      "pid": "PL-005"
     },
     {
       "name": "Akki",
@@ -1206,7 +1236,8 @@
               "note": "",
               "photo": "1MrriFiiHZJrkSEnGQtZT43QoJlpMiboe"
             }
-          ]
+          ],
+          "id": "PL-041-001"
         },
         {
           "label": "#02",
@@ -1284,7 +1315,8 @@
               "note": "",
               "photo": "1Byxk4jTIkVSyeBwPsA-Qyr99maeu0VkZ"
             }
-          ]
+          ],
+          "id": "PL-041-002"
         },
         {
           "label": "#03",
@@ -1319,9 +1351,11 @@
           "motherInfo": {
             "source": "",
             "mother": "母株為#01"
-          }
+          },
+          "id": "PL-041-003"
         }
-      ]
+      ],
+      "pid": "PL-041"
     },
     {
       "name": "三角",
@@ -1389,9 +1423,11 @@
               "note": "",
               "photo": "16bJntqDVhEEkJCD38x-qSa6Z5M1b4SgS"
             }
-          ]
+          ],
+          "id": "PL-013-001"
         }
-      ]
+      ],
+      "pid": "PL-013"
     },
     {
       "name": "深綠龍",
@@ -1423,7 +1459,8 @@
               "note": "",
               "photo": "1vOhqG_yylfF0yU0DwXmH_UhySrejGo7D"
             }
-          ]
+          ],
+          "id": "PL-008-001"
         },
         {
           "label": "#02",
@@ -1441,7 +1478,8 @@
               "note": "",
               "photo": "1LPv_KEfLLF34ZLuF9InQWhlLSAFIDxNF"
             }
-          ]
+          ],
+          "id": "PL-008-002"
         },
         {
           "label": "#01",
@@ -1454,9 +1492,11 @@
               "note": "",
               "photo": "1eQ6gNr3GXMx3EpONT4wMxezeq6subj4C"
             }
-          ]
+          ],
+          "id": "PL-008-003"
         }
-      ]
+      ],
+      "pid": "PL-008"
     },
     {
       "name": "雷電 x 野銀",
@@ -1506,9 +1546,11 @@
               "note": "",
               "photo": "1EKoarzBvUTMRr_vuvr1VudJWXTjL-JEU"
             }
-          ]
+          ],
+          "id": "PL-024-001"
         }
-      ]
+      ],
+      "pid": "PL-024"
     },
     {
       "name": "非非達爾文",
@@ -1546,9 +1588,11 @@
               "note": "",
               "photo": "1-78U5lds9L-8S6fEK6BnPECuLJnta8Yo"
             }
-          ]
+          ],
+          "id": "PL-025-001"
         }
-      ]
+      ],
+      "pid": "PL-025"
     },
     {
       "name": "象爪",
@@ -1577,9 +1621,11 @@
           ],
           "mother": [
             "1gOwbHwCOfExORuYtfnCKCBFalGMJAhed"
-          ]
+          ],
+          "id": "PL-026-001"
         }
-      ]
+      ],
+      "pid": "PL-026"
     },
     {
       "name": "千手皇冠",
@@ -1605,9 +1651,11 @@
               "note": "",
               "photo": "1cemqf0Z-Dfd0BsNGocG6f5s3fm3ciEEJ"
             }
-          ]
+          ],
+          "id": "PL-004-002"
         }
-      ]
+      ],
+      "pid": "PL-004"
     },
     {
       "name": "深綠龍 x 野銀",
@@ -1669,9 +1717,11 @@
               "note": "",
               "photo": "1Roy-Ru0QcePov2om_Yn0sigGs34M8ys8"
             }
-          ]
+          ],
+          "id": "PL-027-001"
         }
-      ]
+      ],
+      "pid": "PL-027"
     },
     {
       "name": "白妖爪",
@@ -1709,9 +1759,11 @@
               "note": "",
               "photo": "10C47wRbttwinSbKVroQAeAM5Qz-ESmRt"
             }
-          ]
+          ],
+          "id": "PL-018-024"
         }
-      ]
+      ],
+      "pid": "PL-018"
     },
     {
       "name": "奧銀",
@@ -1765,7 +1817,8 @@
           ],
           "mother": [
             "1OIJ7EinZb2kuptg21izbNRP8G6RBcIk_"
-          ]
+          ],
+          "id": "PL-015-008"
         },
         {
           "label": "#04",
@@ -1820,7 +1873,8 @@
               "note": "",
               "photo": "13QtE7-BOpM9TJgpTJtqsnh7pcdFQIx6u"
             }
-          ]
+          ],
+          "id": "PL-015-004"
         },
         {
           "label": "#30",
@@ -1836,7 +1890,8 @@
           ],
           "mother": [
             "1iP9PNr39LQtDznMdQigAbjdGgEEuWHf0"
-          ]
+          ],
+          "id": "PL-015-030"
         },
         {
           "label": "#15",
@@ -1861,7 +1916,8 @@
               "note": "",
               "photo": "1ho-EcneezxTCZOT8N8A_qpuABUHUnE3l"
             }
-          ]
+          ],
+          "id": "PL-015-015"
         },
         {
           "label": "#22",
@@ -1883,7 +1939,8 @@
           ],
           "mother": [
             "1js97UVQcLOlo03aaCYKETkYTGvR3aZCh"
-          ]
+          ],
+          "id": "PL-015-022"
         },
         {
           "label": "#23",
@@ -1905,7 +1962,8 @@
           ],
           "mother": [
             "1XD5FoUKJCeoI67Uenn_hMuM2CKZKkIMm"
-          ]
+          ],
+          "id": "PL-015-023"
         },
         {
           "label": "#20",
@@ -1933,7 +1991,8 @@
           ],
           "mother": [
             "184kyt8in8siUGMi0T0_MsxYSKt87yct0"
-          ]
+          ],
+          "id": "PL-015-020"
         },
         {
           "label": "#03",
@@ -1952,7 +2011,8 @@
               "note": "",
               "photo": "1RaXIikt73O3GXXw1YIiwj0vOvh6Tk8-Y"
             }
-          ]
+          ],
+          "id": "PL-015-003"
         },
         {
           "label": "#24",
@@ -1974,7 +2034,8 @@
           ],
           "mother": [
             "1Ls40d8xwtiBQ8qNmlx2QlzPCtVL8TJNN"
-          ]
+          ],
+          "id": "PL-015-024"
         },
         {
           "label": "#29",
@@ -2002,7 +2063,8 @@
           ],
           "mother": [
             "1h3r2xHkBlIQNR42YAUv-JKOy_0lFpkf9"
-          ]
+          ],
+          "id": "PL-015-029"
         },
         {
           "label": "#14",
@@ -2033,7 +2095,8 @@
               "note": "",
               "photo": "18sH3fvE9T_5YHyTCqHLJjCgQ1HKORv0i"
             }
-          ]
+          ],
+          "id": "PL-015-014"
         },
         {
           "label": "#26",
@@ -2049,7 +2112,8 @@
           ],
           "mother": [
             "1qy71s7BrVhkK5TULfyNSPCX2DcpKDkp0"
-          ]
+          ],
+          "id": "PL-015-026"
         },
         {
           "label": "#21",
@@ -2086,7 +2150,8 @@
               "note": "",
               "photo": "1l4x7HI9mxmEIHI4aXLZhGVLL8S3lcwup"
             }
-          ]
+          ],
+          "id": "PL-015-021"
         },
         {
           "label": "#25",
@@ -2108,7 +2173,8 @@
           ],
           "mother": [
             "1m281pPfdsF3M2GJnaB0tFlAjHWnYlGOi"
-          ]
+          ],
+          "id": "PL-015-025"
         },
         {
           "label": "#28",
@@ -2124,7 +2190,8 @@
           ],
           "mother": [
             "15vpdLb6zLMTKfPas7hnzKgWFLZAOPuYc"
-          ]
+          ],
+          "id": "PL-015-028"
         },
         {
           "label": "#27",
@@ -2140,7 +2207,8 @@
           ],
           "mother": [
             "14uXCqenjnWC8ob4CkYPjlUlyU98Y0u48"
-          ]
+          ],
+          "id": "PL-015-027"
         },
         {
           "label": "#19",
@@ -2174,7 +2242,8 @@
           ],
           "mother": [
             "1uoKZCavu77UfphanVxDGezMMX51l3qgm"
-          ]
+          ],
+          "id": "PL-015-019"
         },
         {
           "label": "#02",
@@ -2244,7 +2313,8 @@
           ],
           "mother": [
             "1MrOjCgPpk_6SzuyoQahcV1VhMsLr1TZ8"
-          ]
+          ],
+          "id": "PL-015-002"
         },
         {
           "label": "#18",
@@ -2266,7 +2336,8 @@
           ],
           "mother": [
             "1vcIVCrHwlLcmmIEydslQUs2aDmtGA8RJ"
-          ]
+          ],
+          "id": "PL-015-018"
         },
         {
           "label": "#17",
@@ -2291,7 +2362,8 @@
               "note": "",
               "photo": "1MgVLc822drifvFqUVr41T-7R7L-rvRpb"
             }
-          ]
+          ],
+          "id": "PL-015-017"
         },
         {
           "label": "#16",
@@ -2328,7 +2400,8 @@
               "note": "",
               "photo": "1JJbPwmjxjnz0P3Io4RBus0qleXq-isIF"
             }
-          ]
+          ],
+          "id": "PL-015-016"
         },
         {
           "label": "#10",
@@ -2362,7 +2435,8 @@
           ],
           "mother": [
             "1t9JweJMxoIvLIFxogazmVAb4V9yOTBS1"
-          ]
+          ],
+          "id": "PL-015-010"
         },
         {
           "label": "#11",
@@ -2393,7 +2467,8 @@
               "note": "",
               "photo": "1s3f6MXI-gvM73z5lNMgxDvtaXpL8Qrh3"
             }
-          ]
+          ],
+          "id": "PL-015-011"
         },
         {
           "label": "#12",
@@ -2424,7 +2499,8 @@
               "note": "",
               "photo": "1Ifbf1kzvYgDrZeydevN8MziTA8gCpYle"
             }
-          ]
+          ],
+          "id": "PL-015-012"
         },
         {
           "label": "#01",
@@ -2491,7 +2567,8 @@
               "note": "",
               "photo": "1_P69D5_vAQaCmeo8hiPA6lRwIxNjF-4z"
             }
-          ]
+          ],
+          "id": "PL-015-001"
         },
         {
           "label": "#07",
@@ -2537,7 +2614,8 @@
           ],
           "mother": [
             "1jcOqMHy6LRLtPokHbskhk4w07_yvSA8E"
-          ]
+          ],
+          "id": "PL-015-007"
         },
         {
           "label": "#13",
@@ -2562,7 +2640,8 @@
               "note": "",
               "photo": "1osCz63D-kcyJa8UXF6v1UBnRgyBwwQnE"
             }
-          ]
+          ],
+          "id": "PL-015-013"
         },
         {
           "label": "#05",
@@ -2596,7 +2675,8 @@
           ],
           "mother": [
             "1RZ5pOrO6GmVk0hvPDIv0z5clb1iyl-aC"
-          ]
+          ],
+          "id": "PL-015-005"
         },
         {
           "label": "#06",
@@ -2630,7 +2710,8 @@
           ],
           "mother": [
             "1RmFhx5NTsgHrgEbirD3yUt55v7kS8osh"
-          ]
+          ],
+          "id": "PL-015-006"
         },
         {
           "label": "#09",
@@ -2655,7 +2736,8 @@
               "note": "",
               "photo": "15AWjpFNQmcaJNhMsqwg4FT-ZMCRzxFhh"
             }
-          ]
+          ],
+          "id": "PL-015-009"
         },
         {
           "label": "#32",
@@ -2677,7 +2759,8 @@
           "mother": [
             "1Qz8AHsTUXYDldFY3NBH66BgoX-ylewBL"
           ],
-          "name": "Auburn River"
+          "name": "Auburn River",
+          "id": "PL-015-032"
         },
         {
           "label": "#31",
@@ -2747,7 +2830,8 @@
           "mother": [
             "1b8CZ8otveA2X3-AoxsDvvudlxcp4iBX4"
           ],
-          "name": "Veitchii wild三地門鄒大野澳銀正側芽"
+          "name": "Veitchii wild三地門鄒大野澳銀正側芽",
+          "id": "PL-015-031"
         },
         {
           "label": "#34",
@@ -2763,7 +2847,8 @@
           ],
           "mother": [
             "13e8SGEPs-gm4CejPcTGdP9wxw8oVZQPg"
-          ]
+          ],
+          "id": "PL-015-034"
         },
         {
           "label": "#33",
@@ -2779,9 +2864,11 @@
           ],
           "mother": [
             "1mzYW-lG7pCkxuqU-6Cy1otWPSPQBE7Wv"
-          ]
+          ],
+          "id": "PL-015-033"
         }
-      ]
+      ],
+      "pid": "PL-015"
     },
     {
       "name": "珊瑚亞猴",
@@ -2807,7 +2894,8 @@
               "note": "",
               "photo": "1k03xdIJgNgu4a-5Tro03ya4Vvqk61uQD"
             }
-          ]
+          ],
+          "id": "PL-012-001"
         },
         {
           "label": "#02",
@@ -2825,9 +2913,11 @@
               "note": "",
               "photo": "1gnYp659tjs-V6nk_Mno2ETuw-56-ihqV"
             }
-          ]
+          ],
+          "id": "PL-012-002"
         }
-      ]
+      ],
+      "pid": "PL-012"
     },
     {
       "name": "獅子座",
@@ -2865,9 +2955,11 @@
               "note": "",
               "photo": "1X-symvdeWvksYGZQhGsDgiThBQhDmZJM"
             }
-          ]
+          ],
+          "id": "PL-018-025"
         }
-      ]
+      ],
+      "pid": "PL-018"
     },
     {
       "name": "侏儒捲葉亞猴",
@@ -2893,9 +2985,11 @@
               "note": "",
               "photo": "17H5_pybToLW_yRnkxapkTmqIeQ7Db9U5"
             }
-          ]
+          ],
+          "id": "PL-012-003"
         }
-      ]
+      ],
+      "pid": "PL-012"
     },
     {
       "name": "爆米花",
@@ -2933,9 +3027,11 @@
               "note": "",
               "photo": "16t3Q-4IhN5Q-tvOnvhiZXD66OKDlRY55"
             }
-          ]
+          ],
+          "id": "PL-003-002"
         }
-      ]
+      ],
+      "pid": "PL-003"
     },
     {
       "name": "捲捲皇冠",
@@ -2967,9 +3063,11 @@
               "note": "",
               "photo": "1CxbjQJe2dC3RNF-nPfPMZ6nyYKj3vFLF"
             }
-          ]
+          ],
+          "id": "PL-004-003"
         }
-      ]
+      ],
+      "pid": "PL-004"
     },
     {
       "name": "細葉皇冠",
@@ -3001,9 +3099,11 @@
               "note": "",
               "photo": "1p8Ql-V_lTXEHIoN9ktutFoJksGJKx07d"
             }
-          ]
+          ],
+          "id": "PL-004-004"
         }
-      ]
+      ],
+      "pid": "PL-004"
     },
     {
       "name": "馬達加斯加圓盾",
@@ -3035,9 +3135,11 @@
               "note": "",
               "photo": "1KHaPC6-OdDdz2kpgxihxHtT-AawQjOn8"
             }
-          ]
+          ],
+          "id": "PL-001-002"
         }
-      ]
+      ],
+      "pid": "PL-001"
     },
     {
       "name": "高冠女王",
@@ -3069,9 +3171,11 @@
               "note": "",
               "photo": "10jQs8Yu5Za1HpcI5GM2XBFRcx6fyoslc"
             }
-          ]
+          ],
+          "id": "PL-017-003"
         }
-      ]
+      ],
+      "pid": "PL-017"
     },
     {
       "name": "深綠",
@@ -3097,7 +3201,8 @@
               "note": "",
               "photo": "178i2OCH3IgD5NuENFOhTtkPtIjAsi23a"
             }
-          ]
+          ],
+          "id": "PL-008-004"
         },
         {
           "label": "#02",
@@ -3127,9 +3232,11 @@
               "note": "",
               "photo": "1Cc7VooOokMJ0Xmq7FXU5gK4fkUht4WLA"
             }
-          ]
+          ],
+          "id": "PL-008-005"
         }
-      ]
+      ],
+      "pid": "PL-008"
     },
     {
       "name": "侏儒捲葉女王",
@@ -3155,9 +3262,11 @@
               "note": "",
               "photo": "1FZEJIkUx-cWSTXNH0VtaJ8wpQHNsTBKF"
             }
-          ]
+          ],
+          "id": "PL-017-001"
         }
-      ]
+      ],
+      "pid": "PL-017"
     },
     {
       "name": "四叉 × 三角",
@@ -3195,9 +3304,11 @@
               "note": "",
               "photo": "1Al7Sh_4JLTkb0NdLxBrzCDwly9fpkdS-"
             }
-          ]
+          ],
+          "id": "PL-028-001"
         }
-      ]
+      ],
+      "pid": "PL-028"
     },
     {
       "name": "白鹿",
@@ -3277,9 +3388,11 @@
               "note": "",
               "photo": "1kG2WLwx1w--4i0-Ftynv_fPlYM0kLITW"
             }
-          ]
+          ],
+          "id": "PL-003-003"
         }
-      ]
+      ],
+      "pid": "PL-003"
     },
     {
       "name": "獨角獸",
@@ -3332,7 +3445,8 @@
           ],
           "mother": [
             "1Y-CHmwlHVUL401GlDfm8ZDaz4HKd2ktD"
-          ]
+          ],
+          "id": "PL-029-001"
         },
         {
           "label": "#04",
@@ -3347,7 +3461,8 @@
           ],
           "mother": [
             "1hFstsztI_pNcVbIICoqb3qlwJ8WYdvGQ"
-          ]
+          ],
+          "id": "PL-029-004"
         },
         {
           "label": "#03",
@@ -3362,7 +3477,8 @@
           ],
           "mother": [
             "1esmNqqi_W7sK0M7rqBiYjsg4Gwrrnff6"
-          ]
+          ],
+          "id": "PL-029-003"
         },
         {
           "label": "#02",
@@ -3377,7 +3493,8 @@
           ],
           "mother": [
             "1fGQWTpB5NrlmJLD9OEVRMlpCXc6ScQ7P"
-          ]
+          ],
+          "id": "PL-029-002"
         },
         {
           "label": "#01",
@@ -3393,9 +3510,11 @@
           ],
           "mother": [
             "1Im7dJFNA0VUU60nkecTAgMEc3e6p9YXw"
-          ]
+          ],
+          "id": "PL-029-005"
         }
-      ]
+      ],
+      "pid": "PL-029"
     },
     {
       "name": "菲律賓皇冠",
@@ -3457,9 +3576,11 @@
               "note": "",
               "photo": "1eZmPzClhDagJ44ap1Vujh5u8hp7gvtgv"
             }
-          ]
+          ],
+          "id": "PL-004-001"
         }
-      ]
+      ],
+      "pid": "PL-004"
     },
     {
       "name": "女王",
@@ -3551,9 +3672,11 @@
               "note": "",
               "photo": "1UCCr6CizEvjISwzfrEYD4TTe4fN6twsc"
             }
-          ]
+          ],
+          "id": "PL-017-002"
         }
-      ]
+      ],
+      "pid": "PL-017"
     },
     {
       "name": "侏儒塔蘇塔",
@@ -3591,9 +3714,11 @@
               "note": "",
               "photo": "1pYnljhEoZfc1xU-jLrmAEWgNsUlBE3Lf"
             }
-          ]
+          ],
+          "id": "PL-018-026"
         }
-      ]
+      ],
+      "pid": "PL-018"
     },
     {
       "name": "OMG",
@@ -3649,7 +3774,8 @@
               "note": "",
               "photo": "1pEikG7-kmfBd1o_e4QpexVWZbB8u9bLd"
             }
-          ]
+          ],
+          "id": "PL-018-015"
         },
         {
           "label": "#02",
@@ -3662,9 +3788,11 @@
               "note": "",
               "photo": "1R_WZtFfAPkUrpKbQkuVeK-DLGEBd99AV"
             }
-          ]
+          ],
+          "id": "PL-018-016"
         }
-      ]
+      ],
+      "pid": "PL-018"
     },
     {
       "name": "Nano",
@@ -3714,9 +3842,11 @@
               "note": "",
               "photo": "1awIGDHnfWap9kYLR2vrsmSKkht06sXEh"
             }
-          ]
+          ],
+          "id": "PL-018-027"
         }
-      ]
+      ],
+      "pid": "PL-018"
     },
     {
       "name": "黃月",
@@ -3760,9 +3890,11 @@
               "note": "",
               "photo": "1fcEgkwKQFoRACY-FZNM2OM7dQW3LXvUP"
             }
-          ]
+          ],
+          "id": "PL-018-028"
         }
-      ]
+      ],
+      "pid": "PL-018"
     },
     {
       "name": "珍妮",
@@ -3797,9 +3929,11 @@
           ],
           "mother": [
             "1Np002gu9lDY6L9Dvfawb3Aodd0wQqCpu"
-          ]
+          ],
+          "id": "PL-018-029"
         }
-      ]
+      ],
+      "pid": "PL-018"
     },
     {
       "name": "馬塔塔",
@@ -3831,7 +3965,8 @@
               "note": "",
               "photo": "1HKR1jCQN85ZiAX3d0w5shAJsHTIEualM"
             }
-          ]
+          ],
+          "id": "PL-030-001"
         },
         {
           "label": "#02",
@@ -3849,9 +3984,11 @@
               "note": "",
               "photo": "12MOT6mpMxecXIkV-UGhnPyoWFdc5BUne"
             }
-          ]
+          ],
+          "id": "PL-030-002"
         }
-      ]
+      ],
+      "pid": "PL-030"
     },
     {
       "name": "馮詩淇、捲捲鹿",
@@ -3883,7 +4020,8 @@
               "note": "",
               "photo": "1EWxq0FwDVPG65P2GDbjDFrixx-atF_o8"
             }
-          ]
+          ],
+          "id": "PL-018-017"
         },
         {
           "label": "#02",
@@ -3901,9 +4039,11 @@
               "note": "",
               "photo": "1CaKzoWWzaZqn62aLDLNIuOS3xQSMgrVP"
             }
-          ]
+          ],
+          "id": "PL-018-018"
         }
-      ]
+      ],
+      "pid": "PL-018"
     },
     {
       "name": "玉女",
@@ -3977,7 +4117,8 @@
               "note": "",
               "photo": "18BEtzFQeUKJs6NTd5QleOewoDHUZwlVG"
             }
-          ]
+          ],
+          "id": "PL-018-007"
         },
         {
           "label": "#02",
@@ -3995,7 +4136,8 @@
               "note": "",
               "photo": "1tmHoiPZErnyI8KwwMRe97L7CMR8cZqwS"
             }
-          ]
+          ],
+          "id": "PL-018-008"
         },
         {
           "label": "#03",
@@ -4007,9 +4149,11 @@
               "note": "",
               "photo": "1f_cqHA-7JoXvLP_S3uYLcVUt3DPY7Vys"
             }
-          ]
+          ],
+          "id": "PL-018-009"
         }
-      ]
+      ],
+      "pid": "PL-018"
     },
     {
       "name": "三叉戟、瑪莎拉蒂",
@@ -4059,9 +4203,11 @@
               "note": "",
               "photo": "1Nfcas3ttGqnFpwHHSqWbIO-dVIgg0FI1"
             }
-          ]
+          ],
+          "id": "PL-031-001"
         }
-      ]
+      ],
+      "pid": "PL-031"
     },
     {
       "name": "多佛朗明哥",
@@ -4123,9 +4269,11 @@
               "note": "",
               "photo": "1vbw-kQmXKla4qSGZp_sxrl1ySSEohHG9"
             }
-          ]
+          ],
+          "id": "PL-032-001"
         }
-      ]
+      ],
+      "pid": "PL-032"
     },
     {
       "name": "白玫瑰",
@@ -4187,9 +4335,11 @@
               "note": "",
               "photo": "1zDkwPkv0rmbWlUPejWUfBjqiZRa13aTh"
             }
-          ]
+          ],
+          "id": "PL-018-030"
         }
-      ]
+      ],
+      "pid": "PL-018"
     },
     {
       "name": "艾沙",
@@ -4236,9 +4386,11 @@
           ],
           "mother": [
             "1ytFNe19Mg6jTJyA07KYiW5DBEk04cH4X"
-          ]
+          ],
+          "id": "PL-018-031"
         }
-      ]
+      ],
+      "pid": "PL-018"
     },
     {
       "name": "YAL",
@@ -4276,9 +4428,11 @@
               "note": "",
               "photo": "1A5Yl0gPkLtfewaDk2JI_wnnMEdnFYUTg"
             }
-          ]
+          ],
+          "id": "PL-033-001"
         }
-      ]
+      ],
+      "pid": "PL-033"
     },
     {
       "name": "金童",
@@ -4346,9 +4500,11 @@
               "note": "",
               "photo": "1aLXeG9dUuY9Fc9ck5XGcXmb8-0BhZKvC"
             }
-          ]
+          ],
+          "id": "PL-018-032"
         }
-      ]
+      ],
+      "pid": "PL-018"
     },
     {
       "name": "安地斯",
@@ -4386,9 +4542,11 @@
               "note": "",
               "photo": "1eWpr8ipm92m3INnnbtO3XhjEjwLiXkRs"
             }
-          ]
+          ],
+          "id": "PL-002-001"
         }
-      ]
+      ],
+      "pid": "PL-002"
     },
     {
       "name": "史迪奇",
@@ -4429,7 +4587,8 @@
           ],
           "mother": [
             "1W-CeWorK4cA8ccqPn6v1cI4JE8FDXAIt"
-          ]
+          ],
+          "id": "PL-034-001"
         },
         {
           "label": "#02",
@@ -4456,9 +4615,11 @@
           ],
           "mother": [
             "1vfq0M2kTcyx2Om1aJnN-kqJ1tLcFAKXF"
-          ]
+          ],
+          "id": "PL-034-002"
         }
-      ]
+      ],
+      "pid": "PL-034"
     },
     {
       "name": "銀華、藝伎",
@@ -4502,7 +4663,8 @@
               "note": "",
               "photo": "1TWbN7eUkmch9WI5oaKktt16B40_SITaq"
             }
-          ]
+          ],
+          "id": "PL-018-019"
         },
         {
           "label": "#02",
@@ -4544,9 +4706,11 @@
               "note": "",
               "photo": "1ZwRaCnyeQk_pwRzCB_EZPA7FQG4SWq-o"
             }
-          ]
+          ],
+          "id": "PL-018-020"
         }
-      ]
+      ],
+      "pid": "PL-018"
     },
     {
       "name": "非猴",
@@ -4608,7 +4772,8 @@
               "note": "",
               "photo": "1i_7UiOl95PH7KiR5az2Y8EbVN3LYV6mx"
             }
-          ]
+          ],
+          "id": "PL-010-001"
         },
         {
           "label": "#02",
@@ -4626,7 +4791,8 @@
               "note": "",
               "photo": "1UBFA8g1uVDgOpHZdanbqh7lbmau_rDNP"
             }
-          ]
+          ],
+          "id": "PL-010-002"
         },
         {
           "label": "#03",
@@ -4644,9 +4810,11 @@
               "note": "",
               "photo": "1TpgNInMKY5OahUYb5IUGFOdf-x1453S8"
             }
-          ]
+          ],
+          "id": "PL-010-003"
         }
-      ]
+      ],
+      "pid": "PL-010"
     },
     {
       "name": "羅賓、骨刺",
@@ -4696,7 +4864,8 @@
               "note": "",
               "photo": "13uI0RIg19LrGzeuAxtEAjT7xGUdpinHK"
             }
-          ]
+          ],
+          "id": "PL-018-010"
         },
         {
           "label": "#02",
@@ -4720,7 +4889,8 @@
               "note": "",
               "photo": "15haflSfeiZzVrDFBwPRHEwl1h6jhTiLS"
             }
-          ]
+          ],
+          "id": "PL-018-011"
         },
         {
           "label": "#01",
@@ -4733,9 +4903,11 @@
               "note": "",
               "photo": "1ac6Xx_okIcJjj18r5U9n2YgJR7zFhT90"
             }
-          ]
+          ],
+          "id": "PL-018-012"
         }
-      ]
+      ],
+      "pid": "PL-018"
     },
     {
       "name": "美猴王",
@@ -4797,9 +4969,11 @@
               "note": "",
               "photo": "1tHmy8RCgqjkoRQ0ROTgO3wDfmY8r18Io"
             }
-          ]
+          ],
+          "id": "PL-012-005"
         }
-      ]
+      ],
+      "pid": "PL-012"
     },
     {
       "name": "亞猴",
@@ -4909,9 +5083,11 @@
               "note": "",
               "photo": "1djsUyVoQf0F6KV0bfckk_BZAC8s9yWri"
             }
-          ]
+          ],
+          "id": "PL-012-004"
         }
-      ]
+      ],
+      "pid": "PL-012"
     },
     {
       "name": "四叉",
@@ -4997,9 +5173,11 @@
               "note": "",
               "photo": "1tMzMBXTHic5ZpJZv5le-7Tt_lGk6I04U"
             }
-          ]
+          ],
+          "id": "PL-011-001"
         }
-      ]
+      ],
+      "pid": "PL-011"
     },
     {
       "name": "何其美",
@@ -5073,9 +5251,11 @@
               "note": "",
               "photo": "1Tp2AW4sbosUI3vLBX3FN4iaYFeCJCtBK"
             }
-          ]
+          ],
+          "id": "PL-009-001"
         }
-      ]
+      ],
+      "pid": "PL-009"
     },
     {
       "name": "E-1 Katsu",
@@ -5152,9 +5332,11 @@
           ],
           "mother": [
             "1A1kXwuFmfxO6yj3m5wr0Js4L_PvmgdtR"
-          ]
+          ],
+          "id": "PL-003-004"
         }
-      ]
+      ],
+      "pid": "PL-003"
     },
     {
       "name": "黃月 x 馮詩琪",
@@ -5198,9 +5380,11 @@
               "note": "",
               "photo": "1m_StV4b84ibd1COw5PrHVSuWs3PHDCAw"
             }
-          ]
+          ],
+          "id": "PL-023-001"
         }
-      ]
+      ],
+      "pid": "PL-023"
     },
     {
       "name": "非洲圓盾",
@@ -5226,9 +5410,11 @@
               "note": "",
               "photo": "1qqIyrnuIr3n9H6aWBOMpiq7GAO6p5MQ8"
             }
-          ]
+          ],
+          "id": "PL-001-001"
         }
-      ]
+      ],
+      "pid": "PL-001"
     },
     {
       "name": "雷神",
@@ -5254,9 +5440,11 @@
               "note": "",
               "photo": "1bwMHcaEJAkbqzmkxX8FI7xDL9CZcWN1w"
             }
-          ]
+          ],
+          "id": "PL-008-006"
         }
-      ]
+      ],
+      "pid": "PL-008"
     },
     {
       "name": "月光",
@@ -5276,7 +5464,8 @@
               "note": "",
               "photo": "1cDBuD8MIv5-S4eyta-9Xbq0W47eoUZFP"
             }
-          ]
+          ],
+          "id": "PL-018-001"
         },
         {
           "label": "#01",
@@ -5297,7 +5486,8 @@
           ],
           "mother": [
             "18p4hUYP4NATy7Ag8Z8yiSMo1nGzpFh8y"
-          ]
+          ],
+          "id": "PL-018-002"
         },
         {
           "label": "#02",
@@ -5313,9 +5503,11 @@
           ],
           "mother": [
             "1bbJkxISI42jS7h_801wHySh_oYma0Nfp"
-          ]
+          ],
+          "id": "PL-018-003"
         }
-      ]
+      ],
+      "pid": "PL-018"
     },
     {
       "name": "清姬",
@@ -5341,9 +5533,11 @@
               "note": "",
               "photo": "1q4JhG2ZLeB2yNX_KDKH0YLa2g-4YNUpy"
             }
-          ]
+          ],
+          "id": "PL-022-001"
         }
-      ]
+      ],
+      "pid": "PL-022"
     },
     {
       "name": "細菌",
@@ -5363,7 +5557,8 @@
               "note": "",
               "photo": "1DXxEIbNEzpIpGvJJaUnf1iy60256ePUu"
             }
-          ]
+          ],
+          "id": "PL-018-004"
         },
         {
           "label": "#02",
@@ -5381,7 +5576,8 @@
               "note": "",
               "photo": "1_FL8Ph9hyNAIA1UEHxvJuGPXN7QOo_eZ"
             }
-          ]
+          ],
+          "id": "PL-018-005"
         },
         {
           "label": "#01",
@@ -5394,9 +5590,11 @@
               "note": "",
               "photo": "1CkdNMTzlgJwhBc0Y8sDygaGI_32ouzDF"
             }
-          ]
+          ],
+          "id": "PL-018-006"
         }
-      ]
+      ],
+      "pid": "PL-018"
     },
     {
       "name": "奶油獅",
@@ -5440,9 +5638,11 @@
               "note": "",
               "photo": "1ZI78uC4hDLAWEovCxfiSe4vUQZBqGzN1"
             }
-          ]
+          ],
+          "id": "PL-018-023"
         }
-      ]
+      ],
+      "pid": "PL-018"
     },
     {
       "name": "北猴",
@@ -5480,7 +5680,8 @@
               "note": "",
               "photo": "1XFKWUCqVzxiIbTMWxhhqWAlP7Fb2ELI-"
             }
-          ]
+          ],
+          "id": "PL-020-001"
         },
         {
           "label": "#02",
@@ -5501,7 +5702,8 @@
           ],
           "mother": [
             "1ju3pL_BRyyb33GKvGRN3Xqv8a-INBkvp"
-          ]
+          ],
+          "id": "PL-020-002"
         },
         {
           "label": "#03",
@@ -5523,9 +5725,11 @@
           ],
           "mother": [
             "18K6R540yU0QYvGzKpmw8XhUUEf4s2qf8"
-          ]
+          ],
+          "id": "PL-020-003"
         }
-      ]
+      ],
+      "pid": "PL-020"
     },
     {
       "name": "Blue Ribbon #2",
@@ -5551,9 +5755,11 @@
               "note": "",
               "photo": "1s7tS5irusUUzTIeDgSW2-0XOtx6ymyz9"
             }
-          ]
+          ],
+          "id": "PL-019-001"
         }
-      ]
+      ],
+      "pid": "PL-019"
     },
     {
       "name": "爪哇",
@@ -5600,7 +5806,8 @@
           ],
           "mother": [
             "1bfImxa2GrpbS-rEyKcTt3YuJOl3V3r1v"
-          ]
+          ],
+          "id": "PL-018-013"
         },
         {
           "label": "#02",
@@ -5621,9 +5828,11 @@
           ],
           "mother": [
             "1rt_l4tt8WPQRJk6Jaqph3_Ss39hnApWI"
-          ]
+          ],
+          "id": "PL-018-014"
         }
-      ]
+      ],
+      "pid": "PL-018"
     },
     {
       "name": "二叉",
@@ -5667,9 +5876,11 @@
               "note": "",
               "photo": "1lvYGgHDKzdTQ90v1BbWc1gzGQTfRPhok"
             }
-          ]
+          ],
+          "id": "PL-003-001"
         }
-      ]
+      ],
+      "pid": "PL-003"
     },
     {
       "name": "信仰者",
@@ -5713,9 +5924,11 @@
               "note": "",
               "photo": "1VVpwFaKH0HNbo4oc20Fn1FUTbEftG-7j"
             }
-          ]
+          ],
+          "id": "PL-021-001"
         }
-      ]
+      ],
+      "pid": "PL-021"
     },
     {
       "name": "檸檬",
@@ -5741,9 +5954,11 @@
               "note": "",
               "photo": "1xmJbYdtI9whpg72tHgOzJAS2c6Gw3KAv"
             }
-          ]
+          ],
+          "id": "PL-015-036"
         }
-      ]
+      ],
+      "pid": "PL-015"
     },
     {
       "name": "象牙宮",
@@ -5781,7 +5996,8 @@
               "note": "",
               "photo": "1ofXL4WwxSlW2H2zNOrI6K8gaplzhYrLh"
             }
-          ]
+          ],
+          "id": "PA-012-001"
         },
         {
           "label": "#03",
@@ -5805,7 +6021,8 @@
               "note": "",
               "photo": "1uoxxZ7E5Hx2mcslNgQF2yFCMaKgZxAES"
             }
-          ]
+          ],
+          "id": "PA-012-003"
         },
         {
           "label": "#04",
@@ -5818,7 +6035,8 @@
               "note": "",
               "photo": "1r1CiYnKxlH-0VF2lbUaftijwaVXtv1O9"
             }
-          ]
+          ],
+          "id": "PA-012-004"
         },
         {
           "label": "#05",
@@ -5831,9 +6049,11 @@
               "note": "",
               "photo": "17Gh9srHCIl27k5Q0-2Ty4mM1rfaY3KeA"
             }
-          ]
+          ],
+          "id": "PA-012-005"
         }
-      ]
+      ],
+      "pid": "PA-012"
     },
     {
       "name": "畢之比（雙刺瓶幹）",
@@ -5865,7 +6085,8 @@
               "note": "",
               "photo": "1zes_JhIZQCNNVM5k8DlNssL2AMll-UHy"
             }
-          ]
+          ],
+          "id": "PA-011-001"
         },
         {
           "label": "",
@@ -5889,9 +6110,11 @@
               "note": "",
               "photo": "1DhXdq7yemzwyVOX4XYpxnU-IW57Y2WUU"
             }
-          ]
+          ],
+          "id": "PA-011-002"
         }
-      ]
+      ],
+      "pid": "PA-011"
     },
     {
       "name": "納米比亞樹白馬",
@@ -5917,7 +6140,8 @@
               "note": "",
               "photo": "1BxCFkxSg9TTITE5_GgeMwCATYeg_Spxe"
             }
-          ]
+          ],
+          "id": "PA-009-001"
         },
         {
           "label": "#02",
@@ -5929,9 +6153,11 @@
               "note": "",
               "photo": "1r6pG_lnfv0SXDDp21QTFtuIf2LXYbEDL"
             }
-          ]
+          ],
+          "id": "PA-009-002"
         }
-      ]
+      ],
+      "pid": "PA-009"
     },
     {
       "name": "光堂",
@@ -5993,7 +6219,8 @@
               "note": "",
               "photo": "1dOj0Ok4IoXqxqh5UhZoknXFJGQHwQt_T"
             }
-          ]
+          ],
+          "id": "PA-010-001"
         },
         {
           "label": "#02",
@@ -6017,7 +6244,8 @@
               "note": "",
               "photo": "1hVJN_DBQpRTrq3lZaSi2P_pZwKP_HbaF"
             }
-          ]
+          ],
+          "id": "PA-010-002"
         },
         {
           "label": "#03",
@@ -6041,7 +6269,8 @@
               "note": "",
               "photo": "1X9bSnEWHuQtFVJhocDUk6s23L-IvIfh7"
             }
-          ]
+          ],
+          "id": "PA-010-003"
         },
         {
           "label": "#04",
@@ -6077,9 +6306,11 @@
               "note": "",
               "photo": "1n9noKmH0PH7oHw8_JcyUHeL31bobkPH3"
             }
-          ]
+          ],
+          "id": "PA-010-004"
         }
-      ]
+      ],
+      "pid": "PA-010"
     },
     {
       "name": "亞阿相界",
@@ -6105,9 +6336,11 @@
               "note": "",
               "photo": "1HheqdrX9G2C1n0BxvbJUozFm80t4Bt48"
             }
-          ]
+          ],
+          "id": "PA-007-001"
         }
-      ]
+      ],
+      "pid": "PA-007"
     },
     {
       "name": "非洲霸王樹",
@@ -6128,7 +6361,8 @@
               "note": "",
               "photo": "1NR-N_u85_hozFBuNVYqslbiPZGOs6ZPl"
             }
-          ]
+          ],
+          "id": "PA-008-002"
         },
         {
           "label": "",
@@ -6140,9 +6374,11 @@
               "note": "",
               "photo": "1AUh_caXR3hPV9qIzr4E63Ix1iNG_U_Xb"
             }
-          ]
+          ],
+          "id": "PA-008-001"
         }
-      ]
+      ],
+      "pid": "PA-008"
     },
     {
       "name": "常綠瓶幹",
@@ -6162,9 +6398,11 @@
               "note": "",
               "photo": "1A2n86RhKfdYjEdwbeIl3W6jZf3j6KHnf"
             }
-          ]
+          ],
+          "id": "PA-001-002"
         }
-      ]
+      ],
+      "pid": "PA-001"
     },
     {
       "name": "溫莎瓶幹",
@@ -6184,9 +6422,11 @@
               "note": "",
               "photo": "17TD7-ADCK1KOZimkZn_3Pw8TaSkjQaA0"
             }
-          ]
+          ],
+          "id": "PA-002-001"
         }
-      ]
+      ],
+      "pid": "PA-002"
     },
     {
       "name": "大黑惠比須",
@@ -6212,9 +6452,11 @@
               "note": "",
               "photo": "1T-zxi1zXGSQv1mez5YMtP5RnoYQJQFRJ"
             }
-          ]
+          ],
+          "id": "PA-003-001"
         }
-      ]
+      ],
+      "pid": "PA-003"
     },
     {
       "name": "席巴女王玉櫛",
@@ -6264,9 +6506,11 @@
               "note": "",
               "photo": "11_pYxsMbQAC_qF5zhO9LLSDbRlhAIjSf"
             }
-          ]
+          ],
+          "id": "PA-005-001"
         }
-      ]
+      ],
+      "pid": "PA-005"
     },
     {
       "name": "一本尼",
@@ -6292,9 +6536,11 @@
               "note": "",
               "photo": "1BBcgjymjzsYA3SEnQmKR6eVa6QoVedma"
             }
-          ]
+          ],
+          "id": "PA-004-099"
         }
-      ]
+      ],
+      "pid": "PA-004"
     },
     {
       "name": "梅里迪棒槌",
@@ -6320,9 +6566,11 @@
               "note": "",
               "photo": "1lWXStpGKSaASXkNjKoHE6Gf1XMQUm0cJ"
             }
-          ]
+          ],
+          "id": "PA-006-099"
         }
-      ]
+      ],
+      "pid": "PA-006"
     },
     {
       "name": "銀沙鸞鳳玉",
@@ -6342,9 +6590,11 @@
               "note": "",
               "photo": "1kHZKDm1Kq9M21wtore03_Ml3zXsnwobj"
             }
-          ]
+          ],
+          "id": "CA-019-001"
         }
-      ]
+      ],
+      "pid": "CA-019"
     },
     {
       "name": "無刺王冠龍",
@@ -6370,13 +6620,15 @@
               "note": "",
               "photo": "1_sEq513hTzLIK22hr13gehXBXXaTpSX5"
             }
-          ]
+          ],
+          "id": "CA-020-001"
         }
-      ]
+      ],
+      "pid": "CA-020"
     },
     {
       "name": "disco",
-      "latin": "Discocactus",
+      "latin": "Discocactus sp.",
       "category": "仙人掌",
       "date": "2026.08.30",
       "note": "",
@@ -6397,10 +6649,18 @@
               "tag": "",
               "note": "",
               "photo": "1c0iYZmrMzLnDG5W8fJeWVqHkH-qGojSC"
+            },
+            {
+              "date": "2026.10.31",
+              "tag": "",
+              "note": "",
+              "photo": "1S6AmhLkaqtT4z8RfglPx3WAmUueGqg2E"
             }
-          ]
+          ],
+          "id": "CA-050-001"
         }
-      ]
+      ],
+      "pid": "CA-050"
     },
     {
       "name": "帝冠",
@@ -6426,9 +6686,11 @@
               "note": "",
               "photo": "1W_cQ34RxaUDFrp2qqrgweJ_tLmkhAE9V"
             }
-          ]
+          ],
+          "id": "CA-022-001"
         }
-      ]
+      ],
+      "pid": "CA-022"
     },
     {
       "name": "長槍雲、茜雲",
@@ -6454,9 +6716,11 @@
               "note": "",
               "photo": "1Pz1dCO3P_e9rwy9tUVnTHwg0jSCdKYu7"
             }
-          ]
+          ],
+          "id": "CA-023-001"
         }
-      ]
+      ],
+      "pid": "CA-023"
     },
     {
       "name": "千波萬波",
@@ -6482,9 +6746,11 @@
               "note": "",
               "photo": "1vDmh53uqf0Jsc5Z_gDgnymnZ1G1NdXpe"
             }
-          ]
+          ],
+          "id": "CA-024-001"
         }
-      ]
+      ],
+      "pid": "CA-024"
     },
     {
       "name": "短刺象牙丸",
@@ -6516,9 +6782,11 @@
               "note": "",
               "photo": "13NVs8wCwe-jlQ0vAzSpKvd4s2BjketYd"
             }
-          ]
+          ],
+          "id": "CA-011-001"
         }
-      ]
+      ],
+      "pid": "CA-011"
     },
     {
       "name": "紫太陽",
@@ -6544,9 +6812,11 @@
               "note": "",
               "photo": "1oVIzanXGkxmOKV0hvE1JRHBfDoglYLRe"
             }
-          ]
+          ],
+          "id": "CA-012-001"
         }
-      ]
+      ],
+      "pid": "CA-012"
     },
     {
       "name": "象牙丸",
@@ -6578,9 +6848,11 @@
               "note": "",
               "photo": "1GKD1f32g6PoaKjMrsuqq6RwIq1q_ex6M"
             }
-          ]
+          ],
+          "id": "CA-013-001"
         }
-      ]
+      ],
+      "pid": "CA-013"
     },
     {
       "name": "緋牡丹",
@@ -6624,9 +6896,11 @@
               "note": "",
               "photo": "12EUAQvIzbH-88Ys-x8S6IlujCmGX9eDD"
             }
-          ]
+          ],
+          "id": "CA-014-001"
         }
-      ]
+      ],
+      "pid": "CA-014"
     },
     {
       "name": "習志野",
@@ -6652,9 +6926,11 @@
               "note": "",
               "photo": "1JASaI0pNH0Yr8neVUo-OfMlU-q1y9xhq"
             }
-          ]
+          ],
+          "id": "CA-007-001"
         }
-      ]
+      ],
+      "pid": "CA-007"
     },
     {
       "name": "黑刺鳳頭",
@@ -6686,9 +6962,11 @@
               "note": "",
               "photo": "1UCHzcStU2NDiFbettbPda6eoClDCkedk"
             }
-          ]
+          ],
+          "id": "CA-015-001"
         }
-      ]
+      ],
+      "pid": "CA-015"
     },
     {
       "name": "拉根",
@@ -6720,9 +6998,11 @@
               "note": "",
               "photo": "1Blf8quZFe7WCl9UZGTEF4KXueAoOazzc"
             }
-          ]
+          ],
+          "id": "CA-016-001"
         }
-      ]
+      ],
+      "pid": "CA-016"
     },
     {
       "name": "月世界",
@@ -6748,9 +7028,11 @@
               "note": "",
               "photo": "1a226fAe7hIdMpBwkBuSGNyG9jS9J0vWk"
             }
-          ]
+          ],
+          "id": "CA-005-001"
         }
-      ]
+      ],
+      "pid": "CA-005"
     },
     {
       "name": "單刺蓬萊宮",
@@ -6800,9 +7082,11 @@
               "note": "",
               "photo": "1e8z-73Vq51yF59KGOp-CY9LmdXB1RkNN"
             }
-          ]
+          ],
+          "id": "CA-006-001"
         }
-      ]
+      ],
+      "pid": "CA-006"
     },
     {
       "name": "猴尾柱",
@@ -6864,9 +7148,11 @@
               "note": "",
               "photo": "1Zc6AcFqA1jiFbwR0PdhnSCOGSwIJ_6RB"
             }
-          ]
+          ],
+          "id": "CA-018-001"
         }
-      ]
+      ],
+      "pid": "CA-018"
     },
     {
       "name": "無刺象牙丸",
@@ -6892,9 +7178,11 @@
               "note": "",
               "photo": "1CBBK7xYrEImJOUNtkSsSQBNtJc33XHNu"
             }
-          ]
+          ],
+          "id": "CA-017-001"
         }
-      ]
+      ],
+      "pid": "CA-017"
     },
     {
       "name": "天紫玉",
@@ -6956,9 +7244,11 @@
               "note": "",
               "photo": "1ZKrRmPCO4wYQJbTj6W9_LxR6HA9OxNgz"
             }
-          ]
+          ],
+          "id": "CA-025-001"
         }
-      ]
+      ],
+      "pid": "CA-025"
     },
     {
       "name": "烏羽玉",
@@ -7032,9 +7322,11 @@
               "note": "",
               "photo": "1bsYNs9zQkRSfJa_pScy44RlWguBwZFXb"
             }
-          ]
+          ],
+          "id": "CA-008-001"
         }
-      ]
+      ],
+      "pid": "CA-008"
     },
     {
       "name": "疣仙人",
@@ -7054,9 +7346,11 @@
               "note": "",
               "photo": "1WWYx-Nxqhip69hXBPWulvOyGs_rEb_Tu"
             }
-          ]
+          ],
+          "id": "CA-001-001"
         }
-      ]
+      ],
+      "pid": "CA-001"
     },
     {
       "name": "子吹烏羽玉",
@@ -7082,9 +7376,11 @@
               "note": "",
               "photo": "1DbFOYf-8HGJ61HDOJ9Zh4tkGYqMU7P7b"
             }
-          ]
+          ],
+          "id": "CA-002-001"
         }
-      ]
+      ],
+      "pid": "CA-002"
     },
     {
       "name": "銀冠玉",
@@ -7140,7 +7436,8 @@
               "note": "",
               "photo": "1DNBK8dqumcgvSzJfDwMr_j-Dh_ez8qZV"
             }
-          ]
+          ],
+          "id": "CA-009-002"
         },
         {
           "label": "#01",
@@ -7218,7 +7515,8 @@
               "note": "",
               "photo": "1kh2u2eV1I6D2RYV41-jwdRUTWN716Ys3"
             }
-          ]
+          ],
+          "id": "CA-009-001"
         },
         {
           "label": "#03",
@@ -7260,7 +7558,8 @@
               "note": "",
               "photo": "18Veeg7U_kRRkDlGJx9oJIzIeABVGRzPJ"
             }
-          ]
+          ],
+          "id": "CA-009-003"
         },
         {
           "label": "#04",
@@ -7291,9 +7590,11 @@
               "note": "",
               "photo": "1-yFx_lb12tNecMsSzEskG_-XbcwJAkeY"
             }
-          ]
+          ],
+          "id": "CA-009-004"
         }
-      ]
+      ],
+      "pid": "CA-009"
     },
     {
       "name": "直刺佩雷",
@@ -7313,7 +7614,8 @@
               "note": "",
               "photo": "1vwVWkJhhN41STDQYAn54vODMftscUcYG"
             }
-          ]
+          ],
+          "id": "CA-010-002"
         },
         {
           "label": "#01",
@@ -7349,9 +7651,11 @@
               "note": "",
               "photo": "1IDVeVt0iXIg0p40f0OepFd5R1eSgad5r"
             }
-          ]
+          ],
+          "id": "CA-010-001"
         }
-      ]
+      ],
+      "pid": "CA-010"
     },
     {
       "name": "紫兜",
@@ -7432,7 +7736,8 @@
               "photo": "1u6C1kKsedfEoSqXsMyp7xBmllbiGNwcU"
             }
           ],
-          "name": "紫兜"
+          "name": "紫兜",
+          "id": "CA-004-001"
         },
         {
           "label": "#02",
@@ -7444,9 +7749,11 @@
               "note": "",
               "photo": "1R0uwzrhIEgPA9WkjTsTpO85vNArd5p4_"
             }
-          ]
+          ],
+          "id": "CA-004-002"
         }
-      ]
+      ],
+      "pid": "CA-004"
     },
     {
       "name": "士童",
@@ -7478,7 +7785,8 @@
               "note": "",
               "photo": "1aA9iXj2_aN_f90SYz_rtcrjN5y-u9BIJ"
             }
-          ]
+          ],
+          "id": "CA-003-001"
         },
         {
           "label": "#02",
@@ -7496,9 +7804,11 @@
               "note": "",
               "photo": "1RehgW5Fuf_3nQICJbzMX0-6HHYHJH_zf"
             }
-          ]
+          ],
+          "id": "CA-003-002"
         }
-      ]
+      ],
+      "pid": "CA-003"
     },
     {
       "name": "嚴龍",
@@ -7518,9 +7828,11 @@
               "note": "",
               "photo": "1UwZ9NigOiHALD7KcAr5VzjpltC9hXOgK"
             }
-          ]
+          ],
+          "id": "AG-004-001"
         }
-      ]
+      ],
+      "pid": "AG-004"
     },
     {
       "name": "吉祥冠覆輪龍舌蘭",
@@ -7564,7 +7876,8 @@
               "note": "",
               "photo": "18-szdHIgGgktd5z6Z209zp_WTykSyYhs"
             }
-          ]
+          ],
+          "id": "AG-005-001"
         },
         {
           "label": "#02",
@@ -7582,7 +7895,8 @@
               "note": "",
               "photo": "1OlNK5sx8Zpn0xIlLG9TEd6k9oE5KaU4E"
             }
-          ]
+          ],
+          "id": "AG-005-002"
         },
         {
           "label": "#03",
@@ -7594,9 +7908,11 @@
               "note": "",
               "photo": "14F_dFe2tDf-yYe_2Ijsa2DmT9WL1Riux"
             }
-          ]
+          ],
+          "id": "AG-005-003"
         }
-      ]
+      ],
+      "pid": "AG-005"
     },
     {
       "name": "瀧之白絲",
@@ -7616,9 +7932,11 @@
               "note": "",
               "photo": "1uQLvL8qhjQhQvWHEXRsxMU5V0Xhcaidk"
             }
-          ]
+          ],
+          "id": "AG-001-001"
         }
-      ]
+      ],
+      "pid": "AG-001"
     },
     {
       "name": "內華達妖炎",
@@ -7638,9 +7956,11 @@
               "note": "",
               "photo": "1duAyrKZMKshSI5kZzoc9ige4HZbCCDWg"
             }
-          ]
+          ],
+          "id": "AG-002-001"
         }
-      ]
+      ],
+      "pid": "AG-002"
     },
     {
       "name": "象牙妖炎",
@@ -7660,9 +7980,11 @@
               "note": "",
               "photo": "1z_OeszeyDk15X8ueurRV2K3-HkWKJaWA"
             }
-          ]
+          ],
+          "id": "AG-003-001"
         }
-      ]
+      ],
+      "pid": "AG-003"
     },
     {
       "name": "荒皮沙漠玫瑰",
@@ -7694,9 +8016,11 @@
               "note": "",
               "photo": "1kylSHhGjrezCzKyLbiyJLmCmmV5Ntyfx"
             }
-          ]
+          ],
+          "id": "CX-005-001"
         }
-      ]
+      ],
+      "pid": "CX-005"
     },
     {
       "name": "台灣侏儒羊角玫瑰",
@@ -7746,9 +8070,11 @@
               "note": "",
               "photo": "17Kmj8NoB1IPviUxxdMfm_FCIP9TqEcNG"
             }
-          ]
+          ],
+          "id": "CX-009-001"
         }
-      ]
+      ],
+      "pid": "CX-009"
     },
     {
       "name": "足球樹",
@@ -7774,9 +8100,11 @@
               "note": "",
               "photo": "1xHWiedOA8D1u04J-ltMjpftjm9IE_QfU"
             }
-          ]
+          ],
+          "id": "CX-012-001"
         }
-      ]
+      ],
+      "pid": "CX-012"
     },
     {
       "name": "列加氏漆樹",
@@ -7802,9 +8130,11 @@
               "note": "",
               "photo": "1Nwilg_5PYIKVa8W8j-QuvDxKpj24kV38"
             }
-          ]
+          ],
+          "id": "CX-013-001"
         }
-      ]
+      ],
+      "pid": "CX-013"
     },
     {
       "name": "象足漆樹",
@@ -7830,7 +8160,8 @@
               "note": "",
               "photo": "1O8qaFdy1_GYkKWGn2qPzT_XkdvMIB1ot"
             }
-          ]
+          ],
+          "id": "CX-014-001"
         },
         {
           "label": "#02",
@@ -7842,9 +8173,11 @@
               "note": "",
               "photo": "1GwNDAxNf0WrrKeFdAuGgtl7OSEWDS1If"
             }
-          ]
+          ],
+          "id": "CX-014-002"
         }
-      ]
+      ],
+      "pid": "CX-014"
     },
     {
       "name": "奇異油甘",
@@ -7888,9 +8221,11 @@
               "note": "",
               "photo": "1ta3zejGJfjZYwRrub4lx_hYbbkBMjmPH"
             }
-          ]
+          ],
+          "id": "CX-015-001"
         }
-      ]
+      ],
+      "pid": "CX-015"
     },
     {
       "name": "蟻巢玉",
@@ -7922,9 +8257,11 @@
               "note": "",
               "photo": "1MtiT0GP5WFsbebALaZwilOaEwDFnAjVC"
             }
-          ]
+          ],
+          "id": "CX-010-001"
         }
-      ]
+      ],
+      "pid": "CX-010"
     },
     {
       "name": "索科特拉沙漠玫瑰",
@@ -7950,9 +8287,11 @@
               "note": "",
               "photo": "1xZX2kimUVYIaM3vO9aknRIkgxE31m2k-"
             }
-          ]
+          ],
+          "id": "CX-011-001"
         }
-      ]
+      ],
+      "pid": "CX-011"
     },
     {
       "name": "裂紋山烏龜",
@@ -7996,9 +8335,11 @@
               "note": "",
               "photo": "1oEtzwlMx2-JggsSknaAUmorbWqMyEEDD"
             }
-          ]
+          ],
+          "id": "CX-017-001"
         }
-      ]
+      ],
+      "pid": "CX-017"
     },
     {
       "name": "哥吉拉沙漠玫瑰",
@@ -8018,9 +8359,11 @@
               "note": "",
               "photo": "1752Ks3zsrHNTjzKAgXr4cwNtoG_VfVcg"
             }
-          ]
+          ],
+          "id": "CX-006-001"
         }
-      ]
+      ],
+      "pid": "CX-006"
     },
     {
       "name": "安哥拉葡萄甕",
@@ -8046,7 +8389,8 @@
               "note": "",
               "photo": "1msSiTLTIOo0F3XQ0zbeSCV2lcPEFlZHo"
             }
-          ]
+          ],
+          "id": "CX-007-001"
         },
         {
           "label": "#02",
@@ -8076,9 +8420,11 @@
               "note": "",
               "photo": "1WNH1RcS5Dhu-u4TJPnnEt2db2CecRMBE"
             }
-          ]
+          ],
+          "id": "CX-007-002"
         }
-      ]
+      ],
+      "pid": "CX-007"
     },
     {
       "name": "墨西哥龜甲龍",
@@ -8110,9 +8456,11 @@
               "note": "",
               "photo": "1Ck_Lbs_tEkdfnICvlH2SM-2l1Ibh0-R1"
             }
-          ]
+          ],
+          "id": "CX-018-001"
         }
-      ]
+      ],
+      "pid": "CX-018"
     },
     {
       "name": "龜甲摩蘿",
@@ -8174,9 +8522,11 @@
               "note": "",
               "photo": "1fy_mGgS_CZ4O_w0VM4fqvG_qG2XsNSJ2"
             }
-          ]
+          ],
+          "id": "CX-019-001"
         }
-      ]
+      ],
+      "pid": "CX-019"
     },
     {
       "name": "阿拉伯沙漠玫瑰",
@@ -8220,7 +8570,8 @@
               "note": "",
               "photo": "10fIoB6mbiKuGk5sGErdiLdrtZzvXnEe-"
             }
-          ]
+          ],
+          "id": "CX-008-001"
         },
         {
           "label": "#02",
@@ -8238,9 +8589,11 @@
               "note": "",
               "photo": "1nfAgIa-HNdO0vjv_lKX27yYziR41PbYG"
             }
-          ]
+          ],
+          "id": "CX-008-002"
         }
-      ]
+      ],
+      "pid": "CX-008"
     },
     {
       "name": "南非龜甲龍",
@@ -8266,9 +8619,11 @@
               "note": "",
               "photo": "1ucxAC0ke00jgG4ZLHO7pbLbdDG-nTd2U"
             }
-          ]
+          ],
+          "id": "CX-004-003"
         }
-      ]
+      ],
+      "pid": "CX-004"
     },
     {
       "name": "圓葉山烏龜",
@@ -8300,9 +8655,11 @@
               "note": "",
               "photo": "1vqrJfPEK_hLPNFaV9Gz6ar9PoqyeqBTY"
             }
-          ]
+          ],
+          "id": "CX-003-001"
         }
-      ]
+      ],
+      "pid": "CX-003"
     },
     {
       "name": "彎彎曲曲樹",
@@ -8322,9 +8679,11 @@
               "note": "",
               "photo": "1EKzozNv6h2kEeWAAIws62y4bnExp2LsN"
             }
-          ]
+          ],
+          "id": "CX-001-001"
         }
-      ]
+      ],
+      "pid": "CX-001"
     },
     {
       "name": "沙漠蘇木",
@@ -8350,9 +8709,11 @@
               "note": "",
               "photo": "1VXQXKyfqOfsRbd4qBcMbm0PGskP866oZ"
             }
-          ]
+          ],
+          "id": "CX-002-001"
         }
-      ]
+      ],
+      "pid": "CX-002"
     },
     {
       "name": "鬼切丸",
@@ -8372,9 +8733,11 @@
               "note": "",
               "photo": "1pLgVAFwuWXyezPRkH3_FM9av2O9nMP2a"
             }
-          ]
+          ],
+          "id": "SU-007-001"
         }
-      ]
+      ],
+      "pid": "SU-007"
     },
     {
       "name": "海豹天章",
@@ -8394,9 +8757,11 @@
               "note": "",
               "photo": "1L8I3GfBrJdHVSIfu7TVxzUSvO9QnELEk"
             }
-          ]
+          ],
+          "id": "SU-002-001"
         }
-      ]
+      ],
+      "pid": "SU-002"
     },
     {
       "name": "四方凝蹄玉",
@@ -8416,7 +8781,8 @@
               "note": "",
               "photo": "1Mp2lEKN2O1HvnUgABk8CSN1dIYx_Ixf0"
             }
-          ]
+          ],
+          "id": "SU-003-001"
         },
         {
           "label": "#02",
@@ -8428,9 +8794,11 @@
               "note": "",
               "photo": "1D-6ENO1pLK5DuUXlPbPZ_aeDbhvUOGLF"
             }
-          ]
+          ],
+          "id": "SU-003-002"
         }
-      ]
+      ],
+      "pid": "SU-003"
     },
     {
       "name": "蛇蹄玉",
@@ -8456,9 +8824,11 @@
               "note": "",
               "photo": "1q9-PjlzGtWWXvVyn7MenllUrzh4z95eA"
             }
-          ]
+          ],
+          "id": "SU-004-001"
         }
-      ]
+      ],
+      "pid": "SU-004"
     },
     {
       "name": "寶塔蘿藦",
@@ -8484,9 +8854,11 @@
               "note": "",
               "photo": "14wBnoGgt5CaQpYcuB6a1xhqLFT9GU5ok"
             }
-          ]
+          ],
+          "id": "SU-005-001"
         }
-      ]
+      ],
+      "pid": "SU-005"
     },
     {
       "name": "萬象",
@@ -8512,9 +8884,11 @@
               "note": "",
               "photo": "1H87sOvlmfoe-nrv6hOP6cH75ZeSlywGc"
             }
-          ]
+          ],
+          "id": "SU-006-001"
         }
-      ]
+      ],
+      "pid": "SU-006"
     },
     {
       "name": "黑騎士",
@@ -8534,9 +8908,11 @@
               "note": "",
               "photo": "1P33WpQI8Mp5HsZs2V3kkbpgL2_xFUP-j"
             }
-          ]
+          ],
+          "id": "SU-001-001"
         }
-      ]
+      ],
+      "pid": "SU-001"
     },
     {
       "name": "噴火龍",
@@ -8557,9 +8933,11 @@
               "note": "",
               "photo": "1d_LZbkIUGYV4zUJTSJADatPN7-kyPU6o"
             }
-          ]
+          ],
+          "id": "EU-011-001"
         }
-      ]
+      ],
+      "pid": "EU-011"
     },
     {
       "name": "柳葉麒麟",
@@ -8592,9 +8970,11 @@
               "note": "",
               "photo": "1BnKG9BBZ5JCF_uCv8WBynWrFFMoadNsV"
             }
-          ]
+          ],
+          "id": "EU-012-001"
         }
-      ]
+      ],
+      "pid": "EU-012"
     },
     {
       "name": "錦珊瑚",
@@ -8621,9 +9001,11 @@
               "note": "",
               "photo": "1immvGYCcnYhBYMIZR101VxaQV350vUEp"
             }
-          ]
+          ],
+          "id": "CX-016-001"
         }
-      ]
+      ],
+      "pid": "CX-016"
     },
     {
       "name": "蘋果麒麟",
@@ -8662,9 +9044,11 @@
               "note": "",
               "photo": "1c-z1255oQJEFbxFw840frDsmRwWfYKqF"
             }
-          ]
+          ],
+          "id": "EU-013-001"
         }
-      ]
+      ],
+      "pid": "EU-013"
     },
     {
       "name": "哥列麒麟",
@@ -8691,9 +9075,11 @@
               "note": "",
               "photo": "1ZaPg8rINQzFqveLm9dpVFdmcFa6RouE3"
             }
-          ]
+          ],
+          "id": "EU-014-001"
         }
-      ]
+      ],
+      "pid": "EU-014"
     },
     {
       "name": "銅綠麒麟",
@@ -8720,9 +9106,11 @@
               "note": "",
               "photo": "1ILLPeT6oeUDEigjRric01nldB8BrQXhA"
             }
-          ]
+          ],
+          "id": "EU-009-001"
         }
-      ]
+      ],
+      "pid": "EU-009"
     },
     {
       "name": "九頭龍",
@@ -8773,9 +9161,11 @@
               "note": "",
               "photo": "1kldb-pxTxD4FTNPtKKUqowbsIdRL6DNW"
             }
-          ]
+          ],
+          "id": "EU-010-001"
         }
-      ]
+      ],
+      "pid": "EU-010"
     },
     {
       "name": "大寶冠",
@@ -8801,9 +9191,11 @@
               "note": "",
               "photo": "1sDKtHZu092LQfLM46D1X4Ze7UWzwYRbC"
             }
-          ]
+          ],
+          "id": "EU-015-001"
         }
-      ]
+      ],
+      "pid": "EU-015"
     },
     {
       "name": "火山大戟",
@@ -8835,7 +9227,8 @@
               "note": "",
               "photo": "1bv8hYIAl_GolIlVyQ0Sjx73ff9tp7686"
             }
-          ]
+          ],
+          "id": "EU-016-001"
         },
         {
           "label": "#02",
@@ -8854,7 +9247,8 @@
               "note": "",
               "photo": "1dVev_5SNSSjU9TJf2n_d0o0CpbWSrQ4h"
             }
-          ]
+          ],
+          "id": "EU-016-002"
         },
         {
           "label": "#01",
@@ -8873,9 +9267,11 @@
               "note": "",
               "photo": "1-Bc4usp8Lcjs6fddFu9KdOo4JlfjqN1F"
             }
-          ]
+          ],
+          "id": "EU-016-003"
         }
-      ]
+      ],
+      "pid": "EU-016"
     },
     {
       "name": "飛龍大戟",
@@ -8907,9 +9303,11 @@
               "note": "",
               "photo": "1x5P8dOj4YTqZwUGRMnhwCGlAOeZQzF8l"
             }
-          ]
+          ],
+          "id": "EU-017-001"
         }
-      ]
+      ],
+      "pid": "EU-017"
     },
     {
       "name": "群星祭、星雲",
@@ -8936,7 +9334,8 @@
               "note": "",
               "photo": "1y3FSvRci79R12HbbaxPRzMmKhBq3Mbg7"
             }
-          ]
+          ],
+          "id": "EU-003-001"
         },
         {
           "label": "#02",
@@ -8949,9 +9348,11 @@
               "note": "",
               "photo": "1xvjAJg0uZtUu1d8DT5KdJ43SLZVa5VhP"
             }
-          ]
+          ],
+          "id": "EU-003-002"
         }
-      ]
+      ],
+      "pid": "EU-003"
     },
     {
       "name": "亞迪麒麟",
@@ -8996,7 +9397,8 @@
               "note": "",
               "photo": "18TmSACKMYTc7rTLiR7v_3DBj12LQk1Vj"
             }
-          ]
+          ],
+          "id": "EU-018-001"
         },
         {
           "label": "#02",
@@ -9008,9 +9410,11 @@
               "note": "",
               "photo": "15Nd4a2zQb2hC7BgOrSXQbCSfeOl_SrKH"
             }
-          ]
+          ],
+          "id": "EU-018-002"
         }
-      ]
+      ],
+      "pid": "EU-018"
     },
     {
       "name": "蒼龍塔、混迷閣",
@@ -9066,7 +9470,8 @@
               "note": "",
               "photo": "1TPAIuaCejHy3i4qqI-e6yZUvZqBK7zit"
             }
-          ]
+          ],
+          "id": "EU-019-001"
         },
         {
           "label": "#02",
@@ -9090,9 +9495,11 @@
               "note": "",
               "photo": "1BWMoAheEz0vBUqKyenlVONQHsEnewVHf"
             }
-          ]
+          ],
+          "id": "EU-019-002"
         }
-      ]
+      ],
+      "pid": "EU-019"
     },
     {
       "name": "玉麟鳳、綠麒麟",
@@ -9113,7 +9520,8 @@
               "note": "",
               "photo": "1O5crCULuMBKCttZj5z18OH8uabSqHRz0"
             }
-          ]
+          ],
+          "id": "EU-004-001"
         },
         {
           "label": "#02",
@@ -9126,9 +9534,11 @@
               "note": "",
               "photo": "15tkDmCZx6sqOqeTP-5ZX2F4KFDpxhKgj"
             }
-          ]
+          ],
+          "id": "EU-004-002"
         }
-      ]
+      ],
+      "pid": "EU-004"
     },
     {
       "name": "綠鬼玉",
@@ -9172,7 +9582,8 @@
               "note": "",
               "photo": "13Jhw7_KQ9a-T4xVS9BLVVsTeP684tZhW"
             }
-          ]
+          ],
+          "id": "EU-020-001"
         },
         {
           "label": "#02",
@@ -9184,7 +9595,8 @@
               "note": "",
               "photo": "1SFfQd-bxHazJVUeY5Nh1eWUvrz5aqZc4"
             }
-          ]
+          ],
+          "id": "EU-020-002"
         },
         {
           "label": "#03",
@@ -9208,9 +9620,11 @@
               "note": "",
               "photo": "1TEyXY3_WkzU797jLpu8I-Si1cUCEyNqE"
             }
-          ]
+          ],
+          "id": "EU-020-003"
         }
-      ]
+      ],
+      "pid": "EU-020"
     },
     {
       "name": "群星冠",
@@ -9236,7 +9650,8 @@
               "note": "",
               "photo": "13IbjuPXg0sV6cLK8tCyQb1xy8r-1toAO"
             }
-          ]
+          ],
+          "id": "EU-021-001"
         },
         {
           "label": "#02",
@@ -9248,7 +9663,8 @@
               "note": "",
               "photo": "1aynq8XxhHCJqKDOKskGMk0LeT54v2j5u"
             }
-          ]
+          ],
+          "id": "EU-021-002"
         },
         {
           "label": "#03",
@@ -9260,7 +9676,8 @@
               "note": "",
               "photo": "1BmVlEAkT5yrKqyCEGQ_GScH1wEDLA86Y"
             }
-          ]
+          ],
+          "id": "EU-021-003"
         },
         {
           "label": "#04",
@@ -9272,7 +9689,8 @@
               "note": "",
               "photo": "1wcTug31UmTejcuhcQJESXwMr8aW54UyB"
             }
-          ]
+          ],
+          "id": "EU-021-004"
         },
         {
           "label": "#05",
@@ -9284,9 +9702,11 @@
               "note": "",
               "photo": "1OtMtxj3Yl78-GrRFlOLf3tn9E1XxVQp6"
             }
-          ]
+          ],
+          "id": "EU-021-005"
         }
-      ]
+      ],
+      "pid": "EU-021"
     },
     {
       "name": "法利達",
@@ -9313,9 +9733,11 @@
               "note": "",
               "photo": "1LNpPWH5aweT1oKGe3juYnimJHA0CeK4s"
             }
-          ]
+          ],
+          "id": "EU-005-001"
         }
-      ]
+      ],
+      "pid": "EU-005"
     },
     {
       "name": "金輪際",
@@ -9342,7 +9764,8 @@
               "note": "",
               "photo": "1MTF1ownPzZgJHLw6nPhgIGEvXBqFiAHn"
             }
-          ]
+          ],
+          "id": "EU-006-001"
         },
         {
           "label": "#02",
@@ -9361,9 +9784,11 @@
               "note": "",
               "photo": "1NUMRt7S_rRmniSZaX3wu3S6UkhzBYS4F"
             }
-          ]
+          ],
+          "id": "EU-006-002"
         }
-      ]
+      ],
+      "pid": "EU-006"
     },
     {
       "name": "貴清玉",
@@ -9396,9 +9821,11 @@
               "note": "",
               "photo": "1Fmm45AadAPMxvOdeieGzoF1YjzLDgkFk"
             }
-          ]
+          ],
+          "id": "EU-007-001"
         }
-      ]
+      ],
+      "pid": "EU-007"
     },
     {
       "name": "子吹布紋球",
@@ -9449,9 +9876,11 @@
               "note": "",
               "photo": "1oFmrzAgWv33ZOF2az8oAn0QkhIrxOI2E"
             }
-          ]
+          ],
+          "id": "EU-008-001"
         }
-      ]
+      ],
+      "pid": "EU-008"
     },
     {
       "name": "布紋球",
@@ -9471,7 +9900,8 @@
               "note": "",
               "photo": "1T4PX5r6QchbTYIS8rExyM7JPdLx2tKJd"
             }
-          ]
+          ],
+          "id": "EU-022-001"
         },
         {
           "label": "#02",
@@ -9483,7 +9913,8 @@
               "note": "",
               "photo": "175yPZqwVxuEfSbxCy32teNe4JBRninPL"
             }
-          ]
+          ],
+          "id": "EU-022-002"
         },
         {
           "label": "#03",
@@ -9495,9 +9926,11 @@
               "note": "",
               "photo": "1apP00_Sg_V1-JdhL_DC7rnR95MbPxcTo"
             }
-          ]
+          ],
+          "id": "EU-022-003"
         }
-      ]
+      ],
+      "pid": "EU-022"
     },
     {
       "name": "白衣魁偉玉",
@@ -9530,9 +9963,11 @@
               "note": "",
               "photo": "1htHewDzPy9JKf1fQc6oB7CuPQPyZxfR1"
             }
-          ]
+          ],
+          "id": "EU-002-001"
         }
-      ]
+      ],
+      "pid": "EU-002"
     },
     {
       "name": "鬼棲閣",
@@ -9553,9 +9988,11 @@
               "note": "",
               "photo": "17d_ob09dUoRHuCTMOahvBqvp5ij-jsfT"
             }
-          ]
+          ],
+          "id": "EU-001-003"
         }
-      ]
+      ],
+      "pid": "EU-001"
     },
     {
       "name": "裸萼大戟",
@@ -9587,9 +10024,11 @@
               "note": "",
               "photo": "18IeXmlwkdD4ED-LQ6kdwTTdCVycw005Y"
             }
-          ]
+          ],
+          "id": "EU-023-001"
         }
-      ]
+      ],
+      "pid": "EU-023"
     },
     {
       "name": "斑馬觀音蓮",
@@ -9645,9 +10084,11 @@
               "note": "",
               "photo": "1AHiYA7-U6QW2mZl0swnTnUctjuN0anJ3"
             }
-          ]
+          ],
+          "id": "FO-014-001"
         }
-      ]
+      ],
+      "pid": "FO-014"
     },
     {
       "name": "迷彩粗肋草",
@@ -9679,9 +10120,11 @@
               "note": "",
               "photo": "1rKnqSM4O-QxPVLdzQhLJ5H93l4Low7yy"
             }
-          ]
+          ],
+          "id": "FO-007-001"
         }
-      ]
+      ],
+      "pid": "FO-007"
     },
     {
       "name": "聖靈蔓綠絨",
@@ -9707,9 +10150,11 @@
               "note": "",
               "photo": "18HIeVuHkV5V2XvXc-sOg8sX0H8gVdAqy"
             }
-          ]
+          ],
+          "id": "FO-008-001"
         }
-      ]
+      ],
+      "pid": "FO-008"
     },
     {
       "name": "法老王面具水芋",
@@ -9735,9 +10180,11 @@
               "note": "",
               "photo": "1bI83XFW4Fxx40PZR_v5YHPHELLa8pvgc"
             }
-          ]
+          ],
+          "id": "FO-009-001"
         }
-      ]
+      ],
+      "pid": "FO-009"
     },
     {
       "name": "綠色天堂蔓綠絨",
@@ -9769,9 +10216,11 @@
               "note": "",
               "photo": "1d22svNpBru53oU2BvOsYDzivWxSrHj8r"
             }
-          ]
+          ],
+          "id": "FO-010-001"
         }
-      ]
+      ],
+      "pid": "FO-010"
     },
     {
       "name": "黑絲絨觀音蓮",
@@ -9791,9 +10240,11 @@
               "note": "",
               "photo": "1zLszh3kLbc9e16tsaocpaiIPqs9GfV6L"
             }
-          ]
+          ],
+          "id": "FO-011-001"
         }
-      ]
+      ],
+      "pid": "FO-011"
     },
     {
       "name": "黑龍鱗觀音蓮",
@@ -9813,9 +10264,11 @@
               "note": "",
               "photo": "1_V-Pe3HFAHhrrYZCgjIxns3OY_0k8Fxr"
             }
-          ]
+          ],
+          "id": "FO-012-001"
         }
-      ]
+      ],
+      "pid": "FO-012"
     },
     {
       "name": "橘柄蔓綠絨",
@@ -9835,9 +10288,11 @@
               "note": "",
               "photo": "1roFr7WlZ7BZezRnUhIzTYshClfNsQza7"
             }
-          ]
+          ],
+          "id": "FO-013-001"
         }
-      ]
+      ],
+      "pid": "FO-013"
     },
     {
       "name": "孔雀竹芋",
@@ -9863,9 +10318,11 @@
               "note": "",
               "photo": "19s52nvwISwFhBSC2WyOzrs6KFzpQxPZE"
             }
-          ]
+          ],
+          "id": "FO-001-001"
         }
-      ]
+      ],
+      "pid": "FO-001"
     },
     {
       "name": "窗孔龜背芋",
@@ -9885,9 +10342,11 @@
               "note": "",
               "photo": "1qSJn3sVRZn-e_d2_sREDQcWWMYoUj1YL"
             }
-          ]
+          ],
+          "id": "FO-002-001"
         }
-      ]
+      ],
+      "pid": "FO-002"
     },
     {
       "name": "銀箭蔓綠絨",
@@ -9913,9 +10372,11 @@
               "note": "",
               "photo": "1abt2tix6o2VkNevKT-DT0QPeDvqwTdrG"
             }
-          ]
+          ],
+          "id": "FO-003-001"
         }
-      ]
+      ],
+      "pid": "FO-003"
     },
     {
       "name": "青蘋果火鶴",
@@ -9941,9 +10402,11 @@
               "note": "",
               "photo": "1W3OJdgCbgq85JLWdEtCDSXh9OvqDwJfJ"
             }
-          ]
+          ],
+          "id": "FO-004-001"
         }
-      ]
+      ],
+      "pid": "FO-004"
     },
     {
       "name": "黑葉觀音蓮",
@@ -9975,9 +10438,11 @@
               "note": "",
               "photo": "1rdnKRLDaThKvcOkB0pACAWeU5c46r-wu"
             }
-          ]
+          ],
+          "id": "FO-005-001"
         }
-      ]
+      ],
+      "pid": "FO-005"
     },
     {
       "name": "絨葉斑葉觀音蓮",
@@ -10015,9 +10480,11 @@
               "note": "",
               "photo": "1fDKRu1gsdNrCdO9CXZOV4ezMhLysWGwQ"
             }
-          ]
+          ],
+          "id": "FO-006-001"
         }
-      ]
+      ],
+      "pid": "FO-006"
     },
     {
       "name": "日記",
@@ -10593,7 +11060,8 @@
               "note": "",
               "photo": "1GyvALnNEYe4SjF6FXcQXQx6bg7te-eoM"
             }
-          ]
+          ],
+          "id": "CA-026-001"
         },
         {
           "label": "#01",
@@ -10611,7 +11079,8 @@
               "note": "",
               "photo": "1A32azrpqu_tPcUiv1eQwEBGSZd5yD409"
             }
-          ]
+          ],
+          "id": "CA-026-002"
         },
         {
           "label": "#02",
@@ -10624,9 +11093,11 @@
               "note": "",
               "photo": "1UiYDbd7eCoTMbR6kn9YnXa-32cdILei-"
             }
-          ]
+          ],
+          "id": "CA-026-003"
         }
-      ]
+      ],
+      "pid": "CA-026"
     },
     {
       "name": "角疣巨象",
@@ -10664,9 +11135,11 @@
               "note": "",
               "photo": "1UoxjFGmKvSXPdB61HTDPXvhEUZ1Q1lN3"
             }
-          ]
+          ],
+          "id": "CA-027-001"
         }
-      ]
+      ],
+      "pid": "CA-027"
     },
     {
       "name": "惠比須笑",
@@ -10704,9 +11177,11 @@
               "note": "",
               "photo": "1NUtqzHRQHq4RSUTRHjYEYPJ_Xrg6qFfJ"
             }
-          ]
+          ],
+          "id": "PA-013-001"
         }
-      ]
+      ],
+      "pid": "PA-013"
     },
     {
       "name": "黑美人",
@@ -10732,9 +11207,11 @@
               "note": "",
               "photo": "1-t-aGUUtHFwXI_t_zbmQbtsejDbhlgwm"
             }
-          ]
+          ],
+          "id": "CA-028-001"
         }
-      ]
+      ],
+      "pid": "CA-028"
     },
     {
       "name": "Frailea pseudocataphracta",
@@ -10760,9 +11237,11 @@
               "note": "",
               "photo": "1BPZZNo4jIVAfJcL8ZIxLY8cb0biUJCiE"
             }
-          ]
+          ],
+          "id": "CA-029-001"
         }
-      ]
+      ],
+      "pid": "CA-029"
     },
     {
       "name": "白帝錦",
@@ -10782,9 +11261,11 @@
               "note": "",
               "photo": "1y9K-G8iKQlgq3K7gTEuU2nHHdvr2TuXi"
             }
-          ]
+          ],
+          "id": "EU-024-001"
         }
-      ]
+      ],
+      "pid": "EU-024"
     },
     {
       "name": "狗奴子",
@@ -10810,9 +11291,11 @@
               "note": "",
               "photo": "1dDUnSIvbgaSmvrtetjaQdtnqQn9HQHDl"
             }
-          ]
+          ],
+          "id": "EU-025-001"
         }
-      ]
+      ],
+      "pid": "EU-025"
     },
     {
       "name": "紫豹頭",
@@ -10844,9 +11327,11 @@
               "note": "",
               "photo": "1nJWPKsXke4Uxu0Ed8a8EeFl9I39UlH7v"
             }
-          ]
+          ],
+          "id": "CA-030-001"
         }
-      ]
+      ],
+      "pid": "CA-030"
     },
     {
       "name": "鐵甲丸",
@@ -10866,7 +11351,8 @@
               "note": "",
               "photo": "1zFUyWfAoUw-MEaAW4TCwNAm4nV_Ud2Xh"
             }
-          ]
+          ],
+          "id": "EU-026-002"
         },
         {
           "label": "#01",
@@ -10891,9 +11377,11 @@
               "photo": "10OO4GTxm4ihDOvTOOBwHLTvHa8b6ZtWl"
             }
           ],
-          "name": "母"
+          "name": "母",
+          "id": "EU-026-001"
         }
-      ]
+      ],
+      "pid": "EU-026"
     },
     {
       "name": "瘋猴",
@@ -10922,7 +11410,8 @@
           ],
           "mother": [
             "1_xW7gdcFlKQYHaczRalWa0tKitvUBSWf"
-          ]
+          ],
+          "id": "PL-042-002"
         },
         {
           "label": "#01",
@@ -10943,9 +11432,11 @@
           ],
           "mother": [
             "1KjZV4ajgKx2-n12Hqv90dVqrkyi2cFJn"
-          ]
+          ],
+          "id": "PL-042-001"
         }
-      ]
+      ],
+      "pid": "PL-042"
     },
     {
       "name": "澳銀 × 銀華 × 波哥蘇丹",
@@ -10964,7 +11455,8 @@
             "1c-fqVfxWxntQ_4KtrKk6INX2Wx44MORk",
             "1uRLwPxHfUUGBAGpW0_3IALKvjjJLpoQf",
             "1uaJmEuIsXCIcKwzDSauDnYfZheIUzBWo"
-          ]
+          ],
+          "id": "PL-054-001"
         },
         {
           "label": "#01",
@@ -10977,7 +11469,8 @@
               "note": "",
               "photo": "1rlsHi0rWqHERV8hSi1bhfCU86KD0cHDI"
             }
-          ]
+          ],
+          "id": "PL-054-002"
         },
         {
           "label": "#02",
@@ -10990,9 +11483,11 @@
               "note": "",
               "photo": "1NUQJ4kjAOGxN4Ny3Rf2XxG0n1uwV_E6-"
             }
-          ]
+          ],
+          "id": "PL-054-003"
         }
-      ]
+      ],
+      "pid": "PL-054"
     },
     {
       "name": "野貓 x 玉女",
@@ -11016,9 +11511,11 @@
           "mother": [
             "1ydnMd76TEkJi43qEZNCnHShcULeKpiZV",
             "1YdTt-hcqSzQtpJ3AqwNzO9TQv8Ij4ge5"
-          ]
+          ],
+          "id": "PL-055-001"
         }
-      ]
+      ],
+      "pid": "PL-055"
     },
     {
       "name": "白雪蘇丹 x 深綠普米拉",
@@ -11041,9 +11538,11 @@
           ],
           "mother": [
             "1vDD6r3VFcCrIdiHREI1zPCYGkW4wNkg-"
-          ]
+          ],
+          "id": "PL-043-001"
         }
-      ]
+      ],
+      "pid": "PL-043"
     },
     {
       "name": "斯考菲塔蘇塔",
@@ -11069,9 +11568,11 @@
               "note": "",
               "photo": "1FV-Lq-ETaRGKcSUqgcV_BKcYrmUKQC-r"
             }
-          ]
+          ],
+          "id": "PL-018-033"
         }
-      ]
+      ],
+      "pid": "PL-018"
     },
     {
       "name": "金鋼狼",
@@ -11091,7 +11592,8 @@
               "note": "",
               "photo": "1wHxQ2fbxiLUF-cM7aKjrbopK14LX-OOT"
             }
-          ]
+          ],
+          "id": "PL-044-002"
         },
         {
           "label": "#01",
@@ -11107,9 +11609,11 @@
           ],
           "mother": [
             "1ve23EWmBwaQP59Ut86bps9P56jmkgi2G"
-          ]
+          ],
+          "id": "PL-044-001"
         }
-      ]
+      ],
+      "pid": "PL-044"
     },
     {
       "name": "兜",
@@ -11130,9 +11634,11 @@
               "note": "",
               "photo": "12eRvllqHlMpvUHMAPHG2B10D1mh3xvAH"
             }
-          ]
+          ],
+          "id": "CA-031-001"
         }
-      ]
+      ],
+      "pid": "CA-031"
     },
     {
       "name": "天晃",
@@ -11153,9 +11659,11 @@
               "note": "",
               "photo": "1UrhGgT-Jsk5e19UVEt6YAgAfyCP57kSy"
             }
-          ]
+          ],
+          "id": "CA-032-001"
         }
-      ]
+      ],
+      "pid": "CA-032"
     },
     {
       "name": "短刺巨鷲玉",
@@ -11176,9 +11684,11 @@
               "note": "",
               "photo": "1Iwj1ORJYvlJ-E7EtMdXZod_zs64s6SIh"
             }
-          ]
+          ],
+          "id": "CA-033-001"
         }
-      ]
+      ],
+      "pid": "CA-033"
     },
     {
       "name": "新天地",
@@ -11199,9 +11709,11 @@
               "note": "",
               "photo": "1BV80JnKUT_h7Yv9cSQRpHygo2_YFAVVi"
             }
-          ]
+          ],
+          "id": "CA-034-001"
         }
-      ]
+      ],
+      "pid": "CA-034"
     },
     {
       "name": "奇仙玉",
@@ -11222,9 +11734,11 @@
               "note": "",
               "photo": "18MoBfCcMwtccBf4a5SfMlddTtv92hGz0"
             }
-          ]
+          ],
+          "id": "CA-035-001"
         }
-      ]
+      ],
+      "pid": "CA-035"
     },
     {
       "name": "大鳳玉",
@@ -11245,9 +11759,11 @@
               "note": "",
               "photo": "1AvSHqUXrvMIYuOSCXP8ASdF6PmrUS7OG"
             }
-          ]
+          ],
+          "id": "CA-036-001"
         }
-      ]
+      ],
+      "pid": "CA-036"
     },
     {
       "name": "魚鱗丸",
@@ -11268,9 +11784,11 @@
               "note": "",
               "photo": "13w9_GuJdfLtg3Iw5flhWsTdZ7HECFixi"
             }
-          ]
+          ],
+          "id": "EU-027-001"
         }
-      ]
+      ],
+      "pid": "EU-027"
     },
     {
       "name": "雪球",
@@ -11291,9 +11809,11 @@
               "note": "",
               "photo": "1yKAxgRkZk-C3ZquRVM5IIIuSGXt9Yyn7"
             }
-          ]
+          ],
+          "id": "CA-037-001"
         }
-      ]
+      ],
+      "pid": "CA-037"
     },
     {
       "name": "一本刺",
@@ -11314,9 +11834,11 @@
               "note": "",
               "photo": "1pLeYpVvEq6kh0oNY3rRg1DNPuhPT1dkS"
             }
-          ]
+          ],
+          "id": "CA-038-001"
         }
-      ]
+      ],
+      "pid": "CA-038"
     },
     {
       "name": "薄葉花籠",
@@ -11337,7 +11859,8 @@
               "note": "",
               "photo": "1liJCIOrxxmvziRbfUyOXrRsroB8YRmIB"
             }
-          ]
+          ],
+          "id": "CA-039-003"
         },
         {
           "label": "#02",
@@ -11350,7 +11873,8 @@
               "note": "",
               "photo": "1Q24LofWUqSnUWuovTYgAbVCnhh7An4C3"
             }
-          ]
+          ],
+          "id": "CA-039-002"
         },
         {
           "label": "#01",
@@ -11363,9 +11887,11 @@
               "note": "",
               "photo": "19gH7zwIt-xnAsLv8aI0u467PG8idiFQH"
             }
-          ]
+          ],
+          "id": "CA-039-001"
         }
-      ]
+      ],
+      "pid": "CA-039"
     },
     {
       "name": "黑牡丹",
@@ -11386,7 +11912,8 @@
               "note": "",
               "photo": "18GSy_0Qwcif2rSsoPHfDQn1I60fJhnII"
             }
-          ]
+          ],
+          "id": "CA-040-002"
         },
         {
           "label": "#01",
@@ -11399,9 +11926,11 @@
               "note": "",
               "photo": "1-z7szJ1Z5osLSjqeGhKIUaerwLhQZA3u"
             }
-          ]
+          ],
+          "id": "CA-040-001"
         }
-      ]
+      ],
+      "pid": "CA-040"
     },
     {
       "name": "酷斯拉牡丹",
@@ -11422,7 +11951,8 @@
               "note": "",
               "photo": "1aPFpJHoS-IH59nlKggGQURW0_lAfufn6"
             }
-          ]
+          ],
+          "id": "CA-041-003"
         },
         {
           "label": "#02",
@@ -11435,7 +11965,8 @@
               "note": "",
               "photo": "1TRs3ZLWbfb-P8PGzH9ib87hiMH_Iy3eT"
             }
-          ]
+          ],
+          "id": "CA-041-002"
         },
         {
           "label": "#01",
@@ -11448,9 +11979,11 @@
               "note": "",
               "photo": "1_H7s4MEkGOHZzcqHiGtdtdVdjlWA40tQ"
             }
-          ]
+          ],
+          "id": "CA-041-001"
         }
-      ]
+      ],
+      "pid": "CA-041"
     },
     {
       "name": "櫛極丸",
@@ -11471,9 +12004,11 @@
               "note": "",
               "photo": "1rretqkbfIiq4_hNn6mS-hyS8iTVJF1_1"
             }
-          ]
+          ],
+          "id": "CA-042-001"
         }
-      ]
+      ],
+      "pid": "CA-042"
     },
     {
       "name": "密刺丸",
@@ -11494,9 +12029,11 @@
               "note": "",
               "photo": "127dMjJu3tndA46QN9KddXBiHwewJoL3B"
             }
-          ]
+          ],
+          "id": "CA-043-001"
         }
-      ]
+      ],
+      "pid": "CA-043"
     },
     {
       "name": "虎之子",
@@ -11517,9 +12054,11 @@
               "note": "",
               "photo": "1xtZARmCtBRh3nncqiXiDAX3Mqu_GEFbD"
             }
-          ]
+          ],
+          "id": "CA-044-001"
         }
-      ]
+      ],
+      "pid": "CA-044"
     },
     {
       "name": "蜈蚣丸",
@@ -11540,9 +12079,11 @@
               "note": "",
               "photo": "1N2FdZ5zPZ61_ayKULcXoqs6pDQ3q8rjx"
             }
-          ]
+          ],
+          "id": "CA-045-001"
         }
-      ]
+      ],
+      "pid": "CA-045"
     },
     {
       "name": "天惠丸",
@@ -11563,9 +12104,11 @@
               "note": "",
               "photo": "1KjlzE3ziapOSFpyjrA6Q7T33RxnIfRpG"
             }
-          ]
+          ],
+          "id": "CA-046-001"
         }
-      ]
+      ],
+      "pid": "CA-046"
     },
     {
       "name": "狐之子",
@@ -11586,9 +12129,11 @@
               "note": "",
               "photo": "1MzDChDo-uXc2ZOtgb9-9Q18s_v1Awkng"
             }
-          ]
+          ],
+          "id": "CA-047-001"
         }
-      ]
+      ],
+      "pid": "CA-047"
     },
     {
       "name": "豔姬士童",
@@ -11609,7 +12154,8 @@
               "note": "",
               "photo": "1AXPeVQgYofP5iIbm-mE6dOo9UhnlCph6"
             }
-          ]
+          ],
+          "id": "CA-048-001"
         },
         {
           "label": "#02",
@@ -11622,9 +12168,11 @@
               "note": "",
               "photo": "1iGYj3e54E3fADGwN9j0VueT-Biv9m2Od"
             }
-          ]
+          ],
+          "id": "CA-048-002"
         }
-      ]
+      ],
+      "pid": "CA-048"
     },
     {
       "name": "pygmaea var.dadakii",
@@ -11645,9 +12193,11 @@
               "note": "",
               "photo": "105VPpNG05Zh2X41whWgYCivKgEuaDFbU"
             }
-          ]
+          ],
+          "id": "CA-049-001"
         }
-      ]
+      ],
+      "pid": "CA-049"
     },
     {
       "name": "笹蟹丸錦",
@@ -11668,9 +12218,11 @@
               "note": "",
               "photo": "1KbwiUueJyhhv8e9DwOMl3Pou9D3_chTV"
             }
-          ]
+          ],
+          "id": "EU-028-001"
         }
-      ]
+      ],
+      "pid": "EU-028"
     },
     {
       "name": "怪魔玉",
@@ -11691,9 +12243,11 @@
               "note": "",
               "photo": "1Vet3qagdnMQU5g-fmOAoDFtiaPq-uLvr"
             }
-          ]
+          ],
+          "id": "EU-029-001"
         }
-      ]
+      ],
+      "pid": "EU-029"
     },
     {
       "name": "孔雀丸",
@@ -11714,9 +12268,11 @@
               "note": "",
               "photo": "1vG7XNS1O6ovi2O34PGP_lwTjRSKjKvnb"
             }
-          ]
+          ],
+          "id": "EU-030-001"
         }
-      ]
+      ],
+      "pid": "EU-030"
     },
     {
       "name": "佩德羅",
@@ -11737,9 +12293,11 @@
               "note": "",
               "photo": "1N7mw7ZRUW89BMpbrlJ_vJlBLkTEBTezf"
             }
-          ]
+          ],
+          "id": "PL-018-034"
         }
-      ]
+      ],
+      "pid": "PL-018"
     },
     {
       "name": "愛夢 x 弦月",
@@ -11760,9 +12318,11 @@
               "note": "",
               "photo": "1Y-J1QLdJsel80qiBP-k9b1e1755Y19m3"
             }
-          ]
+          ],
+          "id": "PL-045-001"
         }
-      ]
+      ],
+      "pid": "PL-045"
     },
     {
       "name": "日本白斑龜背芋",
@@ -11783,9 +12343,11 @@
               "note": "",
               "photo": "1vcG2QsGJKzU7mltTaMdw32pKkZ87o9-w"
             }
-          ]
+          ],
+          "id": "FO-015-001"
         }
-      ]
+      ],
+      "pid": "FO-015"
     },
     {
       "name": "泰國斑葉龜背芋",
@@ -11806,9 +12368,11 @@
               "note": "",
               "photo": "1u1_Yxuy5vf1wjuisCOipfeFVkHA9f6gN"
             }
-          ]
+          ],
+          "id": "FO-016-001"
         }
-      ]
+      ],
+      "pid": "FO-016"
     },
     {
       "name": "紅毛柄龍爪蔓綠絨",
@@ -11829,9 +12393,11 @@
               "note": "",
               "photo": "1IOR7kxVG-orMeSzgLnKtRvY-D2c9nZbK"
             }
-          ]
+          ],
+          "id": "FO-017-001"
         }
-      ]
+      ],
+      "pid": "FO-017"
     },
     {
       "name": "P.Mt Lewis x bif",
@@ -11855,9 +12421,11 @@
           ],
           "mother": [
             "1cYl8iQjVNWW5zLthlvRir88flQ7XlYJ1"
-          ]
+          ],
+          "id": "PL-046-001"
         }
-      ]
+      ],
+      "pid": "PL-046"
     },
     {
       "name": "斑比",
@@ -11878,7 +12446,8 @@
               "note": "",
               "photo": "1VUmKVIswSErp8bLROdJrXjmP3M3F--vw"
             }
-          ]
+          ],
+          "id": "PL-047-002"
         },
         {
           "label": "#01",
@@ -11891,9 +12460,11 @@
               "note": "",
               "photo": "1yPU-0JOBozEYKSFFMopLqG8sjNZQh6hg"
             }
-          ]
+          ],
+          "id": "PL-047-001"
         }
-      ]
+      ],
+      "pid": "PL-047"
     },
     {
       "name": "棉花雲",
@@ -11917,9 +12488,11 @@
           ],
           "mother": [
             "1lR98gTHTk2Hee2xsJ4id5EAYfTsi2PdJ"
-          ]
+          ],
+          "id": "PL-018-035"
         }
-      ]
+      ],
+      "pid": "PL-018"
     },
     {
       "name": "波紋 x 白法螺",
@@ -11940,9 +12513,11 @@
               "note": "",
               "photo": "1i2eGsWWOyEecNvv8c3gYmTpUKM_H-TEQ"
             }
-          ]
+          ],
+          "id": "PL-048-001"
         }
-      ]
+      ],
+      "pid": "PL-048"
     },
     {
       "name": "幻蝶蔓",
@@ -11963,9 +12538,11 @@
               "note": "",
               "photo": "1yEOVVvUwHrtDYwX-niemghg4bjOmk1z9"
             }
-          ]
+          ],
+          "id": "CX-020-001"
         }
-      ]
+      ],
+      "pid": "CX-020"
     },
     {
       "name": "鳥嘴虎尾蘭",
@@ -11986,9 +12563,11 @@
               "note": "",
               "photo": "1MUHUNKlXxT-Iximod6Jwd4How1_yUx04"
             }
-          ]
+          ],
+          "id": "SU-008-001"
         }
-      ]
+      ],
+      "pid": "SU-008"
     },
     {
       "name": "P.Longii",
@@ -12005,9 +12584,11 @@
           "timeline": [],
           "mother": [
             "1Nl_tL4Yx1k3-5GIqHaT5Fw386g9Arga2"
-          ]
+          ],
+          "id": "PL-049-001"
         }
-      ]
+      ],
+      "pid": "PL-049"
     },
     {
       "name": "P.Ubon#1",
@@ -12024,9 +12605,11 @@
           "timeline": [],
           "mother": [
             "1laGiN9UAr7-mXsdedMiQV_wJWt0IMcNG"
-          ]
+          ],
+          "id": "PL-050-001"
         }
-      ]
+      ],
+      "pid": "PL-050"
     },
     {
       "name": "P.Woot #9 sporeling",
@@ -12043,9 +12626,11 @@
           "timeline": [],
           "mother": [
             "1-ZqsNXAO9Cn1aL_KZ7QcvQfbn4_rH0RI"
-          ]
+          ],
+          "id": "PL-052-001"
         }
-      ]
+      ],
+      "pid": "PL-052"
     },
     {
       "name": "粉雪",
@@ -12071,9 +12656,11 @@
             "1dITHtvGDnF_LgAwuVb2lf_MxipzOBqm5",
             "1yIf9mk1yFr1BkhlLSDxrMgslaZ3obPAj",
             "101Zb4lSCr3R6PtwhZNUMMsBxchNTDllS"
-          ]
+          ],
+          "id": "PL-053-001"
         }
-      ]
+      ],
+      "pid": "PL-053"
     },
     {
       "name": "P.Banna#A",
@@ -12097,9 +12684,11 @@
           ],
           "mother": [
             "1o1a8vBxfevaNRHdeKDtY2pAKxgzxAraZ"
-          ]
+          ],
+          "id": "PL-051-001"
         }
-      ]
+      ],
+      "pid": "PL-051"
     },
     {
       "name": "小皇冠",
@@ -12120,9 +12709,11 @@
               "note": "",
               "photo": "1WhKiL3v88TH0eJsBSX3TJBNwyaDOHxfT"
             }
-          ]
+          ],
+          "id": "PL-018-036"
         }
-      ]
+      ],
+      "pid": "PL-018"
     },
     {
       "name": "滿月",
@@ -12143,9 +12734,11 @@
               "note": "",
               "photo": "1PdptR3dYfonpCzOiI-pdMFxNtN7A2LMw"
             }
-          ]
+          ],
+          "id": "PL-056-001"
         }
-      ]
+      ],
+      "pid": "PL-056"
     },
     {
       "name": "深綠 x 女王",
@@ -12166,9 +12759,11 @@
               "note": "",
               "photo": "1NuRu8oF_KTg3KaAXjQsuYBOXtAzjj2QY"
             }
-          ]
+          ],
+          "id": "PL-057-001"
         }
-      ]
+      ],
+      "pid": "PL-057"
     },
     {
       "name": "蝴蝶",
@@ -12189,9 +12784,11 @@
               "note": "",
               "photo": "1kgWuHM91cgH7l_D7bAuaNTjmcfKTDPRu"
             }
-          ]
+          ],
+          "id": "PL-016-001"
         }
-      ]
+      ],
+      "pid": "PL-016"
     },
     {
       "name": "Snow White",
@@ -12212,9 +12809,11 @@
               "note": "",
               "photo": "1cO9AZbEWgxebUqx1e7S2s07TSK8zoVoC"
             }
-          ]
+          ],
+          "id": "PL-058-001"
         }
-      ]
+      ],
+      "pid": "PL-058"
     },
     {
       "name": "藍貓",
@@ -12231,9 +12830,11 @@
           "timeline": [],
           "mother": [
             "1FYFSk3U7tm1bcDZAw3EY5T63TlYu8_U2"
-          ]
+          ],
+          "id": "PL-059-001"
         }
-      ]
+      ],
+      "pid": "PL-059"
     },
     {
       "name": "綴化深綠 x 爪哇",
@@ -12242,7 +12843,8 @@
       "date": "",
       "note": "",
       "cover": "",
-      "individuals": []
+      "individuals": [],
+      "pid": "PL-060"
     },
     {
       "name": "喜瑪拉雅",
@@ -12251,7 +12853,8 @@
       "date": "",
       "note": "",
       "cover": "",
-      "individuals": []
+      "individuals": [],
+      "pid": "PL-061"
     },
     {
       "name": "P. willinckii (Dwarf)",
@@ -12260,30 +12863,8 @@
       "date": "",
       "note": "",
       "cover": "",
-      "individuals": []
-    },
-    {
-      "name": "disco",
-      "latin": "Discocactus sp.",
-      "category": "仙人掌",
-      "date": "2026.10.31",
-      "note": "",
-      "cover": "1S6AmhLkaqtT4z8RfglPx3WAmUueGqg2E",
-      "individuals": [
-        {
-          "label": "",
-          "name": "",
-          "cover": "1S6AmhLkaqtT4z8RfglPx3WAmUueGqg2E",
-          "timeline": [
-            {
-              "date": "2026.10.31",
-              "tag": "",
-              "note": "",
-              "photo": "1S6AmhLkaqtT4z8RfglPx3WAmUueGqg2E"
-            }
-          ]
-        }
-      ]
+      "individuals": [],
+      "pid": "PL-062"
     },
     {
       "name": "涼雲",
@@ -12304,7 +12885,8 @@
               "note": "",
               "photo": "1d6gQKJkKUhfhB_W9sbCvWddRl9A4CiL5"
             }
-          ]
+          ],
+          "id": "CA-051-001"
         },
         {
           "label": "#02",
@@ -12317,9 +12899,11 @@
               "note": "",
               "photo": "1owmVEqjg2WRwZb82yf0MUGldWqFgXgdG"
             }
-          ]
+          ],
+          "id": "CA-051-002"
         }
-      ]
+      ],
+      "pid": "CA-051"
     },
     {
       "name": "玉翁",
@@ -12340,9 +12924,11 @@
               "note": "",
               "photo": "1CYdX9wM4-MyIHssBajHwOuQA38fmttyT"
             }
-          ]
+          ],
+          "id": "CA-052-001"
         }
-      ]
+      ],
+      "pid": "CA-052"
     },
     {
       "name": "英冠玉",
@@ -12363,9 +12949,11 @@
               "note": "",
               "photo": "1XgYB9q_UR_4xMu9D2uezHv8_Dn7qggMQ"
             }
-          ]
+          ],
+          "id": "CA-053-001"
         }
-      ]
+      ],
+      "pid": "CA-053"
     },
     {
       "name": "象鼻大戟",
@@ -12386,7 +12974,8 @@
               "note": "",
               "photo": "1hih_cX2qd5TaQLudAzF5_crks1v9KBhs"
             }
-          ]
+          ],
+          "id": "EU-031-001"
         },
         {
           "label": "#02",
@@ -12399,9 +12988,11 @@
               "note": "",
               "photo": "1aHQ2WePSjtdjpwi_5Dm3x9TACYrrTE8_"
             }
-          ]
+          ],
+          "id": "EU-031-002"
         }
-      ]
+      ],
+      "pid": "EU-031"
     },
     {
       "name": "球線蔓",
@@ -12422,9 +13013,11 @@
               "note": "",
               "photo": "1wTzc_t21cuo1a8kv4oPFtf3hBjmlkTzG"
             }
-          ]
+          ],
+          "id": "CX-021-001"
         }
-      ]
+      ],
+      "pid": "CX-021"
     },
     {
       "name": "伊羅瓶幹",
@@ -12445,7 +13038,8 @@
               "note": "",
               "photo": "14QFxemhNpBa2d5e5pJVTGo-SyuP1Gxs9"
             }
-          ]
+          ],
+          "id": "PA-014-001"
         },
         {
           "label": "#02",
@@ -12458,9 +13052,11 @@
               "note": "",
               "photo": "1P3cw5FAp8u4ye1qUxep4AyJxLwI5oc2G"
             }
-          ]
+          ],
+          "id": "PA-014-002"
         }
-      ]
+      ],
+      "pid": "PA-014"
     },
     {
       "name": "鬼精棒",
@@ -12481,9 +13077,11 @@
               "note": "",
               "photo": "1gR7F35H6yMgijV9mX7vyCN84fNdMbvgi"
             }
-          ]
+          ],
+          "id": "PA-015-001"
         }
-      ]
+      ],
+      "pid": "PA-015"
     },
     {
       "name": "牡丹",
@@ -12504,9 +13102,74 @@
               "note": "",
               "photo": "1Z4Ie8zZFewcrJYcpMRMk_-1T3d_Vr0NY"
             }
-          ]
+          ],
+          "id": "SU-009-001"
         }
-      ]
+      ],
+      "pid": "SU-009"
     }
-  ]
+  ],
+  "_ids": {
+    "說明": "個體 ID = 分類碼-植物序號-個體序號(各3碼)。鹿角蕨 001–018 為 18 原生種「種位」,同種株共用、個體號在種內接著發;其餘依入手日期。ID 一經發出永不更改/重用。新植物:取 counters[分類碼]+1;新個體:原生種取 speciesNext[種小名]+1,否則取該株個體號最大值+1。",
+    "codes": {
+      "鹿角蕨": "PL",
+      "仙人掌": "CA",
+      "大戟": "EU",
+      "塊根": "CX",
+      "多肉": "SU",
+      "觀葉": "FO",
+      "棒槌": "PA",
+      "龍舌蘭": "AG"
+    },
+    "counters": {
+      "PL": 62,
+      "CA": 53,
+      "EU": 31,
+      "CX": 21,
+      "SU": 9,
+      "FO": 17,
+      "PA": 15,
+      "AG": 5
+    },
+    "speciesSlots": {
+      "alcicorne": "PL-001",
+      "andinum": "PL-002",
+      "bifurcatum": "PL-003",
+      "coronarium": "PL-004",
+      "elephantotis": "PL-005",
+      "ellisii": "PL-006",
+      "grande": "PL-007",
+      "hillii": "PL-008",
+      "holttumii": "PL-009",
+      "madagascariense": "PL-010",
+      "quadridichotomum": "PL-011",
+      "ridleyi": "PL-012",
+      "stemaria": "PL-013",
+      "superbum": "PL-014",
+      "veitchii": "PL-015",
+      "wallichii": "PL-016",
+      "wandae": "PL-017",
+      "willinckii": "PL-018"
+    },
+    "speciesNext": {
+      "PL-001": 2,
+      "PL-002": 1,
+      "PL-003": 4,
+      "PL-004": 4,
+      "PL-005": 2,
+      "PL-006": 1,
+      "PL-007": 1,
+      "PL-008": 6,
+      "PL-009": 1,
+      "PL-010": 3,
+      "PL-011": 1,
+      "PL-012": 5,
+      "PL-013": 1,
+      "PL-014": 2,
+      "PL-015": 36,
+      "PL-016": 1,
+      "PL-017": 3,
+      "PL-018": 36
+    }
+  }
 }

@@ -181,6 +181,10 @@
           state.data = d.plants;
           state.cats = Array.isArray(d.categories) ? d.categories : null;
         } else { state.data = []; }
+        if (openFromUrlId()) {   // ?id=… 深連結:跳過開場、直接開該株/個體
+          var sk = document.getElementById('sf-skip'); if (sk) sk.click();
+          return;
+        }
         render();
       })
       .catch(function () { state.data = []; render(); });
@@ -399,8 +403,17 @@
     var data = state.data || [], out = [];
     for (var i = 0; i < data.length; i++) {
       var p = data[i];
-      var hay = normQuotes((p.name || '') + ' ' + (p.latin || '') + ' ' + (p.category || '')).toLowerCase();
-      if (hay.indexOf(q) >= 0) { out.push({ i: i, p: p }); if (out.length >= 16) break; }
+      var ivs = normIndiv(p), ivHit = -1, idHit = '';
+      // 個體 ID(PL-015-008)命中 → 直接開到該個體
+      for (var k = 0; k < ivs.length; k++) {
+        var iid = String(ivs[k].id || '').toLowerCase();
+        if (iid && iid.indexOf(q) >= 0) { ivHit = k; idHit = ivs[k].id; break; }
+      }
+      var hay = normQuotes((p.name || '') + ' ' + (p.latin || '') + ' ' + (p.category || '') + ' ' + (p.pid || '')).toLowerCase();
+      if (ivHit >= 0 || hay.indexOf(q) >= 0) {
+        out.push({ i: i, p: p, iv: ivHit, id: idHit || p.pid || '' });
+        if (out.length >= 16) break;
+      }
     }
     return out;
   }
@@ -412,18 +425,35 @@
     if (!ms.length) { box.innerHTML = '<div class="search-empty">找不到「' + esc(q) + '」</div>'; box.classList.add('open'); return; }
     box.innerHTML = ms.map(function (m) {
       var zh = catOf(m.p, cats);
-      return '<div class="search-item" data-act="search-open" data-i="' + m.i + '">' +
-        '<span class="si-name">' + esc(m.p.name) + '</span>' +
+      return '<div class="search-item" data-act="search-open" data-i="' + m.i + '" data-iv="' + (m.iv >= 0 ? m.iv : '') + '">' +
+        '<span class="si-name">' + esc(m.p.name) + (m.id ? ' <span class="si-id">' + esc(m.id) + '</span>' : '') + '</span>' +
         (m.p.latin ? '<span class="si-latin">' + esc(m.p.latin) + '</span>' : '<span class="si-latin"></span>') +
         '<span class="si-cat">' + esc(zh) + '</span></div>';
     }).join('');
     box.classList.add('open');
   }
-  function openFromSearch(i) {
+  function openFromSearch(i, ivIdx) {
     var p = (state.data || [])[i];
     if (!p) return;
-    state.selected = i; state.diaryDate = null; state.indiv = firstIndivIndex(normIndiv(p)); state.indivOpen = false; state.tab = plantCatIndex(p);
+    var ivs = normIndiv(p);
+    state.selected = i; state.diaryDate = null;
+    state.indiv = (typeof ivIdx === 'number' && ivIdx >= 0 && ivIdx < ivs.length) ? ivIdx : firstIndivIndex(ivs);
+    state.indivOpen = false; state.tab = plantCatIndex(p);
     go('detail');
+  }
+  // 深連結:?id=PL-015-008(個體)或 ?id=PL-015(植物)→ 直接開該頁;找不到就照常進大廳
+  function openFromUrlId() {
+    var q;
+    try { q = new URLSearchParams(location.search).get('id'); } catch (e) { q = null; }
+    if (!q) return false;
+    q = String(q).trim().toUpperCase();
+    var data = state.data || [];
+    for (var i = 0; i < data.length; i++) {
+      var ivs = normIndiv(data[i]);
+      for (var k = 0; k < ivs.length; k++) if (String(ivs[k].id || '').toUpperCase() === q) { openFromSearch(i, k); return true; }
+      if (String(data[i].pid || '').toUpperCase() === q) { openFromSearch(i); return true; }
+    }
+    return false;
   }
   function wireSearch() {
     var inp = document.getElementById('sf-search');
@@ -594,6 +624,7 @@
       var ph = cover ? '' : '<div class="placeholder"><span>＋ 封面照片</span></div>';
       return '<div class="plant-card" data-act="open" data-i="' + x.i + '">' +
         '<div class="pc-cover">' + ph + cover +
+          (p.pid ? '<span class="pc-pid">' + esc(p.pid) + '</span>' : '') +
           '<span class="pc-count">' + photoCount(p) + ' 張</span></div>' +
         '<div class="pc-body">' +
           '<div class="pc-name">' + esc(p.name) + '</div>' +
@@ -721,13 +752,13 @@
       var open = !!state.indivOpen;
       var options = order.map(function (o) {
         return '<div class="iv-opt' + (o.i === ii ? ' sel' : '') + '" data-act="indiv" data-i="' + o.i + '">' +
-          '<span class="iv-nm">' + esc(indivLabel(o.iv)) + '</span>' +
+          '<span class="iv-nm">' + esc(indivLabel(o.iv)) + (o.iv.id ? '<span class="iv-id">' + esc(o.iv.id) + '</span>' : '') + '</span>' +
           '<span class="iv-c">' + ((o.iv.timeline || []).length) + '</span></div>';
       }).join('');
       picker = '<div class="tl-head"><h2>選擇個體</h2><div class="tl-order">共 ' + indivs.length + ' 株</div></div>' +
         '<div class="iv-dd' + (open ? ' open' : '') + '">' +
           '<button class="iv-current" data-act="indiv-toggle" aria-expanded="' + (open ? 'true' : 'false') + '">' +
-            '<span class="iv-nm">' + esc(indivLabel(cur)) + '</span>' +
+            '<span class="iv-nm">' + esc(indivLabel(cur)) + (cur.id ? '<span class="iv-id">' + esc(cur.id) + '</span>' : '') + '</span>' +
             '<span class="iv-c">' + ((cur.timeline || []).length) + ' 張</span>' +
             '<span class="iv-caret">▾</span></button>' +
           '<div class="iv-list">' + options + '</div>' +
@@ -739,10 +770,13 @@
       ? '<div class="metric"><div class="k">目前個體</div><div class="v">' + esc(indivLabel(cur)) + '</div></div>'
       : '';
 
+    var curId = cur.id || sel.pid || '';
+    var idMetric = curId ? '<div class="metric metric-id" title="點擊複製"><div class="k">ID</div><div class="v mono" data-act="copy-id" data-id="' + esc(curId) + '">' + esc(curId) + '</div></div>' : '';
     var metricsHtml = diaryMode
       ? '<div class="metric"><div class="k">日期</div><div class="v">' + esc(state.diaryDate) + '</div></div>' +
         '<div class="metric"><div class="k">本篇照片</div><div class="v">' + total + ' 張</div></div>'
-      : '<div class="metric"><div class="k">入手 / 種植</div><div class="v">' + esc(sel.date || '') + '</div></div>' +
+      : idMetric +
+        '<div class="metric"><div class="k">入手 / 種植</div><div class="v">' + esc(sel.date || '') + '</div></div>' +
         '<div class="metric"><div class="k">累積照片</div><div class="v">' + photoCount(sel) + ' 張</div></div>' +
         indivMetric;
 
@@ -817,7 +851,7 @@
     else if (act === 'knowledge') { go('knowledge'); }
     else if (act === 'kb-group') { state.kbGroup = t.getAttribute('data-id'); render(); }
     else if (act === 'article') { state.article = t.getAttribute('data-id'); go('article'); }
-    else if (act === 'search-open') { openFromSearch(i); }
+    else if (act === 'search-open') { var ivq = parseInt(t.getAttribute('data-iv'), 10); openFromSearch(i, isNaN(ivq) ? -1 : ivq); }
     else if (act === 'enter') { state.tab = i; state.species = null; state.diaryDate = null; go('grid'); }
     else if (act === 'tab') { state.tab = i; state.species = null; state.diaryDate = null; render(); }
     else if (act === 'pk-toggle') { state.pokedexOpen = !state.pokedexOpen; if (!state.pokedexOpen) state.species = null; render(); }
@@ -837,6 +871,14 @@
     else if (act === 'lobby' || act === 'lobby-from-detail') { state.species = null; state.diaryDate = null; go('lobby'); }
     else if (act === 'back-grid') { state.diaryDate = null; go('grid'); }
     else if (act === 'zoom') { openLightbox(t.getAttribute('data-url')); }
+    else if (act === 'copy-id') {
+      var idv = t.getAttribute('data-id') || '';
+      if (idv && navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(idv).then(function () {
+          t.classList.add('copied'); setTimeout(function () { t.classList.remove('copied'); }, 900);
+        });
+      }
+    }
     else if (act === 'add-cart') {
       ev.stopPropagation();
       var pp = (state.data || [])[i];

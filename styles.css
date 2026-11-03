@@ -158,6 +158,13 @@ body {
 .plant-card:hover { transform: translateY(-8px); box-shadow: 0 26px 64px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.22); border-color: rgba(154,216,171,0.32); }
 .pc-cover { aspect-ratio: 3 / 4; position: relative; background-color: #0c1210; }   /* 直幅比例貼近照片,填滿不留黑邊 */
 .pc-count { position: absolute; top: 12px; right: 12px; font-family: var(--mono); font-size: 10px; color: var(--green-mint); background: rgba(0,0,0,0.35); border: 1px solid rgba(154,216,171,0.25); border-radius: 999px; padding: 3px 9px; backdrop-filter: blur(8px); }
+/* 個體/植物 ID 標籤 */
+.pc-pid { position: absolute; top: 12px; left: 12px; font-family: var(--mono); font-size: 10px; letter-spacing: .06em; color: #eef4ef; background: rgba(0,0,0,0.42); border: 1px solid rgba(255,255,255,0.18); border-radius: 6px; padding: 3px 8px; backdrop-filter: blur(8px); }
+.si-id { font-family: var(--mono); font-size: 11px; color: var(--green-soft); margin-left: 6px; letter-spacing: .04em; }
+.iv-id { font-family: var(--mono); font-size: 11px; color: var(--muted2); margin-left: 8px; letter-spacing: .04em; }
+.metric .v.mono { font-family: var(--mono); font-size: calc(17px * var(--fs-scale)); letter-spacing: .06em; cursor: copy; }
+.metric .v.mono.copied { color: var(--green); }
+.metric .v.mono.copied::after { content: ' ✓ 已複製'; font-size: 11px; letter-spacing: 0; }
 .pc-body { padding: 18px 20px 20px; }
 .pc-name { font-family: var(--serif); font-size: calc(22px * var(--fs-scale)); color: #f2f6f2; line-height: 1.12; }
 .pc-latin { font-family: var(--serif); font-style: italic; font-size: calc(13px * var(--fs-scale)); color: rgba(154,216,171,0.8); margin-top: 3px; }
