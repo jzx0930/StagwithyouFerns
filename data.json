@@ -66,7 +66,7 @@
   "plants": [
     {
       "name": "千手觀音",
-      "latin": "P. ‘SSFoong’",
+      "latin": "Platycerium ‘SSFoong’",
       "category": "鹿角蕨",
       "date": "2026.08.29",
       "note": "",
@@ -94,7 +94,7 @@
     },
     {
       "name": "賽爾索",
-      "latin": "P. willinckii ‘Celso’",
+      "latin": "Platycerium willinckii ‘Celso’",
       "category": "鹿角蕨",
       "date": "2026.08.29",
       "note": "",
@@ -141,7 +141,7 @@
     },
     {
       "name": "立葉銀鹿",
-      "latin": "P. veitchii",
+      "latin": "Platycerium veitchii",
       "category": "鹿角蕨",
       "date": "2026.08.29",
       "note": "",
@@ -241,7 +241,7 @@
     },
     {
       "name": "愛麗絲",
-      "latin": "P. ellisii",
+      "latin": "Platycerium ellisii",
       "category": "鹿角蕨",
       "date": "2026.08.29",
       "note": "",
@@ -287,7 +287,7 @@
     },
     {
       "name": "藍景",
-      "latin": "P. ‘Blue vista’ [( (P. willinckii × P. willinckii ‘Paul Webber’) × P.willinckii)]",
+      "latin": "Platycerium ‘Blue vista’ [( (P. willinckii × P. willinckii ‘Paul Webber’) × P.willinckii)]",
       "category": "鹿角蕨",
       "date": "2026.08.29",
       "note": "",
@@ -321,7 +321,7 @@
     },
     {
       "name": "Namo",
-      "latin": "P. ‘Namo’",
+      "latin": "Platycerium ‘Namo’",
       "category": "鹿角蕨",
       "date": "2026.08.29",
       "note": "",
@@ -616,7 +616,7 @@
     },
     {
       "name": "雷達",
-      "latin": "P. ‘Raider’  (P. veitchii ‘Wild’ × P. willinckii)",
+      "latin": "Platycerium ‘Raider’  (P. veitchii ‘Wild’ × P. willinckii)",
       "category": "鹿角蕨",
       "date": "2026.08.29",
       "note": "",
@@ -752,7 +752,7 @@
     },
     {
       "name": "巨獸",
-      "latin": "P. grande",
+      "latin": "Platycerium grande",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -846,7 +846,7 @@
     },
     {
       "name": "巨大",
-      "latin": "P. superbum",
+      "latin": "Platycerium superbum",
       "category": "鹿角蕨",
       "date": "2026.08.29",
       "note": "",
@@ -910,7 +910,7 @@
     },
     {
       "name": "象耳",
-      "latin": "P. elephantotis",
+      "latin": "Platycerium elephantotis",
       "category": "鹿角蕨",
       "date": "2026.08.29",
       "note": "",
@@ -1052,7 +1052,7 @@
     },
     {
       "name": "Akki",
-      "latin": "P. ‘Akki’ (P. veitchii ‘Silver’ x P. veitchii ‘Wild’）",
+      "latin": "Platycerium ‘Akki’ (P. veitchii ‘Silver’ x P. veitchii ‘Wild’）",
       "category": "鹿角蕨",
       "date": "2026.08.29",
       "note": "",
@@ -1325,7 +1325,7 @@
     },
     {
       "name": "三角",
-      "latin": "P. stemaria",
+      "latin": "Platycerium stemaria",
       "category": "鹿角蕨",
       "date": "2026.08.29",
       "note": "",
@@ -1395,7 +1395,7 @@
     },
     {
       "name": "深綠龍",
-      "latin": "P. hillii ‘Dragon’",
+      "latin": "Platycerium hillii ‘Dragon’",
       "category": "鹿角蕨",
       "date": "2026.08.27",
       "note": "",
@@ -1512,7 +1512,7 @@
     },
     {
       "name": "非非達爾文",
-      "latin": "P. ‘Darwin’ (P. madagascariens x P. aicicone(Africa))",
+      "latin": "Platycerium ‘Darwin’ (P. madagascariens x P. aicicone(Africa))",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -1552,7 +1552,7 @@
     },
     {
       "name": "象爪",
-      "latin": "P. elephantotis x P. willinckii",
+      "latin": "Platycerium elephantotis x P. willinckii",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -1583,7 +1583,7 @@
     },
     {
       "name": "千手皇冠",
-      "latin": "P. coronarium ‘Thousand Hands’",
+      "latin": "Platycerium coronarium ‘Thousand Hands’",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -1611,7 +1611,7 @@
     },
     {
       "name": "深綠龍 x 野銀",
-      "latin": "P. hillii ‘Dragon’ x P. veitchii ‘Wild’",
+      "latin": "Platycerium hillii ‘Dragon’ x P. veitchii ‘Wild’",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -1675,7 +1675,7 @@
     },
     {
       "name": "白妖爪",
-      "latin": "P. willinckii ‘Unguis Albi’",
+      "latin": "Platycerium willinckii ‘Unguis Albi’",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -1715,7 +1715,7 @@
     },
     {
       "name": "奧銀",
-      "latin": "P. veitchii ‘Auburn River’",
+      "latin": "Platycerium veitchii ‘Auburn River’",
       "category": "鹿角蕨",
       "date": "2026.08.27",
       "note": "",
@@ -2785,7 +2785,7 @@
     },
     {
       "name": "珊瑚亞猴",
-      "latin": "P. ridleyi ‘Pakarang’",
+      "latin": "Platycerium ridleyi ‘Pakarang’",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -2831,7 +2831,7 @@
     },
     {
       "name": "獅子座",
-      "latin": "P. willinckii ‘Leonids’",
+      "latin": "Platycerium willinckii ‘Leonids’",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -2871,7 +2871,7 @@
     },
     {
       "name": "侏儒捲葉亞猴",
-      "latin": "P. ridleyi (Dwarf)",
+      "latin": "Platycerium ridleyi (Dwarf)",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -2899,7 +2899,7 @@
     },
     {
       "name": "爆米花",
-      "latin": "P. bifurcatum ‘Popcorn’",
+      "latin": "Platycerium bifurcatum ‘Popcorn’",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -2939,7 +2939,7 @@
     },
     {
       "name": "捲捲皇冠",
-      "latin": "P. coronarium ‘White’",
+      "latin": "Platycerium coronarium ‘White’",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -2973,7 +2973,7 @@
     },
     {
       "name": "細葉皇冠",
-      "latin": "P. coronarium ‘Thin’",
+      "latin": "Platycerium coronarium ‘Thin’",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -3007,7 +3007,7 @@
     },
     {
       "name": "馬達加斯加圓盾",
-      "latin": "P. alcicorne (Madagascar)",
+      "latin": "Platycerium alcicorne (Madagascar)",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -3041,7 +3041,7 @@
     },
     {
       "name": "高冠女王",
-      "latin": "P. wandae ‘High Finger’",
+      "latin": "Platycerium wandae ‘High Finger’",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -3075,7 +3075,7 @@
     },
     {
       "name": "深綠",
-      "latin": "P. hillii",
+      "latin": "Platycerium hillii",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -3133,7 +3133,7 @@
     },
     {
       "name": "侏儒捲葉女王",
-      "latin": "P. wandae (Dwarf)",
+      "latin": "Platycerium wandae (Dwarf)",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -3161,7 +3161,7 @@
     },
     {
       "name": "四叉 × 三角",
-      "latin": "P. ‘African Oddity’ (P. quadridichotomum × P. stemaria)",
+      "latin": "Platycerium ‘African Oddity’ (P. quadridichotomum × P. stemaria)",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -3201,7 +3201,7 @@
     },
     {
       "name": "白鹿",
-      "latin": "P. bifurcatum ‘White’",
+      "latin": "Platycerium bifurcatum ‘White’",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -3283,7 +3283,7 @@
     },
     {
       "name": "獨角獸",
-      "latin": "P. ‘Unicorn’ (P. veitchii x P. bifurcatum)",
+      "latin": "Platycerium ‘Unicorn’ (P. veitchii x P. bifurcatum)",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -3399,7 +3399,7 @@
     },
     {
       "name": "菲律賓皇冠",
-      "latin": "P. coronarium (Philippines)",
+      "latin": "Platycerium coronarium (Philippines)",
       "category": "鹿角蕨",
       "date": "2026.08.02",
       "note": "",
@@ -3463,7 +3463,7 @@
     },
     {
       "name": "女王",
-      "latin": "P. wandae",
+      "latin": "Platycerium wandae",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -3557,7 +3557,7 @@
     },
     {
       "name": "侏儒塔蘇塔",
-      "latin": "P. willinckii ‘Tatsuta’ (Dwarf)",
+      "latin": "Platycerium willinckii ‘Tatsuta’ (Dwarf)",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -3597,7 +3597,7 @@
     },
     {
       "name": "OMG",
-      "latin": "P. willinckii ‘OMG’ (Dwarf)",
+      "latin": "Platycerium willinckii ‘OMG’ (Dwarf)",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -3668,7 +3668,7 @@
     },
     {
       "name": "Nano",
-      "latin": "P. willinckii ‘Nano’ (Dwarf)",
+      "latin": "Platycerium willinckii ‘Nano’ (Dwarf)",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -3720,7 +3720,7 @@
     },
     {
       "name": "黃月",
-      "latin": "P. willinckii ‘YellowMoon’",
+      "latin": "Platycerium willinckii ‘YellowMoon’",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -3766,7 +3766,7 @@
     },
     {
       "name": "珍妮",
-      "latin": "P. willinckii ‘Jenny’ (Dwarf)",
+      "latin": "Platycerium willinckii ‘Jenny’ (Dwarf)",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -3803,7 +3803,7 @@
     },
     {
       "name": "馬塔塔",
-      "latin": "P. HakunaMatata (P. veitchii x P. willinckii ‘Pewchan’) (Sporeling Selected)",
+      "latin": "Platycerium HakunaMatata (P. veitchii x P. willinckii ‘Pewchan’) (Sporeling Selected)",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -3855,7 +3855,7 @@
     },
     {
       "name": "馮詩淇、捲捲鹿",
-      "latin": "P. willinckii ‘Foong Si Qi’",
+      "latin": "Platycerium willinckii ‘Foong Si Qi’",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -3907,7 +3907,7 @@
     },
     {
       "name": "玉女",
-      "latin": "P. willinckii ‘JadeGirl’ (Dwarf)",
+      "latin": "Platycerium willinckii ‘JadeGirl’ (Dwarf)",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -4013,7 +4013,7 @@
     },
     {
       "name": "三叉戟、瑪莎拉蒂",
-      "latin": "P. ‘TridentMaserati’ (P. hillii x P. bifurcatum ‘Mt.Lewis’)",
+      "latin": "Platycerium ‘TridentMaserati’ (P. hillii x P. bifurcatum ‘Mt.Lewis’)",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -4065,7 +4065,7 @@
     },
     {
       "name": "多佛朗明哥",
-      "latin": "P. ‘Flamenco’ (P. hillii × P. coronarium)",
+      "latin": "Platycerium ‘Flamenco’ (P. hillii × P. coronarium)",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -4129,7 +4129,7 @@
     },
     {
       "name": "白玫瑰",
-      "latin": "P. willinckii ‘White Rose’",
+      "latin": "Platycerium willinckii ‘White Rose’",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -4193,7 +4193,7 @@
     },
     {
       "name": "艾沙",
-      "latin": "P. willinckii ‘Elsa’",
+      "latin": "Platycerium willinckii ‘Elsa’",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -4242,7 +4242,7 @@
     },
     {
       "name": "YAL",
-      "latin": "P. ‘YAL’ ( P. willinckii ‘Wild Cat’ x  P. willinckii ‘Aplus’ x P. elephantotis ‘Long Ovate’)",
+      "latin": "Platycerium ‘YAL’ ( P. willinckii ‘Wild Cat’ x  P. willinckii ‘Aplus’ x P. elephantotis ‘Long Ovate’)",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -4282,7 +4282,7 @@
     },
     {
       "name": "金童",
-      "latin": "P. willinckii ‘Golden Boy’ (Dwarf)",
+      "latin": "Platycerium willinckii ‘Golden Boy’ (Dwarf)",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -4352,7 +4352,7 @@
     },
     {
       "name": "安地斯",
-      "latin": "P. andinum",
+      "latin": "Platycerium andinum",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -4392,7 +4392,7 @@
     },
     {
       "name": "史迪奇",
-      "latin": "P. ‘Stitch’ (Pup) [P. willinckii ‘Foong Si Qi’ x (P. bifurcatum ‘Mt.Lewis’ x P. veitchii ‘Wild’) ‘Rydeen’]",
+      "latin": "Platycerium ‘Stitch’ (Pup) [P. willinckii ‘Foong Si Qi’ x (P. bifurcatum ‘Mt.Lewis’ x P. veitchii ‘Wild’) ‘Rydeen’]",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -4462,7 +4462,7 @@
     },
     {
       "name": "銀華、藝伎",
-      "latin": "P. ‘Ginka’ (P. willinckii ‘Foong Si Qi’ (Sporeling Selected))",
+      "latin": "Platycerium ‘Ginka’ (P. willinckii ‘Foong Si Qi’ (Sporeling Selected))",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -4550,7 +4550,7 @@
     },
     {
       "name": "非猴",
-      "latin": "P. madagascariense",
+      "latin": "Platycerium madagascariense",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -4650,7 +4650,7 @@
     },
     {
       "name": "羅賓、骨刺",
-      "latin": "P. willinckii ‘Robin’ (Dwarf)",
+      "latin": "Platycerium willinckii ‘Robin’ (Dwarf)",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -4739,7 +4739,7 @@
     },
     {
       "name": "美猴王",
-      "latin": "P. ridleyi ‘Monkey King’",
+      "latin": "Platycerium ridleyi ‘Monkey King’",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -4803,7 +4803,7 @@
     },
     {
       "name": "亞猴",
-      "latin": "P. ridleyi",
+      "latin": "Platycerium ridleyi",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -4915,7 +4915,7 @@
     },
     {
       "name": "四叉",
-      "latin": "P. quadridichotomum",
+      "latin": "Platycerium quadridichotomum",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -5003,7 +5003,7 @@
     },
     {
       "name": "何其美",
-      "latin": "P. holttumii",
+      "latin": "Platycerium holttumii",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -5079,7 +5079,7 @@
     },
     {
       "name": "E-1 Katsu",
-      "latin": "P. bifurcatum ‘E-1 Katsu’",
+      "latin": "Platycerium bifurcatum ‘E-1 Katsu’",
       "category": "鹿角蕨",
       "date": "2026.08.22",
       "note": "",
@@ -5158,7 +5158,7 @@
     },
     {
       "name": "黃月 x 馮詩琪",
-      "latin": "P. willinckii ‘Yellow moon’ x P. willinckii ‘Foong Si Qi’ (sporeling)",
+      "latin": "Platycerium willinckii ‘Yellow moon’ x P. willinckii ‘Foong Si Qi’ (sporeling)",
       "category": "鹿角蕨",
       "date": "2026.08.18",
       "note": "",
@@ -5204,7 +5204,7 @@
     },
     {
       "name": "非洲圓盾",
-      "latin": "P. alcicorne (Africa)",
+      "latin": "Platycerium alcicorne (Africa)",
       "category": "鹿角蕨",
       "date": "2026.08.02",
       "note": "",
@@ -5232,7 +5232,7 @@
     },
     {
       "name": "雷神",
-      "latin": "P. hillii 'Raijin'",
+      "latin": "Platycerium hillii 'Raijin'",
       "category": "鹿角蕨",
       "date": "2026.08.02",
       "note": "",
@@ -5260,7 +5260,7 @@
     },
     {
       "name": "月光",
-      "latin": "P. willinckii ‘Moonlight’",
+      "latin": "Platycerium willinckii ‘Moonlight’",
       "category": "鹿角蕨",
       "date": "2026.08.02",
       "note": "",
@@ -5319,7 +5319,7 @@
     },
     {
       "name": "清姬",
-      "latin": "P. ‘Kiyohime‘ (veitchii ‘Auburn River’ x P. bifurcatum ‘Mt.Lewis’)",
+      "latin": "Platycerium ‘Kiyohime‘ (veitchii ‘Auburn River’ x P. bifurcatum ‘Mt.Lewis’)",
       "category": "鹿角蕨",
       "date": "2026.08.02",
       "note": "",
@@ -5347,7 +5347,7 @@
     },
     {
       "name": "細菌",
-      "latin": "P. willinckii ‘Bacteria’ (Dwarf)",
+      "latin": "Platycerium willinckii ‘Bacteria’ (Dwarf)",
       "category": "鹿角蕨",
       "date": "2026.08.02",
       "note": "",
@@ -5400,7 +5400,7 @@
     },
     {
       "name": "奶油獅",
-      "latin": "P. willinckii ‘Cream Lion’",
+      "latin": "Platycerium willinckii ‘Cream Lion’",
       "category": "鹿角蕨",
       "date": "2026.08.02",
       "note": "",
@@ -5446,7 +5446,7 @@
     },
     {
       "name": "北猴",
-      "latin": "P. ‘MonkoyNorth’ (P. willinckii × P. veitchii ‘Auburn River’)",
+      "latin": "Platycerium ‘MonkoyNorth’ (P. willinckii × P. veitchii ‘Auburn River’)",
       "category": "鹿角蕨",
       "date": "2025.10.21",
       "note": "",
@@ -5557,7 +5557,7 @@
     },
     {
       "name": "爪哇",
-      "latin": "P. willinckii",
+      "latin": "Platycerium willinckii",
       "category": "鹿角蕨",
       "date": "2026.03.06",
       "note": "",
@@ -5627,7 +5627,7 @@
     },
     {
       "name": "二叉",
-      "latin": "P. bifurcatum",
+      "latin": "Platycerium bifurcatum",
       "category": "鹿角蕨",
       "date": "2026.04.13",
       "note": "",
@@ -5673,7 +5673,7 @@
     },
     {
       "name": "信仰者",
-      "latin": "P. ‘Believer’ (P. willinckii x P. veitchii ‘Wild’)",
+      "latin": "Platycerium ‘Believer’ (P. willinckii x P. veitchii ‘Wild’)",
       "category": "鹿角蕨",
       "date": "2026.03.15",
       "note": "",
@@ -5719,7 +5719,7 @@
     },
     {
       "name": "檸檬",
-      "latin": "P. veitchii ‘Lemoinei’",
+      "latin": "Platycerium veitchii ‘Lemoinei’",
       "category": "鹿角蕨",
       "date": "2026.04.06",
       "note": "",
@@ -5747,7 +5747,7 @@
     },
     {
       "name": "象牙宮",
-      "latin": "Pachypodium Gracilius",
+      "latin": "Pachypodium gracilius",
       "category": "棒槌",
       "date": "2026.08.29",
       "note": "",
@@ -5837,7 +5837,7 @@
     },
     {
       "name": "畢之比（雙刺瓶幹）",
-      "latin": "Pachypodium Bispinosum",
+      "latin": "Pachypodium bispinosum",
       "category": "棒槌",
       "date": "2026.08.26",
       "note": "",
@@ -5895,7 +5895,7 @@
     },
     {
       "name": "納米比亞樹白馬",
-      "latin": "Pachypodium Lealii",
+      "latin": "Pachypodium lealii",
       "category": "棒槌",
       "date": "2026.08.22",
       "note": "",
@@ -5935,7 +5935,7 @@
     },
     {
       "name": "光堂",
-      "latin": "Pachypodium Namaquanum",
+      "latin": "Pachypodium namaquanum",
       "category": "棒槌",
       "date": "2026.08.22",
       "note": "",
@@ -6083,7 +6083,7 @@
     },
     {
       "name": "亞阿相界",
-      "latin": "Pachypodium Geayi",
+      "latin": "Pachypodium geayi",
       "category": "棒槌",
       "date": "2026.07.13",
       "note": "",
@@ -6111,7 +6111,7 @@
     },
     {
       "name": "非洲霸王樹",
-      "latin": "Pachypodium Lamerei",
+      "latin": "Pachypodium lamerei",
       "category": "棒槌",
       "date": "2026.07.13",
       "note": "",
@@ -6146,7 +6146,7 @@
     },
     {
       "name": "常綠瓶幹",
-      "latin": "Pachypodium Cactipes",
+      "latin": "Pachypodium cactipes",
       "category": "棒槌",
       "date": "2026.05.09",
       "note": "",
@@ -6168,7 +6168,7 @@
     },
     {
       "name": "溫莎瓶幹",
-      "latin": "Pachypodium Windsorii",
+      "latin": "Pachypodium windsorii",
       "category": "棒槌",
       "date": "2026.05.09",
       "note": "",
@@ -6190,7 +6190,7 @@
     },
     {
       "name": "大黑惠比須",
-      "latin": "Pachypodium Densicaule",
+      "latin": "Pachypodium densicaule",
       "category": "棒槌",
       "date": "2026.05.09",
       "note": "",
@@ -6218,7 +6218,7 @@
     },
     {
       "name": "席巴女王玉櫛",
-      "latin": "Pachypodium Densiflorum",
+      "latin": "Pachypodium densiflorum",
       "category": "棒槌",
       "date": "2026.06.19",
       "note": "",
@@ -6270,7 +6270,7 @@
     },
     {
       "name": "一本尼",
-      "latin": "Pachypodium Eburneum",
+      "latin": "Pachypodium eburneum",
       "category": "棒槌",
       "date": "2026.06.11",
       "note": "",
@@ -6298,7 +6298,7 @@
     },
     {
       "name": "梅里迪棒槌",
-      "latin": "Pachypodium Meridionale",
+      "latin": "Pachypodium meridionale",
       "category": "棒槌",
       "date": "2026.06.30",
       "note": "",
@@ -6326,7 +6326,7 @@
     },
     {
       "name": "銀沙鸞鳳玉",
-      "latin": "Astrophytum Myriostigma",
+      "latin": "Astrophytum myriostigma",
       "category": "仙人掌",
       "date": "2026.08.30",
       "note": "",
@@ -6348,7 +6348,7 @@
     },
     {
       "name": "無刺王冠龍",
-      "latin": "Ferocactus Glaucescens Cv. ‘Nuda’",
+      "latin": "Ferocactus glaucescens ‘Nuda’",
       "category": "仙人掌",
       "date": "2026.08.30",
       "note": "",
@@ -6404,7 +6404,7 @@
     },
     {
       "name": "帝冠",
-      "latin": "Obregonia Denegrii",
+      "latin": "Obregonia denegrii",
       "category": "仙人掌",
       "date": "2026.08.30",
       "note": "",
@@ -6432,7 +6432,7 @@
     },
     {
       "name": "長槍雲、茜雲",
-      "latin": "Melocactus Ernestii",
+      "latin": "Melocactus ernestii",
       "category": "仙人掌",
       "date": "2026.08.30",
       "note": "",
@@ -6460,7 +6460,7 @@
     },
     {
       "name": "千波萬波",
-      "latin": "Stenocactus Multicostatus",
+      "latin": "Stenocactus multicostatus",
       "category": "仙人掌",
       "date": "2026.08.30",
       "note": "",
@@ -6488,7 +6488,7 @@
     },
     {
       "name": "短刺象牙丸",
-      "latin": "Coryphantha Elephantidens ‘Tenshi’",
+      "latin": "Coryphantha elephantidens ‘Tenshi’",
       "category": "仙人掌",
       "date": "2026.08.26",
       "note": "",
@@ -6522,7 +6522,7 @@
     },
     {
       "name": "紫太陽",
-      "latin": "Echinocereus Rigidissimus",
+      "latin": "Echinocereus rigidissimus",
       "category": "仙人掌",
       "date": "2026.08.26",
       "note": "",
@@ -6550,7 +6550,7 @@
     },
     {
       "name": "象牙丸",
-      "latin": "Coryphantha Elephantidens",
+      "latin": "Coryphantha elephantidens",
       "category": "仙人掌",
       "date": "2026.08.26",
       "note": "",
@@ -6584,7 +6584,7 @@
     },
     {
       "name": "緋牡丹",
-      "latin": "Gymnocalycium Mihanovichii",
+      "latin": "Gymnocalycium mihanovichii",
       "category": "仙人掌",
       "date": "2026.08.26",
       "note": "",
@@ -6630,7 +6630,7 @@
     },
     {
       "name": "習志野",
-      "latin": "Tephrocactus Geometricus",
+      "latin": "Tephrocactus geometricus",
       "category": "仙人掌",
       "date": "2026.08.22",
       "note": "",
@@ -6658,7 +6658,7 @@
     },
     {
       "name": "黑刺鳳頭",
-      "latin": "Gymnocalycium Bodenbenderianum F. Nigrispina",
+      "latin": "Gymnocalycium bodenbenderianum f. nigrispina",
       "category": "仙人掌",
       "date": "2026.08.26",
       "note": "",
@@ -6692,7 +6692,7 @@
     },
     {
       "name": "拉根",
-      "latin": "Gymnocalycium Ragonesei",
+      "latin": "Gymnocalycium ragonesei",
       "category": "仙人掌",
       "date": "2026.08.26",
       "note": "",
@@ -6726,7 +6726,7 @@
     },
     {
       "name": "月世界",
-      "latin": "Epithelantha Micromeris",
+      "latin": "Epithelantha micromeris",
       "category": "仙人掌",
       "date": "2026.08.20",
       "note": "",
@@ -6754,7 +6754,7 @@
     },
     {
       "name": "單刺蓬萊宮",
-      "latin": "Mammillaria Schumannii",
+      "latin": "Mammillaria schumannii",
       "category": "仙人掌",
       "date": "2026.08.20",
       "note": "",
@@ -6806,7 +6806,7 @@
     },
     {
       "name": "猴尾柱",
-      "latin": "Cleistocactus Colademononis",
+      "latin": "Cleistocactus colademononis",
       "category": "仙人掌",
       "date": "2026.08.29",
       "note": "",
@@ -6870,7 +6870,7 @@
     },
     {
       "name": "無刺象牙丸",
-      "latin": "Coryphantha Elephantidens Inermis",
+      "latin": "Coryphantha elephantidens inermis",
       "category": "仙人掌",
       "date": "2026.08.26",
       "note": "",
@@ -6898,7 +6898,7 @@
     },
     {
       "name": "天紫玉",
-      "latin": "Gymnocalycium Pflanzii Var. Albipulpa",
+      "latin": "Gymnocalycium pflanzii var. albipulpa",
       "category": "仙人掌",
       "date": "2026.08.31",
       "note": "",
@@ -6962,7 +6962,7 @@
     },
     {
       "name": "烏羽玉",
-      "latin": "Lophophora Williamsii",
+      "latin": "Lophophora williamsii",
       "category": "仙人掌",
       "date": "2026.08.22",
       "note": "",
@@ -7038,7 +7038,7 @@
     },
     {
       "name": "疣仙人",
-      "latin": "Mammillaria Sp.",
+      "latin": "Mammillaria sp.",
       "category": "仙人掌",
       "date": "2026.03.19",
       "note": "",
@@ -7060,7 +7060,7 @@
     },
     {
       "name": "子吹烏羽玉",
-      "latin": "Lophophora Williamsii",
+      "latin": "Lophophora williamsii",
       "category": "仙人掌",
       "date": "2026.06.11",
       "note": "",
@@ -7088,7 +7088,7 @@
     },
     {
       "name": "銀冠玉",
-      "latin": "Lophophora Fricii",
+      "latin": "Lophophora fricii",
       "category": "仙人掌",
       "date": "2026.08.22",
       "note": "",
@@ -7297,7 +7297,7 @@
     },
     {
       "name": "直刺佩雷",
-      "latin": "Mammillaria Perezdelarosae Subsp. Andersoniana",
+      "latin": "Mammillaria perezdelarosae subsp. andersoniana",
       "category": "仙人掌",
       "date": "2026.08.22",
       "note": "",
@@ -7355,7 +7355,7 @@
     },
     {
       "name": "紫兜",
-      "latin": "Astrophytum Asterias",
+      "latin": "Astrophytum asterias",
       "category": "仙人掌",
       "date": "2026.08.18",
       "note": "",
@@ -7450,7 +7450,7 @@
     },
     {
       "name": "士童",
-      "latin": "Frailea Castanea",
+      "latin": "Frailea castanea",
       "category": "仙人掌",
       "date": "2026.07.17",
       "note": "",
@@ -7502,7 +7502,7 @@
     },
     {
       "name": "嚴龍",
-      "latin": "Agave Titanota ‘Oteroi’",
+      "latin": "Agave titanota ‘Oteroi’",
       "category": "龍舌蘭",
       "date": "2026.08.30",
       "note": "",
@@ -7524,7 +7524,7 @@
     },
     {
       "name": "吉祥冠覆輪龍舌蘭",
-      "latin": "Agave Potatorum ‘Kissho-kan’ F. Variegata",
+      "latin": "Agave potatorum ‘Kissho-kan’ f. variegata",
       "category": "龍舌蘭",
       "date": "2026.08.30",
       "note": "",
@@ -7600,7 +7600,7 @@
     },
     {
       "name": "瀧之白絲",
-      "latin": "Agave Schidigera",
+      "latin": "Agave schidigera",
       "category": "龍舌蘭",
       "date": "2026.08.26",
       "note": "",
@@ -7622,7 +7622,7 @@
     },
     {
       "name": "內華達妖炎",
-      "latin": "Agave Utahensis Var. Nevadensis",
+      "latin": "Agave utahensis var. nevadensis",
       "category": "龍舌蘭",
       "date": "2026.08.26",
       "note": "",
@@ -7644,7 +7644,7 @@
     },
     {
       "name": "象牙妖炎",
-      "latin": "Agave Utahensis Var. Eborispina",
+      "latin": "Agave utahensis var. eborispina",
       "category": "龍舌蘭",
       "date": "2026.08.26",
       "note": "",
@@ -7666,7 +7666,7 @@
     },
     {
       "name": "荒皮沙漠玫瑰",
-      "latin": "Adenium Arabicum",
+      "latin": "Adenium arabicum",
       "category": "塊根",
       "date": "2026.08.22",
       "note": "",
@@ -7700,7 +7700,7 @@
     },
     {
       "name": "台灣侏儒羊角玫瑰",
-      "latin": "Adenium Obesum",
+      "latin": "Adenium obesum",
       "category": "塊根",
       "date": "2026.08.26",
       "note": "",
@@ -7752,7 +7752,7 @@
     },
     {
       "name": "足球樹",
-      "latin": "Pseudobombax Ellipticum",
+      "latin": "Pseudobombax ellipticum",
       "category": "塊根",
       "date": "2026.08.29",
       "note": "",
@@ -7780,7 +7780,7 @@
     },
     {
       "name": "列加氏漆樹",
-      "latin": "Operculicarya Decaryi",
+      "latin": "Operculicarya decaryi",
       "category": "塊根",
       "date": "2026.08.29",
       "note": "",
@@ -7808,7 +7808,7 @@
     },
     {
       "name": "象足漆樹",
-      "latin": "Operculicarya Pachypus",
+      "latin": "Operculicarya pachypus",
       "category": "塊根",
       "date": "2026.08.29",
       "note": "",
@@ -7848,7 +7848,7 @@
     },
     {
       "name": "奇異油甘",
-      "latin": "Phyllanthus Mirabilis",
+      "latin": "Phyllanthus mirabilis",
       "category": "塊根",
       "date": "2026.08.29",
       "note": "",
@@ -7894,7 +7894,7 @@
     },
     {
       "name": "蟻巢玉",
-      "latin": "Hydnophytum Moseleyanum",
+      "latin": "Hydnophytum moseleyanum",
       "category": "塊根",
       "date": "2026.08.26",
       "note": "",
@@ -7928,7 +7928,7 @@
     },
     {
       "name": "索科特拉沙漠玫瑰",
-      "latin": "Adenium Socotranum",
+      "latin": "Adenium socotranum",
       "category": "塊根",
       "date": "2026.08.26",
       "note": "",
@@ -7956,7 +7956,7 @@
     },
     {
       "name": "裂紋山烏龜",
-      "latin": "Stephania",
+      "latin": "Stephania sp.",
       "category": "塊根",
       "date": "2026.08.31",
       "note": "",
@@ -8002,7 +8002,7 @@
     },
     {
       "name": "哥吉拉沙漠玫瑰",
-      "latin": "Adenium Arabicum",
+      "latin": "Adenium arabicum",
       "category": "塊根",
       "date": "2026.08.22",
       "note": "",
@@ -8024,7 +8024,7 @@
     },
     {
       "name": "安哥拉葡萄甕",
-      "latin": "Cyphostemma Uter Var. Macropus",
+      "latin": "Cyphostemma uter var. macropus",
       "category": "塊根",
       "date": "2026.08.22",
       "note": "",
@@ -8082,7 +8082,7 @@
     },
     {
       "name": "墨西哥龜甲龍",
-      "latin": "Dioscorea Mexicana",
+      "latin": "Dioscorea mexicana",
       "category": "塊根",
       "date": "2026.08.31",
       "note": "",
@@ -8116,7 +8116,7 @@
     },
     {
       "name": "龜甲摩蘿",
-      "latin": "Matelea Cyclophylla",
+      "latin": "Matelea cyclophylla",
       "category": "塊根",
       "date": "2026.08.31",
       "note": "",
@@ -8180,7 +8180,7 @@
     },
     {
       "name": "阿拉伯沙漠玫瑰",
-      "latin": "Adenium Arabicum",
+      "latin": "Adenium arabicum",
       "category": "塊根",
       "date": "2026.08.22",
       "note": "",
@@ -8244,7 +8244,7 @@
     },
     {
       "name": "南非龜甲龍",
-      "latin": "Dioscorea Elephantipes",
+      "latin": "Dioscorea elephantipes",
       "category": "塊根",
       "date": "2026.07.27",
       "note": "",
@@ -8272,7 +8272,7 @@
     },
     {
       "name": "圓葉山烏龜",
-      "latin": "Stephania Erecta",
+      "latin": "Stephania erecta",
       "category": "塊根",
       "date": "2026.05.23",
       "note": "",
@@ -8306,7 +8306,7 @@
     },
     {
       "name": "彎彎曲曲樹",
-      "latin": "Decarya Madagascariensis",
+      "latin": "Decarya madagascariensis",
       "category": "塊根",
       "date": "2026.04.29",
       "note": "",
@@ -8328,7 +8328,7 @@
     },
     {
       "name": "沙漠蘇木",
-      "latin": "Senna Meridionalis",
+      "latin": "Senna meridionalis",
       "category": "塊根",
       "date": "2026.05.20",
       "note": "",
@@ -8356,7 +8356,7 @@
     },
     {
       "name": "鬼切丸",
-      "latin": "Aloe Marlothii",
+      "latin": "Aloe marlothii",
       "category": "多肉",
       "date": "2026.08.30",
       "note": "",
@@ -8378,7 +8378,7 @@
     },
     {
       "name": "海豹天章",
-      "latin": "Adromischus Cooperi Var. Festivus",
+      "latin": "Adromischus cooperi var. festivus",
       "category": "多肉",
       "date": "2026.08.26",
       "note": "",
@@ -8400,7 +8400,7 @@
     },
     {
       "name": "四方凝蹄玉",
-      "latin": "Pseudolithos Cubiformis",
+      "latin": "Pseudolithos cubiformis",
       "category": "多肉",
       "date": "2026.08.26",
       "note": "",
@@ -8434,7 +8434,7 @@
     },
     {
       "name": "蛇蹄玉",
-      "latin": "Pseudolithos Caput-viperae",
+      "latin": "Pseudolithos caput-viperae",
       "category": "多肉",
       "date": "2026.08.26",
       "note": "",
@@ -8462,7 +8462,7 @@
     },
     {
       "name": "寶塔蘿藦",
-      "latin": "Stapelianthus Decaryi",
+      "latin": "Stapelianthus decaryi",
       "category": "多肉",
       "date": "2026.08.26",
       "note": "",
@@ -8490,7 +8490,7 @@
     },
     {
       "name": "萬象",
-      "latin": "Haworthia Maughanii",
+      "latin": "Haworthia maughanii",
       "category": "多肉",
       "date": "2026.08.26",
       "note": "",
@@ -8540,7 +8540,7 @@
     },
     {
       "name": "噴火龍",
-      "latin": "Euphorbia Viguieri",
+      "latin": "Euphorbia viguieri",
       "category": "大戟",
       "date": "2026.08.29",
       "note": "",
@@ -8563,7 +8563,7 @@
     },
     {
       "name": "柳葉麒麟",
-      "latin": "Euphorbia Hedyotoides",
+      "latin": "Euphorbia hedyotoides",
       "category": "大戟",
       "date": "2026.08.29",
       "note": "",
@@ -8598,7 +8598,7 @@
     },
     {
       "name": "錦珊瑚",
-      "latin": "Jatropha Cathartica",
+      "latin": "Jatropha cathartica",
       "category": "塊根",
       "date": "2026.08.29",
       "note": "",
@@ -8627,7 +8627,7 @@
     },
     {
       "name": "蘋果麒麟",
-      "latin": "Euphorbia Bongolavensis",
+      "latin": "Euphorbia bongolavensis",
       "category": "大戟",
       "date": "2026.08.29",
       "note": "",
@@ -8668,7 +8668,7 @@
     },
     {
       "name": "哥列麒麟",
-      "latin": "Euphorbia Phillipsiae",
+      "latin": "Euphorbia phillipsiae",
       "category": "大戟",
       "date": "2026.08.29",
       "note": "",
@@ -8697,7 +8697,7 @@
     },
     {
       "name": "銅綠麒麟",
-      "latin": "Euphorbia Aeruginosa",
+      "latin": "Euphorbia aeruginosa",
       "category": "大戟",
       "date": "2026.08.26",
       "note": "",
@@ -8726,7 +8726,7 @@
     },
     {
       "name": "九頭龍",
-      "latin": "Euphorbia Inermis",
+      "latin": "Euphorbia inermis",
       "category": "大戟",
       "date": "2026.08.27",
       "note": "",
@@ -8779,7 +8779,7 @@
     },
     {
       "name": "大寶冠",
-      "latin": "Euphorbia Gamkensis",
+      "latin": "Euphorbia gamkensis",
       "category": "大戟",
       "date": "2026.08.31",
       "note": "",
@@ -8807,7 +8807,7 @@
     },
     {
       "name": "火山大戟",
-      "latin": "Euphorbia Mlanjeana",
+      "latin": "Euphorbia mlanjeana",
       "category": "大戟",
       "date": "2026.08.31",
       "note": "",
@@ -8879,7 +8879,7 @@
     },
     {
       "name": "飛龍大戟",
-      "latin": "Euphorbia Stellata",
+      "latin": "Euphorbia stellata",
       "category": "大戟",
       "date": "2026.08.31",
       "note": "",
@@ -8913,7 +8913,7 @@
     },
     {
       "name": "群星祭、星雲",
-      "latin": "Euphorbia Astrophora",
+      "latin": "Euphorbia astrophora",
       "category": "大戟",
       "date": "2026.08.22",
       "note": "",
@@ -8955,7 +8955,7 @@
     },
     {
       "name": "亞迪麒麟",
-      "latin": "Euphorbia Abdelkuri",
+      "latin": "Euphorbia abdelkuri",
       "category": "大戟",
       "date": "2026.08.31",
       "note": "",
@@ -9014,7 +9014,7 @@
     },
     {
       "name": "蒼龍塔、混迷閣",
-      "latin": "Euphorbia Inconstantia",
+      "latin": "Euphorbia inconstantia",
       "category": "大戟",
       "date": "2026.08.31",
       "note": "",
@@ -9096,7 +9096,7 @@
     },
     {
       "name": "玉麟鳳、綠麒麟",
-      "latin": "Euphorbia Mammillaris",
+      "latin": "Euphorbia mammillaris",
       "category": "大戟",
       "date": "2026.08.22",
       "note": "",
@@ -9132,7 +9132,7 @@
     },
     {
       "name": "綠鬼玉",
-      "latin": "Euphorbia Decepta",
+      "latin": "Euphorbia decepta",
       "category": "大戟",
       "date": "2026.08.31",
       "note": "",
@@ -9214,7 +9214,7 @@
     },
     {
       "name": "群星冠",
-      "latin": "Euphorbia Stellispina",
+      "latin": "Euphorbia stellispina",
       "category": "大戟",
       "date": "2026.08.31",
       "note": "",
@@ -9290,7 +9290,7 @@
     },
     {
       "name": "法利達",
-      "latin": "Euphorbia Valida",
+      "latin": "Euphorbia valida",
       "category": "大戟",
       "date": "2026.08.22",
       "note": "",
@@ -9319,7 +9319,7 @@
     },
     {
       "name": "金輪際",
-      "latin": "Euphorbia Gorgonis",
+      "latin": "Euphorbia gorgonis",
       "category": "大戟",
       "date": "2026.08.22",
       "note": "",
@@ -9367,7 +9367,7 @@
     },
     {
       "name": "貴清玉",
-      "latin": "Euphorbia Meloformis",
+      "latin": "Euphorbia meloformis",
       "category": "大戟",
       "date": "2026.08.22",
       "note": "",
@@ -9402,7 +9402,7 @@
     },
     {
       "name": "子吹布紋球",
-      "latin": "Euphorbia Meloformis(子吹/群生型)",
+      "latin": "Euphorbia meloformis(子吹/群生型)",
       "category": "大戟",
       "date": "2026.08.22",
       "note": "",
@@ -9455,7 +9455,7 @@
     },
     {
       "name": "布紋球",
-      "latin": "Euphorbia Meloformis",
+      "latin": "Euphorbia meloformis",
       "category": "大戟",
       "date": "2026.08.31",
       "note": "",
@@ -9501,7 +9501,7 @@
     },
     {
       "name": "白衣魁偉玉",
-      "latin": "Euphorbia Horrida Var. Alba",
+      "latin": "Euphorbia horrida var. alba",
       "category": "大戟",
       "date": "2026.07.13",
       "note": "",
@@ -9536,7 +9536,7 @@
     },
     {
       "name": "鬼棲閣",
-      "latin": "Euphorbia Guillauminiana",
+      "latin": "Euphorbia guillauminiana",
       "category": "大戟",
       "date": "2026.05.22",
       "note": "",
@@ -9559,7 +9559,7 @@
     },
     {
       "name": "裸萼大戟",
-      "latin": "Euphorbia Gymnocalycioides",
+      "latin": "Euphorbia gymnocalycioides",
       "category": "大戟",
       "note": "",
       "cover": "1vRSORjRAc0bQP7rpg93acRyHx-uMubdh",
@@ -9593,7 +9593,7 @@
     },
     {
       "name": "斑馬觀音蓮",
-      "latin": "Alocasia Zebrina",
+      "latin": "Alocasia zebrina",
       "category": "觀葉",
       "date": "2026.08.29",
       "note": "",
@@ -9651,7 +9651,7 @@
     },
     {
       "name": "迷彩粗肋草",
-      "latin": "Aglaonema Pictum",
+      "latin": "Aglaonema pictum",
       "category": "觀葉",
       "date": "2026.08.28",
       "note": "",
@@ -9685,7 +9685,7 @@
     },
     {
       "name": "聖靈蔓綠絨",
-      "latin": "Philodendron Spiritus-sancti",
+      "latin": "Philodendron spiritus-sancti",
       "category": "觀葉",
       "date": "2026.08.28",
       "note": "",
@@ -9775,7 +9775,7 @@
     },
     {
       "name": "黑絲絨觀音蓮",
-      "latin": "Alocasia Reginula ‘Black Velvet’",
+      "latin": "Alocasia reginula ‘Black Velvet’",
       "category": "觀葉",
       "date": "2026.08.28",
       "note": "",
@@ -9797,7 +9797,7 @@
     },
     {
       "name": "黑龍鱗觀音蓮",
-      "latin": "Alocasia Baginda ‘Dragon Scale’",
+      "latin": "Alocasia baginda ‘Dragon Scale’",
       "category": "觀葉",
       "date": "2026.08.28",
       "note": "",
@@ -9819,7 +9819,7 @@
     },
     {
       "name": "橘柄蔓綠絨",
-      "latin": "Philodendron Billietiae",
+      "latin": "Philodendron billietiae",
       "category": "觀葉",
       "date": "2026.08.28",
       "note": "",
@@ -9841,7 +9841,7 @@
     },
     {
       "name": "孔雀竹芋",
-      "latin": "Calathea Makoyana",
+      "latin": "Calathea makoyana",
       "category": "觀葉",
       "date": "2026.08.27",
       "note": "",
@@ -9869,7 +9869,7 @@
     },
     {
       "name": "窗孔龜背芋",
-      "latin": "Monstera Adansonii",
+      "latin": "Monstera adansonii",
       "category": "觀葉",
       "date": "2026.08.27",
       "note": "",
@@ -9891,7 +9891,7 @@
     },
     {
       "name": "銀箭蔓綠絨",
-      "latin": "Philodendron Hastatum",
+      "latin": "Philodendron hastatum",
       "category": "觀葉",
       "date": "2026.08.27",
       "note": "",
@@ -9919,7 +9919,7 @@
     },
     {
       "name": "青蘋果火鶴",
-      "latin": "Anthurium Villenaorum",
+      "latin": "Anthurium villenaorum",
       "category": "觀葉",
       "date": "2026.08.27",
       "note": "",
@@ -9947,7 +9947,7 @@
     },
     {
       "name": "黑葉觀音蓮",
-      "latin": "Alocasia × Amazonica",
+      "latin": "Alocasia × amazonica",
       "category": "觀葉",
       "date": "2026.08.27",
       "note": "",
@@ -9981,7 +9981,7 @@
     },
     {
       "name": "絨葉斑葉觀音蓮",
-      "latin": "Alocasia Micholitziana ‘Frydek’",
+      "latin": "Alocasia micholitziana ‘Frydek’",
       "category": "觀葉",
       "date": "2026.08.27",
       "note": "",
@@ -10577,7 +10577,7 @@
     },
     {
       "name": "碧岩玉",
-      "latin": "Gymnocalycium Hybopleurum",
+      "latin": "Gymnocalycium hybopleurum",
       "category": "仙人掌",
       "date": "2026.09.17",
       "note": "",
@@ -10630,7 +10630,7 @@
     },
     {
       "name": "角疣巨象",
-      "latin": "Coryphantha Elephantidens ‘Lem’",
+      "latin": "Coryphantha elephantidens ‘Lem’",
       "category": "仙人掌",
       "date": "2026.09.17",
       "note": "",
@@ -10670,7 +10670,7 @@
     },
     {
       "name": "惠比須笑",
-      "latin": "Pachypodium Brevicaule",
+      "latin": "Pachypodium brevicaule",
       "category": "棒槌",
       "date": "2026.09.17",
       "note": "",
@@ -10710,7 +10710,7 @@
     },
     {
       "name": "黑美人",
-      "latin": "Frailea Atrobella",
+      "latin": "Frailea atrobella",
       "category": "仙人掌",
       "date": "2026.09.26",
       "note": "",
@@ -10738,7 +10738,7 @@
     },
     {
       "name": "Frailea pseudocataphracta",
-      "latin": "Frailea Pseudocataphracta",
+      "latin": "Frailea pseudocataphracta",
       "category": "仙人掌",
       "date": "2026.09.26",
       "note": "",
@@ -10766,7 +10766,7 @@
     },
     {
       "name": "白帝錦",
-      "latin": "Euphorbia Lactea ‘White Ghost’",
+      "latin": "Euphorbia lactea ‘White Ghost’",
       "category": "大戟",
       "date": "2026.09.27",
       "note": "",
@@ -10788,7 +10788,7 @@
     },
     {
       "name": "狗奴子",
-      "latin": "Euphorbia Knuthii",
+      "latin": "Euphorbia knuthii",
       "category": "大戟",
       "date": "2026.09.27",
       "note": "",
@@ -10816,7 +10816,7 @@
     },
     {
       "name": "紫豹頭",
-      "latin": "Eriosyce Napina",
+      "latin": "Eriosyce napina",
       "category": "仙人掌",
       "date": "2026.10.11",
       "note": "",
@@ -10850,7 +10850,7 @@
     },
     {
       "name": "鐵甲丸",
-      "latin": "Euphorbia Bupleurifolia",
+      "latin": "Euphorbia bupleurifolia",
       "category": "大戟",
       "date": "2026.10.14",
       "note": "",
@@ -10897,7 +10897,7 @@
     },
     {
       "name": "瘋猴",
-      "latin": "P. ‘Crazy Monkey’ (P. willinckii × P. veitchii)",
+      "latin": "Platycerium ‘Crazy Monkey’ (P. willinckii × P. veitchii)",
       "category": "鹿角蕨",
       "date": "2026.10.05",
       "note": "",
@@ -10949,7 +10949,7 @@
     },
     {
       "name": "澳銀 × 銀華 × 波哥蘇丹",
-      "latin": "P. veitchii ‘HFG’ × P. willinckii ‘Bogor sudden’ × P. willinckii ‘Ginka’",
+      "latin": "Platycerium veitchii ‘HFG’ × P. willinckii ‘Bogor sudden’ × P. willinckii ‘Ginka’",
       "category": "鹿角蕨",
       "date": "2026.10.31",
       "note": "",
@@ -10996,7 +10996,7 @@
     },
     {
       "name": "野貓 x 玉女",
-      "latin": "P. willinckii ‘Wild Cat’ x P. willinckii ‘JadeGirl’ (Dwarf)",
+      "latin": "Platycerium willinckii ‘Wild Cat’ x P. willinckii ‘JadeGirl’ (Dwarf)",
       "category": "鹿角蕨",
       "date": "2026.10.31",
       "note": "",
@@ -11047,7 +11047,7 @@
     },
     {
       "name": "斯考菲塔蘇塔",
-      "latin": "P. willinckii ‘Scofield tatsuta’",
+      "latin": "Platycerium willinckii ‘Scofield tatsuta’",
       "category": "鹿角蕨",
       "date": "2026.10.14",
       "note": "",
@@ -11075,7 +11075,7 @@
     },
     {
       "name": "金鋼狼",
-      "latin": "P. ‘Wolverine’ (P. veitchii ‘Auburn River’ × P. willinckii)",
+      "latin": "Platycerium ‘Wolverine’ (P. veitchii ‘Auburn River’ × P. willinckii)",
       "category": "鹿角蕨",
       "date": "2026.10.14",
       "note": "",
@@ -11252,7 +11252,7 @@
     {
       "name": "魚鱗丸",
       "latin": "Euphorbia piscidermis",
-      "category": "仙人掌",
+      "category": "大戟",
       "date": "2026.10.14",
       "note": "",
       "cover": "13w9_GuJdfLtg3Iw5flhWsTdZ7HECFixi",
@@ -11720,7 +11720,7 @@
     },
     {
       "name": "佩德羅",
-      "latin": "P. willinckii ‘Pedro’ (Tatsuta)",
+      "latin": "Platycerium willinckii ‘Pedro’ (Tatsuta)",
       "category": "鹿角蕨",
       "date": "2026.10.14",
       "note": "",
@@ -11743,7 +11743,7 @@
     },
     {
       "name": "愛夢 x 弦月",
-      "latin": "P. willinckii ‘Amornrat’ x (P. veitchii x P. bifurcatum) ‘Quarter Moon’",
+      "latin": "Platycerium willinckii ‘Amornrat’ x (P. veitchii x P. bifurcatum) ‘Quarter Moon’",
       "category": "鹿角蕨",
       "date": "2026.10.14",
       "note": "",
@@ -11835,7 +11835,7 @@
     },
     {
       "name": "P.Mt Lewis x bif",
-      "latin": "P. bifurcatum ‘Mt.Lewis’ x P. bifurcatum",
+      "latin": "Platycerium bifurcatum ‘Mt.Lewis’ x P. bifurcatum",
       "category": "鹿角蕨",
       "date": "2026.10.14",
       "note": "",
@@ -11861,7 +11861,7 @@
     },
     {
       "name": "斑比",
-      "latin": "P. ‘Bambi’",
+      "latin": "Platycerium ‘Bambi’",
       "category": "鹿角蕨",
       "date": "2026.10.14",
       "note": "",
@@ -11897,7 +11897,7 @@
     },
     {
       "name": "棉花雲",
-      "latin": "P. willinckii ‘CCS’ (Sporeling)",
+      "latin": "Platycerium willinckii ‘CCS’ (Sporeling)",
       "category": "鹿角蕨",
       "date": "2026.10.14",
       "note": "",
@@ -11923,7 +11923,7 @@
     },
     {
       "name": "波紋 x 白法螺",
-      "latin": "P. ‘Ripples’ x P. ‘Shankha’",
+      "latin": "Platycerium ‘Ripples’ x P. ‘Shankha’",
       "category": "鹿角蕨",
       "date": "2026.10.14",
       "note": "",
@@ -11992,7 +11992,7 @@
     },
     {
       "name": "P.Longii",
-      "latin": "P. ‘Longii’ (Pup) (P. veitchii ‘Lemoinei’ x P. diversifolium ‘Florida’)",
+      "latin": "Platycerium ‘Longii’ (Pup) (P. veitchii ‘Lemoinei’ x P. diversifolium ‘Florida’)",
       "category": "鹿角蕨",
       "date": "2026.10.14",
       "note": "",
@@ -12011,7 +12011,7 @@
     },
     {
       "name": "P.Ubon#1",
-      "latin": "P. ‘Ubon#1’ (Pup) (P. bifurcatum ‘Mt.Lewis’ x P. bifurcatum)",
+      "latin": "Platycerium ‘Ubon#1’ (Pup) (P. bifurcatum ‘Mt.Lewis’ x P. bifurcatum)",
       "category": "鹿角蕨",
       "date": "2026.10.14",
       "note": "",
@@ -12030,7 +12030,7 @@
     },
     {
       "name": "P.Woot #9 sporeling",
-      "latin": "P. ‘Woot #9’ (sporeling)",
+      "latin": "Platycerium ‘Woot #9’ (sporeling)",
       "category": "鹿角蕨",
       "date": "2026.10.20",
       "note": "",
@@ -12049,7 +12049,7 @@
     },
     {
       "name": "粉雪",
-      "latin": "P. ‘Konayuki’ [(P. bifurcatum x P. veitchii) ‘Doitung’ x (P. veitchii x P. willinckii) ‘Pewchan’]",
+      "latin": "Platycerium ‘Konayuki’ [(P. bifurcatum x P. veitchii) ‘Doitung’ x (P. veitchii x P. willinckii) ‘Pewchan’]",
       "category": "鹿角蕨",
       "date": "2026.10.20",
       "note": "",
@@ -12077,7 +12077,7 @@
     },
     {
       "name": "P.Banna#A",
-      "latin": "P. ‘Banna#A’ (P. bifurcatum ‘Japanese hybrid’ × P. willinckii)",
+      "latin": "Platycerium ‘Banna#A’ (P. bifurcatum ‘Japanese hybrid’ × P. willinckii)",
       "category": "鹿角蕨",
       "date": "2026.10.16",
       "note": "",
@@ -12103,7 +12103,7 @@
     },
     {
       "name": "小皇冠",
-      "latin": "P. willinckii ‘Little Crown’ (Sporeling Selected)",
+      "latin": "Platycerium willinckii ‘Little Crown’ (Sporeling Selected)",
       "category": "鹿角蕨",
       "date": "2026.10.31",
       "note": "",
@@ -12126,7 +12126,7 @@
     },
     {
       "name": "滿月",
-      "latin": "P. ‘Full Moon’ [P. willinckii × (P. hillii × P. bifurcatum) ‘Diversifolium’]",
+      "latin": "Platycerium ‘Full Moon’ [P. willinckii × (P. hillii × P. bifurcatum) ‘Diversifolium’]",
       "category": "鹿角蕨",
       "date": "2026.10.31",
       "note": "",
@@ -12149,7 +12149,7 @@
     },
     {
       "name": "深綠 x 女王",
-      "latin": "P. hillii x P. wandae",
+      "latin": "Platycerium hillii x P. wandae",
       "category": "鹿角蕨",
       "date": "2026.10.31",
       "note": "",
@@ -12172,7 +12172,7 @@
     },
     {
       "name": "蝴蝶",
-      "latin": "P. wallichii",
+      "latin": "Platycerium wallichii",
       "category": "鹿角蕨",
       "date": "2026.10.31",
       "note": "",
@@ -12195,7 +12195,7 @@
     },
     {
       "name": "Snow White",
-      "latin": "P. ‘Snow White’ (P. willinck ‘Bogor Suddan’ x P. hilli ‘Pumila’)",
+      "latin": "Platycerium ‘Snow White’ (P. willinck ‘Bogor Suddan’ x P. hilli ‘Pumila’)",
       "category": "鹿角蕨",
       "date": "2026.10.31",
       "note": "",
@@ -12218,7 +12218,7 @@
     },
     {
       "name": "藍貓",
-      "latin": "P. ‘Bule Cat’ (Pup) (P. willinckii ‘Wild Cat’ x P. veitchii ‘Wild’)",
+      "latin": "Platycerium ‘Bule Cat’ (Pup) (P. willinckii ‘Wild Cat’ x P. veitchii ‘Wild’)",
       "category": "鹿角蕨",
       "date": "",
       "note": "",
@@ -12237,7 +12237,7 @@
     },
     {
       "name": "綴化深綠 x 爪哇",
-      "latin": "P. hillii ‘Mio’ x P. willickii",
+      "latin": "Platycerium hillii ‘Mio’ x P. willickii",
       "category": "鹿角蕨",
       "date": "",
       "note": "",
@@ -12246,7 +12246,7 @@
     },
     {
       "name": "喜瑪拉雅",
-      "latin": "P. ‘Himalayas’ (P. willinckii × P. veitchii)",
+      "latin": "Platycerium ‘Himalayas’ (P. willinckii × P. veitchii)",
       "category": "鹿角蕨",
       "date": "",
       "note": "",
@@ -12255,7 +12255,7 @@
     },
     {
       "name": "P. willinckii (Dwarf)",
-      "latin": "P. willinckii (Dwarf)",
+      "latin": "Platycerium willinckii (Dwarf)",
       "category": "鹿角蕨",
       "date": "",
       "note": "",
@@ -12264,7 +12264,7 @@
     },
     {
       "name": "disco",
-      "latin": "Discocactus",
+      "latin": "Discocactus sp.",
       "category": "仙人掌",
       "date": "2026.10.31",
       "note": "",
@@ -12464,7 +12464,7 @@
     },
     {
       "name": "鬼精棒",
-      "latin": "",
+      "latin": "鬼精棒",
       "category": "棒槌",
       "date": "2026.10.31",
       "note": "",
@@ -12487,7 +12487,7 @@
     },
     {
       "name": "牡丹",
-      "latin": "",
+      "latin": "牡丹",
       "category": "多肉",
       "date": "2026.10.31",
       "note": "",

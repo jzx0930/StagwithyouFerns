@@ -1,0 +1,193 @@
+﻿其他物種資料夾改名建議(2026-11-03 v2)
+規則:中文名-屬名 種小名 ‘品種名’ (標記);種小名小寫、品種名彎引號;中文交種名 x 前後空格。
+屬名:仙人掌改為三層「仙人掌-Cactaceae / 屬名夾(全名) / 植物夾(縮寫)」;棒槌=P.、龍舌蘭=A.(分類夾本身就是屬名);大戟/塊根/多肉/觀葉 暫寫全屬名(要比照仙人掌分屬名夾跟我說)。
+左=目前 → 右=建議;(不變)=已符合;※=網站尚無此株。
+
+【仙人掌-Cactaceae】 53 株 → 分成 23 個屬名夾
+  ▸ Ariocarpus/
+      酷斯拉x連山-Ariocarpus fissuratus cv. Godzilla x Ariocarpus fissuratus subsp. lloydii  →  酷斯拉 x 連山-A. fissuratus ‘Godzilla’ x A. fissuratus subsp. lloydii   ※
+      黑牡丹-Ariocarpus kotschoubeyanus  →  黑牡丹-A. kotschoubeyanus
+  ▸ Astrophytum/
+      紫兜-Astrophytum Asterias  →  紫兜-A. asterias
+      大鳳玉-Astrophytum capricorne  →  大鳳玉-A. capricorne
+      銀沙鸞鳳玉-Astrophytum Myriostigma  →  銀沙鸞鳳玉-A. myriostigma
+  ▸ Aztekium/
+      薄葉花籠-Aztekium ritteri  →  薄葉花籠-A. ritteri
+      紅龍花籠-Aztekium hintonii  →  紅龍花籠-A. hintonii   ※
+  ▸ Cleistocactus/
+      猴尾柱-Colademononis  →  猴尾柱-C. colademononis
+  ▸ Coryphantha/
+      象牙丸-Coryphantha Elephantidens  →  象牙丸-C. elephantidens
+      無刺象牙丸-Coryphantha Elephantidens Inermis  →  無刺象牙丸-C. elephantidens inermis
+      短刺象牙丸-Coryphantha Elephantidens 'Tenshi'  →  短刺象牙丸-C. elephantidens ‘Tenshi’
+      角疣巨象-Coryphantha Elephantidenslem  →  角疣巨象-C. elephantidens ‘Lem’
+  ▸ Discocactus/
+      disco-Discocactus  →  disco-D. sp.
+  ▸ Echinocereus/
+      紫太陽-Echinocereus Rigidissimus  →  紫太陽-E. rigidissimus
+  ▸ Epithelantha/
+      月世界-Epithelantha Micromeris  →  月世界-E. micromeris
+  ▸ Eriosyce/
+      紫豹頭-Eriosyce napina  →  紫豹頭-E. napina
+  ▸ Euphorbia/
+      魚鱗丸-Euphorbia piscidermis  →  魚鱗丸-E. piscidermis
+  ▸ Ferocactus/
+      無刺王冠龍-Ferocactus Glaucescens cv. 'Nuda'  →  無刺王冠龍-F. glaucescens ‘Nuda’
+      短刺巨鷲玉-Ferocactus peninsulae  →  短刺巨鷲玉-F. peninsulae
+  ▸ Frailea/
+      士童-Castanea  →  士童-F. castanea
+      密刺丸-Frailea densispina  →  密刺丸-F. densispina
+      虎之子-Frailea pumila  →  虎之子-F. pumila
+      蜈蚣丸-Frailea angelesii  →  蜈蚣丸-F. angelesii
+      豔姬士童-Frailea castanea  →  豔姬士童-F. castanea
+      狐之子-Frailea mammifera  →  狐之子-F. mammifera
+      pygmaea var.dadakii  →  F. pygmaea var. dadakii
+      天惠丸-Frailea cataphracta  →  天惠丸-F. cataphracta
+      Frailea pseudocataphracta  →  F. pseudocataphracta
+      黑美人-Frailea atrobella  →  黑美人-F. atrobella
+  ▸ Gymnocalycium/
+      碧岩玉-Gymnocalycium Hybopleurum  →  碧岩玉-G. hybopleurum
+      天紫玉-Pflanzii  →  天紫玉-G. pflanzii var. albipulpa
+      緋牡丹-Gymnocalycium Mihanovichii  →  緋牡丹-G. mihanovichii
+      黑刺鳳頭-Gymnocalycium Bodenbenderianum f. Nigrispina  →  黑刺鳳頭-G. bodenbenderianum f. nigrispina
+      一本刺-Gymnocalycium vatteri  →  一本刺-G. vatteri
+      新天地-Gymnocalycium saglionis  →  新天地-G. saglionis
+      拉根-Gymnocalycium Ragonesei  →  拉根-G. ragonesei
+  ▸ Lophophora/
+      銀冠玉-Fricii  →  銀冠玉-L. fricii
+      子吹烏羽玉-Williamsii  →  子吹烏羽玉-L. williamsii
+      烏羽玉-Williamsii  →  烏羽玉-L. williamsii
+  ▸ Mammillaria/
+      單刺蓬萊宮-Schumannii  →  單刺蓬萊宮-M. schumannii
+      玉翁-Mammillaria hahniana  →  玉翁-M. hahniana
+      直刺佩雷-Perezdelarosae  →  直刺佩雷-M. perezdelarosae subsp. andersoniana
+      雪球-Mammillaria candida  →  雪球-M. candida
+      疣仙人-Mammillaria  →  疣仙人-M. sp.
+  ▸ Matucana/
+      奇仙玉-Matucana madisoniorum  →  奇仙玉-M. madisoniorum
+  ▸ Melocactus/
+      涼雲-Melocactus bahiensis  →  涼雲-M. bahiensis
+      長槍雲、茜雲-Melocactus Ernestii  →  長槍雲、茜雲-M. ernestii
+  ▸ Obregonia/
+      帝冠-Obregonia Denegrii  →  帝冠-O. denegrii
+  ▸ Parodia/
+      英冠玉-Parodia magnifica  →  英冠玉-P. magnifica
+  ▸ Stenocactus/
+      千波萬波-Stenocactus Multicostatus  →  千波萬波-S. multicostatus
+  ▸ Tephrocactus/
+      習志野-Tephrocactus Geometricus  →  習志野-T. geometricus
+  ▸ Thelocactus/
+      天晃-Thelocactus hexaedrophorus  →  天晃-T. hexaedrophorus
+  ▸ Uebelmannia/
+      櫛極丸-Uebelmannia pectinifera  →  櫛極丸-U. pectinifera
+
+【大戟】 要改 25 個
+象鼻大戟-Euphorbia ramena  →  象鼻大戟-Euphorbia ramena  (不變)
+柳葉麒麟-Euphorbia Hedyotoides  →  柳葉麒麟-Euphorbia hedyotoides
+蘋果麒麟-Euphorbia Bongolavensis  →  蘋果麒麟-Euphorbia bongolavensis
+哥列麒麟-Euphorbia Phillipsiae  →  哥列麒麟-Euphorbia phillipsiae
+裸萼大戟-Euphorbia Gymnocalycioides  →  裸萼大戟-Euphorbia gymnocalycioides
+貴清玉-Meloformis  →  貴清玉-Euphorbia meloformis
+狗奴子-Euphorbia knuthii  →  狗奴子-Euphorbia knuthii  (不變)
+飛龍大戟-Stellata  →  飛龍大戟-Euphorbia stellata
+蒼龍塔、混迷閣-Inconstantia  →  蒼龍塔、混迷閣-Euphorbia inconstantia
+火山大戟-Mlanjeana  →  火山大戟-Euphorbia mlanjeana
+鐵甲丸-Euphorbia bupleurifolia  →  鐵甲丸-Euphorbia bupleurifolia  (不變)
+群星冠-Stellispina  →  群星冠-Euphorbia stellispina
+亞迪麒麟-Abdelkuri  →  亞迪麒麟-Euphorbia abdelkuri
+怪魔玉-Euphorbia 'Gabizan'  →  怪魔玉-Euphorbia ‘Gabizan’
+九頭龍-Inermis  →  九頭龍-Euphorbia inermis
+笹蟹丸錦-Euphorbia pulvinata f. variegata  →  笹蟹丸錦-Euphorbia pulvinata f. variegata  (不變)
+綠鬼玉-Decepta  →  綠鬼玉-Euphorbia decepta
+孔雀丸-Euphorbia flanaganii  →  孔雀丸-Euphorbia flanaganii  (不變)
+子吹布紋球-Meloformis  →  子吹布紋球-Euphorbia meloformis(子吹/群生型)
+銅綠麒麟-Euphorbia Aeruginosa  →  銅綠麒麟-Euphorbia aeruginosa
+白帝錦-Euphorbia lactea 'White Ghost'  →  白帝錦-Euphorbia lactea ‘White Ghost’
+金輪際-Gorgonis  →  金輪際-Euphorbia gorgonis
+布紋球-Meloformis  →  布紋球-Euphorbia meloformis
+噴火龍-Euphorbia Viguieri  →  噴火龍-Euphorbia viguieri
+大寶冠-Gamkensis  →  大寶冠-Euphorbia gamkensis
+法利達-Valida  →  法利達-Euphorbia valida
+群星祭、星雲-Astrophora  →  群星祭、星雲-Euphorbia astrophora
+玉麟鳳、綠麒麟-Mammillaris  →  玉麟鳳、綠麒麟-Euphorbia mammillaris
+白衣魁偉玉-Horrida  →  白衣魁偉玉-Euphorbia horrida var. alba
+鬼棲閣-Guillauminiana  →  鬼棲閣-Euphorbia guillauminiana
+
+【塊根】 要改 18 個
+球線蔓-Adenia globosa  →  球線蔓-Adenia globosa  (不變)
+蟻巢玉-Hydnophytum Moseleyanum  →  蟻巢玉-Hydnophytum moseleyanum
+足球樹-Ellipticum  →  足球樹-Pseudobombax ellipticum
+奇異油甘-Mirabilis  →  奇異油甘-Phyllanthus mirabilis
+錦珊瑚-Jatropha Cathartica  →  錦珊瑚-Jatropha cathartica
+安哥拉葡萄甕-Uter  →  安哥拉葡萄甕-Cyphostemma uter var. macropus
+列加氏漆樹-Operculicarya Decaryi  →  列加氏漆樹-Operculicarya decaryi
+幻蝶蔓-Adenia glauca  →  幻蝶蔓-Adenia glauca  (不變)
+索馬利亞痲瘋樹-Jatropha somalensis  →  索馬利亞痲瘋樹-Jatropha somalensis  (不變) ※
+黃花古城  →  黃花古城  (不變) ※
+裂紋山烏龜-Stephania  →  裂紋山烏龜-Stephania  (不變)
+墨西哥龜甲龍-Mexicana  →  墨西哥龜甲龍-Dioscorea mexicana
+龜甲摩蘿-Cyclophylla  →  龜甲摩蘿-Matelea cyclophylla
+台灣侏儒羊角玫瑰-Obesum  →  台灣侏儒羊角玫瑰-Adenium obesum
+荒皮沙漠玫瑰-Arabicum  →  荒皮沙漠玫瑰-Adenium arabicum
+索科特拉沙漠玫瑰-Adenium Socotranum  →  索科特拉沙漠玫瑰-Adenium socotranum
+象足漆樹-Pachypus  →  象足漆樹-Operculicarya pachypus
+哥吉拉沙漠玫瑰-Arabicum  →  哥吉拉沙漠玫瑰-Adenium arabicum
+阿拉伯沙漠玫瑰-Arabicum  →  阿拉伯沙漠玫瑰-Adenium arabicum
+南非龜甲龍-Elephantipes  →  南非龜甲龍-Dioscorea elephantipes
+圓葉山烏龜-Erecta  →  圓葉山烏龜-Stephania erecta
+彎彎曲曲樹-Madagascariensis  →  彎彎曲曲樹-Decarya madagascariensis
+沙漠蘇木-Meridionalis  →  沙漠蘇木-Senna meridionalis
+
+【棒槌】 要改 14 個
+伊羅瓶幹-Inopinatum  →  伊羅瓶幹-P. inopinatum
+象牙宮-Gracilius  →  象牙宮-P. gracilius
+鬼精棒  →  鬼精棒  (不變)
+畢之比（雙刺瓶幹）-Bispinosum  →  畢之比（雙刺瓶幹）-P. bispinosum
+惠比須笑-Brevicaule  →  惠比須笑-P. brevicaule
+光堂-Namaquanum  →  光堂-P. namaquanum
+納米比亞樹白馬-Lealii  →  納米比亞樹白馬-P. lealii
+亞阿相界-Geayi  →  亞阿相界-P. geayi
+非洲霸王樹-Lamerei  →  非洲霸王樹-P. lamerei
+常綠瓶幹-Cactipes  →  常綠瓶幹-P. cactipes
+溫莎瓶幹-Windsorii  →  溫莎瓶幹-P. windsorii
+一本尼-Eburneum  →  一本尼-P. eburneum
+大黑惠比須-Densicaule  →  大黑惠比須-P. densicaule
+席巴女王玉櫛-Densiflorum  →  席巴女王玉櫛-P. densiflorum
+梅里迪棒槌-Meridionale  →  梅里迪棒槌-P. meridionale
+
+【多肉】 要改 7 個
+牡丹  →  牡丹  (不變)
+蛇蹄玉-Pseudolithos Caput-viperae  →  蛇蹄玉-Pseudolithos caput-viperae
+鳥嘴虎尾蘭-Sansevieria rorida  →  鳥嘴虎尾蘭-Sansevieria rorida  (不變)
+鬼切丸-Aloe Marlothii  →  鬼切丸-Aloe marlothii
+黑騎士-Black Knight  →  黑騎士-Echeveria ‘Black Knight’
+海豹天章-Adromischus Cooperi var. Festivus  →  海豹天章-Adromischus cooperi var. festivus
+萬象-Maughanii  →  萬象-Haworthia maughanii
+四方凝蹄玉-Pseudolithos Cubiformis  →  四方凝蹄玉-Pseudolithos cubiformis
+寶塔蘿藦-Decaryi  →  寶塔蘿藦-Stapelianthus decaryi
+
+【觀葉】 要改 16 個
+斑馬觀音蓮-Alocasia Zebrina  →  斑馬觀音蓮-Alocasia zebrina
+泰國斑葉龜背芋-Monstera Deliciosa 'Thai Constellation'  →  泰國斑葉龜背芋-Monstera deliciosa ‘Thai Constellation’
+日本白斑龜背芋-Monstera Deliciosa 'Albo Variegata'  →  日本白斑龜背芋-Monstera deliciosa ‘Albo Variegata’
+青蘋果火鶴-Anthurium Villenaorum  →  青蘋果火鶴-Anthurium villenaorum
+絨葉斑葉觀音蓮-Micholitziana  →  絨葉斑葉觀音蓮-Alocasia micholitziana ‘Frydek’
+銀箭蔓綠絨-Philodendron Hastatum  →  銀箭蔓綠絨-Philodendron hastatum
+孔雀竹芋-Calathea Makoyana  →  孔雀竹芋-Calathea makoyana
+聖靈蔓綠絨-Philodendron Spiritus-sancti  →  聖靈蔓綠絨-Philodendron spiritus-sancti
+迷彩粗肋草-Aglaonema Pictum  →  迷彩粗肋草-Aglaonema pictum
+紅毛柄龍爪蔓綠絨-Philodendron squamiferum  →  紅毛柄龍爪蔓綠絨-Philodendron squamiferum  (不變)
+綠色天堂蔓綠絨-Philodendron 'Paraiso Verde'  →  綠色天堂蔓綠絨-Philodendron ‘Paraiso Verde’
+法老王面具水芋-Colocasia 'Pharaoh's Mask'  →  法老王面具水芋-Colocasia ‘Pharaoh’s Mask’
+黑絲絨觀音蓮-Alocasia Reginula 'Black Velvet'  →  黑絲絨觀音蓮-Alocasia reginula ‘Black Velvet’
+黑龍鱗觀音蓮-Alocasia Baginda 'Dragon Scale'  →  黑龍鱗觀音蓮-Alocasia baginda ‘Dragon Scale’
+橘柄蔓綠絨-Philodendron Billietiae  →  橘柄蔓綠絨-Philodendron billietiae
+窗孔龜背芋-Monstera Adansonii  →  窗孔龜背芋-Monstera adansonii
+黑葉觀音蓮-Amazonica  →  黑葉觀音蓮-Alocasia × Amazonica
+
+【龍舌蘭】 要改 5 個
+吉祥冠覆輪龍舌蘭-Potatorum  →  吉祥冠覆輪龍舌蘭-A. potatorum ‘Kissho-kan’ f. variegata
+內華達妖炎-Utahensis var. Nevadensis  →  內華達妖炎-A. utahensis var. nevadensis
+嚴龍-Titanota 'Oteroi'  →  嚴龍-A. titanota ‘Oteroi’
+瀧之白絲-Schidigera  →  瀧之白絲-A. schidigera
+象牙妖炎-Utahensis var. Eborispina  →  象牙妖炎-A. utahensis var. eborispina
