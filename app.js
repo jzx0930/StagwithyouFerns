@@ -521,10 +521,8 @@
 
     // 鹿角蕨:原生種(二名法、無品種/雜交)排最前,奧銀第一,其餘維持原順序
     if (activeCat === '鹿角蕨') {
-      var isNative = function (p) {
-        var l = String(p.latin || '').trim();
-        return /^Platycerium\s+[A-Za-z]+$/.test(l) && !/hybrid/i.test(l);
-      };
+      // 原生種 = 學名能解析出單一原生種小名(含該種的選拔/品種,例 ‘Auburn River’;交種 × 排除)
+      var isNative = function (p) { return !!fernSpeciesOf(p.latin); };
       var rank = function (x) {
         if (x.p.name === '奧銀') return 0;
         return isNative(x.p) ? 1 : 2;
@@ -550,11 +548,9 @@
             '<div class="pk-thumb"><span class="pk-miss">未收藏</span></div>' +
             '<div class="pk-nm">' + esc(s.zh) + '<span class="pk-latin">P. ' + s.epi + '</span></div></div>';
         }
-        var rep = arr.slice().sort(function (a, b) {
-          var pa = /^Platycerium\s+[A-Za-z]+$/i.test(a.p.latin || '') ? 0 : 1;
-          var pb = /^Platycerium\s+[A-Za-z]+$/i.test(b.p.latin || '') ? 0 : 1;
-          return pa - pb;
-        })[0];
+        // 代表株:優先純原生種(無品種引號),其次依原順序
+        var pure = function (l) { l = String(l || ''); return /^(Platycerium|P\.)\s+[a-z]+(\s*\([A-Za-z ]+\))*$/.test(l) ? 0 : 1; };
+        var rep = arr.slice().sort(function (a, b) { return pure(a.p.latin) - pure(b.p.latin); })[0];
         var cover = coverImg(rep.p.cover, 400, rep.p.name);
         var active = state.species === s.epi;
         return '<div class="pk-cell' + (active ? ' active' : '') + '" data-act="fern-sp" data-sp="' + s.epi + '">' +

@@ -12,7 +12,7 @@ window.PLANT_SOURCES = {
   "賽爾索": {
     "": { source: "", mother: "" }
   },
-  "銀葉立葉": {
+  "立葉銀鹿": {
     "": { source: "", mother: "" }
   },
   "愛麗絲": {
@@ -27,7 +27,7 @@ window.PLANT_SOURCES = {
   "Blue Ribbon #1": {
     "": { source: "", mother: "" }
   },
-  "雷電xK銀x小手指x白爪哇": {
+  "雷電 x K銀 x 小手指 x 白爪哇": {
     "#01": { source: "", mother: "" },
     "#02": { source: "", mother: "" },
     "#03": { source: "", mother: "" }
@@ -57,7 +57,7 @@ window.PLANT_SOURCES = {
     "": { source: "", mother: "" },
     "#02": { source: "", mother: "" }
   },
-  "雷電x野銀": {
+  "雷電 x 野銀": {
     "": { source: "", mother: "" }
   },
   "非非達爾文": {
@@ -69,7 +69,7 @@ window.PLANT_SOURCES = {
   "千手皇冠": {
     "": { source: "", mother: "" }
   },
-  "深綠龍x野銀": {
+  "深綠龍 x 野銀": {
     "": { source: "", mother: "" }
   },
   "白妖爪": {
@@ -141,7 +141,7 @@ window.PLANT_SOURCES = {
   "侏儒捲葉女王": {
     "": { source: "", mother: "" }
   },
-  "三角四叉": {
+  "四叉 × 三角": {
     "": { source: "", mother: "" }
   },
   "白鹿": {
@@ -178,7 +178,7 @@ window.PLANT_SOURCES = {
     "#01": { source: "", mother: "" },
     "#02": { source: "", mother: "" }
   },
-  "捲捲鹿": {
+  "馮詩淇、捲捲鹿": {
     "#01": { source: "", mother: "" },
     "#02": { source: "", mother: "" }
   },
@@ -187,7 +187,7 @@ window.PLANT_SOURCES = {
     "#02": { source: "", mother: "" },
     "#03": { source: "", mother: "" }
   },
-  "三叉戟": {
+  "三叉戟、瑪莎拉蒂": {
     "": { source: "", mother: "" }
   },
   "多佛朗明哥": {
@@ -212,7 +212,7 @@ window.PLANT_SOURCES = {
     "#01": { source: "", mother: "" },
     "#02": { source: "", mother: "" }
   },
-  "銀華": {
+  "銀華、藝伎": {
     "#01": { source: "", mother: "" },
     "#02": { source: "", mother: "" }
   },
@@ -221,7 +221,7 @@ window.PLANT_SOURCES = {
     "#02": { source: "", mother: "" },
     "#03": { source: "", mother: "" }
   },
-  "羅賓": {
+  "羅賓、骨刺": {
     "": { source: "", mother: "" },
     "#02": { source: "", mother: "" }
   },
@@ -240,7 +240,7 @@ window.PLANT_SOURCES = {
   "E-1 Katsu": {
     "": { source: "", mother: "" }
   },
-  "P.willinckii Yellow moon x FSQ sporeling": {
+  "黃月 x 馮詩琪": {
     "": { source: "", mother: "" }
   },
   "非洲圓盾": {
@@ -287,13 +287,13 @@ window.PLANT_SOURCES = {
     "#02": { source: "", mother: "" },
     "#01": { source: "", mother: "" }
   },
-  "HFG*bogor sudden*Ginka": {
+  "澳銀 × 銀華 × 波哥蘇丹": {
     "": { source: "", mother: "" }
   },
-  "野貓*玉女": {
+  "野貓 x 玉女": {
     "": { source: "", mother: "" }
   },
-  "白雪蘇丹 X pumila": {
+  "白雪蘇丹 x 深綠普米拉": {
     "": { source: "", mother: "" }
   },
   "斯考菲塔蘇塔": {
