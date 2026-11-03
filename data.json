@@ -1771,7 +1771,7 @@
       "category": "鹿角蕨",
       "date": "2026.08.27",
       "note": "",
-      "cover": "1LeTRh1MTytF7KP9ZMyrKorsynqfvzg1T",
+      "cover": "1SOpwI-UBcdsBNZdvHY-LYGdTnKMTnFAa",
       "individuals": [
         {
           "label": "#08",
@@ -2868,7 +2868,8 @@
           "id": "PL-015-033"
         }
       ],
-      "pid": "PL-015"
+      "pid": "PL-015",
+      "coverLocked": true
     },
     {
       "name": "珊瑚亞猴",
