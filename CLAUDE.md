@@ -20,13 +20,15 @@
 { "categories": [ { "name": "鹿角蕨Platycerium", "cover": "", "model": true } ],
   "plants": [{ "name": "奧銀", "pid": "PL-015", "latin": "Platycerium veitchii ‘Auburn River’",
     "category": "鹿角蕨", "date": "2026.07.07", "cover": "<Drive ID>", "coverLocked": true,
+    "fid": "<Drive 植物資料夾 ID>",
     "individuals": [{ "id": "PL-015-008", "label": "#08", "name": "Jacksonii", "cover": "<ID>",
       "mother": ["<ID>"], "motherInfo": { "source": "", "mother": "" },
       "timeline": [ { "date": "2026.10.24", "tag": "#08", "note": "", "photo": "<ID>" } ] }] }],
   "_ids": { "codes": {}, "counters": {}, "speciesSlots": {}, "speciesNext": {} } }
 ```
 - `category` 只填中文;`latin` 存**全屬名**、種小名小寫、品種名彎引號 `‘ ’`;`date` 一律 `YYYY.MM.DD`。
-- 個體 ID `分類碼-植物序號-個體序號`(各 3 碼),發出後永不更改/重用(規則見 SKILL §10b)。
+- 個體 ID `分類碼-植物序號-個體序號`(各 3 碼),發出後永不更改/重用;併株後的舊號記在 `_ids.retired`(規則見 SKILL §10b)。
+- `fid` = 該株的 Drive 資料夾 ID(每株都有,網站不用),同步時靠它對應植物。
 - 照片須 Drive「知道連結的任何人/檢視者」;`driveImg()` → `lh3.googleusercontent.com/d/<ID>=w<寬>`。
 
 ## Drive 資料夾結構(2026-11 起)
@@ -34,7 +36,8 @@
 `植物照片/分類(中文-屬或科)/[屬名夾]/植物(中文-屬縮寫 種小名 ‘品種’ (標記))/#NN-暱稱/母株/`
 - 混屬分類(仙人掌/大戟/塊根/多肉/觀葉)多一層**屬名夾**(純拉丁);鹿角蕨/棒槌/龍舌蘭無屬名夾。
 - `母株/` 夾:照片 → `mother`,`.txt` → `motherInfo`;`日記-diary/YYYY.MM.DD/`:照片 + `.txt`(當日文字)。
-- Drive 連接器 `update_file` 可直接改名/搬移;**對應植物一律用資料夾 ID**,勿只靠名稱解析(會重複建株)。
+- Drive 連接器 `update_file` 可直接改名/搬移;**對應植物一律用資料夾 ID(data.json `fid`)**,勿只靠名稱解析(會重複建株)。
+- `植物照片/` 根目錄:`知識庫素材/` = 知識庫素材(同步時比對 knowledge.js 並回報);`素材/`、`文案/`、`StagwithyourFerns_Seasonal_TimeSet/` 一律忽略。
 
 ## 「開始更新」
 
