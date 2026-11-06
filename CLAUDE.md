@@ -2,84 +2,47 @@
 
 深色玻璃質感的植物成長紀錄靜態網站,部署在 GitHub Pages。照片放 Google Drive,網站只存文字與照片 ID。
 
-## 檔案結構(乾淨三檔 + 資料)
+> **完整、最新的交接資訊一律以 `SKILL.md` 為準**(目錄、功能、data.json 欄位、命名規則、個體 ID、「開始更新」流程、當前版本號)。本檔只放最常用的重點;兩者衝突時以 SKILL.md 為準。**每次改專案都要同步更新 SKILL.md(§3 目錄、§4 功能、§10 版本/規模)。**
 
-- **index.html** — 骨架:載入 Google Fonts、`styles.css`、`app.js`,含背景層 `#bg`、內容容器 `#app`、燈箱 `#lightbox`。
-- **styles.css** — 所有樣式與動畫(玻璃卡片、極光、螢火蟲 `fireDrift/fireTwinkle`、燈箱)。
-- **app.js** — 所有邏輯(免框架原生 JS,IIFE)。
-- **data.json** — 內容;日常只改這裡(通常由 Google Drive 自動產生,見下)。
-- **staghorn-fern.js** — 原生 Web Component `<staghorn-fern>`(自帶 3D 動畫鹿角蕨,首次使用自動載入 Three.js from cdnjs)。大廳中 `c.name === '鹿角蕨'` 或 `category.fx === 'staghorn-fern'` 的分類卡改用此元件當互動封面(滑鼠視差)。
-- **分類名 = 中文+屬名**:`category.name` 寫成「中文屬名」(例 `鹿角蕨Platycerium`、`龍舌蘭Agave`;沒屬名者用英文,如 `多肉Succulent`、`日記diary`)。`app.js` 的 `parseCat()` 把名字拆成 `zh`(中文,顯示為主+對應植物)與 `latin`(屬名/英文,斜體小字顯示 `.cat-latin`)。**植物的 `category` 仍只填中文**(如 `鹿角蕨`),靠 `zh` 比對歸類,所以改分類屬名不會讓植物跑掉。
-- **真實 3D 模型封面**:index.html 以 CDN 載入 Google `<model-viewer>`。分類要顯示 3D:`"model": true` → 自動抓 `models/<屬名>/<屬名>.glb`(由 `latin` 推,例 `鹿角蕨Platycerium` → `models/Platycerium/Platycerium.glb`);`model` 也可直接填路徑字串。優先序:model > staghorn-fern > 圖片。大廳卡與分類頁上方各顯示一個(分類頁那個較大、無框、可自由拖曳)。
-- **models/**:每個有模型的分類一個資料夾,以**屬名**命名,內放同名 `<屬名>.glb`(壓縮後、單檔宜 <15MB,見下方壓縮法)。原始大檔別進 repo(`.gitignore` 已擋 `*-original.glb`/`Hitem3d-*`/`Meshy_*`,會拖垮 GitHub Pages deploy 的 syncing_files)。**Drive 重新同步 data.json 會覆蓋手填的 `model`**,同步後把要顯示模型的分類 `model` 重設為 `true`。
-- **.glb 壓縮(無 gltf-transform 時)**:AI 生成模型常達數十 MB(幾何為主)。用 numpy 頂點叢集減面 + PIL 貼圖轉 JPEG 可壓到 ~1/9(例 74MB→8.3MB,GR=160≈27萬三角形),流程見對話紀錄;原檔另存 `<屬名>-original.glb`(gitignore)。
+## 檔案一覽
 
-## data.json 結構(含「個體 #」層)
+- `index.html` 骨架;各 css/js 用 `?v=N` 快取破壞(**改哪支就把它的 N +1**,目前 `styles.css?v=80`、`app.js?v=83`,其餘見 SKILL §10)。
+- `app.js` 主程式(IIFE、免框架):大廳 / 分類牆(鹿角蕨 18 原種圖鑑、日記一日一卡)/ 詳情(個體下拉 + 來源·母株 + 時間軸)/ 關於 / 知識庫 / 搜尋(含 ID)/ `?id=` 深連結。
+- `styles.css` 全部樣式。
+- `data.json` 內容主檔(由 Drive「開始更新」產生)。
+- 手寫內容檔(Drive 同步不覆蓋):`plant-notes.js`(每株介紹)、`about.js`(關於頁)、`knowledge.js`(知識庫)、`sources.js`(來源·母株文字備援)。
+- `staghorn-fern.js`、`orb.js`、`intro.js`、`layout.js`、`config/`、`shop/`、`models/<屬名>/<屬名>.glb`。
+- `tools/` 使用者電腦上跑的 PowerShell/bat(大量改名、日記整理、母株夾、模型壓縮等)。
+
+## data.json 重點
 
 ```json
-{
-  "categories": [ { "name": "鹿角蕨Platycerium", "cover": "<Drive ID 或網址>", "model": true } ],
-  "plants": [{
-    "name": "一本尼", "latin": "Pachypodium eburneum",
-    "category": "棒槌",            // 必須等於某個 category.name
-    "date": "2026.06.07", "note": "", "cover": "<Drive ID>",
-    "individuals": [                 // 個體:同種不同株,可在詳情頁切換
-      { "label": "#99", "cover": "<Drive ID>",
-        "timeline": [ { "date": "2026.06.07", "tag": "#99", "note": "...", "photo": "<Drive ID>" } ] }
-    ]
-  }]
-}
+{ "categories": [ { "name": "鹿角蕨Platycerium", "cover": "", "model": true } ],
+  "plants": [{ "name": "奧銀", "pid": "PL-015", "latin": "Platycerium veitchii ‘Auburn River’",
+    "category": "鹿角蕨", "date": "2026.07.07", "cover": "<Drive ID>", "coverLocked": true,
+    "individuals": [{ "id": "PL-015-008", "label": "#08", "name": "Jacksonii", "cover": "<ID>",
+      "mother": ["<ID>"], "motherInfo": { "source": "", "mother": "" },
+      "timeline": [ { "date": "2026.10.24", "tag": "#08", "note": "", "photo": "<ID>" } ] }] }],
+  "_ids": { "codes": {}, "counters": {}, "speciesSlots": {}, "speciesNext": {} } }
 ```
+- `category` 只填中文;`latin` 存**全屬名**、種小名小寫、品種名彎引號 `‘ ’`;`date` 一律 `YYYY.MM.DD`。
+- 個體 ID `分類碼-植物序號-個體序號`(各 3 碼),發出後永不更改/重用(規則見 SKILL §10b)。
+- 照片須 Drive「知道連結的任何人/檢視者」;`driveImg()` → `lh3.googleusercontent.com/d/<ID>=w<寬>`。
 
-規則:
-- 導覽:大廳(分類圖片卡)→ 分類植物牆(可切分頁)→ 植物詳情(個體 # 切換 + 成長時間軸)。
-- `date` 一律 `YYYY.MM.DD`;時間軸自動排序,**最新在最上面**。
-- 照片 `cover`/`photo` 填 Google Drive 檔案 ID 或完整網址;留空 = 佔位框。ID 由 `driveImg()` 轉 `https://lh3.googleusercontent.com/d/<ID>=w<寬>`。**照片須設「知道連結的任何人 / 檢視者」**。
-- `individuals`:每個 `{label,cover,timeline}` 是一株個體;`label` 空 = 未編號。詳情頁在「個體數>1 或有 label」時顯示切換列。`app.js` 的 `normIndiv()` 相容舊格式(直接 `plant.timeline`)。
-- 分類 `cover` 空 → 自動用該類第一株植物的 cover。
+## Drive 資料夾結構(2026-11 起)
 
-## 由 Google Drive 自動產生 data.json
+`植物照片/分類(中文-屬或科)/[屬名夾]/植物(中文-屬縮寫 種小名 ‘品種’ (標記))/#NN-暱稱/母株/`
+- 混屬分類(仙人掌/大戟/塊根/多肉/觀葉)多一層**屬名夾**(純拉丁);鹿角蕨/棒槌/龍舌蘭無屬名夾。
+- `母株/` 夾:照片 → `mother`,`.txt` → `motherInfo`;`日記-diary/YYYY.MM.DD/`:照片 + `.txt`(當日文字)。
+- Drive 連接器 `update_file` 可直接改名/搬移;**對應植物一律用資料夾 ID**,勿只靠名稱解析(會重複建株)。
 
-資料夾階層即資料模型(連 Google Drive 連接器後走訪):
-- 根資料夾「植物照片」→ 第一層資料夾 = **分類**(格式 `中文-屬名`,如 `棒槌-Pachypodium`,取中文「棒槌」當分類名、`Pachypodium` 當屬名)。
-- 第二層 = **植物**(格式 `中文-學名`,如 `一本尼-Eburneum`:名稱「一本尼」、`latin`=`Pachypodium Eburneum`;**中文在前、學名在後、學名詞首大寫**;解析取第一個 `-` 左為中文名、右為學名)。
-- 第三層 `#數字` 資料夾 = **個體**;直接放在植物夾的照片 = 未編號個體。
-- 照片檔名帶日期時當節點 `date`(支援 `2026年6月7日` 與 `2026:6:7 14:28:45`),否則用上傳日。`note`/`tag` 目前系統化產生(要依畫面內容寫需另外逐張看圖)。
-- 產生前用 `get_file_permissions` 抽查照片是否為 `anyone/reader`(公開),否則網站顯示不出。
-- 使用者選擇「完全以 Drive 為準重建」:每次同步都從資料夾重生 data.json,手寫 note/tag 會被覆蓋。
+## 「開始更新」
 
-## 「開始更新」流程(見 SKILL.md)
+使用者說「開始更新」→ 依 `SKILL.md` 附錄 A 執行(以照片 ID 集合比對偵測新照片,不信任上次同步日期;日記逐夾比對;發 ID;補 plant-notes;更新 SKILL;給 commit 訊息)。
 
-使用者說「**開始更新**」時,依 `SKILL.md`(repo 根目錄)這套工作手冊執行,**嚴格照順序**:
-1. **掃描 + 偵測變更**:掃 `C:\Users\MyUser\Google 雲端硬碟檔案串流\我的雲端硬碟\植物照片`(**不是 G:\,那是失效掛載**;bash 無法掛載,用 Glob/Read 或 Drive 連接器),和上次狀態(現有 data.json + 資料夾名)比對,分出:(A)新增/改名夾(名稱非中文-學名),(B)**舊植物補了新照片**——名稱沒變,要比對該株 data.json 照片數 vs Drive 該夾實際照片數才抓得到(注意檔名可能是 `2025:M:D` 冒號格式,別只掃 `2026*`;本機清單會快取時改用 Drive 連接器 search_files),(C)沒變則跳過。先列出「這次要處理的清單」再往下做。
-2. **查名+附加腳本**:找出未符合「中文-學名」的資料夾(分類夾=`中文-屬名`、植物夾=`中文-種名/園藝名`,學名詞首大寫;純英文如 Akki/Nano/E 不動),上網查名(原生種→種小名、品種→英文園藝名、交種→交種式;查不到維持中文並回報),把 `Rn '舊' '新'` **append** 到腳本(只加不刪)。都符合就跳到第 5 步。
-3. **請使用者跑 bat → 停下來等**:請使用者雙擊 `tools/run_rename.bat`,**⚠️ 停在這等他回覆「好了」+ Drive 同步完成才繼續**;在確認前往下做會用到舊資料夾名。
-4. **驗證改名**:重新 `Glob` 確認每筆生效;偶有第一次沒改到(同步延遲),腳本冪等,請他**再雙擊一次**即可,全部符合後再繼續。
-5. **更新 data.json**:**增量優先**——只抓新增/改名/補照片的那幾株補進 plants(保留其餘及 `categories`/`_說明`)。整棵樹用 subagent 走訪雖可,但 200+ 檔**很容易 API 中斷**,斷了就改增量補齊。latin 屬名注意:仙人掌/塊根/大戟分類夾是「科名」、觀葉是 Foliage → 這幾類要填該株**真正的屬**(如 Lophophora、Alocasia);棒槌類 `category` 一律填「棒槌」。
-6. **提醒 commit + push**。
+## 驗證習慣
 
-**腳本都在 `tools/` 資料夾**(改名 `rename_*.ps1`+`run_rename.bat`;模型壓縮 `optimize_models.*`)。改名只能靠這些在使用者電腦上跑——檔案工具/連接器都沒有改名功能:
-- `rename_plants.ps1`(分類 + 非鹿角蕨植物)、`rename_platycerium.ps1`(鹿角蕨):存成 **UTF-8 + BOM**(否則 PowerShell 5.1 讀不對中文);每筆用 `Rn` 函式含 `Test-Path` 保護,已存在/找不到就跳過。
-- `run_rename.bat`:純 ASCII、`chcp 65001`、`-ExecutionPolicy Bypass` 依序呼叫兩支 `.ps1`。
-- **累加式**:每次只 append 新行,**不刪**舊行;已改好的靠 `Test-Path` 自動跳過。
-- 分類名對照與命名決策、今日已建立的中↔英對照表,詳見 `SKILL.md`。
-
-## app.js 重點
-
-- `state`:`view / tab / selected / indiv / data / cats / lbUrl / lbScale`。
-- `load()` fetch `./data.json` → `render()` 依 `view` 呼叫 `renderLobby / renderGrid / renderDetail`。
-- 互動用事件委派:`data-act`(enter/tab/open/indiv/lobby/back-grid/zoom)+ `data-i`,`#app` 單一 click 監聽。
-- `init3D()` 在 `#bg` 內加一張 `#fx3d` canvas,手寫 3D 粒子場(透視投影 + 滑鼠/陀螺儀視差 + 連線 + 微光),大廳全強度、其他頁 `window.__fxMode(view)` 自動淡到很弱;使用者資料經 `esc()` 轉義。
-
-## 驗證習慣(每次改完必做)
-
-1. `data.json`:`json.load` 驗證;`json.dump`(indent=2, ensure_ascii=False)寫入。
-2. `app.js`:`node --check app.js` 過語法;用輕量 DOM shim(stub `document/window/fetch`)跑 `load()` 與模擬 click,驗證大廳→分類→個體切換→時間軸→燈箱。jsdom 在此環境被擋。
-3. **注意此掛載點對 app.js 分次/大量寫入偶爾會截斷** → 改動後務必 `node --check`;若被截斷,用單次 `cat > app.js <<'EOF'` 完整重寫。
-
-## 部署(GitHub Pages)
-
-- commit 全部檔案 → main / root。字型走 Google Fonts CDN,瀏覽需連網。
-- **快取破壞**:`index.html` 對 `styles.css`/`app.js` 用 `?v=N` 版本參數;**每次改 css/js 就把 N +1**,避免使用者被舊快取卡成白畫面。目前為 `?v=6`。
-- **燈箱隱藏坑**:`#lightbox` 用 `hidden` 屬性,但 `.lightbox{display:flex}` 會蓋過 `[hidden]` 的預設 `display:none`,導致燈箱變成永遠蓋滿畫面的深色遮罩(整頁看似全黑,其實內容已渲染)。務必保留 `.lightbox[hidden]{display:none}` 這條規則。
-- 若使用者回報「空白/開不起來」:多半是舊快取——先請他無痕視窗或 Ctrl+Shift+R;根治靠上面的 `?v=N` bump。
+1. `data.json`:`json.load` 驗證;`json.dump(indent=2, ensure_ascii=False)`。
+2. JS:`node --check app.js`(及改過的內容檔);掛載點偶爾截斷大檔寫入,改完必檢查。
+3. 燈箱:務必保留 `.lightbox[hidden]{display:none}`。使用者回報白畫面先請 Ctrl+Shift+R。
+4. commit 訊息以兩個可複製的程式碼區塊給出(Summary / Description)。
