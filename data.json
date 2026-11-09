@@ -2852,6 +2852,12 @@
               "tag": "#31",
               "note": "",
               "photo": "1DG2hGOwuLXAxE3kSXLX5mnjY3MkYqfuM"
+            },
+            {
+              "date": "2026.11.07",
+              "tag": "#31",
+              "note": "",
+              "photo": "1tnOhn0G2SmjNt3Ip-nEYP7l4rYDIJrKE"
             }
           ],
           "mother": [
@@ -3280,28 +3286,23 @@
       "name": "侏儒捲葉女王",
       "latin": "Platycerium wandae (Dwarf)",
       "category": "鹿角蕨",
-      "date": "2026.08.22",
+      "date": "2026.11.08",
       "note": "",
-      "cover": "1FZEJIkUx-cWSTXNH0VtaJ8wpQHNsTBKF",
+      "cover": "16_ed8aDjHreUTjgv7uolQDbNQB9xoD_g",
       "individuals": [
         {
-          "label": "",
-          "cover": "1FZEJIkUx-cWSTXNH0VtaJ8wpQHNsTBKF",
+          "label": "#01",
+          "name": "",
+          "cover": "16_ed8aDjHreUTjgv7uolQDbNQB9xoD_g",
           "timeline": [
             {
-              "date": "2026.08.02",
-              "tag": "",
+              "date": "2026.11.08",
+              "tag": "#01",
               "note": "",
-              "photo": "1D48YMIWMCBcBAvqcPyQUvm2vAMqljtJP"
-            },
-            {
-              "date": "2026.08.22",
-              "tag": "",
-              "note": "",
-              "photo": "1FZEJIkUx-cWSTXNH0VtaJ8wpQHNsTBKF"
+              "photo": "16_ed8aDjHreUTjgv7uolQDbNQB9xoD_g"
             }
           ],
-          "id": "PL-017-001"
+          "id": "PL-017-004"
         }
       ],
       "pid": "PL-017",
@@ -3483,9 +3484,6 @@
               "note": "",
               "photo": "1nhVyVixEKmXxPTY72yZpou_WRkqLcS87"
             }
-          ],
-          "mother": [
-            "1Y-CHmwlHVUL401GlDfm8ZDaz4HKd2ktD"
           ],
           "id": "PL-029-001"
         },
@@ -4866,12 +4864,6 @@
           "cover": "1TpgNInMKY5OahUYb5IUGFOdf-x1453S8",
           "timeline": [
             {
-              "date": "2026.08.02",
-              "tag": "#03",
-              "note": "",
-              "photo": "1mO3Vkbp-yG2R1yEgPVu-vDK1-k5oWns3"
-            },
-            {
               "date": "2026.08.22",
               "tag": "#03",
               "note": "",
@@ -6014,6 +6006,12 @@
               "tag": "",
               "note": "",
               "photo": "1VVpwFaKH0HNbo4oc20Fn1FUTbEftG-7j"
+            },
+            {
+              "date": "2026.11.09",
+              "tag": "",
+              "note": "",
+              "photo": "1E69nbO_EOoE72k0ZR-9LGD4HOOaHfmlS"
             }
           ],
           "id": "PL-021-001"
@@ -7664,6 +7662,12 @@
               "tag": "#01",
               "note": "",
               "photo": "1LIQ-JVTDHDvHD5Z3p0IUKFcUs4Vc7Acn"
+            },
+            {
+              "date": "2026.11.07",
+              "tag": "#01",
+              "note": "",
+              "photo": "16zh9JnQ4xxEJAAOcE5agyqMd7lgW3aJa"
             }
           ],
           "id": "CA-009-001"
@@ -10784,6 +10788,12 @@
               "tag": "",
               "note": "",
               "photo": "1fDKRu1gsdNrCdO9CXZOV4ezMhLysWGwQ"
+            },
+            {
+              "date": "2026.11.08",
+              "tag": "",
+              "note": "",
+              "photo": "1ZUeN34cLcBl2XMYjt32GLJ9wMJlgY5oz"
             }
           ],
           "id": "FO-006-001"
@@ -11701,6 +11711,12 @@
               "tag": "",
               "note": "",
               "photo": "1NUtqzHRQHq4RSUTRHjYEYPJ_Xrg6qFfJ"
+            },
+            {
+              "date": "2026.11.07",
+              "tag": "",
+              "note": "",
+              "photo": "1ltFu9BKwnjKx2gIMDwXWGoNYql6gcEyX"
             }
           ],
           "id": "PA-013-001"
@@ -12885,6 +12901,12 @@
               "tag": "",
               "note": "",
               "photo": "1vcG2QsGJKzU7mltTaMdw32pKkZ87o9-w"
+            },
+            {
+              "date": "2026.11.08",
+              "tag": "",
+              "note": "",
+              "photo": "1Tjkob_KvJL84hIJqe5ka_D9D5j9aWhrN"
             }
           ],
           "id": "FO-015-001"
@@ -13762,7 +13784,7 @@
     }
   ],
   "_ids": {
-    "說明": "個體 ID = 分類碼-植物序號-個體序號(各3碼)。鹿角蕨 001–018 為 18 原生種「種位」,同種株共用、個體號在種內接著發;其餘依入手日期。ID 一經發出永不更改/重用。新植物:取 counters[分類碼]+1;新個體:原生種取 speciesNext[種小名]+1,否則取該株個體號最大值+1。併株/刪株後的舊號記在 retired,同樣不得重用。",
+    "說明": "個體 ID = 分類碼-植物序號-個體序號(各3碼)。鹿角蕨 001–018 為 18 原生種「種位」,同種株共用、個體號在種內接著發;其餘依入手日期。ID 一經發出永不更改/重用。新植物:取 counters[分類碼]+1;新個體:原生種取 speciesNext[種小名]+1,否則取該株個體號最大值+1。併株/刪株/刪個體後的舊號記在 retired,同樣不得重用。",
     "codes": {
       "鹿角蕨": "PL",
       "仙人掌": "CA",
@@ -13820,11 +13842,12 @@
       "PL-014": 2,
       "PL-015": 36,
       "PL-016": 1,
-      "PL-017": 3,
+      "PL-017": 4,
       "PL-018": 36
     },
     "retired": {
-      "CA-031": "兜:2026-11-06 併入 紫兜 CA-004-001(同一株重複建檔),此號不再使用"
+      "CA-031": "兜:2026-11-06 併入 紫兜 CA-004-001(同一株重複建檔),此號不再使用",
+      "PL-017-001": "侏儒捲葉女王 舊無編號個體:2026-11-09 照片已刪(Drive 垃圾桶),#01 為另一株新個體 PL-017-004,此號不再使用"
     }
   }
 }
