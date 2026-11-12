@@ -6,7 +6,7 @@
 
 ## 檔案一覽
 
-- `index.html` 骨架;各 css/js 用 `?v=N` 快取破壞(**改哪支就把它的 N +1**,目前 `styles.css?v=80`、`app.js?v=83`,其餘見 SKILL §10)。
+- `index.html` 骨架;各 css/js 用 `?v=N` 快取破壞(**改哪支就把它的 N +1**,目前 `styles.css?v=81`、`app.js?v=84`,其餘見 SKILL §10)。
 - `app.js` 主程式(IIFE、免框架):大廳 / 分類牆(鹿角蕨 18 原種圖鑑、日記一日一卡)/ 詳情(個體下拉 + 來源·母株 + 時間軸)/ 關於 / 知識庫 / 搜尋(含 ID)/ `?id=` 深連結。
 - `styles.css` 全部樣式。
 - `data.json` 內容主檔(由 Drive「開始更新」產生)。

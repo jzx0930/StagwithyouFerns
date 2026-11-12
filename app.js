@@ -119,6 +119,7 @@
   function driveImg(v, w) {
     if (!v) return null;
     if (/^https?:/i.test(v)) return v;
+    if (/[\/.]/.test(v)) return v;   // 站內相對路徑(例 kb-img/xxx.jpg)
     return 'https://lh3.googleusercontent.com/d/' + v + '=w' + (w || 1000);
   }
   function coverImg(v, w, alt) {
@@ -337,6 +338,14 @@
     function closeUl() { if (inUl) { html += '</ul>'; inUl = false; } }
     (body || []).forEach(function (ln) {
       if (ln == null || ln === '') { closeUl(); html += '<div class="kb-gap"></div>'; return; }
+      if (/^!img\s/.test(ln)) {   // '!img 路徑或DriveID|圖說'
+        closeUl();
+        var parts = ln.replace(/^!img\s+/, '').split('|'), src = driveImg(parts[0].trim(), 1200);
+        if (src) html += '<figure class="kb-fig"><img src="' + esc(src) + '" alt="' + esc(parts[1] || '') +
+          '" loading="lazy" decoding="async" data-act="zoom" data-url="' + esc(src) + '" onerror="this.parentNode.style.display=\'none\'">' +
+          (parts[1] ? '<figcaption>' + esc(parts[1].trim()) + '</figcaption>' : '') + '</figure>';
+        return;
+      }
       if (/^#\s/.test(ln)) { closeUl(); html += '<h3 class="kb-h">' + esc(ln.replace(/^#\s/, '')) + '</h3>'; return; }
       if (/^[•\-]\s/.test(ln)) { if (!inUl) { html += '<ul class="kb-ul">'; inUl = true; } html += '<li>' + esc(ln.replace(/^[•\-]\s/, '')) + '</li>'; return; }
       closeUl(); html += '<p class="kb-p">' + esc(ln) + '</p>';
