@@ -11,6 +11,7 @@
 - `styles.css` 全部樣式。
 - `data.json` 內容主檔(由 Drive「開始更新」產生)。
 - 手寫內容檔(Drive 同步不覆蓋):`plant-notes.js`(每株介紹)、`about.js`(關於頁)、`knowledge.js`(知識庫)、`sources.js`(來源·母株文字備援)。
+- 知識庫內文插圖:body 寫 `'!img kb-img/檔名.jpg?v=N|圖說'`,圖檔放 `kb-img/`(要推上庫)。第三方內容改寫不照抄、使用者不要文字出處。Mingo Plants(`@mingo_plants`)是使用者自己的帳號,其影片截圖可去浮水印。
 - `staghorn-fern.js`、`orb.js`、`intro.js`、`layout.js`、`config/`、`shop/`、`models/<屬名>/<屬名>.glb`。
 - `tools/` 使用者電腦上跑的 PowerShell/bat(大量改名、日記整理、母株夾、模型壓縮等)。
 
