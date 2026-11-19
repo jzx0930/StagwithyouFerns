@@ -6,7 +6,7 @@
 
 ## 檔案一覽
 
-- `index.html` 骨架;各 css/js 用 `?v=N` 快取破壞(**改哪支就把它的 N +1**,目前 `styles.css?v=81`、`app.js?v=84`,其餘見 SKILL §10)。
+- `index.html` 骨架;各 css/js 用 `?v=N` 快取破壞(**改哪支就把它的 N +1**,目前 `styles.css?v=82`、`app.js?v=85`,其餘見 SKILL §10)。
 - `app.js` 主程式(IIFE、免框架):大廳 / 分類牆(鹿角蕨 18 原種圖鑑、日記一日一卡)/ 詳情(個體下拉 + 來源·母株 + 時間軸)/ 關於 / 知識庫 / 搜尋(含 ID)/ `?id=` 深連結。
 - `styles.css` 全部樣式。
 - `data.json` 內容主檔(由 Drive「開始更新」產生)。
@@ -39,7 +39,7 @@
 - 混屬分類(仙人掌/大戟/塊根/多肉/觀葉)多一層**屬名夾**(純拉丁);鹿角蕨/棒槌/龍舌蘭無屬名夾。
 - `母株/` 夾:照片 → `mother`,`.txt` → `motherInfo`;`日記-diary/YYYY.MM.DD/`:照片 + `.txt`(當日文字)。
 - Drive 連接器 `update_file` 可直接改名/搬移;**對應植物一律用資料夾 ID(data.json `fid`)**,勿只靠名稱解析(會重複建株)。
-- `植物照片/` 根目錄:`知識庫素材/` = 知識庫素材(同步時比對 knowledge.js 並回報);`素材/`、`文案/`、`StagwithyourFerns_Seasonal_TimeSet/` 一律忽略。
+- `植物照片/` 根目錄:`知識庫素材/` = 知識庫素材(同步時比對 knowledge.js 並回報);`介質/` = 知識庫「介質介紹」的照片(檔名=介質名,ID 填進對應 `media-*` 的 `img`);`素材/`、`文案/`、`StagwithyourFerns_Seasonal_TimeSet/` 一律忽略。
 
 ## 「開始更新」
 

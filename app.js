@@ -369,7 +369,9 @@
       if (!items.length) return '';
       return '<div class="kb-sec"><div class="kb-cat">' + esc(c) + '</div><div class="kb-grid">' +
         items.map(function (a) {
-          return '<div class="kb-card" data-act="article" data-id="' + esc(a.id) + '">' +
+          var sq = a.cat === '介質介紹';
+          return '<div class="kb-card' + (sq ? ' kb-card-sq' : '') + '" data-act="article" data-id="' + esc(a.id) + '">' +
+            (sq ? kbSquare(a) : '') +
             '<div class="kb-ctitle">' + esc(a.title) + '</div>' +
             (a.lead ? '<div class="kb-clead">' + esc(a.lead) + '</div>' : '') +
             '<div class="kb-more">閱讀 →</div></div>';
@@ -382,11 +384,20 @@
       secs + '</div>';
     animCards('#app .kb-card', 18);
   }
+  // 介質介紹:固定正方形圖框(沒圖時顯示名稱佔位)
+  function kbSquare(a, big) {
+    var src = a.img ? driveImg(a.img, big ? 900 : 500) : null;
+    return '<div class="kb-sq' + (big ? ' kb-sq-big' : '') + '">' +
+      (src ? '<img src="' + esc(src) + '" alt="' + esc(a.title) + '" loading="lazy" decoding="async"' +
+        (big ? ' data-act="zoom" data-url="' + esc(src) + '"' : '') + ' onerror="this.remove()">' : '') +
+      '<span class="kb-sq-ph">' + esc(a.short || a.title) + '</span></div>';
+  }
   function renderArticle() {
     var arts = (window.SF_KNOWLEDGE || []), a = null;
     for (var i = 0; i < arts.length; i++) { if (arts[i].id === state.article) { a = arts[i]; break; } }
     if (!a) { go('knowledge'); return; }
-    var cover = a.img ? '<div class="kb-cover">' + coverImg(a.img, 1400, a.title) + '</div>' : '';
+    var cover = a.cat === '介質介紹' ? kbSquare(a, true) :
+      (a.img ? '<div class="kb-cover">' + coverImg(a.img, 1400, a.title) + '</div>' : '');
     app.innerHTML = '<div class="wrap narrow kb-article">' +
       '<div class="back-row" data-lay="kb.abk"><span class="pill-btn" data-act="knowledge">← 回到知識庫</span></div>' +
       '<div class="eyebrow">' + esc(a.cat) + '</div>' +
