@@ -39,7 +39,7 @@
 - 混屬分類(仙人掌/大戟/塊根/多肉/觀葉)多一層**屬名夾**(純拉丁);鹿角蕨/棒槌/龍舌蘭無屬名夾。
 - `母株/` 夾:照片 → `mother`,`.txt` → `motherInfo`;`日記-diary/YYYY.MM.DD/`:照片 + `.txt`(當日文字)。
 - Drive 連接器 `update_file` 可直接改名/搬移;**對應植物一律用資料夾 ID(data.json `fid`)**,勿只靠名稱解析(會重複建株)。
-- `植物照片/` 根目錄:`知識庫素材/` = 知識庫素材(同步時比對 knowledge.js 並回報);`介質/` = 知識庫「介質介紹」的照片(檔名=介質名,ID 填進對應 `media-*` 的 `img`);`素材/`、`文案/`、`StagwithyourFerns_Seasonal_TimeSet/` 一律忽略。
+- `植物照片/` 根目錄:`知識庫素材/` = 知識庫素材(同步時比對 knowledge.js 並回報);`介質/` = 知識庫「介質介紹」的照片(每種介質一個子夾,夾名=該篇 `short`;取子夾最新一張圖 ID 填進對應 `media-*` 的 `img`,子夾 ID 見 SKILL);`素材/`、`文案/`、`StagwithyourFerns_Seasonal_TimeSet/` 一律忽略。
 
 ## 「開始更新」
 
