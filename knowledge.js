@@ -1039,7 +1039,7 @@ window.SF_KNOWLEDGE = [
 ]},
 
 /* ---------- 介質介紹(每種一篇;img 填 Drive 照片 ID,列表與內頁都顯示固定正方形框) ---------- */
-{ id:'media-akadama', cat:'介質介紹', group:'介質', short:'赤玉土', title:'赤玉土(硬質)', lead:'日本關東火山灰土燒結成的紅褐色顆粒,保水、保肥、透氣兼具,是顆粒介質的基底。', img:'', body:[
+{ id:'media-akadama', cat:'介質介紹', group:'介質', short:'赤玉土', title:'赤玉土(硬質)', lead:'日本關東火山灰土燒結成的紅褐色顆粒,保水、保肥、透氣兼具,是顆粒介質的基底。', img:'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Akadama_dry.jpg/480px-Akadama_dry.jpg', imgCredit:'圖:Globalist1789 / Wikimedia Commons(PD)', body:[
   '# 是什麼',
   '日本關東地區火山灰堆積成的紅土,篩成顆粒後販售;「硬質」「雙線/三線」是經過燒製或篩選、比較不容易崩解的等級。',
   '# 特性',
@@ -1056,7 +1056,7 @@ window.SF_KNOWLEDGE = [
   '• 喜鹼的仙人掌(岩牡丹、烏羽玉、帝冠)比例不要太高,要搭配石灰石。'
 ]},
 
-{ id:'media-kanuma', cat:'介質介紹', group:'介質', short:'鹿沼土', title:'鹿沼土', lead:'黃色、輕而多孔的火山浮石土,保水透氣、偏酸性,適合喜酸植物。', img:'', body:[
+{ id:'media-kanuma', cat:'介質介紹', group:'介質', short:'鹿沼土', title:'鹿沼土', lead:'黃色、輕而多孔的火山浮石土,保水透氣、偏酸性,適合喜酸植物。', img:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/%E9%B9%BF%E6%B2%BC%E5%9C%9F.jpg/480px-%E9%B9%BF%E6%B2%BC%E5%9C%9F.jpg', imgCredit:'圖:KENPEI / Wikimedia Commons(CC BY-SA 3.0)', body:[
   '# 是什麼',
   '日本栃木縣鹿沼一帶的火山浮石風化土,淡黃色、質地輕軟。',
   '# 特性',
@@ -1088,7 +1088,7 @@ window.SF_KNOWLEDGE = [
   '• 用前過篩去粉。'
 ]},
 
-{ id:'media-pumice', cat:'介質介紹', group:'介質', short:'輕石', title:'輕石(浮石)', lead:'火山噴發形成的多孔輕質石,排水透氣好、不崩解,和日向土同類。', img:'', body:[
+{ id:'media-pumice', cat:'介質介紹', group:'介質', short:'輕石', title:'輕石(浮石)', lead:'火山噴發形成的多孔輕質石,排水透氣好、不崩解,和日向土同類。', img:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Pumice_stone_detail444.jpg/480px-Pumice_stone_detail444.jpg', imgCredit:'圖:Benjamint444 / Wikimedia Commons(CC BY-SA 3.0)', body:[
   '# 是什麼',
   '岩漿冷卻時氣體逸出形成的多孔火山石,白到淺灰色,會浮在水上。市售有日本、紐西蘭、印尼等不同產地。',
   '# 特性',
@@ -1102,7 +1102,7 @@ window.SF_KNOWLEDGE = [
   '• 太輕,表層單用容易被水沖浮,最好上面再鋪一層較重的顆粒。'
 ]},
 
-{ id:'media-volcanic', cat:'介質介紹', group:'介質', short:'火山石', title:'火山石(火山岩)', lead:'紅或黑色的多孔玄武岩碎石,重、硬、不崩解,排水透氣好。', img:'', body:[
+{ id:'media-volcanic', cat:'介質介紹', group:'介質', short:'火山石', title:'火山石(火山岩)', lead:'紅或黑色的多孔玄武岩碎石,重、硬、不崩解,排水透氣好。', img:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Scoria_Macro_Digon3.jpg/480px-Scoria_Macro_Digon3.jpg', imgCredit:'圖:Jonathan Zander (Digon3) / Wikimedia Commons(CC BY-SA 3.0)', body:[
   '# 是什麼',
   '玄武岩質的火山渣,紅色或黑色,表面粗糙多孔。',
   '# 特性',
@@ -1132,7 +1132,7 @@ window.SF_KNOWLEDGE = [
   '• 用前過篩去粉。'
 ]},
 
-{ id:'media-leca', cat:'介質介紹', group:'介質', short:'發泡煉石', title:'發泡煉石', lead:'黏土高溫燒成的圓形中空顆粒,輕、不崩解,適合當排水層與水培。', img:'', body:[
+{ id:'media-leca', cat:'介質介紹', group:'介質', short:'發泡煉石', title:'發泡煉石', lead:'黏土高溫燒成的圓形中空顆粒,輕、不崩解,適合當排水層與水培。', img:'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Hydroton.jpg/480px-Hydroton.jpg', imgCredit:'圖:Lucis / Wikimedia Commons(CC BY-SA 3.0)', body:[
   '# 是什麼',
   '黏土經高溫發泡燒製的圓球狀顆粒,外硬內多孔。',
   '# 特性',
@@ -1147,7 +1147,7 @@ window.SF_KNOWLEDGE = [
   '• 太圓不好固定根,單用時植株容易晃;混用或只當底層。'
 ]},
 
-{ id:'media-peat', cat:'介質介紹', group:'介質', short:'泥炭土', title:'泥炭土', lead:'苔蘚與植物殘體在濕地分解堆積成的有機介質,保水保肥強、偏酸。', img:'', body:[
+{ id:'media-peat', cat:'介質介紹', group:'介質', short:'泥炭土', title:'泥炭土', lead:'苔蘚與植物殘體在濕地分解堆積成的有機介質,保水保肥強、偏酸。', img:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Schultz_Sphagnum_Peat_Moss.jpg/480px-Schultz_Sphagnum_Peat_Moss.jpg', imgCredit:'圖:Ragesoss / Wikimedia Commons(CC BY-SA 3.0)', body:[
   '# 是什麼',
   '泥炭苔等植物在低溫濕地長年堆積、半分解而成,市售多為歐洲進口、已調整酸鹼與加肥的「泥炭培養土」。',
   '# 特性',
@@ -1192,7 +1192,7 @@ window.SF_KNOWLEDGE = [
   '• 分解時會消耗一點氮,觀葉植物要記得補肥。'
 ]},
 
-{ id:'media-coirfiber', cat:'介質介紹', group:'介質', short:'椰纖', title:'椰纖', lead:'椰子外殼的纖維,透氣保水、不易腐爛,可替代部分水苔或泥炭。', img:'', body:[
+{ id:'media-coirfiber', cat:'介質介紹', group:'介質', short:'椰纖', title:'椰纖', lead:'椰子外殼的纖維,透氣保水、不易腐爛,可替代部分水苔或泥炭。', img:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Coir_fibery.jpg/480px-Coir_fibery.jpg', imgCredit:'圖:Fotokannan / Wikimedia Commons(CC BY-SA 3.0)', body:[
   '# 是什麼',
   '椰子殼外層的長纖維,壓成磚或成絲販售。',
   '# 特性',
@@ -1219,7 +1219,7 @@ window.SF_KNOWLEDGE = [
   '• 保水比樹皮多,南台灣雨季注意別悶。'
 ]},
 
-{ id:'media-limestone', cat:'介質介紹', group:'介質', short:'石灰石', title:'石灰石', lead:'碳酸鈣岩石碎粒,提供鈣質、把介質往弱鹼調,喜鈣仙人掌必備。', img:'', body:[
+{ id:'media-limestone', cat:'介質介紹', group:'介質', short:'石灰石', title:'石灰石', lead:'碳酸鈣岩石碎粒,提供鈣質、把介質往弱鹼調,喜鈣仙人掌必備。', img:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Limestone_Road_Base.JPG/480px-Limestone_Road_Base.JPG', imgCredit:'圖:TCSGT / Wikimedia Commons(PD)', body:[
   '# 是什麼',
   '碳酸鈣為主的沉積岩碎石,白到灰色。',
   '# 特性',
@@ -1248,7 +1248,7 @@ window.SF_KNOWLEDGE = [
   '• 喜酸的種類不要加。'
 ]},
 
-{ id:'media-quartz', cat:'介質介紹', group:'介質', short:'石英砂', title:'石英砂', lead:'二氧化矽砂粒,硬、不崩解、化學上惰性,只負責排水與結構。', img:'', body:[
+{ id:'media-quartz', cat:'介質介紹', group:'介質', short:'石英砂', title:'石英砂', lead:'二氧化矽砂粒,硬、不崩解、化學上惰性,只負責排水與結構。', img:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Quartz_sand.jpg/480px-Quartz_sand.jpg', imgCredit:'圖:Hi-Res Images of Chemical Elements / Wikimedia Commons(CC BY 3.0)', body:[
   '# 是什麼',
   '石英(二氧化矽)為主的砂粒,白色或半透明。',
   '# 特性',
@@ -1262,7 +1262,7 @@ window.SF_KNOWLEDGE = [
   '• 太細會讓介質變密,比例不要太高。'
 ]},
 
-{ id:'media-riversand', cat:'介質介紹', group:'介質', short:'河砂', title:'河砂(細砂)', lead:'河床沉積的砂,便宜好取得,能讓顆粒配方更緊實、抓根。', img:'', body:[
+{ id:'media-riversand', cat:'介質介紹', group:'介質', short:'河砂', title:'河砂(細砂)', lead:'河床沉積的砂,便宜好取得,能讓顆粒配方更緊實、抓根。', img:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/A_close-up_of_river_sand.JPG/480px-A_close-up_of_river_sand.JPG', imgCredit:'圖:Thamizhpparithi Maari / Wikimedia Commons(CC BY-SA 3.0)', body:[
   '# 是什麼',
   '河床沉積的天然砂,成分多樣,顏色依產地不同。',
   '# 特性',
@@ -1277,7 +1277,7 @@ window.SF_KNOWLEDGE = [
   '• 海砂含鹽,不能用。'
 ]},
 
-{ id:'media-perlite', cat:'介質介紹', group:'介質', short:'珍珠石', title:'珍珠石', lead:'火山玻璃高溫膨化的白色顆粒,很輕、增加透氣,不保肥。', img:'', body:[
+{ id:'media-perlite', cat:'介質介紹', group:'介質', short:'珍珠石', title:'珍珠石', lead:'火山玻璃高溫膨化的白色顆粒,很輕、增加透氣,不保肥。', img:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Schultz_Horticultural_Perlite.jpg/480px-Schultz_Horticultural_Perlite.jpg', imgCredit:'圖:Ragesoss / Wikimedia Commons(CC BY-SA 3.0)', body:[
   '# 是什麼',
   '珍珠岩(火山玻璃)加熱膨脹成的白色輕顆粒。',
   '# 特性',
@@ -1290,7 +1290,7 @@ window.SF_KNOWLEDGE = [
   '• 倒袋時粉塵多,建議先噴濕。'
 ]},
 
-{ id:'media-vermiculite', cat:'介質介紹', group:'介質', short:'蛭石', title:'蛭石', lead:'雲母類礦物膨化成的片狀顆粒,保水保肥強,適合播種與扦插。', img:'', body:[
+{ id:'media-vermiculite', cat:'介質介紹', group:'介質', short:'蛭石', title:'蛭石', lead:'雲母類礦物膨化成的片狀顆粒,保水保肥強,適合播種與扦插。', img:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Vermiculite1.jpg/480px-Vermiculite1.jpg', imgCredit:'圖:KENPEI / Wikimedia Commons(CC BY-SA 3.0)', body:[
   '# 是什麼',
   '雲母類礦物高溫膨化成的金褐色片狀顆粒。',
   '# 特性',

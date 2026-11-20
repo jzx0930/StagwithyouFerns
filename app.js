@@ -390,7 +390,8 @@
     return '<div class="kb-sq' + (big ? ' kb-sq-big' : '') + '">' +
       (src ? '<img src="' + esc(src) + '" alt="' + esc(a.title) + '" loading="lazy" decoding="async"' +
         (big ? ' data-act="zoom" data-url="' + esc(src) + '"' : '') + ' onerror="this.remove()">' : '') +
-      '<span class="kb-sq-ph">' + esc(a.short || a.title) + '</span></div>';
+      '<span class="kb-sq-ph">' + esc(a.short || a.title) + '</span></div>' +
+      (big && src && a.imgCredit ? '<div class="kb-sq-credit">' + esc(a.imgCredit) + '</div>' : '');
   }
   function renderArticle() {
     var arts = (window.SF_KNOWLEDGE || []), a = null;

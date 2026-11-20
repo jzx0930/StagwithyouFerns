@@ -494,3 +494,4 @@ body {
 }
 .kb-grid:has(.kb-card-sq){grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
 @media (max-width:640px){ .kb-grid:has(.kb-card-sq){grid-template-columns:repeat(2,1fr)} }
+.kb-sq-credit{width:min(360px,100%);margin:-14px auto 22px;font-size:11px;opacity:.5;text-align:center;line-height:1.4}
