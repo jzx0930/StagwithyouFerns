@@ -1,0 +1,41 @@
+# 每次 push(內容有變)後,把 data.json 與內容檔對齊到 Supabase 的 swf schema。
+# 需要 repo Secrets:SUPABASE_URL、SUPABASE_SERVICE_KEY
+name: Import to Supabase
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - data.json
+      - plant-notes.js
+      - knowledge.js
+      - sources.js
+      - about.js
+      - tools/import_to_supabase.py
+      - tools/export_content.js
+      - .github/workflows/import.yml
+  workflow_dispatch:
+
+concurrency:
+  group: swf-import
+  cancel-in-progress: false
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: pip install requests
+      - name: Import
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          PYTHONIOENCODING: utf-8
+        run: python tools/import_to_supabase.py

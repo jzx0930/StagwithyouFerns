@@ -15,6 +15,12 @@ Supabase 的 swf schema(與 PlantDex 同一個專案、不同 schema)。
   python tools/import_to_supabase.py            實際匯入
   python tools/import_to_supabase.py --dry-run  只組資料、檢查、印出筆數,不連線
   python tools/import_to_supabase.py --dump X   把要寫入的資料存成 JSON(測試用)
+  python tools/import_to_supabase.py --no-mirror  只新增/覆蓋,不刪除資料庫多出來的列
+  python tools/import_to_supabase.py --force      略過「一次刪超過 20%」的安全中止
+
+預設會「對齊」:資料庫裡有、但 data.json / 內容檔已經沒有的列會被刪除
+(過渡期以 repo 的檔案為準)。互動資料(收藏/留言/瀏覽數/詢價)與同步紀錄不會動。
+GitHub Actions(.github/workflows/import.yml)在每次 push 後自動執行本腳本。
 """
 import hashlib, json, os, subprocess, sys
 
@@ -22,6 +28,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 DRY = '--dry-run' in sys.argv or '-n' in sys.argv
 DUMP = sys.argv[sys.argv.index('--dump') + 1] if '--dump' in sys.argv else None
+MIRROR = '--no-mirror' not in sys.argv
+FORCE = '--force' in sys.argv
 DIARY_KEY, DIARY_IID = 'diary', 'DIARY-000'
 
 
@@ -123,6 +131,18 @@ def build():
     return T, warn
 
 
+# 對齊時要檢查的表與主鍵(由子到父刪,避免外鍵擋住);複合主鍵用 tuple
+MIRROR_PK = [('photos', ('drive_id',)), ('sources', ('plant_key', 'label')), ('plant_notes', ('plant_key',)),
+             ('plant_folders', ('plant_key',)), ('individuals', ('id',)), ('plants', ('key',)),
+             ('articles', ('id',)), ('article_cats', ('name',)), ('categories', ('name',)), ('id_state', ('key',))]
+
+
+def stale_keys(existing, rows, pk):
+    """資料庫現有主鍵 - 這次要寫入的主鍵 = 該刪的。"""
+    keep = {tuple(r[k] for k in pk) for r in rows}
+    return [e for e in existing if tuple(e[k] for k in pk) not in keep]
+
+
 ORDER = ['categories', 'plants', 'plant_folders', 'individuals', 'photos', 'id_state',
          'plant_notes', 'sources', 'article_cats', 'articles', 'about']
 
@@ -168,6 +188,27 @@ def main():
         r = requests.get(url + '/rest/v1/' + t + '?select=*&limit=1', headers=dict(H, Prefer='count=exact'), timeout=60)
         total = (r.headers.get('content-range') or '/?').split('/')[-1]
         print('  %-14s 寫入 %4d 筆,資料庫現有 %s 筆' % (t, len(rows), total))
+    if MIRROR:
+        import urllib.parse
+        for t, pk in MIRROR_PK:
+            existing, off = [], 0
+            while True:
+                r = requests.get(url + '/rest/v1/%s?select=%s&order=%s&limit=1000&offset=%d'
+                                 % (t, ','.join(pk), ','.join(pk), off), headers=H, timeout=60)
+                r.raise_for_status(); page = r.json(); existing += page
+                if len(page) < 1000: break
+                off += 1000
+            gone = stale_keys(existing, T[t], pk)
+            if not gone: continue
+            if len(gone) > max(5, len(existing) * 0.2) and not FORCE:
+                print('[中止] %s 要刪 %d / %d 筆,超過 20%%;確認無誤請加 --force 重跑。' % (t, len(gone), len(existing)))
+                sys.exit(1)
+            for g in gone:
+                q = '&'.join('%s=eq.%s' % (k, urllib.parse.quote(str(g[k]), safe='')) for k in pk)
+                d = requests.delete(url + '/rest/v1/%s?%s' % (t, q), headers=H, timeout=60)
+                if d.status_code >= 300:
+                    print('[失敗] 刪除 %s %s:%s %s' % (t, g, d.status_code, d.text[:200])); sys.exit(1)
+            print('  %-14s 對齊:刪除 %d 筆(資料庫有、檔案已沒有)' % (t, len(gone)))
     print('匯入完成。')
 
 
