@@ -6,7 +6,7 @@
    改完把 index.html 的 config/supabase.js?v= 數字 +1。
 */
 window.SWF_BACKEND = {
-  enabled: false,
+  enabled: true,
   url: 'https://ouyfbhpkkpotsvnxtfrx.supabase.co',
   anonKey: 'sb_publishable_hwQaCPZbA_utfrfvsqE0cQ_GpowCaxH',
   schema: 'swf',
