@@ -1072,7 +1072,7 @@ window.SF_KNOWLEDGE = [
   '• 用前過篩去粉。'
 ]},
 
-{ id:'media-hyuga', cat:'介質介紹', group:'介質', short:'日向土', title:'日向土', lead:'日本宮崎產的硬質輕石,不易崩解、排水極好,是長期顆粒配方的骨架。', img:'', body:[
+{ id:'media-hyuga', cat:'介質介紹', group:'介質', short:'日向土', title:'日向土', lead:'日本宮崎產的硬質輕石,不易崩解、排水極好,是長期顆粒配方的骨架。', img:'1nBnUDV8u78Udvp9Zib0sNQM12uo-j-jh', body:[
   '# 是什麼',
   '日本宮崎縣(舊稱日向)產的火山輕石,淺黃褐色,屬於硬質浮石。',
   '# 特性',
@@ -1102,7 +1102,7 @@ window.SF_KNOWLEDGE = [
   '• 太輕,表層單用容易被水沖浮,最好上面再鋪一層較重的顆粒。'
 ]},
 
-{ id:'media-volcanic', cat:'介質介紹', group:'介質', short:'火山石', title:'火山石(火山岩)', lead:'玄武岩質的多孔火山渣,常見紅、黑、灰、咖啡色——顏色來自鐵的氧化程度,重、硬、不崩解,排水透氣好。', img:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Scoria_Macro_Digon3.jpg/480px-Scoria_Macro_Digon3.jpg', imgCredit:'圖:Jonathan Zander (Digon3) / Wikimedia Commons(CC BY-SA 3.0)', body:[
+{ id:'media-volcanic', cat:'介質介紹', group:'介質', short:'火山石', title:'火山石(火山岩)', lead:'玄武岩質的多孔火山渣,常見紅、黑、灰、咖啡色——顏色來自鐵的氧化程度,重、硬、不崩解,排水透氣好。', img:'1iv1_ZaxTmD6bHLBthbiMwbJuooYnkYJ2', body:[
   '# 是什麼',
   '玄武岩質岩漿噴發時,氣體逸出留下大量孔洞的火山渣(scoria),表面粗糙多孔。市售「火山石」多半是這類,依產地與冷卻條件不同,有好幾種顏色。',
   '',
@@ -1180,7 +1180,7 @@ window.SF_KNOWLEDGE = [
   '• 乾透後用浸盆讓它重新吸水。'
 ]},
 
-{ id:'media-sphagnum', cat:'介質介紹', group:'介質', short:'水苔', title:'水苔', lead:'乾燥的泥炭苔,吸水量極大又透氣,鹿角蕨上板的主角。', img:'', body:[
+{ id:'media-sphagnum', cat:'介質介紹', group:'介質', short:'水苔', title:'水苔', lead:'乾燥的泥炭苔,吸水量極大又透氣,鹿角蕨上板的主角。', img:'1QASFe20yhUaRek1Tvyy6Hr72KbJITU70', body:[
   '# 是什麼',
   '泥炭苔(Sphagnum)曬乾後的長纖維,常見智利、紐西蘭產,依長度與等級分級。',
   '# 特性',
@@ -1238,7 +1238,7 @@ window.SF_KNOWLEDGE = [
   '• 保水比樹皮多,南台灣雨季注意別悶。'
 ]},
 
-{ id:'media-limestone', cat:'介質介紹', group:'介質', short:'石灰石', title:'石灰石', lead:'碳酸鈣岩石碎粒,提供鈣質、把介質往弱鹼調,喜鈣仙人掌必備。', img:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Limestone_Road_Base.JPG/480px-Limestone_Road_Base.JPG', imgCredit:'圖:TCSGT / Wikimedia Commons(PD)', body:[
+{ id:'media-limestone', cat:'介質介紹', group:'介質', short:'石灰石', title:'石灰石', lead:'碳酸鈣岩石碎粒,提供鈣質、把介質往弱鹼調,喜鈣仙人掌必備。', img:'1UFCjn4ejW2ntxqM1p0O4acdzBpV4nVYB', body:[
   '# 是什麼',
   '碳酸鈣為主的沉積岩碎石,白到灰色。',
   '# 特性',
@@ -1267,7 +1267,7 @@ window.SF_KNOWLEDGE = [
   '• 喜酸的種類不要加。'
 ]},
 
-{ id:'media-quartz', cat:'介質介紹', group:'介質', short:'石英砂', title:'石英砂', lead:'二氧化矽砂粒,硬、不崩解、化學上惰性,只負責排水與結構。', img:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Quartz_sand.jpg/480px-Quartz_sand.jpg', imgCredit:'圖:Hi-Res Images of Chemical Elements / Wikimedia Commons(CC BY 3.0)', body:[
+{ id:'media-quartz', cat:'介質介紹', group:'介質', short:'石英砂', title:'石英砂', lead:'二氧化矽砂粒,硬、不崩解、化學上惰性,只負責排水與結構。', img:'1R-HKnv8CdXk-Iu5Tg-_VrBXb8UaCPJyH', body:[
   '# 是什麼',
   '石英(二氧化矽)為主的砂粒,白色或半透明。',
   '# 特性',

@@ -37,3 +37,6 @@ SKILL.md
 tools/orb-vendor/node_modules/
 tools/orb-vendor/package.json
 tools/orb-vendor/package-lock.json
+
+# 規劃文件(含 Supabase 專案資訊,只留本機)
+Docs/

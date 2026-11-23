@@ -7712,6 +7712,12 @@
               "tag": "#01",
               "note": "",
               "photo": "16zh9JnQ4xxEJAAOcE5agyqMd7lgW3aJa"
+            },
+            {
+              "date": "2026.11.19",
+              "tag": "#01",
+              "note": "",
+              "photo": "18xMNEveUUp0W9tfGvUfRy8LNRxpPzXUf"
             }
           ],
           "id": "CA-009-001"
@@ -12963,6 +12969,18 @@
               "tag": "",
               "note": "",
               "photo": "1Tjkob_KvJL84hIJqe5ka_D9D5j9aWhrN"
+            },
+            {
+              "date": "2026.11.17",
+              "tag": "",
+              "note": "",
+              "photo": "1tN2pFWeL4Ijns5z1j-kLPqBvL_WQ6PWN"
+            },
+            {
+              "date": "2026.11.17",
+              "tag": "",
+              "note": "",
+              "photo": "1CSVQQZcF-Mpu438zFpJ8W4AkuqFBSzrc"
             }
           ],
           "id": "FO-015-001"
@@ -13241,7 +13259,9 @@
           "cover": "1laGiN9UAr7-mXsdedMiQV_wJWt0IMcNG",
           "timeline": [],
           "mother": [
-            "1laGiN9UAr7-mXsdedMiQV_wJWt0IMcNG"
+            "1laGiN9UAr7-mXsdedMiQV_wJWt0IMcNG",
+            "1rNni3NP-bVc6uO9geT43PYJfPrqZLd5n",
+            "1KvKcAXHk1eiQ8SnZqg8hiXy1y5XAvVKR"
           ],
           "id": "PL-050-001"
         }
@@ -13843,6 +13863,52 @@
       ],
       "pid": "EU-032",
       "fid": "1_My5rbWZr7dBn4aC3Ci3DwPftU4a65fY"
+    },
+    {
+      "name": "翠冠玉",
+      "latin": "Lophophora diffusa",
+      "category": "仙人掌",
+      "date": "2026.11.18",
+      "note": "",
+      "cover": "1hhsjB9oVLW1XdYmIEzoiCQlJQgNqi4Wf",
+      "individuals": [
+        {
+          "label": "#01",
+          "name": "日本村山大疣",
+          "cover": "1hhsjB9oVLW1XdYmIEzoiCQlJQgNqi4Wf",
+          "mother": [
+            "1aY8DfdaAj96o4fK9RC7V3zmjuQSXXs-Z"
+          ],
+          "timeline": [
+            {
+              "date": "2026.11.18",
+              "tag": "#01",
+              "note": "",
+              "photo": "1hhsjB9oVLW1XdYmIEzoiCQlJQgNqi4Wf"
+            },
+            {
+              "date": "2026.11.18",
+              "tag": "#01",
+              "note": "",
+              "photo": "1C35HIByPblH_cGzHGgveeq6Sn86wNut9"
+            }
+          ],
+          "id": "CA-054-001"
+        }
+      ],
+      "pid": "CA-054",
+      "fid": "1d5ELWdjbDjS32p732S1ch6gJAgDbQKlB"
+    },
+    {
+      "name": "銀鹿 x 皇冠",
+      "latin": "Platycerium veitchii x P. coronarium",
+      "category": "鹿角蕨",
+      "date": "",
+      "note": "",
+      "cover": "",
+      "individuals": [],
+      "pid": "PL-063",
+      "fid": "1uHSlwD5wP7WvYpuKErHRTbzmuAlhZ4TP"
     }
   ],
   "_ids": {
@@ -13858,8 +13924,8 @@
       "龍舌蘭": "AG"
     },
     "counters": {
-      "PL": 62,
-      "CA": 53,
+      "PL": 63,
+      "CA": 54,
       "EU": 32,
       "CX": 23,
       "SU": 9,

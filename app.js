@@ -174,9 +174,21 @@
   }
 
   // ---- 資料載入 ----
+  // 動態後端(Supabase)啟用時先讀資料庫;失敗/逾時/沒資料 → 退回靜態 data.json
+  function fetchStatic() {
+    return fetch('./data.json', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; });
+  }
+  function fetchData() {
+    if (window.SWF && window.SWF.enabled()) {
+      return window.SWF.loadAll().catch(function (e) {
+        if (window.console) console.warn('[SWF] 後端讀取失敗,改用 data.json:', e && e.message);
+        return fetchStatic();
+      });
+    }
+    return fetchStatic();
+  }
   function load() {
-    fetch('./data.json', { cache: 'no-store' })
-      .then(function (r) { return r.ok ? r.json() : null; })
+    fetchData()
       .then(function (d) {
         if (d && Array.isArray(d.plants)) {
           state.data = d.plants;
