@@ -51,4 +51,4 @@
 1. `data.json`:`json.load` 驗證;`json.dump(indent=2, ensure_ascii=False)`。
 2. JS:`node --check app.js`(及改過的內容檔);掛載點偶爾截斷大檔寫入,改完必檢查。
 3. 燈箱:務必保留 `.lightbox[hidden]{display:none}`。使用者回報白畫面先請 Ctrl+Shift+R。
-4. commit 訊息以兩個可複製的程式碼區塊給出(Summary / Description)。
+4. **改完由 Claude 直接 commit**(使用者只按 Push):只 `git add` 這次自己改到的檔案(不要 `add -A`——`note.txt`、`名稱.txt`、`tools/` 舊腳本、`data.json` 在沙箱裡會因換行符號顯示成已修改,不是真的變更),用 `git -c core.autocrlf=true -c user.name=… -c user.email=…`(沿用使用者上一筆 commit 的作者)commit;不要 push、不要動 `models/`(LFS)。commit 失敗時才改給兩個可複製的程式碼區塊(Summary / Description)。
