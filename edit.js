@@ -48,7 +48,7 @@
       else if (f.type === 'select') ctl = '<select id="' + id + '">' + f.options.map(function (o) {
         var v = typeof o === 'string' ? o : o.value, t = typeof o === 'string' ? o : o.text;
         return '<option value="' + esc(v) + '"' + (v === f.value ? ' selected' : '') + '>' + esc(t) + '</option>'; }).join('') + '</select>';
-      else ctl = '<input id="' + id + '" type="text" value="' + esc(f.value || '') + '" placeholder="' + esc(f.placeholder || '') + '">';
+      else ctl = '<input id="' + id + '" type="' + (f.type === 'password' ? 'password' : f.type === 'email' ? 'email' : 'text') + '" value="' + esc(f.value || '') + '" placeholder="' + esc(f.placeholder || '') + '">';
       return '<div class="sfe-f"><label for="' + id + '">' + esc(f.label) + '</label>' + ctl + '</div>';
     }).join('');
     back.innerHTML = '<div class="sfe-box" role="dialog" aria-modal="true"><h3>' + esc(opts.title) + '</h3>' +
@@ -221,10 +221,36 @@
     });
   }
 
+  // 登入視窗(訪客與管理者共用;Google 登入同時也是註冊)
+  function login(done) {
+    var m = modal({
+      title: '登入', hint: '用 Google 帳號登入最快(第一次登入會自動建立帳號)。帳號與 PlantDex 共用。',
+      html: '<div class="sfe-row" style="margin:0 0 14px"><button class="sfe-btn pri" data-g="1" style="width:100%">用 Google 登入</button></div><p class="sfe-hint" style="text-align:center;margin:0 0 8px">或用 Email 和密碼</p>',
+      fields: [{ key: 'email', label: 'Email', type: 'email' }, { key: 'pw', label: '密碼', type: 'password' }],
+      saveLabel: '登入',
+      onClick: function (b) { if (b.getAttribute('data-g')) A.signInWithGoogle(); },
+      onSave: function (v) {
+        if (!v.email.trim() || !v.pw) throw new Error('請輸入 Email 和密碼');
+        return A.signIn(v.email.trim(), v.pw).then(function () { if (done) done(); });
+      }
+    });
+    // 把 Google 按鈕移到欄位上方(modal 預設把 html 放在欄位後面)
+    var box = m.el.querySelector('.sfe-box'), g = box.querySelector('[data-g]').parentNode, p = g.nextSibling, f = box.querySelector('.sfe-f');
+    if (f) { box.insertBefore(g, f); box.insertBefore(p, f); }
+  }
+  function account(isAdmin, done) {
+    var s = A.session() || { user: {} };
+    modal({
+      title: '帳號', hint: '已登入:' + (s.user.email || '') + (isAdmin ? '\n你是這個網站的管理者。' : ''),
+      extra: (isAdmin ? [{ label: '進入後台', cls: 'pri', onClick: function () { location.href = 'admin.html'; } }] : [])
+        .concat([{ label: '登出', onClick: function (close) { return A.signOut().then(function () { close(); if (done) done(); }); } }])
+    });
+  }
+
   function ready() { return (A && window.SWF && window.SWF.enabled()) ? A.isAdmin() : Promise.resolve(false); }
   // 包一層:同步丟出的錯誤(例如離線備援)改用視窗顯示
   function safe(fn) { return function () { try { return fn.apply(null, arguments); } catch (e) { modal({ title: '無法編輯', hint: e.message }); } }; }
 
-  window.SWFEdit = { ready: ready, modal: modal, note: safe(note), sources: safe(sources), setCover: setCover,
+  window.SWFEdit = { ready: ready, modal: modal, login: login, account: account, note: safe(note), sources: safe(sources), setCover: setCover,
     coverPicker: safe(coverPicker), article: safe(article), removeArticle: safe(removeArticle) };
 })();

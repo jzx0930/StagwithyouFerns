@@ -20,13 +20,17 @@
   function socialBar() {
     var about = '<span class="social-link about-link" data-act="about" role="button" tabindex="0" aria-label="關於" title="關於">關於</span>';
     var kb = '<span class="social-link about-link" data-act="knowledge" role="button" tabindex="0" aria-label="知識庫" title="知識庫">知識庫</span>';
-    var nav = '<span class="nav-links">' + about + kb + '</span>';
+    var logged = !!(window.SWFAuth && window.SWFAuth.session());
+    var acct = (window.SWFEdit && window.SWF && window.SWF.enabled())
+      ? '<span class="social-link about-link" data-act="account" role="button" tabindex="0" aria-label="' + (logged ? '帳號' : '登入') + '" title="' + (logged ? '帳號' : '登入 / 註冊') + '">' + (logged ? '帳號' : '登入') + '</span>' : '';
+    var nav = '<span class="nav-links">' + about + kb + acct + '</span>';
     return '<div class="social-bar" data-lay="lobby.social">' + nav + SOCIAL.map(function (s) {
       return '<a class="social-link" href="' + s.url + '" target="_blank" rel="noopener noreferrer" aria-label="' + s.name + '" title="' + s.name + '">' + s.icon + '<span>' + s.name + '</span></a>';
     }).join('') + '</div>';
   }
 
   var state = {
+    admin: false, logged: false,
     view: 'lobby',
     tab: 0,
     selected: 0,
@@ -900,6 +904,10 @@
     var i = parseInt(t.getAttribute('data-i'), 10);
     if (act === 'about') { go('about'); }
     else if (act === 'knowledge') { go('knowledge'); }
+    else if (act === 'account') {
+      if (window.SWFAuth.session()) window.SWFEdit.account(!!state.admin, refreshAuth);
+      else window.SWFEdit.login(refreshAuth);
+    }
     else if (act === 'kb-group') { state.kbGroup = t.getAttribute('data-id'); render(); }
     else if (act === 'ed-note') { window.SWFEdit.note(curPlant(), render); }
     else if (act === 'ed-src') { window.SWFEdit.sources(curPlant(), curIndiv(), render); }
@@ -1114,5 +1122,21 @@
   initToTop();
   load();
   // 管理者(已登入且在名單內)才會看到編輯按鈕;寫入權限由資料庫把關
-  if (window.SWFEdit) window.SWFEdit.ready().then(function (ok) { if (ok) { state.admin = true; adminBar(); render(); } });
+  function refreshAuth() {
+    return window.SWFEdit.ready().then(function (ok) {
+      var logged = !!window.SWFAuth.session();
+      var changed = (state.admin !== !!ok) || (state.logged !== logged);
+      state.admin = !!ok; state.logged = logged;
+      var bar = document.getElementById('sf-adminbar');
+      if (ok) adminBar(); else if (bar) bar.parentNode.removeChild(bar);
+      if (changed && state.data) render();     // 訪客(沒登入)不會多畫一次,不干擾開場動畫
+    });
+  }
+  if (window.SWFEdit && window.SWFAuth) {
+    // 從 Google 登入轉回來時,網址後面會帶登入結果;先接住再判斷身分
+    window.SWFAuth.handleRedirect().then(function (err) {
+      if (err) window.SWFEdit.modal({ title: '登入沒有完成', hint: err });
+      refreshAuth();
+    });
+  }
 })();
