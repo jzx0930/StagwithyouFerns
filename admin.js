@@ -16,23 +16,11 @@
   // ---------- 登入 ----------
   function loginView(msg) {
     root.innerHTML = '<div class="login card"><h2>StagwithyouFerns 後台</h2>' +
-      '<p class="mute">用 PlantDex 的帳號登入(帳號共用)。</p>' +
+      '<p class="mute">用 Google 帳號登入(與 PlantDex 共用帳號)。</p>' +
       '<button class="btn pri" id="gg" style="width:100%">用 Google 登入</button>' +
-      '<p class="mute" style="margin:14px 0 0;text-align:center">或用 Email 和密碼</p>' +
-      '<label for="em">Email</label><input id="em" type="email" autocomplete="username">' +
-      '<label for="pw">密碼</label><input id="pw" type="password" autocomplete="current-password">' +
       '<div class="err" id="lerr">' + esc(msg || '') + '</div>' +
-      '<button class="btn" id="go">登入</button> <a class="btn" href="index.html">回網站</a></div>';
+      '<a class="btn" href="index.html">回網站</a></div>';
     document.getElementById('gg').onclick = function () { A.signInWithGoogle(); };
-    function submit() {
-      var em = document.getElementById('em').value.trim(), pw = document.getElementById('pw').value;
-      var err = document.getElementById('lerr');
-      if (!em || !pw) { err.textContent = '請輸入 Email 和密碼'; return; }
-      err.textContent = '登入中…';
-      A.signIn(em, pw).then(boot, function (e) { err.textContent = e.message; });
-    }
-    document.getElementById('go').onclick = submit;
-    document.getElementById('pw').onkeydown = function (e) { if (e.key === 'Enter') submit(); };
   }
 
   // ---------- 資料 ----------

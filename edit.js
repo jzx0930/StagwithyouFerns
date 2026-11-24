@@ -221,22 +221,13 @@
     });
   }
 
-  // 登入視窗(訪客與管理者共用;Google 登入同時也是註冊)
-  function login(done) {
-    var m = modal({
-      title: '登入', hint: '用 Google 帳號登入最快(第一次登入會自動建立帳號)。帳號與 PlantDex 共用。',
-      html: '<div class="sfe-row" style="margin:0 0 14px"><button class="sfe-btn pri" data-g="1" style="width:100%">用 Google 登入</button></div><p class="sfe-hint" style="text-align:center;margin:0 0 8px">或用 Email 和密碼</p>',
-      fields: [{ key: 'email', label: 'Email', type: 'email' }, { key: 'pw', label: '密碼', type: 'password' }],
-      saveLabel: '登入',
-      onClick: function (b) { if (b.getAttribute('data-g')) A.signInWithGoogle(); },
-      onSave: function (v) {
-        if (!v.email.trim() || !v.pw) throw new Error('請輸入 Email 和密碼');
-        return A.signIn(v.email.trim(), v.pw).then(function () { if (done) done(); });
-      }
+  // 登入視窗(訪客與管理者共用)。只提供 Google 登入:第一次登入會自動建立帳號,等於註冊
+  function login() {
+    modal({
+      title: '登入', hint: '用 Google 帳號登入。第一次登入會自動建立帳號;帳號與 PlantDex 共用。',
+      html: '<div class="sfe-row" style="margin:4px 0 6px"><button class="sfe-btn pri" data-g="1" style="width:100%">用 Google 登入</button></div>',
+      onClick: function (b) { if (b.getAttribute('data-g')) A.signInWithGoogle(); }
     });
-    // 把 Google 按鈕移到欄位上方(modal 預設把 html 放在欄位後面)
-    var box = m.el.querySelector('.sfe-box'), g = box.querySelector('[data-g]').parentNode, p = g.nextSibling, f = box.querySelector('.sfe-f');
-    if (f) { box.insertBefore(g, f); box.insertBefore(p, f); }
   }
   function account(isAdmin, done) {
     var s = A.session() || { user: {} };
