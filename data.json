@@ -1458,31 +1458,6 @@
       "cover": "1vOhqG_yylfF0yU0DwXmH_UhySrejGo7D",
       "individuals": [
         {
-          "label": "",
-          "cover": "1vOhqG_yylfF0yU0DwXmH_UhySrejGo7D",
-          "timeline": [
-            {
-              "date": "2026.08.02",
-              "tag": "",
-              "note": "",
-              "photo": "1wPpGwea1-6-9OXOuLv2C59sDQaQBrA5-"
-            },
-            {
-              "date": "2026.08.22",
-              "tag": "",
-              "note": "",
-              "photo": "1dkTKZPSOfZukewoFLyQwrrJ0LiTrTWYo"
-            },
-            {
-              "date": "2026.08.27",
-              "tag": "",
-              "note": "",
-              "photo": "1vOhqG_yylfF0yU0DwXmH_UhySrejGo7D"
-            }
-          ],
-          "id": "PL-008-001"
-        },
-        {
           "label": "#02",
           "cover": "1bk2c3NLfHTSQGSw8cRsXo8agomEvBN56",
           "timeline": [
@@ -1506,6 +1481,24 @@
           "name": "",
           "cover": "1eQ6gNr3GXMx3EpONT4wMxezeq6subj4C",
           "timeline": [
+            {
+              "date": "2026.08.02",
+              "tag": "#01",
+              "note": "",
+              "photo": "1wPpGwea1-6-9OXOuLv2C59sDQaQBrA5-"
+            },
+            {
+              "date": "2026.08.22",
+              "tag": "#01",
+              "note": "",
+              "photo": "1dkTKZPSOfZukewoFLyQwrrJ0LiTrTWYo"
+            },
+            {
+              "date": "2026.08.27",
+              "tag": "#01",
+              "note": "",
+              "photo": "1vOhqG_yylfF0yU0DwXmH_UhySrejGo7D"
+            },
             {
               "date": "2026.10.14",
               "tag": "#01",
@@ -1985,12 +1978,6 @@
               "tag": "#23",
               "note": "",
               "photo": "1JvcmgJjXAMQnJN1VFrnLLzM-fMvGnXhc"
-            },
-            {
-              "date": "2026.09.04",
-              "tag": "#23",
-              "note": "",
-              "photo": "1xdHCXX0RyauCY7pHIGS0gXCrw1uOtxDz"
             }
           ],
           "mother": [
@@ -2170,6 +2157,12 @@
               "tag": "#21",
               "note": "",
               "photo": "1Oqp0yUyzsfr0uo5yIFUJc284sT6wVZyW"
+            },
+            {
+              "date": "2026.09.04",
+              "tag": "#21",
+              "note": "",
+              "photo": "1xdHCXX0RyauCY7pHIGS0gXCrw1uOtxDz"
             },
             {
               "date": "2026.09.17",
@@ -3465,49 +3458,6 @@
       "cover": "1nhVyVixEKmXxPTY72yZpou_WRkqLcS87",
       "individuals": [
         {
-          "label": "",
-          "cover": "1nhVyVixEKmXxPTY72yZpou_WRkqLcS87",
-          "timeline": [
-            {
-              "date": "2026.01.17",
-              "tag": "",
-              "note": "",
-              "photo": "1E1MNXusvRqwaaO_quBGs0xKQv7RrvgTy"
-            },
-            {
-              "date": "2026.05.04",
-              "tag": "",
-              "note": "",
-              "photo": "1xsPVQn0ipb9IfAEUm0qLVR-i2GzBEZcE"
-            },
-            {
-              "date": "2026.06.03",
-              "tag": "",
-              "note": "",
-              "photo": "1rqjxKY4Dr4ux0O0nvijEj9bW_EiZe-BD"
-            },
-            {
-              "date": "2026.06.03",
-              "tag": "",
-              "note": "",
-              "photo": "1OsDIcnL5D0EimPJ8PVQFwN1RNAVLixYR"
-            },
-            {
-              "date": "2026.08.02",
-              "tag": "",
-              "note": "",
-              "photo": "1gkvkqa5TslRLoUPfykRm5Y4-pze66toQ"
-            },
-            {
-              "date": "2026.08.22",
-              "tag": "",
-              "note": "",
-              "photo": "1nhVyVixEKmXxPTY72yZpou_WRkqLcS87"
-            }
-          ],
-          "id": "PL-029-001"
-        },
-        {
           "label": "#04",
           "cover": "1GGETlT1Gk-rAbQOPcAfaMi3MjLjTbgzv",
           "timeline": [
@@ -3560,6 +3510,42 @@
           "name": "",
           "cover": "1Dk3zGDwJ601zIV2IW2qNJXRQzKwxT9rW",
           "timeline": [
+            {
+              "date": "2026.01.17",
+              "tag": "#01",
+              "note": "",
+              "photo": "1E1MNXusvRqwaaO_quBGs0xKQv7RrvgTy"
+            },
+            {
+              "date": "2026.05.04",
+              "tag": "#01",
+              "note": "",
+              "photo": "1xsPVQn0ipb9IfAEUm0qLVR-i2GzBEZcE"
+            },
+            {
+              "date": "2026.06.03",
+              "tag": "#01",
+              "note": "",
+              "photo": "1rqjxKY4Dr4ux0O0nvijEj9bW_EiZe-BD"
+            },
+            {
+              "date": "2026.06.03",
+              "tag": "#01",
+              "note": "",
+              "photo": "1OsDIcnL5D0EimPJ8PVQFwN1RNAVLixYR"
+            },
+            {
+              "date": "2026.08.02",
+              "tag": "#01",
+              "note": "",
+              "photo": "1gkvkqa5TslRLoUPfykRm5Y4-pze66toQ"
+            },
+            {
+              "date": "2026.08.22",
+              "tag": "#01",
+              "note": "",
+              "photo": "1nhVyVixEKmXxPTY72yZpou_WRkqLcS87"
+            },
             {
               "date": "2026.10.14",
               "tag": "#01",
@@ -3804,48 +3790,48 @@
       "cover": "1Rq0HYr7-hDzJksCbLEIHk1antROuX1xe",
       "individuals": [
         {
-          "label": "",
+          "label": "#01",
           "cover": "1Rq0HYr7-hDzJksCbLEIHk1antROuX1xe",
           "timeline": [
             {
               "date": "2025.10.19",
-              "tag": "",
+              "tag": "#01",
               "note": "",
               "photo": "1nneUYnWIuCucpO4PgEp1AIZuVP4YwYkl"
             },
             {
               "date": "2026.05.15",
-              "tag": "",
+              "tag": "#01",
               "note": "",
               "photo": "1ZIGbtzjMQY0tAP_YlG7pH_8sIlNoiHMM"
             },
             {
               "date": "2026.05.15",
-              "tag": "",
+              "tag": "#01",
               "note": "",
               "photo": "1ZePj9cWFB_k-3wMKN0ckVy17mamJ7_ob"
             },
             {
               "date": "2026.07.17",
-              "tag": "",
+              "tag": "#01",
               "note": "",
               "photo": "1vfvCtK_JysiVjfdogAC2wB-ZhzGGwQsn"
             },
             {
               "date": "2026.08.02",
-              "tag": "",
+              "tag": "#01",
               "note": "",
               "photo": "1sIMPkLmqf2psKFzg4RhVFLEan4wj4tBx"
             },
             {
               "date": "2026.08.22",
-              "tag": "",
+              "tag": "#01",
               "note": "",
               "photo": "1Rq0HYr7-hDzJksCbLEIHk1antROuX1xe"
             },
             {
               "date": "2026.10.14",
-              "tag": "",
+              "tag": "#01",
               "note": "",
               "photo": "1pEikG7-kmfBd1o_e4QpexVWZbB8u9bLd"
             }
@@ -4877,6 +4863,12 @@
               "photo": "15aXvWvmmXsY7YaX1nSoql8iWTPTjt2rP"
             },
             {
+              "date": "2026.08.22",
+              "tag": "#02",
+              "note": "",
+              "photo": "1TpgNInMKY5OahUYb5IUGFOdf-x1453S8"
+            },
+            {
               "date": "2026.10.14",
               "tag": "#02",
               "note": "",
@@ -4884,19 +4876,6 @@
             }
           ],
           "id": "PL-010-002"
-        },
-        {
-          "label": "#03",
-          "cover": "1TpgNInMKY5OahUYb5IUGFOdf-x1453S8",
-          "timeline": [
-            {
-              "date": "2026.08.22",
-              "tag": "#03",
-              "note": "",
-              "photo": "1TpgNInMKY5OahUYb5IUGFOdf-x1453S8"
-            }
-          ],
-          "id": "PL-010-003"
         }
       ],
       "pid": "PL-010",
@@ -4910,49 +4889,6 @@
       "note": "",
       "cover": "13uI0RIg19LrGzeuAxtEAjT7xGUdpinHK",
       "individuals": [
-        {
-          "label": "",
-          "cover": "13uI0RIg19LrGzeuAxtEAjT7xGUdpinHK",
-          "timeline": [
-            {
-              "date": "2025.10.19",
-              "tag": "",
-              "note": "",
-              "photo": "1UBAFwJAICvIdTM9LQotiPMANZu3pLU1s"
-            },
-            {
-              "date": "2026.04.17",
-              "tag": "",
-              "note": "",
-              "photo": "12_134DbG_NHWvB0_30DbDTiZqQnYfwFC"
-            },
-            {
-              "date": "2026.04.17",
-              "tag": "",
-              "note": "",
-              "photo": "1E-ZVp2_slfhAiReZCM7tlwLcF6M6TM6a"
-            },
-            {
-              "date": "2026.07.17",
-              "tag": "",
-              "note": "",
-              "photo": "1nq5VN-ypH63yZ5hBJ2TK5H5-MkCdf5Nu"
-            },
-            {
-              "date": "2026.08.02",
-              "tag": "",
-              "note": "",
-              "photo": "1Qcb6mJ6-XTY5G290XX1BcZQdYcqL5Sr-"
-            },
-            {
-              "date": "2026.08.22",
-              "tag": "",
-              "note": "",
-              "photo": "13uI0RIg19LrGzeuAxtEAjT7xGUdpinHK"
-            }
-          ],
-          "id": "PL-018-010"
-        },
         {
           "label": "#02",
           "cover": "1ux0byw6N_ZNzoxYLODliRC05eOCYK2XK",
@@ -4984,6 +4920,42 @@
           "cover": "1ac6Xx_okIcJjj18r5U9n2YgJR7zFhT90",
           "timeline": [
             {
+              "date": "2025.10.19",
+              "tag": "#01",
+              "note": "",
+              "photo": "1UBAFwJAICvIdTM9LQotiPMANZu3pLU1s"
+            },
+            {
+              "date": "2026.04.17",
+              "tag": "#01",
+              "note": "",
+              "photo": "12_134DbG_NHWvB0_30DbDTiZqQnYfwFC"
+            },
+            {
+              "date": "2026.04.17",
+              "tag": "#01",
+              "note": "",
+              "photo": "1E-ZVp2_slfhAiReZCM7tlwLcF6M6TM6a"
+            },
+            {
+              "date": "2026.07.17",
+              "tag": "#01",
+              "note": "",
+              "photo": "1nq5VN-ypH63yZ5hBJ2TK5H5-MkCdf5Nu"
+            },
+            {
+              "date": "2026.08.02",
+              "tag": "#01",
+              "note": "",
+              "photo": "1Qcb6mJ6-XTY5G290XX1BcZQdYcqL5Sr-"
+            },
+            {
+              "date": "2026.08.22",
+              "tag": "#01",
+              "note": "",
+              "photo": "13uI0RIg19LrGzeuAxtEAjT7xGUdpinHK"
+            },
+            {
               "date": "2026.10.14",
               "tag": "#01",
               "note": "",
@@ -5008,12 +4980,6 @@
           "label": "",
           "cover": "1Xcw8IDifuoVpRTwqBPmQTZSWwwdAX5t9",
           "timeline": [
-            {
-              "date": "2026.03.06",
-              "tag": "",
-              "note": "",
-              "photo": "1u6ES6yEKs6JhQex7h73ufY2JX_gicm3K"
-            },
             {
               "date": "2026.04.13",
               "tag": "",
@@ -5104,6 +5070,12 @@
               "tag": "",
               "note": "",
               "photo": "1nsahEA9GH1rBDztPL8tJg-ABNH2j_h8m"
+            },
+            {
+              "date": "2026.03.06",
+              "tag": "",
+              "note": "",
+              "photo": "1u6ES6yEKs6JhQex7h73ufY2JX_gicm3K"
             },
             {
               "date": "2026.03.26",
@@ -5550,19 +5522,6 @@
       "cover": "1cDBuD8MIv5-S4eyta-9Xbq0W47eoUZFP",
       "individuals": [
         {
-          "label": "",
-          "cover": "1cDBuD8MIv5-S4eyta-9Xbq0W47eoUZFP",
-          "timeline": [
-            {
-              "date": "2026.08.02",
-              "tag": "",
-              "note": "",
-              "photo": "1cDBuD8MIv5-S4eyta-9Xbq0W47eoUZFP"
-            }
-          ],
-          "id": "PL-018-001"
-        },
-        {
           "label": "#01",
           "cover": "10vAAnOUZmuzyJrzRzI5DOx0t4FU1ULzh",
           "timeline": [
@@ -5589,6 +5548,12 @@
           "name": "",
           "cover": "1vQht-QfonxlGlZ9Lkc2VUm3yWHmep-Ta",
           "timeline": [
+            {
+              "date": "2026.08.02",
+              "tag": "#02",
+              "note": "",
+              "photo": "1cDBuD8MIv5-S4eyta-9Xbq0W47eoUZFP"
+            },
             {
               "date": "2026.10.14",
               "tag": "#02",
@@ -5645,19 +5610,6 @@
       "cover": "1DXxEIbNEzpIpGvJJaUnf1iy60256ePUu",
       "individuals": [
         {
-          "label": "",
-          "cover": "1DXxEIbNEzpIpGvJJaUnf1iy60256ePUu",
-          "timeline": [
-            {
-              "date": "2026.08.02",
-              "tag": "",
-              "note": "",
-              "photo": "1DXxEIbNEzpIpGvJJaUnf1iy60256ePUu"
-            }
-          ],
-          "id": "PL-018-004"
-        },
-        {
           "label": "#02",
           "cover": "1xDju9z6JOWV3-KyiyutXY41qCmRGq1hT",
           "timeline": [
@@ -5681,6 +5633,12 @@
           "name": "",
           "cover": "1CkdNMTzlgJwhBc0Y8sDygaGI_32ouzDF",
           "timeline": [
+            {
+              "date": "2026.08.02",
+              "tag": "#01",
+              "note": "",
+              "photo": "1DXxEIbNEzpIpGvJJaUnf1iy60256ePUu"
+            },
             {
               "date": "2026.10.14",
               "tag": "#01",
@@ -9508,31 +9466,6 @@
       "cover": "1bv8hYIAl_GolIlVyQ0Sjx73ff9tp7686",
       "individuals": [
         {
-          "label": "",
-          "cover": "1bv8hYIAl_GolIlVyQ0Sjx73ff9tp7686",
-          "timeline": [
-            {
-              "date": "2026.08.04",
-              "tag": "",
-              "note": "",
-              "photo": "1J1PS2OsRdEPZK6JpOKQuYAdz8UDgVsF0"
-            },
-            {
-              "date": "2026.08.22",
-              "tag": "",
-              "note": "",
-              "photo": "1kXJrs19euqSvoe4Ve44rkrgaCjNKGA9O"
-            },
-            {
-              "date": "2026.08.31",
-              "tag": "",
-              "note": "",
-              "photo": "1bv8hYIAl_GolIlVyQ0Sjx73ff9tp7686"
-            }
-          ],
-          "id": "EU-016-001"
-        },
-        {
           "label": "#02",
           "name": "",
           "cover": "1_LPFK3b01h3ROJl6N4Kf1vr0CBia0iYs",
@@ -9557,6 +9490,24 @@
           "name": "",
           "cover": "1VaRV_QNRcDU96SVUoiBkG8Rqkfns13sv",
           "timeline": [
+            {
+              "date": "2026.08.04",
+              "tag": "#01",
+              "note": "",
+              "photo": "1J1PS2OsRdEPZK6JpOKQuYAdz8UDgVsF0"
+            },
+            {
+              "date": "2026.08.22",
+              "tag": "#01",
+              "note": "",
+              "photo": "1kXJrs19euqSvoe4Ve44rkrgaCjNKGA9O"
+            },
+            {
+              "date": "2026.08.31",
+              "tag": "#01",
+              "note": "",
+              "photo": "1bv8hYIAl_GolIlVyQ0Sjx73ff9tp7686"
+            },
             {
               "date": "2026.10.14",
               "tag": "#01",
@@ -11646,22 +11597,15 @@
       "cover": "1GyvALnNEYe4SjF6FXcQXQx6bg7te-eoM",
       "individuals": [
         {
-          "label": "",
-          "cover": "1GyvALnNEYe4SjF6FXcQXQx6bg7te-eoM",
-          "timeline": [
-            {
-              "date": "2026.09.17",
-              "tag": "",
-              "note": "",
-              "photo": "1GyvALnNEYe4SjF6FXcQXQx6bg7te-eoM"
-            }
-          ],
-          "id": "CA-026-001"
-        },
-        {
           "label": "#01",
           "cover": "16lZEOGs6JDbcf7Q8vSprP0eG2x0HnGNe",
           "timeline": [
+            {
+              "date": "2026.09.17",
+              "tag": "#01",
+              "note": "",
+              "photo": "1GyvALnNEYe4SjF6FXcQXQx6bg7te-eoM"
+            },
             {
               "date": "2026.10.05",
               "tag": "#01",
@@ -12064,18 +12008,6 @@
       "cover": "1lzB761GnEWjX_HJ44oNvaETJDy7yvvUq",
       "individuals": [
         {
-          "label": "",
-          "cover": "1lzB761GnEWjX_HJ44oNvaETJDy7yvvUq",
-          "timeline": [],
-          "mother": [
-            "1lzB761GnEWjX_HJ44oNvaETJDy7yvvUq",
-            "1c-fqVfxWxntQ_4KtrKk6INX2Wx44MORk",
-            "1uRLwPxHfUUGBAGpW0_3IALKvjjJLpoQf",
-            "1uaJmEuIsXCIcKwzDSauDnYfZheIUzBWo"
-          ],
-          "id": "PL-054-001"
-        },
-        {
           "label": "#01",
           "name": "",
           "cover": "1rlsHi0rWqHERV8hSi1bhfCU86KD0cHDI",
@@ -12087,7 +12019,13 @@
               "photo": "1rlsHi0rWqHERV8hSi1bhfCU86KD0cHDI"
             }
           ],
-          "id": "PL-054-002"
+          "id": "PL-054-002",
+          "mother": [
+            "1lzB761GnEWjX_HJ44oNvaETJDy7yvvUq",
+            "1c-fqVfxWxntQ_4KtrKk6INX2Wx44MORk",
+            "1uRLwPxHfUUGBAGpW0_3IALKvjjJLpoQf",
+            "1uaJmEuIsXCIcKwzDSauDnYfZheIUzBWo"
+          ]
         },
         {
           "label": "#02",
@@ -13909,6 +13847,39 @@
       "individuals": [],
       "pid": "PL-063",
       "fid": "1uHSlwD5wP7WvYpuKErHRTbzmuAlhZ4TP"
+    },
+    {
+      "name": "紅龍花籠",
+      "latin": "Aztekium hintonii",
+      "category": "仙人掌",
+      "date": "",
+      "note": "",
+      "cover": "",
+      "individuals": [],
+      "pid": "CA-055",
+      "fid": "1kHEpSaejkf_w--aBg0U4tM5Sf7g39x65"
+    },
+    {
+      "name": "索馬利亞痲瘋樹",
+      "latin": "Jatropha somalensis",
+      "category": "塊根",
+      "date": "",
+      "note": "",
+      "cover": "",
+      "individuals": [],
+      "pid": "CX-024",
+      "fid": "1i8GHgvg-UADblqVyEjG9o3-QsxrMwVNT"
+    },
+    {
+      "name": "黃花古城",
+      "latin": "",
+      "category": "塊根",
+      "date": "",
+      "note": "",
+      "cover": "",
+      "individuals": [],
+      "pid": "CX-025",
+      "fid": "1jXiGbKHbSGeMLoHAYap0vbc2zp9WP4if"
     }
   ],
   "_ids": {
@@ -13925,9 +13896,9 @@
     },
     "counters": {
       "PL": 63,
-      "CA": 54,
+      "CA": 55,
       "EU": 32,
-      "CX": 23,
+      "CX": 25,
       "SU": 9,
       "FO": 17,
       "PA": 15,
@@ -13975,7 +13946,16 @@
     },
     "retired": {
       "CA-031": "兜:2026-11-06 併入 紫兜 CA-004-001(同一株重複建檔),此號不再使用",
-      "PL-017-001": "侏儒捲葉女王 舊無編號個體:2026-11-09 照片已刪(Drive 垃圾桶),#01 為另一株新個體 PL-017-004,此號不再使用"
+      "PL-017-001": "侏儒捲葉女王 舊無編號個體:2026-11-09 照片已刪(Drive 垃圾桶),#01 為另一株新個體 PL-017-004,此號不再使用",
+      "PL-008-001": "深綠龍 (無編號):照片在 Drive 已全部搬到別的個體,此號不再使用",
+      "PL-029-001": "獨角獸 (無編號):照片在 Drive 已全部搬到別的個體,此號不再使用",
+      "PL-010-003": "非猴 #03:照片在 Drive 已全部搬到別的個體,此號不再使用",
+      "PL-018-010": "羅賓、骨刺 (無編號):照片在 Drive 已全部搬到別的個體,此號不再使用",
+      "PL-018-001": "月光 (無編號):照片在 Drive 已全部搬到別的個體,此號不再使用",
+      "PL-018-004": "細菌 (無編號):照片在 Drive 已全部搬到別的個體,此號不再使用",
+      "EU-016-001": "火山大戟 (無編號):照片在 Drive 已全部搬到別的個體,此號不再使用",
+      "CA-026-001": "碧岩玉 (無編號):照片在 Drive 已全部搬到別的個體,此號不再使用",
+      "PL-054-001": "澳銀 × 銀華 × 波哥蘇丹 (無編號):照片在 Drive 已全部搬到別的個體,此號不再使用"
     }
   }
 }
