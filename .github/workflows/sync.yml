@@ -1,4 +1,5 @@
-# 讀 Google Drive「植物照片」-> 更新 data.json(與介質照片)-> commit -> 對齊 Supabase。
+# 1) 把網頁/後台改過的內容寫回檔案 2) 讀 Google Drive「植物照片」更新 data.json(與介質照片)
+# 3) commit 4) 對齊 Supabase。
 # 需要 repo Secrets:GOOGLE_API_KEY、SUPABASE_URL、SUPABASE_SERVICE_KEY
 # 手動執行:Actions -> Drive sync -> Run workflow(預設「只預演」,不會改任何東西)
 name: Drive sync
@@ -39,6 +40,14 @@ jobs:
           node-version: '20'
       - run: pip install requests
 
+      - name: Export web edits to files
+        if: ${{ !inputs.dry_run }}
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          PYTHONIOENCODING: utf-8
+        run: python tools/export_from_supabase.py --defer-clear "$RUNNER_TEMP/web_edits.json"
+
       - name: Sync from Drive
         env:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
@@ -51,17 +60,19 @@ jobs:
         run: |
           python -c "import json; json.load(open('data.json', encoding='utf-8'))"
           node --check knowledge.js
+          node --check plant-notes.js
+          node --check sources.js
 
       - name: Commit changes
         id: commit
         if: ${{ !inputs.dry_run }}
         run: |
-          if git diff --quiet -- data.json knowledge.js; then
+          if git diff --quiet -- data.json knowledge.js plant-notes.js sources.js; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             git config user.name "swf-sync-bot"
             git config user.email "swf-sync-bot@users.noreply.github.com"
-            git add data.json knowledge.js
+            git add data.json knowledge.js plant-notes.js sources.js
             git commit -m "Auto sync from Drive"
             git pull --rebase
             git push
@@ -75,3 +86,12 @@ jobs:
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
           PYTHONIOENCODING: utf-8
         run: python tools/import_to_supabase.py
+
+      # 檔案確定推上去之後,才把「網頁改過」的旗標清掉(push 失敗的話旗標還在,修改不會遺失)
+      - name: Clear web-edit flags
+        if: ${{ !inputs.dry_run }}
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          PYTHONIOENCODING: utf-8
+        run: python tools/export_from_supabase.py --clear "$RUNNER_TEMP/web_edits.json"

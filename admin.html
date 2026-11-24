@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>StagwithyouFerns · 後台</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32.png?v=2">
+  <style>
+    :root{--bg:#0b0f10;--card:#141a1b;--line:rgba(255,255,255,.12);--ink:#e9efe9;--mute:rgba(233,239,233,.6);--green:#7fd4a2;--warn:#f1c376;--red:#ff9a9a}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 system-ui,"Noto Sans TC",sans-serif}
+    a{color:var(--green)}
+    .wrap{max-width:1040px;margin:0 auto;padding:22px 16px 80px}
+    header{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:18px}
+    header h1{font-size:20px;margin:0;font-weight:600}
+    header .sp{flex:1}
+    .btn{cursor:pointer;border:1px solid rgba(255,255,255,.25);background:transparent;color:inherit;border-radius:999px;padding:6px 14px;font:inherit;font-size:14px;text-decoration:none;display:inline-block}
+    .btn:hover{border-color:var(--green)}
+    .btn.pri{background:var(--green);border-color:var(--green);color:#0b1410;font-weight:600}
+    .btn.sm{font-size:13px;padding:3px 10px}
+    .tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin-bottom:16px}
+    .tab{cursor:pointer;padding:8px 14px;border-radius:10px 10px 0 0;color:var(--mute)}
+    .tab.on{color:var(--ink);background:var(--card);border:1px solid var(--line);border-bottom-color:var(--card);margin-bottom:-1px}
+    .badge{font-size:12px;border-radius:999px;padding:1px 8px;background:rgba(241,195,118,.18);color:var(--warn);margin-left:4px}
+    .badge.g{background:rgba(127,212,162,.16);color:var(--green)}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:16px}
+    .card h2{font-size:16px;margin:0 0 10px;font-weight:600}
+    .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 0;border-top:1px solid var(--line)}
+    .row:first-of-type{border-top:0}
+    .row .nm{flex:1;min-width:180px}
+    .row .nm small{color:var(--mute);margin-left:6px}
+    .mute{color:var(--mute);font-size:13px}
+    input[type=text],input[type=email],input[type=password]{background:#0c1011;color:inherit;border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:8px 10px;font:inherit;width:100%}
+    .tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+    .tools input{max-width:300px}
+    .chip{cursor:pointer;font-size:13px;border:1px solid var(--line);border-radius:999px;padding:3px 12px;color:var(--mute)}
+    .chip.on{color:#0b1410;background:var(--green);border-color:var(--green)}
+    .login{max-width:360px;margin:12vh auto 0}
+    .login label{display:block;font-size:13px;color:var(--mute);margin:12px 0 4px}
+    .err{color:var(--red);font-size:13px;min-height:1.3em;margin-top:8px}
+    .ok{color:var(--green)} .bad{color:var(--red)}
+    pre{white-space:pre-wrap;font:12.5px/1.5 ui-monospace,Consolas,monospace;color:var(--mute);margin:6px 0 0}
+  </style>
+</head>
+<body>
+  <div class="wrap" id="root"><p class="mute">載入中…</p></div>
+  <script src="config/supabase.js?v=3"></script>
+  <script src="backend.js?v=1"></script>
+  <script src="auth.js?v=1"></script>
+  <script src="edit.js?v=1"></script>
+  <script src="admin.js?v=1"></script>
+</body>
+</html>

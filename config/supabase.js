@@ -10,5 +10,6 @@ window.SWF_BACKEND = {
   url: 'https://ouyfbhpkkpotsvnxtfrx.supabase.co',
   anonKey: 'sb_publishable_hwQaCPZbA_utfrfvsqE0cQ_GpowCaxH',
   schema: 'swf',
-  timeoutMs: 6000
+  timeoutMs: 6000,
+  repo: 'jzx0930/StagwithyouFerns'   // 後台「立即同步」按鈕要開的 GitHub repo
 };

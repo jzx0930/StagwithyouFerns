@@ -143,6 +143,19 @@ def stale_keys(existing, rows, pk):
     return [e for e in existing if tuple(e[k] for k in pk) not in keep]
 
 
+# 可以在網頁上編輯的表(主鍵):web_edited = true 的列由網頁為準,匯入時跳過、對齊時不刪
+FLAGGED = {'plants': ('key',), 'individuals': ('id',), 'plant_notes': ('plant_key',),
+           'sources': ('plant_key', 'label'), 'articles': ('id',), 'about': ('id',)}
+# 這兩張表只有封面欄位歸網頁管;其他欄位(名稱、學名、分類…)仍然跟著檔案走
+WEB_FIELDS = {'plants': ('cover', 'cover_locked'), 'individuals': ('cover',)}
+
+
+def split_web_edited(rows, pk, edited):
+    """-> (照常匯入的列, 網頁改過要保留的列)"""
+    keep = [r for r in rows if tuple(r[k] for k in pk) in edited]
+    return [r for r in rows if tuple(r[k] for k in pk) not in edited], keep
+
+
 ORDER = ['categories', 'plants', 'plant_folders', 'individuals', 'photos', 'id_state',
          'plant_notes', 'sources', 'article_cats', 'articles', 'about']
 
@@ -175,8 +188,22 @@ def main():
     url, key = get_key()
     H = {'apikey': key, 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json',
          'Content-Profile': 'swf', 'Accept-Profile': 'swf'}
+    import urllib.parse
+    edited = {}
+    for t, pk in FLAGGED.items():           # 網頁改過、還沒寫回檔案的列
+        r = requests.get(url + '/rest/v1/%s?select=%s&web_edited=eq.true&limit=10000' % (t, ','.join(pk)), headers=H, timeout=60)
+        edited[t] = {tuple(x[k] for k in pk) for x in r.json()} if r.status_code == 200 else set()
     for t in ORDER:
         rows = T[t]
+        if edited.get(t):
+            rows, held = split_web_edited(rows, FLAGGED[t], edited[t])
+            for h in held:                  # 只更新不歸網頁管的欄位
+                if t not in WEB_FIELDS: continue
+                body = {k: v for k, v in h.items() if k not in WEB_FIELDS[t] and k not in FLAGGED[t]}
+                q = '&'.join('%s=eq.%s' % (k, urllib.parse.quote(str(h[k]), safe='')) for k in FLAGGED[t])
+                requests.patch(url + '/rest/v1/%s?%s' % (t, q), headers=dict(H, Prefer='return=minimal'),
+                               data=json.dumps(body, ensure_ascii=False).encode('utf-8'), timeout=60)
+            print('  %-14s 保留網頁上的修改 %d 筆(等每日匯出寫回檔案)' % (t, len(edited[t])))
         for i in range(0, len(rows), 500):
             r = requests.post(url + '/rest/v1/' + t, headers=dict(H, Prefer='resolution=merge-duplicates,return=minimal'),
                               data=json.dumps(rows[i:i + 500], ensure_ascii=False).encode('utf-8'), timeout=60)
@@ -189,7 +216,6 @@ def main():
         total = (r.headers.get('content-range') or '/?').split('/')[-1]
         print('  %-14s 寫入 %4d 筆,資料庫現有 %s 筆' % (t, len(rows), total))
     if MIRROR:
-        import urllib.parse
         for t, pk in MIRROR_PK:
             existing, off = [], 0
             while True:
@@ -198,7 +224,7 @@ def main():
                 r.raise_for_status(); page = r.json(); existing += page
                 if len(page) < 1000: break
                 off += 1000
-            gone = stale_keys(existing, T[t], pk)
+            gone = [g for g in stale_keys(existing, T[t], pk) if tuple(g[k] for k in pk) not in edited.get(t, set())]
             if not gone: continue
             if len(gone) > max(5, len(existing) * 0.2) and not FORCE:
                 print('[中止] %s 要刪 %d / %d 筆,超過 20%%;確認無誤請加 --force 重跑。' % (t, len(gone), len(existing)))

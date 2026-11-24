@@ -393,6 +393,7 @@
       '<div class="back-row" data-lay="kb.back"><span class="pill-btn" data-act="lobby">← 回到分類大廳</span></div>' +
       '<div data-lay="kb.header">' + headerHTML('Knowledge · 植物知識庫', '知識庫', '照護、病蟲害、繁殖與科普——把經驗整理成一篇篇。', false) + '</div>' +
       chips +
+      (state.admin ? '<div class="ed-bar">' + edBtn('ed-art-new', '+ 新增文章') + '</div>' : '') +
       secs + '</div>';
     animCards('#app .kb-card', 18);
   }
@@ -415,6 +416,7 @@
       '<div class="back-row" data-lay="kb.abk"><span class="pill-btn" data-act="knowledge">← 回到知識庫</span></div>' +
       '<div class="eyebrow">' + esc(a.cat) + '</div>' +
       '<h1 class="title kb-arttitle">' + esc(a.title) + '</h1>' +
+      (state.admin ? '<div class="ed-bar">' + edBtn('ed-art', '✎ 編輯文章') + edBtn('ed-art-del', '刪除') + '</div>' : '') +
       (a.lead ? '<div class="kb-artlead">' + esc(a.lead) + '</div>' : '') +
       cover +
       '<div class="kb-body">' + kbBodyHTML(a.body) + '</div>' +
@@ -715,7 +717,7 @@
     var src = { source: fromDrive.source || fromJs.source || '', mother: fromDrive.mother || fromJs.mother || '' };
     var photos = (cur && cur.mother) || [];
     var hasText = src.source || src.mother;
-    if (!hasText && !photos.length) return '';
+    if (!hasText && !photos.length && !(state.admin && cur && cur.id)) return '';
     var rows = '';
     if (src && src.source) rows += '<div class="mother-row"><span class="mk">來源</span><span class="mv">' + fmtNote(src.source) + '</span></div>';
     if (src && src.mother) rows += '<div class="mother-row"><span class="mk">母株</span><span class="mv">' + fmtNote(src.mother) + '</span></div>';
@@ -725,8 +727,8 @@
         '<img src="' + esc(url) + '" alt="母株" loading="lazy" decoding="async" onerror="this.style.display=\'none\'"></div>';
     }).join('') + '</div>' : '';
     return '<div class="mother-sec" data-lay="detail.mother">' +
-      '<div class="tl-head"><h2>來源 · 母株</h2></div>' +
-      '<div class="mother-body">' + rows + pics + '</div></div>';
+      '<div class="tl-head"><h2>來源 · 母株</h2>' + (state.admin && cur && cur.id ? edBtn('ed-src', '✎ 編輯') : '') + '</div>' +
+      '<div class="mother-body">' + rows + pics + (!hasText && !photos.length ? '<div class="ed-empty">尚未填寫來源 · 母株</div>' : '') + '</div></div>';
   }
 
   function renderDetail() {
@@ -770,6 +772,10 @@
         '<div class="tl-axis"><div class="line"></div><div class="dot"></div></div>' +
         '<div class="tl-main"><div class="tl-card">' + photo +
           (e.note && !diaryMode ? '<div class="tl-note">' + fmtNote(e.note) + '</div>' : '') +
+          (state.admin && !diaryMode && e.photo ? '<div class="ed-bar">' +
+            (sel.cover === e.photo ? '<span class="ed-on">★ 植物封面</span>' : edBtn('ed-cover', '設為植物封面', ' data-photo="' + esc(e.photo) + '" data-scope="plant"')) +
+            (cur.id ? (cur.cover === e.photo ? '<span class="ed-on">★ 個體封面</span>' : edBtn('ed-cover', '設為此個體封面', ' data-photo="' + esc(e.photo) + '" data-scope="indiv"')) : '') +
+          '</div>' : '') +
         '</div></div>' +
       '</div>';
     }).join('');
@@ -822,7 +828,9 @@
       '</div>' +
       '<div class="metrics" data-lay="detail.metrics">' + metricsHtml + '</div>' +
       shopRow(sel, state.selected, true) +
-      (noteOf(sel) ? '<div class="plant-intro" data-lay="detail.intro">' + fmtNote(noteOf(sel)) + '</div>' : '') +
+      (state.admin && !diaryMode ? '<div class="ed-bar ed-center">' + edBtn('ed-note', '✎ 編輯介紹') + '</div>' : '') +
+      (noteOf(sel) ? '<div class="plant-intro" data-lay="detail.intro">' + fmtNote(noteOf(sel)) + '</div>'
+        : (state.admin && !diaryMode ? '<div class="plant-intro ed-empty">這株還沒有介紹</div>' : '')) +
       (function () {
         var m = motherSection(sel, cur);
         if (!picker && !m) return '';
@@ -842,6 +850,16 @@
       '<div class="detail-footer"><span class="pill-btn" data-act="back-grid">↑ 回到照片牆</span></div>' +
     '</div>';
   }
+
+  function edBtn(act, label, extra) { return '<span class="ed-btn" data-act="' + act + '"' + (extra || '') + '>' + label + '</span>'; }
+  function adminBar() {
+    if (document.getElementById('sf-adminbar')) return;
+    var d = document.createElement('div'); d.id = 'sf-adminbar';
+    d.innerHTML = '管理模式 · <a href="admin.html">後台</a>';
+    document.body.appendChild(d);
+  }
+  function curPlant() { return (state.data || [])[state.selected]; }
+  function curIndiv() { var p = curPlant(); if (!p) return null; var ivs = normIndiv(p); return ivs[Math.min(state.indiv || 0, ivs.length - 1)] || null; }
 
   function render() {
     if (state.view !== 'detail') _lastTyped = -1;   // 離開詳情後,下次再進同一株會重打
@@ -883,6 +901,20 @@
     if (act === 'about') { go('about'); }
     else if (act === 'knowledge') { go('knowledge'); }
     else if (act === 'kb-group') { state.kbGroup = t.getAttribute('data-id'); render(); }
+    else if (act === 'ed-note') { window.SWFEdit.note(curPlant(), render); }
+    else if (act === 'ed-src') { window.SWFEdit.sources(curPlant(), curIndiv(), render); }
+    else if (act === 'ed-cover') {
+      t.textContent = '儲存中…';
+      window.SWFEdit.setCover(curPlant(), curIndiv(), t.getAttribute('data-photo'), t.getAttribute('data-scope'), render)
+        .catch(function (e) { t.textContent = (e && e.message) || '失敗'; });
+    }
+    else if (act === 'ed-art' || act === 'ed-art-del' || act === 'ed-art-new') {
+      var arts0 = window.SF_KNOWLEDGE || [], art0 = null;
+      for (var ai = 0; ai < arts0.length; ai++) { if (arts0[ai].id === state.article) art0 = arts0[ai]; }
+      if (act === 'ed-art-new') window.SWFEdit.article(null, function (o) { state.article = o.id; go('article'); });
+      else if (act === 'ed-art' && art0) window.SWFEdit.article(art0, render);
+      else if (art0) window.SWFEdit.removeArticle(art0, function () { go('knowledge'); });
+    }
     else if (act === 'article') { state.article = t.getAttribute('data-id'); go('article'); }
     else if (act === 'search-open') { var ivq = parseInt(t.getAttribute('data-iv'), 10); openFromSearch(i, isNaN(ivq) ? -1 : ivq); }
     else if (act === 'enter') { state.tab = i; state.species = null; state.diaryDate = null; go('grid'); }
@@ -1081,4 +1113,6 @@
   if (!(window.SITE_CONFIG && SITE_CONFIG.effects && SITE_CONFIG.effects.particles === false)) init3D();
   initToTop();
   load();
+  // 管理者(已登入且在名單內)才會看到編輯按鈕;寫入權限由資料庫把關
+  if (window.SWFEdit) window.SWFEdit.ready().then(function (ok) { if (ok) { state.admin = true; adminBar(); render(); } });
 })();
