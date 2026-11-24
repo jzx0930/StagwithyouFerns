@@ -277,9 +277,36 @@ class Sync:
             self.log.append('+ 個體 %s %s' % (p['name'], iv['id'])); return iv
         return None
 
+    def relabel_into(self, p, num, nick, sub_items, nums, loose_ids):
+        """新的 #NN 夾裡如果全是「同一個既有個體」的舊照片,而那個個體自己已沒有位置
+        (無編號且植物夾已無它的散照,或它原本的 #夾 不在了)→ 視為改編號:沿用原 ID,不另發新號。"""
+        imgs = [f for f in sub_items if is_img(f)]
+        for s_ in [f for f in sub_items if f['mimeType'] == FOLDER and f['name'].strip() == '母株']:
+            imgs += [f for f in self.kids(s_['id']) if is_img(f)]
+        owners = {}
+        for f in imgs:
+            k = self.known.get(f['id'])
+            if k and k[0] is p: owners[id(k[1])] = k[1]
+        if len(owners) != 1: return None
+        src = next(iter(owners.values()))
+        n0 = labnum(src.get('label'))
+        own_place = (n0 in nums) if n0 >= 0 else any(t['photo'] in loose_ids for t in src['timeline'])
+        if own_place: return None
+        old = src.get('label') or ''
+        src['label'] = '#%02d' % num
+        for t in src['timeline']:
+            if (t.get('tag') or '') == old: t['tag'] = src['label']
+        if nick and not src.get('name'): src['name'] = nick
+        self.n['moved'] += 1
+        self.log.append('~ 個體改編號 %s %s → %s(ID %s 不變)' % (p['name'], old or '(無編號)', src['label'], src.get('id', '')))
+        return src
+
     def do_plant(self, p, folder):
         items = self.kids(folder['id'])
         loose = [f for f in items if is_img(f)]
+        nums = {int(m.group(1)) for m in (re.match(r'^#\s*(\d+)', f['name'].strip()) for f in items
+                                          if f['mimeType'] == FOLDER) if m}
+        loose_ids = {f['id'] for f in loose}
         if loose:
             iv = self.default_indiv(p, True)
             if iv is not None: self.add_timeline(p, iv, loose)
@@ -307,6 +334,8 @@ class Sync:
                 if not any(is_img(f) for f in sub_items) and not any(
                         is_img(f) for s in sub_items if s['mimeType'] == FOLDER for f in self.kids(s['id'])):
                     continue                               # 空夾:等有照片再發號
+                iv = self.relabel_into(p, num, nick, sub_items, nums, loose_ids)
+            if iv is None:
                 iv = {'label': '#%02d' % num, 'name': nick, 'cover': '', 'timeline': [], 'id': self.new_individual_id(p['pid'])}
                 p['individuals'].append(iv); self.n['individuals'] += 1
                 self.log.append('+ 個體 %s %s %s' % (p['name'], iv['label'], iv['id']))
