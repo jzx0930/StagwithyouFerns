@@ -16,11 +16,14 @@
   // ---------- 登入 ----------
   function loginView(msg) {
     root.innerHTML = '<div class="login card"><h2>StagwithyouFerns 後台</h2>' +
-      '<p class="mute">用 PlantDex 的 Email 和密碼登入(帳號共用)。</p>' +
+      '<p class="mute">用 PlantDex 的帳號登入(帳號共用)。</p>' +
+      '<button class="btn pri" id="gg" style="width:100%">用 Google 登入</button>' +
+      '<p class="mute" style="margin:14px 0 0;text-align:center">或用 Email 和密碼</p>' +
       '<label for="em">Email</label><input id="em" type="email" autocomplete="username">' +
       '<label for="pw">密碼</label><input id="pw" type="password" autocomplete="current-password">' +
       '<div class="err" id="lerr">' + esc(msg || '') + '</div>' +
-      '<button class="btn pri" id="go">登入</button> <a class="btn" href="index.html">回網站</a></div>';
+      '<button class="btn" id="go">登入</button> <a class="btn" href="index.html">回網站</a></div>';
+    document.getElementById('gg').onclick = function () { A.signInWithGoogle(); };
     function submit() {
       var em = document.getElementById('em').value.trim(), pw = document.getElementById('pw').value;
       var err = document.getElementById('lerr');
@@ -154,5 +157,5 @@
       return loadAll().then(view, function (e) { st.err = '讀取資料失敗:' + e.message; view(); });
     });
   }
-  boot();
+  A.handleRedirect().then(function (err) { if (err) { loginView('Google 登入失敗:' + err); } else boot(); });
 })();

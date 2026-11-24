@@ -2,6 +2,8 @@
    window.SWFAuth
      .session()            目前的登入資訊(沒有就是 null)
      .signIn(email, pw)    Promise
+     .signInWithGoogle()   轉到 Google 登入,完成後回到目前這一頁
+     .handleRedirect()     Promise<string|null>:頁面載入時呼叫,接住 Google 登入轉回來的結果;回傳錯誤訊息或 null
      .signOut()            Promise
      .isAdmin()            Promise<boolean>(是否在 swf.admins 名單內;結果會快取)
      .api(method, path, body, prefer)   以登入身分呼叫 swf 資料表(PostgREST),回傳 JSON 或 null
@@ -47,6 +49,26 @@
     adminCache = null;
     return post('/auth/v1/token?grant_type=password', { email: email, password: password }).then(keep);
   }
+  // Google 登入:轉去 Supabase 的授權網址,登入後帶著 token 轉回 redirect_to(必須在 Supabase 的 Redirect URLs 白名單內)
+  function signInWithGoogle() {
+    adminCache = null;
+    var back = location.origin + location.pathname;
+    location.href = base() + '/auth/v1/authorize?provider=google&redirect_to=' + encodeURIComponent(back);
+  }
+  function handleRedirect() {
+    var h = String(location.hash || '').replace(/^#/, '');
+    if (!h || (h.indexOf('access_token=') < 0 && h.indexOf('error') < 0)) return Promise.resolve(null);
+    var q = {}; h.split('&').forEach(function (kv) { var i = kv.indexOf('='); if (i > 0) q[kv.slice(0, i)] = decodeURIComponent(kv.slice(i + 1).replace(/\+/g, ' ')); });
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+    if (!q.access_token) return Promise.resolve(q.error_description || q.error || '登入沒有完成');
+    return fetch(base() + '/auth/v1/user', { headers: { apikey: CFG.anonKey, Authorization: 'Bearer ' + q.access_token } })
+      .then(function (r) { return r.json().then(function (u) { if (!r.ok) throw new Error(errText(u, r.status)); return u; }); })
+      .then(function (u) {
+        adminCache = null;
+        keep({ access_token: q.access_token, refresh_token: q.refresh_token, expires_at: +q.expires_at || 0, expires_in: +q.expires_in || 3600, user: u });
+        return null;
+      }, function (e) { return e.message || '登入失敗'; });
+  }
   function signOut() {
     var s = load(); adminCache = null; save(null);
     if (!s) return Promise.resolve();
@@ -91,5 +113,5 @@
       .catch(function () { return false; });
   }
 
-  window.SWFAuth = { session: load, signIn: signIn, signOut: signOut, isAdmin: isAdmin, api: api };
+  window.SWFAuth = { session: load, signIn: signIn, signInWithGoogle: signInWithGoogle, handleRedirect: handleRedirect, signOut: signOut, isAdmin: isAdmin, api: api };
 })();
