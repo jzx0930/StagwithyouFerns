@@ -7,6 +7,9 @@
      .coverPicker(plant, done)             從這株所有照片裡挑封面
      .article(article|null, done)          編輯 / 新增知識庫文章
      .removeArticle(article, done)         刪除文章(先隱藏,隔天寫回檔案時真正移除)
+     .loadPrivate()                        Promise<boolean> 讀「只有管理者看得到」的私人分類與文章,併進知識庫(有變動回傳 true)
+     .mergePrivate() / .clearPrivate()     重新併入(資料重讀後)/ 移除(登出後)私人內容
+   私人文章(admin_only = true)只存在資料庫,不會寫進 knowledge.js,訪客讀不到(資料庫 RLS 把關)。
    每次儲存都會把該列標成 web_edited = true:匯入不會蓋掉它,每日排程會把它寫回 GitHub 的檔案。
    plant 物件要有 key(由 backend.js 從資料庫讀出來時帶上)。
 */
@@ -174,8 +177,42 @@
     });
   }
 
+  // ---------- 私人知識庫(admin_only):只存在資料庫,只有管理者讀得到 ----------
+  var priv = { ok: false, cats: [], arts: [] };
+  function privCats() { return priv.cats.slice(); }
+  function mergePrivate() {
+    var K = (window.SF_KNOWLEDGE || []).filter(function (x) { return !x.adminOnly; });
+    var ids = {}; priv.arts.forEach(function (a) { ids[a.id] = 1; });
+    K = K.filter(function (x) { return !ids[x.id]; }).concat(priv.arts);
+    var old = window.SF_KNOWLEDGE_PRIVATE_CATS || [];
+    var C = (window.SF_KNOWLEDGE_CATS || []).filter(function (c) { return old.indexOf(c) < 0 && priv.cats.indexOf(c) < 0; }).concat(priv.cats);
+    window.SF_KNOWLEDGE = K; window.SF_KNOWLEDGE_CATS = C; window.SF_KNOWLEDGE_PRIVATE_CATS = priv.cats.slice();
+  }
+  function clearPrivate() {
+    var had = priv.arts.length || priv.cats.length;
+    priv = { ok: false, cats: [], arts: [] }; mergePrivate();
+    return !!had;
+  }
+  function privArt(r) {
+    var o = { id: r.id, cat: r.cat, group: r.grp || '', title: r.title, lead: r.lead || '', body: r.body || [], adminOnly: true };
+    if (r.short) o.short = r.short; if (r.img) o.img = r.img; if (r.img_credit) o.imgCredit = r.img_credit;
+    return o;
+  }
+  function loadPrivate() {
+    if (!A || !A.session()) return Promise.resolve(clearPrivate());
+    return Promise.all([
+      A.api('GET', 'article_cats?select=name,sort&admin_only=eq.true&order=sort.asc,name.asc'),
+      A.api('GET', 'articles?select=id,cat,grp,title,lead,body,img,img_credit,short,sort&admin_only=eq.true&is_public=eq.true&order=sort.asc,id.asc&limit=1000')
+    ]).then(function (r) {
+      var sig = JSON.stringify([priv.cats, priv.arts]);
+      priv = { ok: true, cats: (r[0] || []).map(function (c) { return c.name; }), arts: (r[1] || []).map(privArt) };
+      mergePrivate();
+      return sig !== JSON.stringify([priv.cats, priv.arts]);
+    }, function () { return false; });   // 資料庫還沒有 admin_only 欄位(尚未執行 swf_003)→ 當作沒有私人內容
+  }
+
   function article(a, done) {
-    var isNew = !a, cats = window.SF_KNOWLEDGE_CATS || [];
+    var isNew = !a, cats = window.SF_KNOWLEDGE_CATS || [], pc = privCats();
     a = a || { id: '', cat: cats[0] || '', group: '鹿角蕨', title: '', lead: '', body: [], img: '', short: '' };
     modal({
       title: isNew ? '新增文章' : '編輯文章',
@@ -183,24 +220,34 @@
       fields: [
         { key: 'title', label: '標題', value: a.title },
         { key: 'lead', label: '導言(列表上顯示的一兩句話)', type: 'area', rows: 2, value: a.lead },
-        { key: 'cat', label: '分類', type: 'select', value: a.cat, options: cats },
+        { key: 'cat', label: '分類', type: 'select', value: a.cat, options: cats.map(function (c) { return { value: c, text: pc.indexOf(c) >= 0 ? '🔒 ' + c + '(私人分類)' : c }; }) }
+      ].concat(priv.ok ? [{ key: 'vis', label: '誰看得到(私人分類裡的文章一律是私人)', type: 'select', value: a.adminOnly ? 'private' : 'public',
+          options: [{ value: 'public', text: '公開:所有訪客' }, { value: 'private', text: '🔒 私人:只有我登入後看得到(不會寫進公開檔案)' }] }] : []).concat([
         { key: 'group', label: '植物類別(知識庫上方的篩選,例:鹿角蕨、仙人掌、塊根、介質)', value: a.group || '' },
         { key: 'body', label: '內文', type: 'area', rows: 18, value: (a.body || []).join('\n') },
         { key: 'img', label: '封面圖(Drive 檔案 ID 或網址;可留空)', value: a.img || '' }
-      ].concat(a.cat === '介質介紹' || isNew ? [{ key: 'short', label: '介質名稱(只有「介質介紹」需要;要和 Drive 介質子資料夾同名)', value: a.short || '' }] : []),
+      ]).concat(a.cat === '介質介紹' || isNew ? [{ key: 'short', label: '介質名稱(只有「介質介紹」需要;要和 Drive 介質子資料夾同名)', value: a.short || '' }] : []),
       onSave: function (v) {
         if (!v.title.trim()) throw new Error('請輸入標題');
+        var isPriv = priv.ok && (v.vis === 'private' || pc.indexOf(v.cat) >= 0);
+        // 私人文章不寫回檔案 → 不用標 web_edited;但「公開改私人」要標,讓每日匯出把它從 knowledge.js 拿掉
         var row = { id: a.id || ('w' + Date.now().toString(36)), cat: v.cat, grp: v.group.trim(), title: v.title.trim(), lead: v.lead.trim(),
-          body: v.body.replace(/\r/g, '').split('\n'), img: v.img.trim(), short: (v.short || a.short || '').trim(), is_public: true, web_edited: true };
+          body: v.body.replace(/\r/g, '').split('\n'), img: v.img.trim(), short: (v.short || a.short || '').trim(), is_public: true,
+          web_edited: !(isPriv && (isNew || a.adminOnly)) };
+        if (priv.ok) row.admin_only = isPriv;
         if (row.img !== (a.img || '')) row.img_credit = '';
         var pre = isNew
-          ? A.api('GET', 'articles?select=sort&order=sort.desc&limit=1').then(function (r) { row.sort = ((r && r[0] && r[0].sort) || 0) + 1; })
+          ? A.api('GET', 'articles?select=sort&order=sort.desc&limit=1' + (priv.ok ? '&admin_only=eq.' + isPriv : '')).then(function (r) {
+              row.sort = ((r && r[0] && r[0].sort) || (isPriv ? 9000 : 0)) + 1; })
           : Promise.resolve();
         return pre.then(function () { return A.api('POST', 'articles?on_conflict=id', [row], UPSERT); }).then(mustHit).then(function () {
-          var K = window.SF_KNOWLEDGE = window.SF_KNOWLEDGE || [];
           var o = { id: row.id, cat: row.cat, group: row.grp, title: row.title, lead: row.lead, body: row.body };
           if (row.short) o.short = row.short; if (row.img) o.img = row.img;
           if (a.imgCredit && row.img === (a.img || '')) o.imgCredit = a.imgCredit;
+          if (isPriv) o.adminOnly = true;
+          priv.arts = priv.arts.filter(function (x) { return x.id !== row.id; });
+          if (isPriv) priv.arts.push(o);
+          var K = window.SF_KNOWLEDGE = window.SF_KNOWLEDGE || [];
           var i = K.map(function (x) { return x.id; }).indexOf(row.id);
           if (i >= 0) K[i] = o; else K.push(o);
           if (done) done(o);
@@ -210,10 +257,17 @@
   }
 
   function removeArticle(a, done) {
+    var isPriv = !!a.adminOnly;
     modal({
-      title: '刪除文章?', hint: '「' + a.title + '」會立刻從網站隱藏;明天凌晨自動整理時會從檔案正式移除。',
+      title: '刪除文章?',
+      hint: isPriv ? '「' + a.title + '」是私人文章,只存在資料庫:按下後會直接刪除,無法復原。'
+                   : '「' + a.title + '」會立刻從網站隱藏;明天凌晨自動整理時會從檔案正式移除。',
       extra: [{ label: '確定刪除', cls: 'danger', onClick: function (close) {
-        return A.api('PATCH', 'articles?id=eq.' + enc(a.id), { is_public: false, web_edited: true }, 'return=representation').then(mustHit).then(function () {
+        var req = isPriv
+          ? A.api('DELETE', 'articles?id=eq.' + enc(a.id) + '&admin_only=eq.true', null, 'return=representation')
+          : A.api('PATCH', 'articles?id=eq.' + enc(a.id), { is_public: false, web_edited: true }, 'return=representation');
+        return req.then(mustHit).then(function () {
+          priv.arts = priv.arts.filter(function (x) { return x.id !== a.id; });
           window.SF_KNOWLEDGE = (window.SF_KNOWLEDGE || []).filter(function (x) { return x.id !== a.id; });
           close(); if (done) done();
         });
@@ -243,5 +297,6 @@
   function safe(fn) { return function () { try { return fn.apply(null, arguments); } catch (e) { modal({ title: '無法編輯', hint: e.message }); } }; }
 
   window.SWFEdit = { ready: ready, modal: modal, login: login, account: account, note: safe(note), sources: safe(sources), setCover: setCover,
-    coverPicker: safe(coverPicker), article: safe(article), removeArticle: safe(removeArticle) };
+    coverPicker: safe(coverPicker), article: safe(article), removeArticle: safe(removeArticle),
+    loadPrivate: loadPrivate, mergePrivate: mergePrivate, clearPrivate: clearPrivate };
 })();

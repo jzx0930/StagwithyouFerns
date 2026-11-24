@@ -6,13 +6,13 @@
 
 ## 檔案一覽
 
-- `index.html` 骨架;各 css/js 用 `?v=N` 快取破壞(**改哪支就把它的 N +1**,目前 `styles.css?v=86`、`app.js?v=90`,其餘見 SKILL §10)。
+- `index.html` 骨架;各 css/js 用 `?v=N` 快取破壞(**改哪支就把它的 N +1**,目前 `styles.css?v=87`、`app.js?v=91`,其餘見 SKILL §10)。
 - `app.js` 主程式(IIFE、免框架):大廳 / 分類牆(鹿角蕨 18 原種圖鑑、日記一日一卡)/ 詳情(個體下拉 + 來源·母株 + 時間軸)/ 關於 / 知識庫 / 搜尋(含 ID)/ `?id=` 深連結。
 - `styles.css` 全部樣式。
 - `data.json` 內容主檔(由 Drive「開始更新」產生)。
 - 手寫內容檔(Drive 同步不覆蓋):`plant-notes.js`(每株介紹)、`about.js`(關於頁)、`knowledge.js`(知識庫)、`sources.js`(來源·母株文字備援)。
 - 知識庫內文插圖:body 寫 `'!img kb-img/檔名.jpg?v=N|圖說'`,圖檔放 `kb-img/`(要推上庫)。第三方內容改寫不照抄、使用者不要文字出處。Mingo Plants(`@mingo_plants`)是使用者自己的帳號,其影片截圖可去浮水印。
-- 動態化(進行中):`config/supabase.js`(`SWF_BACKEND.enabled` 開關)+ `backend.js` 從 Supabase `swf` schema 讀資料,失敗退回 data.json;push 後 Action 自動跑 `tools/import_to_supabase.py` 對齊資料庫;`tools/sync_swf.py` + `.github/workflows/sync.yml` 自動讀 Drive 更新 data.json(bot 會 commit,改檔前先 pull);計畫與步驟在 `Docs/`(不推上庫)。**service_role 金鑰絕不進 repo。** 過渡期 data.json 與 JS 內容檔仍要照常維護。 管理後台:`admin.html`(登入後編輯介紹/來源·母株/封面/知識庫、收件匣)與網站內的編輯按鈕(`auth.js`、`edit.js`);網頁改過的列 `web_edited=true`,匯入不覆蓋,每日 `tools/export_from_supabase.py` 寫回檔案(knowledge.js、sources.js 會整檔重產)。**改檔前先 pull;使用者可能在網頁改過的內容以網頁為準。**
+- 動態化(進行中):`config/supabase.js`(`SWF_BACKEND.enabled` 開關)+ `backend.js` 從 Supabase `swf` schema 讀資料,失敗退回 data.json;push 後 Action 自動跑 `tools/import_to_supabase.py` 對齊資料庫;`tools/sync_swf.py` + `.github/workflows/sync.yml` 自動讀 Drive 更新 data.json(bot 會 commit,改檔前先 pull);計畫與步驟在 `Docs/`(不推上庫)。**service_role 金鑰絕不進 repo。** 過渡期 data.json 與 JS 內容檔仍要照常維護。 管理後台:`admin.html`(登入後編輯介紹/來源·母株/封面/知識庫、收件匣)與網站內的編輯按鈕(`auth.js`、`edit.js`);網頁改過的列 `web_edited=true`,匯入不覆蓋,每日 `tools/export_from_supabase.py` 寫回檔案(knowledge.js、sources.js 會整檔重產)。**改檔前先 pull;使用者可能在網頁改過的內容以網頁為準。** **私人知識庫**:文章/分類 `admin_only=true`,只存在資料庫、只有登入的管理者讀得到;**私人內容絕不寫進 knowledge.js 或任何會推上庫的檔案**(來源檔放 `Docs/private/`),匯入不覆蓋、匯出會排除。
 - `staghorn-fern.js`、`orb.js`、`intro.js`、`layout.js`、`config/`、`shop/`、`models/<屬名>/<屬名>.glb`。
 - `貼文文案/` 社群貼文:**寫文案一律存成這裡的 .txt**(圖也放同夾),語氣與結構照 `_品牌語氣範本.txt`(夜色沉靜、emoji 只收尾一個、`中文 · 學名｜產地`、簽名「…慢慢長。🌙 — StagwithyouFerns」)。不推上庫。
 - `tools/` 使用者電腦上跑的 PowerShell/bat(大量改名、日記整理、母株夾、模型壓縮等)。

@@ -27,6 +27,8 @@
   function loadAll() {
     return window.SWF.loadAll().then(function (d) {
       st.plants = d.plants.filter(function (p) { return p.category !== '日記'; });
+      return E.loadPrivate();      // 私人知識庫(只有管理者讀得到)
+    }).then(function () {
       return Promise.all([
         A.api('GET', 'sync_inbox?select=id,created_at,kind,title,status&status=eq.open&order=created_at.desc&limit=200'),
         A.api('GET', 'sync_runs?select=id,started_at,finished_at,status,summary&order=id.desc&limit=8'),
@@ -62,11 +64,13 @@
 
   function kbTab() {
     var K = window.SF_KNOWLEDGE || [], cats = window.SF_KNOWLEDGE_CATS || [];
-    return '<div class="tools"><button class="btn pri" data-a="art-new">+ 新增文章</button><span class="mute">共 ' + K.length + ' 篇</span></div>' +
+    var pc = window.SF_KNOWLEDGE_PRIVATE_CATS || [], np = K.filter(function (a) { return a.adminOnly; }).length;
+    return '<div class="tools"><button class="btn pri" data-a="art-new">+ 新增文章</button><span class="mute">共 ' + K.length + ' 篇' +
+      (np ? '(其中 🔒 私人 ' + np + ' 篇,只有你登入後看得到)' : '') + '</span></div>' +
       cats.map(function (c) {
         var items = K.filter(function (a) { return a.cat === c; });
-        return '<div class="card"><h2>' + esc(c) + ' <span class="mute">' + items.length + '</span></h2>' + (items.length ? items.map(function (a) {
-          return '<div class="row"><div class="nm">' + esc(a.title) + '<small>' + esc(a.group || '') + '</small></div>' +
+        return '<div class="card"><h2>' + (pc.indexOf(c) >= 0 ? '🔒 ' : '') + esc(c) + ' <span class="mute">' + items.length + '</span></h2>' + (items.length ? items.map(function (a) {
+          return '<div class="row"><div class="nm">' + (a.adminOnly ? '🔒 ' : '') + esc(a.title) + '<small>' + esc(a.group || '') + '</small></div>' +
             '<button class="btn sm" data-a="art" data-id="' + esc(a.id) + '">編輯</button>' +
             '<button class="btn sm" data-a="art-del" data-id="' + esc(a.id) + '">刪除</button></div>';
         }).join('') : '<p class="mute">這個分類還沒有文章。</p>') + '</div>';

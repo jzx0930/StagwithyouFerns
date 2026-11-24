@@ -146,6 +146,8 @@ def stale_keys(existing, rows, pk):
 # 可以在網頁上編輯的表(主鍵):web_edited = true 的列由網頁為準,匯入時跳過、對齊時不刪
 FLAGGED = {'plants': ('key',), 'individuals': ('id',), 'plant_notes': ('plant_key',),
            'sources': ('plant_key', 'label'), 'articles': ('id',), 'about': ('id',)}
+# 私人內容(admin_only = true):只存在資料庫、不在公開檔案裡 → 匯入不覆蓋、對齊時不刪
+PRIVATE = {'articles': ('id',), 'article_cats': ('name',)}
 # 這兩張表只有封面欄位歸網頁管;其他欄位(名稱、學名、分類…)仍然跟著檔案走
 WEB_FIELDS = {'plants': ('cover', 'cover_locked'), 'individuals': ('cover',)}
 
@@ -193,8 +195,15 @@ def main():
     for t, pk in FLAGGED.items():           # 網頁改過、還沒寫回檔案的列
         r = requests.get(url + '/rest/v1/%s?select=%s&web_edited=eq.true&limit=10000' % (t, ','.join(pk)), headers=H, timeout=60)
         edited[t] = {tuple(x[k] for k in pk) for x in r.json()} if r.status_code == 200 else set()
+    private = {}
+    for t, pk in PRIVATE.items():           # 私人列(還沒執行 swf_003 時沒有這個欄位 → 當作沒有)
+        r = requests.get(url + '/rest/v1/%s?select=%s&admin_only=eq.true&limit=10000' % (t, ','.join(pk)), headers=H, timeout=60)
+        private[t] = {tuple(x[k] for k in pk) for x in r.json()} if r.status_code == 200 else set()
+        if private[t]: print('  %-14s 私人內容 %d 筆(只在資料庫,不匯入、不刪除)' % (t, len(private[t])))
     for t in ORDER:
         rows = T[t]
+        if private.get(t):
+            rows, _ = split_web_edited(rows, PRIVATE[t], private[t])
         if edited.get(t):
             rows, held = split_web_edited(rows, FLAGGED[t], edited[t])
             for h in held:                  # 只更新不歸網頁管的欄位
@@ -224,7 +233,8 @@ def main():
                 r.raise_for_status(); page = r.json(); existing += page
                 if len(page) < 1000: break
                 off += 1000
-            gone = [g for g in stale_keys(existing, T[t], pk) if tuple(g[k] for k in pk) not in edited.get(t, set())]
+            keep = edited.get(t, set()) | private.get(t, set())
+            gone = [g for g in stale_keys(existing, T[t], pk) if tuple(g[k] for k in pk) not in keep]
             if not gone: continue
             if len(gone) > max(5, len(existing) * 0.2) and not FORCE:
                 print('[中止] %s 要刪 %d / %d 筆,超過 20%%;確認無誤請加 --force 重跑。' % (t, len(gone), len(existing)))

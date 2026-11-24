@@ -198,6 +198,7 @@
           state.data = d.plants;
           state.cats = Array.isArray(d.categories) ? d.categories : null;
         } else { state.data = []; }
+        if (window.SWFEdit && window.SWFEdit.mergePrivate) window.SWFEdit.mergePrivate();   // 資料重讀後把私人知識庫併回來(管理者才有)
         if (openFromUrlId()) {   // ?id=… 深連結:跳過開場、直接開該株/個體
           var sk = document.getElementById('sf-skip'); if (sk) sk.click();
           return;
@@ -383,12 +384,13 @@
     var secs = cats.map(function (c) {
       var items = shown.filter(function (a) { return a.cat === c; });
       if (!items.length) return '';
-      return '<div class="kb-sec"><div class="kb-cat">' + esc(c) + '</div><div class="kb-grid">' +
+      var lockCat = (window.SF_KNOWLEDGE_PRIVATE_CATS || []).indexOf(c) >= 0;
+      return '<div class="kb-sec"><div class="kb-cat">' + esc(c) + (lockCat ? '<span class="kb-lock">🔒 只有你看得到</span>' : '') + '</div><div class="kb-grid">' +
         items.map(function (a) {
           var sq = a.cat === '介質介紹';
           return '<div class="kb-card' + (sq ? ' kb-card-sq' : '') + '" data-act="article" data-id="' + esc(a.id) + '">' +
             (sq ? kbSquare(a) : '') +
-            '<div class="kb-ctitle">' + esc(a.title) + '</div>' +
+            '<div class="kb-ctitle">' + (a.adminOnly ? '🔒 ' : '') + esc(a.title) + '</div>' +
             (a.lead ? '<div class="kb-clead">' + esc(a.lead) + '</div>' : '') +
             '<div class="kb-more">閱讀 →</div></div>';
         }).join('') + '</div></div>';
@@ -418,7 +420,7 @@
       (a.img ? '<div class="kb-cover">' + coverImg(a.img, 1400, a.title) + '</div>' : '');
     app.innerHTML = '<div class="wrap narrow kb-article">' +
       '<div class="back-row" data-lay="kb.abk"><span class="pill-btn" data-act="knowledge">← 回到知識庫</span></div>' +
-      '<div class="eyebrow">' + esc(a.cat) + '</div>' +
+      '<div class="eyebrow">' + esc(a.cat) + (a.adminOnly ? ' · 🔒 私人(只有你看得到)' : '') + '</div>' +
       '<h1 class="title kb-arttitle">' + esc(a.title) + '</h1>' +
       (state.admin ? '<div class="ed-bar">' + edBtn('ed-art', '✎ 編輯文章') + edBtn('ed-art-del', '刪除') + '</div>' : '') +
       (a.lead ? '<div class="kb-artlead">' + esc(a.lead) + '</div>' : '') +
@@ -1129,7 +1131,12 @@
       state.admin = !!ok; state.logged = logged;
       var bar = document.getElementById('sf-adminbar');
       if (ok) adminBar(); else if (bar) bar.parentNode.removeChild(bar);
-      if (changed && state.data) render();     // 訪客(沒登入)不會多畫一次,不干擾開場動畫
+      // 私人知識庫:管理者才去讀;登出或不是管理者就移除
+      var E = window.SWFEdit;
+      var priv = ok ? E.loadPrivate() : Promise.resolve(E.clearPrivate());
+      return priv.then(function (privChanged) {
+        if ((changed || privChanged) && state.data) render();     // 訪客(沒登入)不會多畫一次,不干擾開場動畫
+      });
     });
   }
   if (window.SWFEdit && window.SWFAuth) {

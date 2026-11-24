@@ -9,6 +9,7 @@ StagwithyouFerns:把「網頁上改過的內容」寫回 repo 的檔案(資料�
   來源·母株文字  swf.sources      -> sources.js(整檔由資料庫重新產生)
   封面          swf.plants / swf.individuals 的 cover -> data.json(植物封面同時設 coverLocked)
   知識庫文章    swf.articles     -> knowledge.js(整檔由資料庫重新產生;隱藏的文章會從檔案移除並刪除)
+                                    私人文章 / 私人分類(admin_only = true)永遠不寫進檔案
 
 由 .github/workflows/sync.yml 每天在 Drive 同步之前執行;也可以手動跑。
   python tools/export_from_supabase.py            實際寫檔並清旗標
@@ -209,9 +210,12 @@ def main():
 
     ae = get('articles?select=id,is_public&web_edited=eq.true')
     if ae:
-        arts = get('articles?select=id,cat,grp,title,lead,body,img,img_credit,short,is_public,sort')
-        cats = [c['name'] for c in sorted(get('article_cats?select=name,sort'), key=lambda c: c['sort'])]
-        shown = [a for a in arts if a.get('is_public')]
+        # select=* :admin_only 欄位在執行 swf_003 之前不存在,用 * 兩種情況都讀得到
+        arts = get('articles?select=*')
+        allc = sorted(get('article_cats?select=*'), key=lambda c: c['sort'])
+        cats = [c['name'] for c in allc if not c.get('admin_only')]
+        # 私人文章、放在私人分類裡的文章:一律不寫進公開的 knowledge.js
+        shown = [a for a in arts if a.get('is_public') and not a.get('admin_only') and a['cat'] in cats]
         if len(shown) < 5:
             print('知識庫文章數異常地少(%d),為安全起見不重產 knowledge.js。' % len(shown)); sys.exit(1)
         write('knowledge.js', build_knowledge(read('knowledge.js'), shown, cats))

@@ -347,6 +347,8 @@ body {
 .kb-sec{margin:0 0 30px}
 .kb-cat{font-family:var(--sans);font-size:13px;letter-spacing:.24em;color:var(--green-soft);
   margin:0 0 14px;padding-bottom:8px;border-bottom:1px solid var(--glass-border)}
+.kb-lock{margin-left:12px;font-size:12px;letter-spacing:.04em;padding:2px 10px;border-radius:999px;
+  border:1px solid rgba(241,195,118,.45);color:#f1c376;white-space:nowrap}
 .kb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
 .kb-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;
   padding:18px 18px 16px;cursor:pointer;transition:border-color .2s,transform .2s,background .2s;display:flex;flex-direction:column;gap:8px}
