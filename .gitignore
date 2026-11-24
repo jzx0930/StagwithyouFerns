@@ -40,3 +40,6 @@ tools/orb-vendor/package-lock.json
 
 # 規劃文件(含 Supabase 專案資訊,只留本機)
 Docs/
+
+# Python 暫存
+__pycache__/

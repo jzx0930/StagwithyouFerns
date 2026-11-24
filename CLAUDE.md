@@ -12,7 +12,7 @@
 - `data.json` 內容主檔(由 Drive「開始更新」產生)。
 - 手寫內容檔(Drive 同步不覆蓋):`plant-notes.js`(每株介紹)、`about.js`(關於頁)、`knowledge.js`(知識庫)、`sources.js`(來源·母株文字備援)。
 - 知識庫內文插圖:body 寫 `'!img kb-img/檔名.jpg?v=N|圖說'`,圖檔放 `kb-img/`(要推上庫)。第三方內容改寫不照抄、使用者不要文字出處。Mingo Plants(`@mingo_plants`)是使用者自己的帳號,其影片截圖可去浮水印。
-- 動態化(進行中):`config/supabase.js`(`SWF_BACKEND.enabled` 開關)+ `backend.js` 從 Supabase `swf` schema 讀資料,失敗退回 data.json;匯入 `tools/import_to_supabase.py`;計畫與步驟在 `Docs/`(不推上庫)。**service_role 金鑰絕不進 repo。** 過渡期 data.json 與 JS 內容檔仍要照常維護。
+- 動態化(進行中):`config/supabase.js`(`SWF_BACKEND.enabled` 開關)+ `backend.js` 從 Supabase `swf` schema 讀資料,失敗退回 data.json;push 後 Action 自動跑 `tools/import_to_supabase.py` 對齊資料庫;`tools/sync_swf.py` + `.github/workflows/sync.yml` 自動讀 Drive 更新 data.json(bot 會 commit,改檔前先 pull);計畫與步驟在 `Docs/`(不推上庫)。**service_role 金鑰絕不進 repo。** 過渡期 data.json 與 JS 內容檔仍要照常維護。
 - `staghorn-fern.js`、`orb.js`、`intro.js`、`layout.js`、`config/`、`shop/`、`models/<屬名>/<屬名>.glb`。
 - `貼文文案/` 社群貼文:**寫文案一律存成這裡的 .txt**(圖也放同夾),語氣與結構照 `_品牌語氣範本.txt`(夜色沉靜、emoji 只收尾一個、`中文 · 學名｜產地`、簽名「…慢慢長。🌙 — StagwithyouFerns」)。不推上庫。
 - `tools/` 使用者電腦上跑的 PowerShell/bat(大量改名、日記整理、母株夾、模型壓縮等)。
