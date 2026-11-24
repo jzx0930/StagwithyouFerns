@@ -179,7 +179,7 @@ class Sync:
         self.d, self.tree, self.read_text = data, tree, read_text
         self.kb = knowledge_src
         self.inbox, self.log, self.n = [], [], {'photos': 0, 'mother': 0, 'diary': 0, 'individuals': 0, 'plants': 0,
-                                                'notes': 0, 'media': 0}
+                                                'notes': 0, 'media': 0, 'moved': 0, 'removed': 0}
         self.ids = data['_ids']
         self.by_fid = {p['fid']: p for p in data['plants'] if p.get('fid')}
         self.known = {}
@@ -187,7 +187,9 @@ class Sync:
             for iv in p.get('individuals', []):
                 for t in iv.get('timeline', []): self.known[t['photo']] = (p, iv, 'timeline')
                 for m in iv.get('mother') or []: self.known[m] = (p, iv, 'mother')
-        self.seen = {}        # photo id -> (plant, individual or None) 這次在 Drive 看到的位置
+        self.seen = {}        # photo id -> (plant, individual or None, kind, file) 這次在 Drive 看到的位置
+        self.folders = set()  # (plant fid, 個體編號):Drive 上存在的 #NN 夾
+        self.touched = set()  # 有照片被搬動的個體 id()
 
     def kids(self, fid): return self.tree.get(fid, [])
     def flag(self, kind, key, title, **payload):
@@ -237,13 +239,13 @@ class Sync:
                 ia, ib = bool(re.match(r'^IMG_', a['name'], re.I)), bool(re.match(r'^IMG_', b['name'], re.I))
                 loser = a if (ia and not ib) else b if (ib and not ia) else (a if ta > tb else b)
                 if loser['id'] in self.known: continue
-                drop.add(loser['id']); self.seen[loser['id']] = (None, None)
+                drop.add(loser['id']); self.seen[loser['id']] = (None, None, None, loser)
                 self.flag('duplicate', loser['id'], '重複上傳,已略過一張:' + loser['name'], photo=loser['id'])
         return [f for f in imgs if f['id'] not in drop]
 
     def add_timeline(self, p, iv, imgs):
         for f in self.dedupe(imgs):
-            self.seen[f['id']] = (p, iv)
+            self.seen[f['id']] = (p, iv, 'timeline', f)
             if f['id'] in self.known: continue
             iv['timeline'].append({'date': photo_date(f), 'tag': iv.get('label') or '', 'note': '', 'photo': f['id']})
             self.known[f['id']] = (p, iv, 'timeline'); self.n['photos'] += 1
@@ -252,7 +254,7 @@ class Sync:
     def add_mother(self, p, iv, folder_id):
         items = self.kids(folder_id)
         for f in [x for x in items if is_img(x)]:
-            self.seen[f['id']] = (p, iv)
+            self.seen[f['id']] = (p, iv, 'mother', f)
             if f['id'] in self.known: continue
             iv.setdefault('mother', []).append(f['id'])
             self.known[f['id']] = (p, iv, 'mother'); self.n['mother'] += 1
@@ -282,14 +284,15 @@ class Sync:
             iv = self.default_indiv(p, True)
             if iv is not None: self.add_timeline(p, iv, loose)
             else:
-                for f in loose: self.seen[f['id']] = (p, None)
+                for f in loose: self.seen[f['id']] = (p, None, 'timeline', f)
                 new = [f for f in loose if f['id'] not in self.known]
                 if new: self.flag('loose', p['fid'], '%s:有 %d 張照片直接放在植物夾,但這株有多個編號個體,不知道屬於誰' % (p['name'], len(new)),
                                   plant=p['name'], photos=[f['id'] for f in new])
         for sub in [f for f in items if f['mimeType'] == FOLDER]:
             if sub['name'].strip() == '母株':
-                iv = self.default_indiv(p, True)
-                if iv is not None: self.add_mother(p, iv, sub['id'])
+                has = any(is_img(x) or is_txt(x) for x in self.kids(sub['id']))
+                iv = self.default_indiv(p, has)
+                if iv is not None and has: self.add_mother(p, iv, sub['id'])
                 continue
             m = re.match(r'^#\s*(\d+)[-\s]*(.*)$', sub['name'].strip())
             if not m:
@@ -297,6 +300,7 @@ class Sync:
                     self.flag('folder', sub['id'], '%s:不認得的子資料夾「%s」(不是 #編號 也不是 母株)' % (p['name'], sub['name']), plant=p['name'])
                 continue
             num, nick = int(m.group(1)), m.group(2).strip()
+            self.folders.add((p['fid'], num))
             iv = next((x for x in p['individuals'] if labnum(x.get('label')) == num), None)
             sub_items = self.kids(sub['id'])
             if iv is None:
@@ -340,7 +344,8 @@ class Sync:
             self.flag('new_plant', f['id'], '新植物「%s」(%s %s)已建立,還沒有植物介紹' % (name, pid, latin), plant=name)
         else:
             if p['category'] != cat:
-                self.flag('moved_cat', p['fid'], '%s:資料夾現在在「%s」分類,網站仍是「%s」' % (p['name'], cat, p['category']), plant=p['name'])
+                self.log.append('~ 分類 %s:%s → %s(ID 不變)' % (p['name'], p['category'], cat))
+                p['category'] = cat; self.n['moved'] += 1
             t = f['name'].strip()
             zh = t.split('-', 1)[0].strip() if ('-' in t and CJK.search(t.split('-', 1)[0])) else None
             if zh and zh != p['name']:
@@ -354,7 +359,7 @@ class Sync:
         items = self.kids(folder['id'])
         loose = [f for f in items if is_img(f) and f['id'] not in self.known]
         if loose: self.flag('diary_loose', folder['id'], '日記:有 %d 張照片沒放進日期資料夾' % len(loose), photos=[f['id'] for f in loose])
-        for f in [x for x in items if is_img(x)]: self.seen[f['id']] = (dp, iv)
+        for f in [x for x in items if is_img(x)]: self.seen[f['id']] = (dp, iv, 'timeline', f)
         for sub in [f for f in items if f['mimeType'] == FOLDER]:
             date = sub['name'].strip()
             if not re.match(r'^20\d\d\.\d\d\.\d\d$', date): continue
@@ -363,8 +368,14 @@ class Sync:
             note = self.read_text(txts[0]['id']) if txts else None
             old = next((t['note'] for t in iv['timeline'] if t['date'] == date and t.get('note')), '')
             for f in [x for x in sub_items if is_img(x)]:
-                self.seen[f['id']] = (dp, iv)
-                if f['id'] in self.known: continue
+                self.seen[f['id']] = (dp, iv, 'timeline', f)
+                if f['id'] in self.known:
+                    if self.known[f['id']][1] is iv:           # 日記照片被搬到別的日期夾 → 跟著改日期
+                        for t in iv['timeline']:
+                            if t['photo'] == f['id'] and t['date'] != date:
+                                t['date'] = date; t['note'] = note if note is not None else old
+                                self.n['moved'] += 1; self.log.append('~ 日記照片改日期 → %s' % date)
+                    continue
                 iv['timeline'].append({'date': date, 'tag': '', 'note': note if note is not None else old, 'photo': f['id']})
                 self.known[f['id']] = (dp, iv, 'timeline'); self.n['diary'] += 1
                 self.log.append('+ 日記 %s' % date)
@@ -390,6 +401,52 @@ class Sync:
                 self.kb = self.kb[:a] + new + self.kb[m.start(1):]; self.n['media'] += 1
                 self.log.append('~ 介質照片 %s' % sub['name'])
 
+    def apply_moves(self):
+        """Drive 是唯一真相:照片被搬到別的個體夾 / 母株夾 → 網站跟著搬;搬空且沒有資料夾的個體移除並退役。"""
+        lab = lambda iv: iv.get('label') or '(無編號)'
+        groups, affected = {}, set()
+        for ph, (p0, iv0, k0) in list(self.known.items()):
+            s = self.seen.get(ph)
+            if not s or s[1] is None: continue
+            p1, iv1, k1, f = s
+            if iv1 is iv0 and k1 == k0: continue
+            node = None
+            if k0 == 'timeline':
+                node = next((t for t in iv0['timeline'] if t['photo'] == ph), None)
+                iv0['timeline'] = [t for t in iv0['timeline'] if t['photo'] != ph]
+            else:
+                iv0['mother'] = [m for m in iv0.get('mother') or [] if m != ph]
+                if not iv0['mother']: del iv0['mother']
+            if k1 == 'timeline':
+                d = (node or {}).get('date') or photo_date(f)
+                note = (node or {}).get('note', '') if p1['category'] != '日記' else ''
+                iv1['timeline'].append({'date': d, 'tag': iv1.get('label') or '', 'note': note, 'photo': ph})
+            else:
+                iv1.setdefault('mother', []).append(ph)
+            self.known[ph] = (p1, iv1, k1); self.n['moved'] += 1
+            self.touched.add(id(iv0)); affected.update([id(p0), id(p1)])
+            key = (p0['name'], lab(iv0), k0, p1['name'], lab(iv1), k1)
+            groups[key] = groups.get(key, 0) + 1
+        zh = {'timeline': '', 'mother': '母株照'}
+        for (n0, l0, k0, n1, l1, k1), c in groups.items():
+            self.log.append('→ 搬移 %d 張:%s %s%s → %s%s%s' % (c, n0, l0, zh[k0], (n1 + ' ') if n1 != n0 else '', l1, zh[k1]))
+        for p in self.d['plants']:
+            if id(p) not in affected: continue
+            for iv in list(p.get('individuals', [])):
+                photos = {t['photo'] for t in iv['timeline']} | set(iv.get('mother') or [])
+                if iv.get('cover') and iv['cover'] not in photos: iv['cover'] = ''
+                if (id(iv) in self.touched and not photos and p['category'] != '日記'
+                        and (p.get('fid'), labnum(iv.get('label'))) not in self.folders
+                        and (iv.get('label') or len(p['individuals']) > 1)):
+                    p['individuals'].remove(iv); self.n['removed'] += 1
+                    if iv.get('id'):
+                        self.ids.setdefault('retired', {})[iv['id']] = '%s %s:照片在 Drive 已全部搬到別的個體,此號不再使用' % (p['name'], lab(iv))
+                    self.log.append('- 個體 %s %s %s 已無照片也沒有資料夾,移除並退役' % (p['name'], lab(iv), iv.get('id', '')))
+            if not p.get('coverLocked'):
+                allp = {t['photo'] for iv in p['individuals'] for t in iv['timeline']} | \
+                       {m for iv in p['individuals'] for m in (iv.get('mother') or [])}
+                if p.get('cover') and p['cover'] not in allp: p['cover'] = ''
+
     def run(self):
         cats = {re.sub(r'[A-Za-z]+$', '', c['name']) for c in self.d.get('categories', [])}
         for f in [x for x in self.kids(DRIVE_ROOT) if x['mimeType'] == FOLDER]:
@@ -399,17 +456,14 @@ class Sync:
             elif title == '介質': self.do_media(f)
             elif zh in cats: self.do_category(zh, f)
             else: self.flag('folder', f['id'], '植物照片 根目錄有不認得的資料夾「%s」' % title)
-        # 網站在用、但 Drive 已找不到 / 被搬走的照片(只回報,不自動刪)
-        gone, moved = {}, {}
+        self.apply_moves()
+        # 網站在用、但 Drive 已找不到的照片(只回報,不自動刪)
+        gone = {}
         for ph, (p, iv, kind) in self.known.items():
             if re.match(r'^https?:', ph): continue
             if ph not in self.seen: gone.setdefault(p['name'], []).append(ph)
-            elif self.seen[ph][1] is not None and self.seen[ph][1] is not iv:
-                moved.setdefault(p['name'], []).append(ph)
         for name, lst in gone.items():
             self.flag('missing', name, '%s:%d 張網站在用的照片在 Drive 找不到(可能被刪除或移走)' % (name, len(lst)), plant=name, photos=lst)
-        for name, lst in moved.items():
-            self.flag('moved', name, '%s:%d 張照片在 Drive 被搬到別的個體夾,網站尚未跟著改' % (name, len(lst)), plant=name, photos=lst)
         # 排序 / 封面 / 入手日
         for p in self.d['plants']:
             for iv in p.get('individuals', []):
@@ -438,7 +492,7 @@ class Sync:
     def changed(self): return sum(self.n.values()) > 0
     def summary(self):
         zh = {'photos': '時間軸照片', 'mother': '母株照', 'diary': '日記照片', 'individuals': '新個體', 'plants': '新植物',
-              'notes': '文字更新', 'media': '介質照片'}
+              'notes': '文字更新', 'media': '介質照片', 'moved': '搬移/改分類', 'removed': '移除個體'}
         s = '、'.join('%s %d' % (zh[k], v) for k, v in self.n.items() if v) or '沒有變動'
         return s + ';待確認 %d 項' % len(self.inbox)
 
@@ -492,7 +546,8 @@ def main():
     for l in s.log[:200]: print('  ' + l)
     for i in s.inbox: print('  ? ' + i['title'])
     for k in drive.denied: s.inbox.append({'kind': 'denied', 'title': '資料夾「%s」讀不到(分享權限不是公開?),裡面的照片這次沒有檢查' % k, 'payload': {'key': 'denied:' + k}})
-    if (s.n['photos'] + s.n['diary'] > 300 or s.n['plants'] > 15 or s.n['individuals'] > 40) and not FORCE:
+    if (s.n['photos'] + s.n['diary'] > 300 or s.n['plants'] > 15 or s.n['individuals'] > 40
+            or s.n['moved'] > 150 or s.n['removed'] > 20) and not FORCE:
         print('一次變動太多,為安全起見不寫入;確認無誤請用 --force 重跑。'); push_supabase(s, 'error', '\n變動過多,未寫入'); sys.exit(1)
     gs = os.environ.get('GITHUB_STEP_SUMMARY')
     if gs:
