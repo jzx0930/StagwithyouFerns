@@ -774,12 +774,12 @@
       return '<div class="tl-row">' +
         '<div class="tl-when"><div class="y">' + esc(y) + '</div><div class="md">' + esc(md) + '</div></div>' +
         '<div class="tl-axis"><div class="line"></div><div class="dot"></div></div>' +
-        '<div class="tl-main"><div class="tl-card">' + photo +
-          (e.note && !diaryMode ? '<div class="tl-note">' + fmtNote(e.note) + '</div>' : '') +
-          (state.admin && !diaryMode && e.photo ? '<div class="ed-bar">' +
+        '<div class="tl-main"><div class="tl-card">' +
+          (state.admin && !diaryMode && e.photo ? '<div class="ed-bar ed-cardbar">' +
             (sel.cover === e.photo ? '<span class="ed-on">★ 植物封面</span>' : edBtn('ed-cover', '設為植物封面', ' data-photo="' + esc(e.photo) + '" data-scope="plant"')) +
             (cur.id ? (cur.cover === e.photo ? '<span class="ed-on">★ 個體封面</span>' : edBtn('ed-cover', '設為此個體封面', ' data-photo="' + esc(e.photo) + '" data-scope="indiv"')) : '') +
-          '</div>' : '') +
+          '</div>' : '') + photo +
+          (e.note && !diaryMode ? '<div class="tl-note">' + fmtNote(e.note) + '</div>' : '') +
         '</div></div>' +
       '</div>';
     }).join('');
