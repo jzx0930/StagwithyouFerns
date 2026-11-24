@@ -44,6 +44,7 @@ class Drive:
     def __init__(self, key):
         import requests
         self.s = requests.Session(); self.key = key; self.calls = 0
+        self.basic = False; self.denied = {}
 
     def _get(self, url, params):
         for i in range(5):
@@ -55,24 +56,38 @@ class Drive:
             return r
         raise RuntimeError('Drive API 重試多次仍失敗')
 
-    def children(self, parent_ids):
-        """一次查多個資料夾的子項 -> {parent_id: [item…]}"""
-        out = {p: [] for p in parent_ids}
-        ids = list(parent_ids)
-        for i in range(0, len(ids), 20):
-            chunk = ids[i:i + 20]
-            q = '(' + ' or '.join("'%s' in parents" % p for p in chunk) + ') and trashed = false'
-            tok = None
-            while True:
-                p = {'q': q, 'pageSize': 1000, 'orderBy': 'name',
-                     'fields': 'nextPageToken,files(id,name,mimeType,parents,createdTime,size,imageMediaMetadata(time))'}
-                if tok: p['pageToken'] = tok
+    FULL = 'nextPageToken,files(id,name,mimeType,parents,createdTime,size,trashed,imageMediaMetadata(time))'
+    BASIC = 'nextPageToken,files(id,name,mimeType,parents,createdTime,size,trashed)'
+
+    def _list_one(self, parent):
+        """列一個資料夾的子項。用 API 金鑰時不能把多個資料夾用 or 串在一起查(會 403),所以一夾一查。"""
+        out, tok, basic = [], None, self.basic
+        while True:
+            p = {'q': "'%s' in parents" % parent, 'pageSize': 1000, 'fields': self.BASIC if basic else self.FULL}
+            if tok: p['pageToken'] = tok
+            try:
                 j = self._get('https://www.googleapis.com/drive/v3/files', p).json()
-                for f in j.get('files', []):
-                    for par in f.get('parents') or []:
-                        if par in out: out[par].append(f)
-                tok = j.get('nextPageToken')
-                if not tok: break
+            except RuntimeError as e:
+                if ' 403' in str(e)[:16] and not basic and not out:
+                    basic = True; continue             # 這一夾改用精簡欄位再試一次
+                raise
+            if basic and not self.basic: self.basic = True   # 精簡欄位才讀得到 → 之後都用精簡欄位
+            out += [f for f in j.get('files', []) if not f.get('trashed')]
+            tok = j.get('nextPageToken')
+            if not tok: break
+        return sorted(out, key=lambda f: f['name'])
+
+    def children(self, parent_ids):
+        """查多個資料夾的子項 -> {parent_id: [item…]};讀不到的資料夾記在 self.denied。"""
+        from concurrent.futures import ThreadPoolExecutor
+        def one(pid):
+            try: return pid, self._list_one(pid), None
+            except RuntimeError as e: return pid, [], str(e)
+        out = {}
+        with ThreadPoolExecutor(max_workers=6) as ex:
+            for pid, items, err in ex.map(one, list(parent_ids)):
+                out[pid] = items
+                if err: self.denied[pid] = err
         return out
 
     def read_text(self, fid):
@@ -81,13 +96,17 @@ class Drive:
 
 
 def walk(drive, root):
-    """整棵樹走一遍(逐層批次查)-> tree[folder_id] = [item…](含子資料夾與檔案)"""
-    tree, level = {}, [root]
+    """整棵樹走一遍(逐層查)-> tree[folder_id] = [item…](含子資料夾與檔案)"""
+    tree, level, names = {}, [root], {root: '植物照片'}
     while level:
         res = drive.children(level)
         tree.update(res)
-        level = [f['id'] for items in res.values() for f in items if f['mimeType'] == FOLDER
-                 and f['name'] not in IGNORE_ROOT]
+        level = []
+        for items in res.values():
+            for f in items:
+                if f['mimeType'] == FOLDER and f['name'].strip() not in IGNORE_ROOT:
+                    level.append(f['id']); names[f['id']] = f['name']
+    drive.denied = {names.get(k, k): v for k, v in drive.denied.items()}
     return tree
 
 
@@ -458,6 +477,11 @@ def main():
     tree = walk(drive, DRIVE_ROOT)
     files = sum(len(v) for v in tree.values())
     print('Drive:%d 個資料夾、%d 個項目(API 呼叫 %d 次)' % (len(tree), files, drive.calls))
+    if drive.denied:
+        print('讀不到的資料夾(%d 個):' % len(drive.denied))
+        for k, v in list(drive.denied.items())[:20]: print('  - %s:%s' % (k, v.replace('\n', ' ')[:160]))
+        if '植物照片' in drive.denied:
+            print('連根資料夾都讀不到:請確認 Drive 的「植物照片」分享設定是「知道連結的任何人」可檢視,且 API 金鑰允許 Google Drive API。'); sys.exit(1)
     if len(tree) < 50 or files < 500:
         print('讀到的內容異常地少(可能是金鑰或分享權限問題),為安全起見不做任何變更。'); sys.exit(1)
     try:
@@ -467,6 +491,7 @@ def main():
     print('結果:' + s.summary())
     for l in s.log[:200]: print('  ' + l)
     for i in s.inbox: print('  ? ' + i['title'])
+    for k in drive.denied: s.inbox.append({'kind': 'denied', 'title': '資料夾「%s」讀不到(分享權限不是公開?),裡面的照片這次沒有檢查' % k, 'payload': {'key': 'denied:' + k}})
     if (s.n['photos'] + s.n['diary'] > 300 or s.n['plants'] > 15 or s.n['individuals'] > 40) and not FORCE:
         print('一次變動太多,為安全起見不寫入;確認無誤請用 --force 重跑。'); push_supabase(s, 'error', '\n變動過多,未寫入'); sys.exit(1)
     gs = os.environ.get('GITHUB_STEP_SUMMARY')
