@@ -7,6 +7,8 @@
      .coverPicker(plant, done)             從這株所有照片裡挑封面
      .article(article|null, done)          編輯 / 新增知識庫文章
      .removeArticle(article, done)         刪除文章(先隱藏,隔天寫回檔案時真正移除)
+     .moveArticle(article, dir, done)      同分類內上移(-1)/ 下移(+1):和相鄰那篇交換排序
+     .about(done)                          編輯關於頁(內文 + 字型)
      .loadPrivate()                        Promise<boolean> 讀「只有管理者看得到」的私人分類與文章,併進知識庫(有變動回傳 true)
      .mergePrivate() / .clearPrivate()     重新併入(資料重讀後)/ 移除(登出後)私人內容
    私人文章(admin_only = true)只存在資料庫,不會寫進 knowledge.js,訪客讀不到(資料庫 RLS 把關)。
@@ -275,6 +277,55 @@
     });
   }
 
+  // 同分類內上移 / 下移:和相鄰那篇交換 sort。回傳 Promise<boolean>(到頂 / 到底時 false)
+  function moveArticle(a, dir, done) {
+    var K = window.SF_KNOWLEDGE || [];
+    var same = K.filter(function (x) { return x.cat === a.cat; });
+    var b = same[same.map(function (x) { return x.id; }).indexOf(a.id) + dir];
+    if (!b || !a.id) return Promise.resolve(false);
+    return A.api('GET', 'articles?select=id,sort&id=in.(' + [a.id, b.id].map(function (v) { return enc('"' + v + '"'); }).join(',') + ')').then(function (rows) {
+      var s = {}; (rows || []).forEach(function (r) { s[r.id] = r.sort; });
+      if (!(a.id in s) || !(b.id in s)) throw new Error('找不到這篇文章(可能剛被刪除),請重新整理。');
+      var sa = s[b.id], sb = s[a.id];
+      if (sa === sb) sa = sb + dir;          // 兩篇排序值剛好一樣:直接往要去的方向挪一格
+      // 私人文章不寫回檔案,不用標 web_edited;公開文章要標,每日匯出才會把新順序寫回 knowledge.js
+      return A.api('PATCH', 'articles?id=eq.' + enc(a.id), { sort: sa, web_edited: !a.adminOnly }, 'return=representation').then(mustHit).then(function () {
+        return A.api('PATCH', 'articles?id=eq.' + enc(b.id), { sort: sb, web_edited: !b.adminOnly }, 'return=representation').then(mustHit).then(null, function (e) {
+          // 第二筆沒寫成:把第一筆改回去,避免兩篇卡在同一個排序值
+          return A.api('PATCH', 'articles?id=eq.' + enc(a.id), { sort: sb }, 'return=minimal').then(function () { throw e; }, function () { throw e; });
+        });
+      });
+    }).then(function () {
+      var ia = K.indexOf(a), ib = K.indexOf(b);
+      if (ia >= 0 && ib >= 0) { K[ia] = b; K[ib] = a; }
+      if (done) done();
+      return true;
+    });
+  }
+
+  function about(done) {
+    modal({
+      title: '編輯關於頁',
+      hint: '一行文字 = 頁面上一行;空一行 = 段落留白;開頭是「—」的那行會當成署名。',
+      fields: [
+        { key: 'lines', label: '內文', type: 'area', rows: 22, value: (window.SF_ABOUT || []).join('\n') },
+        { key: 'font', label: '字型樣式表網址(留空 = 用網站預設字型;不確定就不要動)', value: window.SF_ABOUT_FONT || '' }
+      ],
+      onSave: function (v) {
+        var arr = v.lines.replace(/\r/g, '').split('\n').map(function (l) { return l.replace(/\s+$/, ''); });
+        while (arr.length && arr[arr.length - 1] === '') arr.pop();
+        while (arr.length && arr[0] === '') arr.shift();
+        if (!arr.length) throw new Error('內文不能是空的');
+        var f = v.font.trim();
+        if (f && !/^https:\/\//.test(f)) throw new Error('字型網址要以 https:// 開頭');
+        return A.api('POST', 'about?on_conflict=id', [{ id: 1, lines: arr, font: f, web_edited: true }], UPSERT).then(mustHit).then(function () {
+          window.SF_ABOUT = arr; window.SF_ABOUT_FONT = f;
+          if (done) done();
+        });
+      }
+    });
+  }
+
   // 登入視窗(訪客與管理者共用)。只提供 Google 登入:第一次登入會自動建立帳號,等於註冊
   function login() {
     modal({
@@ -298,5 +349,6 @@
 
   window.SWFEdit = { ready: ready, modal: modal, login: login, account: account, note: safe(note), sources: safe(sources), setCover: setCover,
     coverPicker: safe(coverPicker), article: safe(article), removeArticle: safe(removeArticle),
-    loadPrivate: loadPrivate, mergePrivate: mergePrivate, clearPrivate: clearPrivate };
+    loadPrivate: loadPrivate, mergePrivate: mergePrivate, clearPrivate: clearPrivate,
+    about: safe(about), moveArticle: moveArticle };
 })();

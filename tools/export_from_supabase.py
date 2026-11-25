@@ -10,6 +10,7 @@ StagwithyouFerns:把「網頁上改過的內容」寫回 repo 的檔案(資料�
   封面          swf.plants / swf.individuals 的 cover -> data.json(植物封面同時設 coverLocked)
   知識庫文章    swf.articles     -> knowledge.js(整檔由資料庫重新產生;隱藏的文章會從檔案移除並刪除)
                                     私人文章 / 私人分類(admin_only = true)永遠不寫進檔案
+  關於頁        swf.about        -> about.js(保留檔頭註解,重寫字型網址與內文陣列)
 
 由 .github/workflows/sync.yml 每天在 Drive 同步之前執行;也可以手動跑。
   python tools/export_from_supabase.py            實際寫檔並清旗標
@@ -107,6 +108,18 @@ def build_knowledge(src, articles, cats):
     return head.replace('\r\n', '\n').replace('\n', nl) + '\n'.join(out).replace('\n', nl) + nl
 
 
+def build_about(src, lines, font):
+    """about.js:保留檔頭註解與字型那行後面的註解,重寫字型網址與 SF_ABOUT 陣列"""
+    nl = '\r\n' if '\r\n' in src else '\n'
+    s = src.replace('\r\n', '\n')
+    head = s[:s.index('window.SF_ABOUT_FONT')] if 'window.SF_ABOUT_FONT' in s else s[:s.index('window.SF_ABOUT')]
+    m = re.search(r"^window\.SF_ABOUT_FONT\s*=\s*'[^'\n]*';(.*)$", s, re.M)
+    tail = m.group(1) if m else ''
+    out = (head + 'window.SF_ABOUT_FONT = ' + q(font) + ';' + tail + '\n' +
+           'window.SF_ABOUT = [\n' + ',\n'.join('  ' + q(l) for l in lines) + '\n];\n')
+    return out.replace('\n', nl)
+
+
 def apply_covers(data, plant_rows, indiv_rows):
     """data.json:植物封面(並鎖定)、個體封面。回傳套用的筆數"""
     n = 0
@@ -157,7 +170,7 @@ def main():
 
     import urllib.parse
     PK = {'plant_notes': ('plant_key',), 'sources': ('plant_key', 'label'), 'plants': ('key',),
-          'individuals': ('id',), 'articles': ('id',)}
+          'individuals': ('id',), 'articles': ('id',), 'about': ('id',)}
     manifest = {}
 
     def do_clear(table, rows, delete_hidden=False):
@@ -222,6 +235,15 @@ def main():
         hidden = [a['id'] for a in ae if not a.get('is_public')]
         clear('articles', [dict(a, _hidden=not a.get('is_public')) for a in ae])
         done.append('知識庫(整檔重產,%d 篇%s)' % (len(shown), (',移除 %d 篇' % len(hidden)) if hidden else ''))
+
+    ab = get('about?select=id,lines,font&web_edited=eq.true')
+    if ab:
+        lines = [str(l) for l in (ab[0].get('lines') or [])]
+        if not any(l.strip() for l in lines):
+            print('關於頁內容是空的,為安全起見不寫回 about.js。')
+        else:
+            write('about.js', build_about(read('about.js'), lines, ab[0].get('font') or ''))
+            clear('about', ab); done.append('關於頁')
 
     if DEFER and not DRY:
         json.dump(manifest, open(DEFER, 'w', encoding='utf-8'), ensure_ascii=False)

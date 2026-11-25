@@ -570,6 +570,7 @@
     app.innerHTML = '<div class="wrap about-wrap">' +
       '<div class="about-scrim"></div>' +
       '<div class="back-row" data-lay="about.back"><span class="pill-btn" data-act="lobby">← 回到分類大廳</span></div>' +
+      (state.admin ? '<div class="ed-bar ed-center">' + edBtn('ed-about', '✎ 編輯關於頁') + '</div>' : '') +
       '<div class="about-doc" data-lay="about.doc">' + body + '</div>' +
     '</div>';
     animCards('#app .ab-line', 14);
@@ -912,6 +913,7 @@
     }
     else if (act === 'kb-group') { state.kbGroup = t.getAttribute('data-id'); render(); }
     else if (act === 'ed-note') { window.SWFEdit.note(curPlant(), render); }
+    else if (act === 'ed-about') { window.SWFEdit.about(render); }
     else if (act === 'ed-src') { window.SWFEdit.sources(curPlant(), curIndiv(), render); }
     else if (act === 'ed-cover') {
       t.textContent = '儲存中…';

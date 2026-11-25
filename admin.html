@@ -40,15 +40,20 @@
     .login label{display:block;font-size:13px;color:var(--mute);margin:12px 0 4px}
     .err{color:var(--red);font-size:13px;min-height:1.3em;margin-top:8px}
     .ok{color:var(--green)} .bad{color:var(--red)}
+    .about-pre{border-top:1px solid var(--line);margin-top:6px;padding-top:12px;line-height:1.9;color:var(--mute)}
+    .row.inq{align-items:flex-start}
+    .inq-b{font-size:13.5px;margin-top:4px;color:var(--mute);overflow-wrap:anywhere}
+    .inq-msg{white-space:pre-wrap;color:var(--ink);border-left:2px solid var(--line);padding-left:10px;margin-top:8px}
+    .btn[disabled]{opacity:.4;cursor:default}
     pre{white-space:pre-wrap;font:12.5px/1.5 ui-monospace,Consolas,monospace;color:var(--mute);margin:6px 0 0}
   </style>
 </head>
 <body>
   <div class="wrap" id="root"><p class="mute">載入中…</p></div>
   <script src="config/supabase.js?v=3"></script>
-  <script src="backend.js?v=1"></script>
+  <script src="backend.js?v=2"></script>
   <script src="auth.js?v=2"></script>
-  <script src="edit.js?v=4"></script>
-  <script src="admin.js?v=4"></script>
+  <script src="edit.js?v=5"></script>
+  <script src="admin.js?v=5"></script>
 </body>
 </html>

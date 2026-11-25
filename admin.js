@@ -1,12 +1,12 @@
 /* ===== admin.js — 後台頁面(admin.html)=====
-   分頁:植物(介紹 / 來源·母株 / 封面)、知識庫(新增 / 編輯 / 刪除)、同步(收件匣、紀錄、立即同步、待寫回的修改)
+   分頁:植物(介紹 / 來源·母株 / 封面)、知識庫(新增 / 編輯 / 刪除 / 排序)、關於頁、詢問單、同步(收件匣、紀錄、立即同步、待寫回的修改)
    編輯視窗與寫入邏輯都在 edit.js(和網站內編輯共用);這裡只負責清單與版面。
 */
 (function () {
   'use strict';
   var A = window.SWFAuth, E = window.SWFEdit, CFG = window.SWF_BACKEND || {};
   var root = document.getElementById('root');
-  var st = { tab: 'plants', q: '', only: 'all', plants: [], inbox: [], runs: [], pending: null, err: '' };
+  var st = { tab: 'plants', q: '', only: 'all', plants: [], inbox: [], runs: [], pending: null, err: '', inq: [], inqOnly: 'new', busy: false };
 
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; }); }
   function when(iso) { if (!iso) return ''; var d = new Date(iso); return d.getFullYear() + '.' + ('0' + (d.getMonth() + 1)).slice(-2) + '.' + ('0' + d.getDate()).slice(-2) + ' ' + ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2); }
@@ -32,11 +32,12 @@
       return Promise.all([
         A.api('GET', 'sync_inbox?select=id,created_at,kind,title,status&status=eq.open&order=created_at.desc&limit=200'),
         A.api('GET', 'sync_runs?select=id,started_at,finished_at,status,summary&order=id.desc&limit=8'),
-        Promise.all(['plant_notes', 'sources', 'plants', 'individuals', 'articles'].map(function (t) {
+        Promise.all(['plant_notes', 'sources', 'plants', 'individuals', 'articles', 'about'].map(function (t) {
           return A.api('GET', t + '?select=web_edited&web_edited=eq.true&limit=1000').then(function (r) { return [t, (r || []).length]; }, function () { return [t, null]; });
-        }))
+        })),
+        A.api('GET', 'inquiries?select=id,created_at,name,contact,items,message,status&order=created_at.desc&limit=300').then(null, function () { return []; })
       ]);
-    }).then(function (r) { st.inbox = r[0] || []; st.runs = r[1] || []; st.pending = r[2]; });
+    }).then(function (r) { st.inbox = r[0] || []; st.runs = r[1] || []; st.pending = r[2]; st.inq = r[3] || []; });
   }
 
   // ---------- 畫面 ----------
@@ -69,12 +70,51 @@
       (np ? '(其中 🔒 私人 ' + np + ' 篇,只有你登入後看得到)' : '') + '</span></div>' +
       cats.map(function (c) {
         var items = K.filter(function (a) { return a.cat === c; });
-        return '<div class="card"><h2>' + (pc.indexOf(c) >= 0 ? '🔒 ' : '') + esc(c) + ' <span class="mute">' + items.length + '</span></h2>' + (items.length ? items.map(function (a) {
+        return '<div class="card"><h2>' + (pc.indexOf(c) >= 0 ? '🔒 ' : '') + esc(c) + ' <span class="mute">' + items.length + '</span></h2>' + (items.length ? items.map(function (a, n) {
+          var dis = st.busy ? ' disabled' : '';
           return '<div class="row"><div class="nm">' + (a.adminOnly ? '🔒 ' : '') + esc(a.title) + '<small>' + esc(a.group || '') + '</small></div>' +
+            '<button class="btn sm" title="上移" aria-label="上移" data-a="art-up" data-id="' + esc(a.id) + '"' + (n === 0 ? ' disabled' : dis) + '>↑</button>' +
+            '<button class="btn sm" title="下移" aria-label="下移" data-a="art-dn" data-id="' + esc(a.id) + '"' + (n === items.length - 1 ? ' disabled' : dis) + '>↓</button>' +
             '<button class="btn sm" data-a="art" data-id="' + esc(a.id) + '">編輯</button>' +
             '<button class="btn sm" data-a="art-del" data-id="' + esc(a.id) + '">刪除</button></div>';
         }).join('') : '<p class="mute">這個分類還沒有文章。</p>') + '</div>';
       }).join('');
+  }
+
+  // 關於頁:預覽 + 編輯
+  function aboutTab() {
+    var lines = window.SF_ABOUT || [];
+    return '<div class="card"><h2>關於頁</h2><div class="tools"><button class="btn pri" data-a="about">✎ 編輯關於頁</button>' +
+      '<a class="btn" target="_blank" href="index.html">到網站看(大廳 →「關於」)</a></div>' +
+      '<div class="about-pre">' + (lines.length ? lines.map(function (l) { return l === '' ? '<br>' : '<div>' + esc(l) + '</div>'; }).join('') : '<p class="mute">還沒有內容。</p>') + '</div></div>';
+  }
+
+  // 詢問單:訪客按「購買 / 詢問」送出的聯絡資料(只有管理者讀得到)
+  var INQ = { 'new': '未處理', replied: '已回覆', done: '完成' };
+  function itemText(it) {
+    if (it == null) return '';
+    if (typeof it !== 'object') return String(it);
+    var nm = it.name || it.title || it.plant || '', id = it.id || it.pid || '', extra = [];
+    if (it.label) extra.push(it.label);
+    if (it.price != null && it.price !== '') extra.push('NT$ ' + it.price);
+    return (nm || JSON.stringify(it)) + (id ? '(' + id + ')' : '') + (extra.length ? ' · ' + extra.join(' · ') : '');
+  }
+  function inqTab() {
+    var n = { all: st.inq.length }; ['new', 'replied', 'done'].forEach(function (k) { n[k] = st.inq.filter(function (x) { return x.status === k; }).length; });
+    var list = st.inq.filter(function (x) { return st.inqOnly === 'all' || x.status === st.inqOnly; });
+    return '<div class="tools">' + [['new', '未處理'], ['replied', '已回覆'], ['done', '完成'], ['all', '全部']].map(function (k) {
+        return '<span class="chip' + (st.inqOnly === k[0] ? ' on' : '') + '" data-inq="' + k[0] + '">' + k[1] + ' ' + n[k[0]] + '</span>'; }).join('') + '</div>' +
+      '<div class="card">' + (list.length ? list.map(function (x) {
+        var items = Array.isArray(x.items) ? x.items : (x.items ? [x.items] : []);
+        var mail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(x.contact || '');
+        return '<div class="row inq"><div class="nm"><span class="badge' + (x.status === 'new' ? '' : ' g') + '">' + INQ[x.status] + '</span> ' + esc(x.name) +
+            '<small>' + when(x.created_at) + '</small>' +
+            '<div class="inq-b">聯絡方式:' + (mail ? '<a href="mailto:' + esc(x.contact) + '">' + esc(x.contact) + '</a>' : esc(x.contact)) + '</div>' +
+            (items.length ? '<div class="inq-b">想要的植物:' + items.map(function (it) { return esc(itemText(it)); }).join('、') + '</div>' : '') +
+            (x.message ? '<div class="inq-b inq-msg">' + esc(x.message) + '</div>' : '') + '</div>' +
+          [['replied', '標為已回覆'], ['done', '完成'], ['new', '改回未處理']].filter(function (k) { return k[0] !== x.status; }).map(function (k) {
+            return '<button class="btn sm" data-a="inq" data-id="' + x.id + '" data-s="' + k[0] + '">' + k[1] + '</button>'; }).join('') + '</div>';
+      }).join('') : '<p class="mute">' + (st.inq.length ? '這個狀態沒有詢問單。' : '目前沒有詢問單。訪客在網站上按「購買 / 詢問」送出後會出現在這裡(商店功能目前是關閉的,要等互動功能上線才會有資料)。') + '</p>') + '</div>';
   }
 
   var KIND = { new_plant: '新植物', rename: '改名', missing: '照片不見', duplicate: '重複上傳', loose: '散落照片', diary_loose: '日記散照',
@@ -82,7 +122,7 @@
   function syncTab() {
     var repo = CFG.repo || '';
     var pend = (st.pending || []).filter(function (x) { return x[1]; });
-    var zh = { plant_notes: '介紹', sources: '來源·母株', plants: '植物封面', individuals: '個體封面', articles: '文章' };
+    var zh = { plant_notes: '介紹', sources: '來源·母株', plants: '植物封面', individuals: '個體封面', articles: '文章', about: '關於頁' };
     return '<div class="card"><h2>立即同步</h2>' +
       '<p class="mute">每天凌晨 3:10 會自動:把網頁上的修改寫回 GitHub 的檔案 → 讀 Drive 新照片 → 更新網站。<br>' +
       '想現在就跑:按下面的按鈕到 GitHub,點「Run workflow」,把「只預演」的勾取消,再按綠色的 Run workflow。大約 1–2 分鐘完成。</p>' +
@@ -106,12 +146,13 @@
 
   function view() {
     var s = A.session() || { user: {} };
-    var tabs = [['plants', '植物'], ['kb', '知識庫'], ['sync', '同步' + (st.inbox.length ? '<span class="badge">' + st.inbox.length + '</span>' : '')]];
+    var newInq = st.inq.filter(function (x) { return x.status === 'new'; }).length;
+    var tabs = [['plants', '植物'], ['kb', '知識庫'], ['about', '關於頁'], ['inq', '詢問單' + (newInq ? '<span class="badge">' + newInq + '</span>' : '')], ['sync', '同步' + (st.inbox.length ? '<span class="badge">' + st.inbox.length + '</span>' : '')]];
     root.innerHTML = '<header><h1>StagwithyouFerns 後台</h1><span class="sp"></span><span class="mute">' + esc(s.user.email || '') + '</span>' +
       '<a class="btn sm" href="index.html">回網站</a><button class="btn sm" data-a="reload">重新整理</button><button class="btn sm" data-a="out">登出</button></header>' +
       (st.err ? '<p class="err">' + esc(st.err) + '</p>' : '') +
       '<div class="tabs">' + tabs.map(function (t) { return '<div class="tab' + (st.tab === t[0] ? ' on' : '') + '" data-tab="' + t[0] + '">' + t[1] + '</div>'; }).join('') + '</div>' +
-      (st.tab === 'plants' ? plantsTab() : st.tab === 'kb' ? kbTab() : syncTab());
+      (st.tab === 'plants' ? plantsTab() : st.tab === 'kb' ? kbTab() : st.tab === 'about' ? aboutTab() : st.tab === 'inq' ? inqTab() : syncTab());
     var q = document.getElementById('q');
     if (q) q.oninput = function () { st.q = q.value; var pos = q.selectionStart; view(); var n = document.getElementById('q'); n.focus(); n.setSelectionRange(pos, pos); };
   }
@@ -119,7 +160,8 @@
   function artById(id) { var K = window.SF_KNOWLEDGE || []; for (var i = 0; i < K.length; i++) if (K[i].id === id) return K[i]; return null; }
 
   root.addEventListener('click', function (e) {
-    var t = e.target.closest('[data-a],[data-tab],[data-only]'); if (!t) return;
+    var t = e.target.closest('[data-a],[data-tab],[data-only],[data-inq]'); if (!t) return;
+    if (t.getAttribute('data-inq')) { st.inqOnly = t.getAttribute('data-inq'); return view(); }
     if (t.getAttribute('data-tab')) { st.tab = t.getAttribute('data-tab'); return view(); }
     if (t.getAttribute('data-only')) { st.only = t.getAttribute('data-only'); return view(); }
     var a = t.getAttribute('data-a'), p = st.plants[+t.getAttribute('data-i')];
@@ -129,6 +171,22 @@
     else if (a === 'art-new') E.article(null, view);
     else if (a === 'art') E.article(artById(t.getAttribute('data-id')), view);
     else if (a === 'art-del') E.removeArticle(artById(t.getAttribute('data-id')), view);
+    else if (a === 'art-up' || a === 'art-dn') {
+      if (st.busy) return;
+      st.busy = true; st.err = ''; view();
+      E.moveArticle(artById(t.getAttribute('data-id')), a === 'art-up' ? -1 : 1)
+        .then(function () { st.busy = false; view(); }, function (er) { st.busy = false; st.err = '排序沒有成功:' + er.message; view(); });
+    }
+    else if (a === 'about') E.about(view);
+    else if (a === 'inq') {
+      t.disabled = true;
+      A.api('PATCH', 'inquiries?id=eq.' + t.getAttribute('data-id'), { status: t.getAttribute('data-s') }, 'return=representation')
+        .then(function (rows) {
+          if (!rows || !rows.length) throw new Error('沒有改到資料');
+          st.inq.forEach(function (x) { if (String(x.id) === t.getAttribute('data-id')) x.status = t.getAttribute('data-s'); });
+          st.err = ''; view();
+        }).then(null, function (er) { st.err = '狀態沒有更新:' + er.message; view(); });
+    }
     else if (a === 'inbox') {
       t.disabled = true;
       A.api('PATCH', 'sync_inbox?id=eq.' + t.getAttribute('data-id'), { status: t.getAttribute('data-s'), resolved_at: new Date().toISOString() }, 'return=representation')

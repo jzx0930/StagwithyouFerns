@@ -117,7 +117,7 @@
       if (d.articleCats.length) window.SF_KNOWLEDGE_CATS = d.articleCats;
       if (d.about && d.about.lines && d.about.lines.length) {
         window.SF_ABOUT = d.about.lines;
-        if (d.about.font) window.SF_ABOUT_FONT = d.about.font;
+        window.SF_ABOUT_FONT = d.about.font || '';      // 資料庫是空字串 = 管理者把字型清掉,用網站預設
       }
       return { plants: d.plants, categories: d.categories, _source: 'supabase' };
     }, function (e) { clearTimeout(timer); throw e; });

@@ -62,17 +62,18 @@ jobs:
           node --check knowledge.js
           node --check plant-notes.js
           node --check sources.js
+          node --check about.js
 
       - name: Commit changes
         id: commit
         if: ${{ !inputs.dry_run }}
         run: |
-          if git diff --quiet -- data.json knowledge.js plant-notes.js sources.js; then
+          if git diff --quiet -- data.json knowledge.js plant-notes.js sources.js about.js; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             git config user.name "swf-sync-bot"
             git config user.email "swf-sync-bot@users.noreply.github.com"
-            git add data.json knowledge.js plant-notes.js sources.js
+            git add data.json knowledge.js plant-notes.js sources.js about.js
             git commit -m "Auto sync from Drive"
             git pull --rebase
             git push
