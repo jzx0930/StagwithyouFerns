@@ -327,11 +327,11 @@
   }
 
   // 登入視窗(訪客與管理者共用)。只提供 Google 登入:第一次登入會自動建立帳號,等於註冊
-  function login() {
+  function login(done, returnQuery) {
     modal({
       title: '登入', hint: '用 Google 帳號登入。第一次登入會自動建立帳號;帳號與 PlantDex 共用。',
       html: '<div class="sfe-row" style="margin:4px 0 6px"><button class="sfe-btn pri" data-g="1" style="width:100%">用 Google 登入</button></div>',
-      onClick: function (b) { if (b.getAttribute('data-g')) A.signInWithGoogle(); }
+      onClick: function (b) { if (b.getAttribute('data-g')) A.signInWithGoogle(returnQuery); }
     });
   }
   function account(isAdmin, done) {

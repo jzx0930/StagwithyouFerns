@@ -50,9 +50,10 @@
     return post('/auth/v1/token?grant_type=password', { email: email, password: password }).then(keep);
   }
   // Google 登入:轉去 Supabase 的授權網址,登入後帶著 token 轉回 redirect_to(必須在 Supabase 的 Redirect URLs 白名單內)
-  function signInWithGoogle() {
+  // query(可省略,例 '?id=PL-015'):登入完成後回到的網址要帶的參數,讓訪客回到原本那一株
+  function signInWithGoogle(query) {
     adminCache = null;
-    var back = location.origin + location.pathname;
+    var back = location.origin + location.pathname + (typeof query === 'string' && /^\?[\w=&%.\-]*$/.test(query) ? query : '');
     location.href = base() + '/auth/v1/authorize?provider=google&redirect_to=' + encodeURIComponent(back);
   }
   function handleRedirect() {

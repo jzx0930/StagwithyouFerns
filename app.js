@@ -17,13 +17,16 @@
     { name: 'Facebook', url: 'https://www.facebook.com/profile.php?id=61562676299178',
       icon: '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M13.6 21v-7.1h2.4l.4-2.9h-2.8V9.1c0-.8.3-1.4 1.5-1.4h1.4V5.1c-.7-.1-1.5-.2-2.4-.2-2.4 0-3.9 1.4-3.9 4v2.1H7.7v2.9h2.5V21h3.4z"/></svg>' }
   ];
+  var SOC = window.SWFSocial || null;   // 互動功能(瀏覽數 / 收藏 / 留言);沒有載入就是 null
   function socialBar() {
     var about = '<span class="social-link about-link" data-act="about" role="button" tabindex="0" aria-label="關於" title="關於">關於</span>';
     var kb = '<span class="social-link about-link" data-act="knowledge" role="button" tabindex="0" aria-label="知識庫" title="知識庫">知識庫</span>';
     var logged = !!(window.SWFAuth && window.SWFAuth.session());
     var acct = (window.SWFEdit && window.SWF && window.SWF.enabled())
       ? '<span class="social-link about-link" data-act="account" role="button" tabindex="0" aria-label="' + (logged ? '帳號' : '登入') + '" title="' + (logged ? '帳號' : '登入 / 註冊') + '">' + (logged ? '帳號' : '登入') + '</span>' : '';
-    var nav = '<span class="nav-links">' + about + kb + acct + '</span>';
+    var favs = (logged && SOC && SOC.on())
+      ? '<span class="social-link about-link" data-act="favs" role="button" tabindex="0" aria-label="我的收藏" title="我的收藏">收藏</span>' : '';
+    var nav = '<span class="nav-links">' + about + kb + favs + acct + '</span>';
     return '<div class="social-bar" data-lay="lobby.social">' + nav + SOCIAL.map(function (s) {
       return '<a class="social-link" href="' + s.url + '" target="_blank" rel="noopener noreferrer" aria-label="' + s.name + '" title="' + s.name + '">' + s.icon + '<span>' + s.name + '</span></a>';
     }).join('') + '</div>';
@@ -576,6 +579,38 @@
     animCards('#app .ab-line', 14);
   }
 
+  // 一張植物卡(分類牆與「我的收藏」共用);i = 這株在 state.data 的位置
+  function plantCardHTML(p, i) {
+    var cover = coverImg(p.cover, 900, p.name);
+    var ph = cover ? '' : '<div class="placeholder"><span>＋ 封面照片</span></div>';
+    return '<div class="plant-card" data-act="open" data-i="' + i + '">' +
+      '<div class="pc-cover">' + ph + cover +
+        (p.pid ? '<span class="pc-pid">' + esc(p.pid) + '</span>' : '') +
+        '<span class="pc-count">' + photoCount(p) + ' 張</span>' +
+        (SOC && SOC.isFav(p.key) ? '<span class="pc-fav" title="已收藏" aria-label="已收藏">♥</span>' : '') + '</div>' +
+      '<div class="pc-body">' +
+        '<div class="pc-name">' + esc(p.name) + '</div>' +
+        '<div class="pc-latin">' + esc(p.latin || '') + '</div>' +
+        '<div class="rule"></div>' +
+        '<div class="pc-foot"><span class="pc-date">入手 ' + esc(p.date || '') + '</span>' +
+          '<span class="pc-go">看成長 →</span></div>' +
+        (noteOf(p) ? '<div class="pc-note">— ' + esc(noteOf(p).replace(/\*/g, '').replace(/\s+/g, ' ').trim().slice(0, 48)) + (noteOf(p).length > 48 ? '…' : '') + '</div>' : '') +
+        shopRow(p, i, false) +
+      '</div></div>';
+  }
+  // 我的收藏(登入後才有)
+  function renderFavs() {
+    var keys = SOC ? SOC.favKeys() : [], data = state.data || [];
+    var cards = data.map(function (p, i) { return (p.key && keys.indexOf(p.key) >= 0) ? plantCardHTML(p, i) : ''; }).join('');
+    app.innerHTML = '<div class="wrap">' +
+      '<div class="back-row"><span class="pill-btn" data-act="lobby">← 回到分類大廳</span></div>' +
+      headerHTML('Favorites · 我的收藏', '我的收藏', '在植物頁按「♡ 收藏」,就會出現在這裡。', false) +
+      (cards ? '<div class="card-grid">' + cards + '</div>'
+             : '<p class="soc-mute" style="margin-top:30px">' + (state.logged ? '還沒有收藏任何植物。' : '登入後才能收藏植物。') + '</p>') +
+      '</div>';
+    animCards('#app .plant-card', 20);
+  }
+
   function renderGrid() {
     var cats = normCats();
     var tabIdx = Math.min(state.tab, cats.length - 1);
@@ -660,24 +695,7 @@
             '<span class="pc-go">看日記 →</span></div>' +
           (note ? '<div class="pc-note">— ' + esc(note.slice(0, 48)) + (note.length > 48 ? '…' : '') + '</div>' : '') +
         '</div></div>';
-    }).join('') : indexed.map(function (x) {
-      var p = x.p;
-      var cover = coverImg(p.cover, 900, p.name);
-      var ph = cover ? '' : '<div class="placeholder"><span>＋ 封面照片</span></div>';
-      return '<div class="plant-card" data-act="open" data-i="' + x.i + '">' +
-        '<div class="pc-cover">' + ph + cover +
-          (p.pid ? '<span class="pc-pid">' + esc(p.pid) + '</span>' : '') +
-          '<span class="pc-count">' + photoCount(p) + ' 張</span></div>' +
-        '<div class="pc-body">' +
-          '<div class="pc-name">' + esc(p.name) + '</div>' +
-          '<div class="pc-latin">' + esc(p.latin || '') + '</div>' +
-          '<div class="rule"></div>' +
-          '<div class="pc-foot"><span class="pc-date">入手 ' + esc(p.date || '') + '</span>' +
-            '<span class="pc-go">看成長 →</span></div>' +
-          (noteOf(p) ? '<div class="pc-note">— ' + esc(noteOf(p).replace(/\*/g, '').replace(/\s+/g, ' ').trim().slice(0, 48)) + (noteOf(p).length > 48 ? '…' : '') + '</div>' : '') +
-          shopRow(p, x.i, false) +
-        '</div></div>';
-    }).join('');
+    }).join('') : indexed.map(function (x) { return plantCardHTML(x.p, x.i); }).join('');
 
     var totalPhotos = indexed.reduce(function (s, x) { return s + photoCount(x.p); }, 0);
     var cat = cats[tabIdx];
@@ -834,6 +852,7 @@
         '<div class="detail-latin" id="sf-dlatin">' + esc(diaryMode ? (state.diaryDate + ' · ' + weekdayOf(state.diaryDate)) : (sel.latin || '')) + '</div>' +
       '</div>' +
       '<div class="metrics" data-lay="detail.metrics">' + metricsHtml + '</div>' +
+      (SOC && !diaryMode ? SOC.barHTML(sel) : '') +
       shopRow(sel, state.selected, true) +
       (state.admin && !diaryMode ? '<div class="ed-bar ed-center">' + edBtn('ed-note', '✎ 編輯介紹') + '</div>' : '') +
       (noteOf(sel) ? '<div class="plant-intro" data-lay="detail.intro">' + fmtNote(noteOf(sel)) + '</div>'
@@ -854,8 +873,10 @@
       })() +
       '<div class="tl-head" data-lay="detail.timelineHead"><h2>' + (diaryMode ? '當日紀錄' : '成長時間軸') + '</h2><div class="tl-order">' + (diaryMode ? total + ' 張' : '最新 → 最早') + '</div></div>' +
       '<div data-lay="detail.timeline">' + rows + '</div>' +
+      (SOC && !diaryMode ? SOC.commentsHTML(sel) : '') +
       '<div class="detail-footer"><span class="pill-btn" data-act="back-grid">↑ 回到照片牆</span></div>' +
     '</div>';
+    if (SOC && !diaryMode) SOC.mount(sel, { admin: state.admin, id: curId });   // 計瀏覽、填收藏狀態與留言
   }
 
   function edBtn(act, label, extra) { return '<span class="ed-btn" data-act="' + act + '"' + (extra || '') + '>' + label + '</span>'; }
@@ -875,6 +896,7 @@
     else if (state.view === 'about') renderAbout();
     else if (state.view === 'knowledge') renderKnowledge();
     else if (state.view === 'article') renderArticle();
+    else if (state.view === 'favs') renderFavs();
     else renderDetail();
     if (window.__fxMode) window.__fxMode(state.view);
     wireInteractions();   // 掛上滑鼠傾斜 / 磁吸(每次重繪後重掛)
@@ -907,6 +929,7 @@
     var i = parseInt(t.getAttribute('data-i'), 10);
     if (act === 'about') { go('about'); }
     else if (act === 'knowledge') { go('knowledge'); }
+    else if (act === 'favs') { go('favs'); }
     else if (act === 'account') {
       if (window.SWFAuth.session()) window.SWFEdit.account(!!state.admin, refreshAuth);
       else window.SWFEdit.login(refreshAuth);
@@ -1137,7 +1160,10 @@
       var E = window.SWFEdit;
       var priv = ok ? E.loadPrivate() : Promise.resolve(E.clearPrivate());
       return priv.then(function (privChanged) {
-        if ((changed || privChanged) && state.data) render();     // 訪客(沒登入)不會多畫一次,不干擾開場動畫
+        return (SOC ? SOC.sync() : Promise.resolve(false)).then(function (favChanged) {      // 登入者自己的收藏
+          if (state.view === 'favs' && !logged) state.view = 'lobby';
+          if ((changed || privChanged || favChanged) && state.data) render();     // 訪客(沒登入)不會多畫一次,不干擾開場動畫
+        });
       });
     });
   }

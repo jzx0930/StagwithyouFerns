@@ -1,12 +1,12 @@
 /* ===== admin.js — 後台頁面(admin.html)=====
-   分頁:植物(介紹 / 來源·母株 / 封面)、知識庫(新增 / 編輯 / 刪除 / 排序)、關於頁、詢問單、同步(收件匣、紀錄、立即同步、待寫回的修改)
+   分頁:植物(介紹 / 來源·母株 / 封面)、知識庫(新增 / 編輯 / 刪除 / 排序)、關於頁、留言(隱藏 / 顯示 / 刪除)、詢問單、同步(收件匣、紀錄、立即同步、待寫回的修改)
    編輯視窗與寫入邏輯都在 edit.js(和網站內編輯共用);這裡只負責清單與版面。
 */
 (function () {
   'use strict';
   var A = window.SWFAuth, E = window.SWFEdit, CFG = window.SWF_BACKEND || {};
   var root = document.getElementById('root');
-  var st = { tab: 'plants', q: '', only: 'all', plants: [], inbox: [], runs: [], pending: null, err: '', inq: [], inqOnly: 'new', busy: false };
+  var st = { tab: 'plants', q: '', only: 'all', plants: [], inbox: [], runs: [], pending: null, err: '', inq: [], inqOnly: 'new', busy: false, cm: [], cmOnly: 'all', views: {} };
 
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; }); }
   function when(iso) { if (!iso) return ''; var d = new Date(iso); return d.getFullYear() + '.' + ('0' + (d.getMonth() + 1)).slice(-2) + '.' + ('0' + d.getDate()).slice(-2) + ' ' + ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2); }
@@ -35,9 +35,17 @@
         Promise.all(['plant_notes', 'sources', 'plants', 'individuals', 'articles', 'about'].map(function (t) {
           return A.api('GET', t + '?select=web_edited&web_edited=eq.true&limit=1000').then(function (r) { return [t, (r || []).length]; }, function () { return [t, null]; });
         })),
-        A.api('GET', 'inquiries?select=id,created_at,name,contact,items,message,status&order=created_at.desc&limit=300').then(null, function () { return []; })
+        A.api('GET', 'inquiries?select=id,created_at,name,contact,items,message,status&order=created_at.desc&limit=300').then(null, function () { return []; }),
+        A.api('GET', 'comments?select=id,plant_key,body,created_at,user_id,is_hidden&order=created_at.desc&limit=300').then(null, function () { return []; }),
+        A.api('GET', 'comments_public?select=id,display_name&order=created_at.desc&limit=300').then(null, function () { return []; }),
+        A.api('GET', 'views?select=plant_key,count&limit=5000').then(null, function () { return []; })
       ]);
-    }).then(function (r) { st.inbox = r[0] || []; st.runs = r[1] || []; st.pending = r[2]; st.inq = r[3] || []; });
+    }).then(function (r) {
+      st.inbox = r[0] || []; st.runs = r[1] || []; st.pending = r[2]; st.inq = r[3] || [];
+      var names = {}; (r[5] || []).forEach(function (x) { names[x.id] = x.display_name; });
+      st.cm = (r[4] || []).map(function (c) { c.display_name = names[c.id] || ''; return c; });
+      st.views = {}; (r[6] || []).forEach(function (v) { st.views[v.plant_key] = v.count; });
+    });
   }
 
   // ---------- 畫面 ----------
@@ -48,13 +56,15 @@
       if (!q) return true;
       return (p.name + ' ' + (p.latin || '') + ' ' + (p.pid || '') + ' ' + p.category).toLowerCase().indexOf(q) >= 0;
     });
+    if (st.only === 'hot') list = list.slice().sort(function (a, b) { return (st.views[b.key] || 0) - (st.views[a.key] || 0); });
     var missing = st.plants.filter(function (p) { return !hasNote(p); }).length;
     return '<div class="tools"><input type="text" id="q" placeholder="搜尋名稱 / 學名 / ID" value="' + esc(st.q) + '">' +
       '<span class="chip' + (st.only === 'all' ? ' on' : '') + '" data-only="all">全部 ' + st.plants.length + '</span>' +
-      '<span class="chip' + (st.only === 'nonote' ? ' on' : '') + '" data-only="nonote">缺介紹 ' + missing + '</span></div>' +
+      '<span class="chip' + (st.only === 'nonote' ? ' on' : '') + '" data-only="nonote">缺介紹 ' + missing + '</span>' +
+      '<span class="chip' + (st.only === 'hot' ? ' on' : '') + '" data-only="hot">依瀏覽數排序</span></div>' +
       '<div class="card">' + (list.length ? list.slice(0, 300).map(function (p) {
         var i = st.plants.indexOf(p);
-        return '<div class="row"><div class="nm">' + esc(p.name) + '<small>' + esc(p.pid || '') + ' · ' + esc(p.category) + ' · ' + (p.individuals || []).length + ' 個體 · ' + photos(p) + ' 張</small>' +
+        return '<div class="row"><div class="nm">' + esc(p.name) + '<small>' + esc(p.pid || '') + ' · ' + esc(p.category) + ' · ' + (p.individuals || []).length + ' 個體 · ' + photos(p) + ' 張' + (st.views[p.key] ? ' · 👁 ' + st.views[p.key] : '') + '</small>' +
           (hasNote(p) ? '' : '<span class="badge">缺介紹</span>') + (p.coverLocked ? '<span class="badge g">封面已鎖定</span>' : '') + '</div>' +
           '<button class="btn sm" data-a="note" data-i="' + i + '">介紹</button>' +
           '<button class="btn sm" data-a="src" data-i="' + i + '">來源·母株</button>' +
@@ -89,6 +99,31 @@
       '<div class="about-pre">' + (lines.length ? lines.map(function (l) { return l === '' ? '<br>' : '<div>' + esc(l) + '</div>'; }).join('') : '<p class="mute">還沒有內容。</p>') + '</div></div>';
   }
 
+  // 留言:全部留言(含已隱藏),可隱藏 / 重新顯示 / 刪除
+  function plantOf(key) { for (var i = 0; i < st.plants.length; i++) if (st.plants[i].key === key) return st.plants[i]; return null; }
+  function cmSeen() { try { return +localStorage.getItem('swf_admin_cm_seen') || 0; } catch (e) { return 0; } }
+  function cmNew() { var s = cmSeen(); return st.cm.filter(function (c) { return c.id > s; }).length; }
+  function cmTab() {
+    var hid = st.cm.filter(function (c) { return c.is_hidden; }).length;
+    var list = st.cm.filter(function (c) { return st.cmOnly === 'all' || c.is_hidden; });
+    var seen = cmSeen();
+    var html = '<div class="tools"><span class="chip' + (st.cmOnly === 'all' ? ' on' : '') + '" data-cm="all">全部 ' + st.cm.length + '</span>' +
+        '<span class="chip' + (st.cmOnly === 'hidden' ? ' on' : '') + '" data-cm="hidden">已隱藏 ' + hid + '</span>' +
+        '<span class="mute">留言一送出就會公開;不適合的可以隱藏(訪客看不到,可再顯示)或刪除(無法復原)。</span></div>' +
+      '<div class="card">' + (list.length ? list.map(function (c) {
+        var p = plantOf(c.plant_key);
+        return '<div class="row inq"><div class="nm">' + (c.id > seen ? '<span class="badge">新</span> ' : '') + (c.is_hidden ? '<span class="badge">已隱藏</span> ' : '') +
+            esc(c.display_name || (c.is_hidden ? '(已隱藏的留言)' : '植友')) + '<small>' + when(c.created_at) + ' · ' +
+            (p ? (p.pid ? '<a target="_blank" href="index.html?id=' + encodeURIComponent(p.pid) + '">' + esc(p.name) + '</a>' : esc(p.name)) : '(植物已不存在)') + '</small>' +
+            '<div class="inq-b inq-msg">' + esc(c.body) + '</div></div>' +
+          '<button class="btn sm" data-a="cm-hide" data-id="' + c.id + '" data-h="' + (c.is_hidden ? '0' : '1') + '">' + (c.is_hidden ? '重新顯示' : '隱藏') + '</button>' +
+          '<button class="btn sm" data-a="cm-del" data-id="' + c.id + '">刪除</button></div>';
+      }).join('') : '<p class="mute">' + (st.cm.length ? '沒有已隱藏的留言。' : '目前還沒有留言。') + '</p>') + '</div>';
+    var top = st.cm.reduce(function (m, c) { return Math.max(m, c.id); }, 0);      // 看過這一頁 → 「新」的數量歸零
+    if (top > seen) { try { localStorage.setItem('swf_admin_cm_seen', String(top)); } catch (e) {} }
+    return html;
+  }
+
   // 詢問單:訪客按「購買 / 詢問」送出的聯絡資料(只有管理者讀得到)
   var INQ = { 'new': '未處理', replied: '已回覆', done: '完成' };
   function itemText(it) {
@@ -97,7 +132,7 @@
     var nm = it.name || it.title || it.plant || '', id = it.id || it.pid || '', extra = [];
     if (it.label) extra.push(it.label);
     if (it.price != null && it.price !== '') extra.push('NT$ ' + it.price);
-    return (nm || JSON.stringify(it)) + (id ? '(' + id + ')' : '') + (extra.length ? ' · ' + extra.join(' · ') : '');
+    return (nm || JSON.stringify(it)) + (id ? '(' + id + ')' : '') + (it.qty > 1 ? ' ×' + it.qty : '') + (extra.length ? ' · ' + extra.join(' · ') : '');
   }
   function inqTab() {
     var n = { all: st.inq.length }; ['new', 'replied', 'done'].forEach(function (k) { n[k] = st.inq.filter(function (x) { return x.status === k; }).length; });
@@ -147,12 +182,13 @@
   function view() {
     var s = A.session() || { user: {} };
     var newInq = st.inq.filter(function (x) { return x.status === 'new'; }).length;
-    var tabs = [['plants', '植物'], ['kb', '知識庫'], ['about', '關於頁'], ['inq', '詢問單' + (newInq ? '<span class="badge">' + newInq + '</span>' : '')], ['sync', '同步' + (st.inbox.length ? '<span class="badge">' + st.inbox.length + '</span>' : '')]];
+    var nCm = st.tab === 'cm' ? 0 : cmNew();
+    var tabs = [['plants', '植物'], ['kb', '知識庫'], ['about', '關於頁'], ['cm', '留言' + (nCm ? '<span class="badge">' + nCm + '</span>' : '')], ['inq', '詢問單' + (newInq ? '<span class="badge">' + newInq + '</span>' : '')], ['sync', '同步' + (st.inbox.length ? '<span class="badge">' + st.inbox.length + '</span>' : '')]];
     root.innerHTML = '<header><h1>StagwithyouFerns 後台</h1><span class="sp"></span><span class="mute">' + esc(s.user.email || '') + '</span>' +
       '<a class="btn sm" href="index.html">回網站</a><button class="btn sm" data-a="reload">重新整理</button><button class="btn sm" data-a="out">登出</button></header>' +
       (st.err ? '<p class="err">' + esc(st.err) + '</p>' : '') +
       '<div class="tabs">' + tabs.map(function (t) { return '<div class="tab' + (st.tab === t[0] ? ' on' : '') + '" data-tab="' + t[0] + '">' + t[1] + '</div>'; }).join('') + '</div>' +
-      (st.tab === 'plants' ? plantsTab() : st.tab === 'kb' ? kbTab() : st.tab === 'about' ? aboutTab() : st.tab === 'inq' ? inqTab() : syncTab());
+      (st.tab === 'plants' ? plantsTab() : st.tab === 'kb' ? kbTab() : st.tab === 'about' ? aboutTab() : st.tab === 'cm' ? cmTab() : st.tab === 'inq' ? inqTab() : syncTab());
     var q = document.getElementById('q');
     if (q) q.oninput = function () { st.q = q.value; var pos = q.selectionStart; view(); var n = document.getElementById('q'); n.focus(); n.setSelectionRange(pos, pos); };
   }
@@ -160,7 +196,8 @@
   function artById(id) { var K = window.SF_KNOWLEDGE || []; for (var i = 0; i < K.length; i++) if (K[i].id === id) return K[i]; return null; }
 
   root.addEventListener('click', function (e) {
-    var t = e.target.closest('[data-a],[data-tab],[data-only],[data-inq]'); if (!t) return;
+    var t = e.target.closest('[data-a],[data-tab],[data-only],[data-inq],[data-cm]'); if (!t) return;
+    if (t.getAttribute('data-cm')) { st.cmOnly = t.getAttribute('data-cm'); return view(); }
     if (t.getAttribute('data-inq')) { st.inqOnly = t.getAttribute('data-inq'); return view(); }
     if (t.getAttribute('data-tab')) { st.tab = t.getAttribute('data-tab'); return view(); }
     if (t.getAttribute('data-only')) { st.only = t.getAttribute('data-only'); return view(); }
@@ -178,6 +215,26 @@
         .then(function () { st.busy = false; view(); }, function (er) { st.busy = false; st.err = '排序沒有成功:' + er.message; view(); });
     }
     else if (a === 'about') E.about(view);
+    else if (a === 'cm-hide') {
+      t.disabled = true;
+      var hide = t.getAttribute('data-h') === '1';
+      A.api('PATCH', 'comments?id=eq.' + t.getAttribute('data-id'), { is_hidden: hide }, 'return=representation').then(function (rows) {
+        if (!rows || !rows.length) throw new Error('沒有改到資料');
+        st.cm.forEach(function (c) { if (String(c.id) === t.getAttribute('data-id')) c.is_hidden = hide; });
+        st.err = ''; view();
+      }).then(null, function (er) { st.err = '留言沒有更新:' + er.message; view(); });
+    }
+    else if (a === 'cm-del') {
+      var cid = t.getAttribute('data-id');
+      E.modal({ title: '刪除留言?', hint: '刪除後無法復原。只是不想讓訪客看到的話,用「隱藏」就好。',
+        extra: [{ label: '確定刪除', cls: 'danger', onClick: function (close) {
+          return A.api('DELETE', 'comments?id=eq.' + cid, null, 'return=representation').then(function (rows) {
+            if (!rows || !rows.length) throw new Error('沒有刪到資料');
+            st.cm = st.cm.filter(function (c) { return String(c.id) !== cid; });
+            close(); view();
+          });
+        } }] });
+    }
     else if (a === 'inq') {
       t.disabled = true;
       A.api('PATCH', 'inquiries?id=eq.' + t.getAttribute('data-id'), { status: t.getAttribute('data-s') }, 'return=representation')

@@ -530,3 +530,29 @@ body {
   .pc-date{font-size:8.5px}
   .pc-go,.pc-note{display:none}
 }
+
+/* ===== 互動:收藏 / 瀏覽數 / 留言(social.js)===== */
+.soc-bar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:14px 0 4px}
+.soc-fav,.soc-btn{cursor:pointer;font:inherit;font-size:14px;color:var(--green-mint);background:rgba(255,255,255,.05);border:1px solid rgba(154,216,171,.35);border-radius:999px;padding:8px 18px;transition:background .25s,border-color .25s,color .25s}
+.soc-fav:hover,.soc-btn:hover{background:rgba(154,216,171,.14)}
+.soc-fav.on{color:#ffb3c0;border-color:rgba(255,150,170,.55);background:rgba(255,120,150,.10)}
+.soc-fav[disabled],.soc-btn[disabled]{opacity:.5;cursor:default}
+.soc-views{font-family:var(--mono);font-size:12px;color:var(--muted2);letter-spacing:.04em}
+.soc-msg{font-size:13px;color:#f0a99b}
+.soc-mute{font-size:13.5px;color:var(--muted2)}
+.soc-cm{margin-top:10px}
+.soc-c{padding:14px 16px;border-radius:14px;background:var(--glass);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);border:1px solid rgba(255,255,255,.1);margin-bottom:10px}
+.soc-c-h{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px;color:var(--muted2)}
+.soc-c-h b{color:#eef4ef;font-weight:600}
+.soc-me{font-size:11px;padding:1px 8px;border-radius:999px;border:1px solid rgba(154,216,171,.4);color:var(--green-mint)}
+.soc-d{font-family:var(--mono);font-size:11px}
+.soc-x{margin-left:auto;cursor:pointer;font:inherit;font-size:12px;color:var(--muted2);background:none;border:0;padding:2px 4px}
+.soc-x + .soc-x{margin-left:0}
+.soc-x:hover{color:#f0a99b}
+.soc-c-b{margin-top:6px;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.7;color:#dfe9e2;font-size:calc(15px * var(--fs-scale))}
+#soc-cm-form{margin-top:14px}
+#soc-cm-form textarea{width:100%;box-sizing:border-box;background:rgba(8,14,12,.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:11px 13px;color:#eef2ef;font:inherit;font-size:15px;line-height:1.6;resize:vertical}
+#soc-cm-form textarea:focus{outline:2px solid rgba(154,216,171,.55);outline-offset:1px}
+.soc-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:10px}
+.pc-fav{position:absolute;right:10px;bottom:10px;font-size:15px;color:#ff9db0;text-shadow:0 1px 6px rgba(0,0,0,.7)}
+@media (max-width:640px){ .pc-fav{right:5px;bottom:5px;font-size:12px} }

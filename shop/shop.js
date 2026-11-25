@@ -25,6 +25,33 @@
     add: function () {},
     open: function () {}
   };
+
+  // ---- 詢問單同時存進資料庫(後台「詢問單」看得到歷史);寄信通知仍走 Web3Forms ----
+  function inquiryRow(items, f) {
+    var contact = [f.email && 'Email: ' + f.email, f.phone && '電話: ' + f.phone, f.line && 'LINE: ' + f.line].filter(Boolean).join(' / ');
+    return {
+      name: String(f.name || '').slice(0, 60), contact: contact.slice(0, 200),
+      items: items.map(function (it) { return { name: it.name, latin: it.latin || '', qty: it.qty, price: it.price != null ? it.price : null }; }),
+      message: String(f.note || '').slice(0, 2000)
+    };
+  }
+  // 回傳 Promise<boolean>:有沒有存成功(後端沒開 / 失敗都是 false,不會丟錯)
+  function saveInquiry(row) {
+    var B = window.SWF_BACKEND || {};
+    if (!(B.enabled && B.url && B.anonKey)) return Promise.resolve(false);
+    function anon() {
+      return fetch(String(B.url).replace(/\/+$/, '') + '/rest/v1/inquiries', {
+        method: 'POST',
+        headers: { apikey: B.anonKey, Authorization: 'Bearer ' + B.anonKey, 'Content-Type': 'application/json', 'Content-Profile': B.schema || 'swf', Prefer: 'return=minimal' },
+        body: JSON.stringify([row])
+      }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); });
+    }
+    var A = window.SWFAuth;
+    var req = (A && A.session()) ? A.api('POST', 'inquiries', [row], 'return=minimal').then(null, anon) : anon();   // 已登入:帶上帳號;失敗退回匿名
+    return req.then(function () { return true; }, function () { return false; });
+  }
+  SHOP._inquiryRow = inquiryRow; SHOP._saveInquiry = saveInquiry;
+
   if (!ENABLED) return;  // 關閉:不建立任何 UI
 
   // ---- 購物車狀態(localStorage 保存,換頁/重整都在)----
@@ -177,7 +204,7 @@
       + '<div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.08);">' + itemsMini
       + '<div class="sf-total" style="margin-top:8px;"><span class="k">總計</span><span class="v" style="font-size:22px;">' + money(total()) + '</span></div></div>'
       + '<div class="sf-field"><label>姓名 / 稱呼 <span class="req">*</span></label><input id="sf-f-name" autocomplete="name"></div>'
-      + '<div class="sf-field"><label>Email</label><input id="sf-f-email" type="email" autocomplete="email"></div>'
+      + '<div class="sf-field"><label>Email</label><input id="sf-f-email" type="email" autocomplete="email" value="' + esc(myEmail()) + '"></div>'
       + '<div class="sf-field"><label>電話</label><input id="sf-f-phone" type="tel" autocomplete="tel"></div>'
       + '<div class="sf-field"><label>LINE ID</label><input id="sf-f-line"></div>'
       + '<div class="sf-field"><label>備註 / 想詢問的事</label><textarea id="sf-f-note" placeholder="想要的個體 #、數量、面交地點…"></textarea></div>'
@@ -187,17 +214,22 @@
       + '<div class="foot"><button class="sf-btn" data-cart="submit" id="sf-submit">送出訂單</button></div>';
   }
 
+  // 已登入就先帶入帳號的 Email(可以改)
+  function myEmail() { var s = window.SWFAuth && window.SWFAuth.session(); return (s && s.user && s.user.email) || ''; }
+
   function showMsg(kind, text) {
     var m = document.getElementById('sf-form-msg');
     if (m) m.innerHTML = '<div class="sf-msg ' + kind + '">' + esc(text) + '</div>';
   }
 
-  // ---- 送出訂單到 Web3Forms ----
+  // ---- 送出訂單:寄信通知賣家(Web3Forms)+ 存進資料庫;兩邊只要有一邊成功就算送出 ----
   function submitOrder() {
     var name = val('sf-f-name'), email = val('sf-f-email'), phone = val('sf-f-phone'), line = val('sf-f-line'), note = val('sf-f-note');
     if (!name) { showMsg('err', '請填寫姓名 / 稱呼。'); return; }
     if (!email && !phone && !line) { showMsg('err', '請至少留一種聯絡方式(Email / 電話 / LINE)。'); return; }
-    if (!CFG.web3formsKey || /貼上/.test(CFG.web3formsKey)) { showMsg('err', '賣家尚未設定送單服務(Web3Forms key),請直接與賣家聯繫。'); return; }
+    var hasMail = !!CFG.web3formsKey && !/貼上/.test(CFG.web3formsKey);
+    var B = window.SWF_BACKEND || {}, hasDb = !!(B.enabled && B.url && B.anonKey);
+    if (!hasMail && !hasDb) { showMsg('err', '賣家尚未設定送單服務,請直接與賣家聯繫。'); return; }
     if (!cart.length) { showMsg('err', '購物車是空的。'); return; }
 
     var lines = cart.map(function (it) {
@@ -210,7 +242,8 @@
     if (btn) { btn.disabled = true; btn.textContent = '送出中…'; }
     showMsg('ok', '訂單送出中,請稍候…');
 
-    fetch('https://api.web3forms.com/submit', {
+    var saved = saveInquiry(inquiryRow(cart, { name: name, email: email, phone: phone, line: line, note: note }));
+    var mailed = !hasMail ? Promise.resolve({ success: false }) : fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
@@ -226,8 +259,11 @@
         '訂單明細': orderText,
         '總金額': money(total())
       })
-    }).then(function (r) { return r.json(); }).then(function (data) {
-      if (data && data.success) {
+    }).then(function (r) { return r.json(); }).then(null, function () { return { success: false, message: '' }; });
+
+    Promise.all([mailed, saved]).then(function (res) {
+      var data = res[0];
+      if ((data && data.success) || res[1]) {
         clearCart();
         drawer.innerHTML = '<div class="h"><span class="t">已送出 ✓</span><span class="x" data-cart="close">✕ 關閉</span></div>'
           + '<div class="body"><div class="sf-msg ok" style="margin-top:8px;">訂單已寄給賣家!賣家會盡快用你留的聯絡方式回覆你,再與你確認金額與取貨方式。謝謝 🌿</div></div>';
@@ -235,9 +271,6 @@
         if (btn) { btn.disabled = false; btn.textContent = '送出訂單'; }
         showMsg('err', '送出失敗:' + ((data && data.message) || '請稍後再試,或直接聯繫賣家。'));
       }
-    }).catch(function () {
-      if (btn) { btn.disabled = false; btn.textContent = '送出訂單'; }
-      showMsg('err', '送出失敗(網路問題),請稍後再試或直接聯繫賣家。');
     });
   }
   function val(id) { var e = document.getElementById(id); return e ? e.value.trim() : ''; }
