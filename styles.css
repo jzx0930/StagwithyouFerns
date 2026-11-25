@@ -511,3 +511,22 @@ body {
 .tl-card{max-width:50%}
 #sf-adminbar{position:fixed;left:14px;bottom:14px;z-index:60;font-size:12.5px;padding:7px 14px;border-radius:999px;background:rgba(12,18,16,.85);border:1px solid rgba(127,212,162,.5);color:#9fe3ba}
 #sf-adminbar a{color:#fff;text-decoration:underline}
+
+/* 手機:大廳分類卡、植物牆一排 3 個(和電腦版一樣);卡片內的字與標籤跟著縮小 */
+@media (max-width:640px){
+  .card-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .cat-card{height:150px;border-radius:14px}
+  .cat-meta{left:8px;right:8px;bottom:8px;display:block}
+  .cat-name{font-size:calc(15px * var(--fs-scale))}
+  .cat-latin{font-size:calc(9px * var(--fs-scale));white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .cat-meta .chip{display:inline-block;margin-top:4px;font-size:9px;padding:1px 6px}
+  .plant-card{border-radius:12px}
+  .pc-count{top:5px;right:5px;font-size:8px;padding:1px 5px}
+  .pc-pid{top:5px;left:5px;font-size:8px;padding:1px 4px;letter-spacing:0}
+  .pc-body{padding:7px 7px 9px}
+  .pc-name{font-size:calc(13px * var(--fs-scale));line-height:1.2;overflow-wrap:anywhere}
+  .pc-latin{font-size:calc(9.5px * var(--fs-scale));line-height:1.25;overflow-wrap:anywhere}
+  .plant-card .rule{margin:6px 0}
+  .pc-date{font-size:8.5px}
+  .pc-go,.pc-note{display:none}
+}
