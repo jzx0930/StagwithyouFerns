@@ -554,5 +554,8 @@ body {
 #soc-cm-form textarea{width:100%;box-sizing:border-box;background:rgba(8,14,12,.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:11px 13px;color:#eef2ef;font:inherit;font-size:15px;line-height:1.6;resize:vertical}
 #soc-cm-form textarea:focus{outline:2px solid rgba(154,216,171,.55);outline-offset:1px}
 .soc-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:10px}
+.soc-link{cursor:pointer;font:inherit;font-size:13.5px;color:var(--green-mint);background:none;border:0;padding:4px 2px;text-decoration:underline;text-underline-offset:3px}
+.soc-link:hover{color:#fff}
+.soc-hint{margin:10px 0 0}
 .pc-fav{position:absolute;right:10px;bottom:10px;font-size:15px;color:#ff9db0;text-shadow:0 1px 6px rgba(0,0,0,.7)}
 @media (max-width:640px){ .pc-fav{right:5px;bottom:5px;font-size:12px} }

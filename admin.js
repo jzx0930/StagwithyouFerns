@@ -113,7 +113,7 @@
       '<div class="card">' + (list.length ? list.map(function (c) {
         var p = plantOf(c.plant_key);
         return '<div class="row inq"><div class="nm">' + (c.id > seen ? '<span class="badge">新</span> ' : '') + (c.is_hidden ? '<span class="badge">已隱藏</span> ' : '') +
-            esc(c.display_name || (c.is_hidden ? '(已隱藏的留言)' : '植友')) + '<small>' + when(c.created_at) + ' · ' +
+            esc(c.display_name || (!c.user_id ? '訪客' : c.is_hidden ? '(已隱藏的留言)' : '植友')) + '<small>' + when(c.created_at) + ' · ' +
             (p ? (p.pid ? '<a target="_blank" href="index.html?id=' + encodeURIComponent(p.pid) + '">' + esc(p.name) + '</a>' : esc(p.name)) : '(植物已不存在)') + '</small>' +
             '<div class="inq-b inq-msg">' + esc(c.body) + '</div></div>' +
           '<button class="btn sm" data-a="cm-hide" data-id="' + c.id + '" data-h="' + (c.is_hidden ? '0' : '1') + '">' + (c.is_hidden ? '重新顯示' : '隱藏') + '</button>' +

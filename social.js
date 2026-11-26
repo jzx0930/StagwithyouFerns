@@ -6,7 +6,8 @@
      .barHTML(plant)               詳情頁:收藏鈕 + 瀏覽數(只回傳空殼,內容由 mount 填)
      .commentsHTML(plant)          詳情頁:留言區空殼
      .mount(plant, {admin, id})    畫面畫好後呼叫:計一次瀏覽、填入瀏覽數 / 收藏狀態 / 留言
-   誰能做什麼由資料庫 RLS 把關:訪客只能讀;登入才能收藏、留言;只能刪自己的留言,管理者可隱藏或刪除任何留言。
+   誰能做什麼由資料庫 RLS 把關:訪客能讀、也能用「訪客」身分留言(不能自己刪;資料庫有頻率限制,見 swf_004);
+   登入才能收藏;登入者的留言會顯示名稱、可以刪自己的;管理者可隱藏或刪除任何留言。
    plant 要有 key(backend.js 從資料庫讀出來時帶上);離線備援(data.json)沒有 key,互動功能自動不出現。
 */
 (function () {
@@ -26,11 +27,18 @@
   function uid() { var s = A && A.session(); return (s && s.user && s.user.id) || null; }
 
   // 訪客也能做的請求(公開金鑰):讀瀏覽數 / 留言、計一次瀏覽
-  function pub(method, path, body) {
+  function pub(method, path, body, prefer) {
     var h = { apikey: CFG.anonKey, Authorization: 'Bearer ' + CFG.anonKey, 'Accept-Profile': CFG.schema || 'swf', 'Content-Profile': CFG.schema || 'swf' };
     if (body) h['Content-Type'] = 'application/json';
+    if (prefer) h.Prefer = prefer;
     return fetch(String(CFG.url).replace(/\/+$/, '') + '/rest/v1/' + path, { method: method, headers: h, body: body ? JSON.stringify(body) : undefined })
-      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.status === 204 ? null : r.text().then(function (t) { return t ? JSON.parse(t) : null; }); });
+      .then(function (r) {
+        return r.text().then(function (t) {
+          var j = null; try { j = t ? JSON.parse(t) : null; } catch (e) {}
+          if (!r.ok) { var er = new Error((j && j.message) || ('HTTP ' + r.status)); er.status = r.status; er.code = j && j.code; throw er; }
+          return j;
+        });
+      });
   }
 
   // ---------- 收藏 ----------
@@ -111,23 +119,31 @@
   }
   function paintForm() {
     var f = $('soc-cm-form'); if (!f) return;
+    var box = '<textarea id="soc-cm-text" maxlength="' + MAXLEN + '" rows="3" placeholder="想說點什麼…(最多 ' + MAXLEN + ' 字)" aria-label="留言內容"></textarea>';
     f.innerHTML = uid()
-      ? '<textarea id="soc-cm-text" maxlength="' + MAXLEN + '" rows="3" placeholder="想說點什麼…(最多 ' + MAXLEN + ' 字)" aria-label="留言內容"></textarea>' +
-        '<div class="soc-row"><button class="soc-btn" data-soc="cm-send">送出留言</button><span class="soc-msg" id="soc-cm-msg" role="alert"></span></div>'
-      : '<div class="soc-row"><button class="soc-btn" data-soc="login">登入後留言</button><span class="soc-mute">用 Google 帳號登入即可,不用另外註冊。</span></div>';
+      ? box + '<div class="soc-row"><button class="soc-btn" data-soc="cm-send">送出留言</button><span class="soc-msg" id="soc-cm-msg" role="alert"></span></div>'
+      // 沒登入也能留言:以「訪客」顯示
+      : box + '<div class="soc-row"><button class="soc-btn" data-soc="cm-send">以訪客身分送出</button>' +
+          '<button class="soc-link" data-soc="login">或登入後留言</button><span class="soc-msg" id="soc-cm-msg" role="alert"></span></div>' +
+        '<p class="soc-mute soc-hint">沒登入會以「訪客」顯示,送出後不能自己刪除。用 Google 登入後留言會顯示你的名稱,也可以自己刪。</p>';
   }
   function note(id, text) { var m = $(id); if (m) m.textContent = text || ''; }
   function sendComment(btn) {
     if (!cur) return;
-    if (!uid()) return askLogin();
+    var guest = !uid();
     var ta = $('soc-cm-text'), body = ta ? ta.value.replace(/\r/g, '').trim() : '', key = cur.key;
     if (!body) return note('soc-cm-msg', '請先輸入留言內容');
     if (body.length > MAXLEN) return note('soc-cm-msg', '留言太長了(最多 ' + MAXLEN + ' 字)');
     btn.disabled = true; note('soc-cm-msg', '送出中…');
-    A.api('POST', 'comments', [{ plant_key: key, body: body }], 'return=minimal').then(function () {
+    // 登入者用自己的帳號;訪客用公開金鑰(資料庫只收 user_id 是空的那種,並限制頻率)
+    var req = guest ? pub('POST', 'comments', [{ plant_key: key, body: body }], 'return=minimal')
+                    : A.api('POST', 'comments', [{ plant_key: key, body: body }], 'return=minimal');
+    req.then(function () {
       return loadComments(key, true);
     }).then(null, function (e) {
-      btn.disabled = false; note('soc-cm-msg', '沒有送出:' + ((e && e.message) || '請再試一次'));
+      btn.disabled = false;
+      var denied = guest && e && (e.code === '42501' || e.status === 401 || e.status === 403);   // 資料庫還沒開放訪客留言(尚未執行 swf_004)
+      note('soc-cm-msg', denied ? '目前還不能用訪客身分留言,請登入後再留言。' : '沒有送出:' + ((e && e.message) || '請再試一次'));
     });
   }
   // 刪除 / 隱藏:第一次按先變成「確定?」,再按一次才執行
