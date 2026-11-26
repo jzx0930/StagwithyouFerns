@@ -9,6 +9,9 @@
      .removeArticle(article, done)         刪除文章(先隱藏,隔天寫回檔案時真正移除)
      .moveArticle(article, dir, done)      同分類內上移(-1)/ 下移(+1):和相鄰那篇交換排序
      .about(done)                          編輯關於頁(內文 + 字型)
+     .auction(ctx, done)                   競標:開標({plant, indiv} 或 {plants} 讓管理者挑)/ 修改({row})
+     .cancelAuction(row, done)             取消競標
+     .auctionBidders(row)                  出價名單(含 Email,只有管理者讀得到)
      .loadPrivate()                        Promise<boolean> 讀「只有管理者看得到」的私人分類與文章,併進知識庫(有變動回傳 true)
      .mergePrivate() / .clearPrivate()     重新併入(資料重讀後)/ 移除(登出後)私人內容
    私人文章(admin_only = true)只存在資料庫,不會寫進 knowledge.js,訪客讀不到(資料庫 RLS 把關)。
@@ -53,7 +56,7 @@
       else if (f.type === 'select') ctl = '<select id="' + id + '">' + f.options.map(function (o) {
         var v = typeof o === 'string' ? o : o.value, t = typeof o === 'string' ? o : o.text;
         return '<option value="' + esc(v) + '"' + (v === f.value ? ' selected' : '') + '>' + esc(t) + '</option>'; }).join('') + '</select>';
-      else ctl = '<input id="' + id + '" type="' + (f.type === 'password' ? 'password' : f.type === 'email' ? 'email' : 'text') + '" value="' + esc(f.value || '') + '" placeholder="' + esc(f.placeholder || '') + '">';
+      else ctl = '<input id="' + id + '" type="' + (['password', 'email', 'number', 'datetime-local'].indexOf(f.type) >= 0 ? f.type : 'text') + '"' + (f.type === 'number' ? ' min="0" step="1" inputmode="numeric"' : '') + ' value="' + esc(f.value || '') + '" placeholder="' + esc(f.placeholder || '') + '">';
       return '<div class="sfe-f"><label for="' + id + '">' + esc(f.label) + '</label>' + ctl + '</div>';
     }).join('');
     back.innerHTML = '<div class="sfe-box" role="dialog" aria-modal="true"><h3>' + esc(opts.title) + '</h3>' +
@@ -326,6 +329,104 @@
     });
   }
 
+  // ---------- 競標(管理者)----------
+  function localInput(d) { function z(n) { return ('0' + n).slice(-2); } return d.getFullYear() + '-' + z(d.getMonth() + 1) + '-' + z(d.getDate()) + 'T' + z(d.getHours()) + ':' + z(d.getMinutes()); }
+  function ivText(iv) { return (iv.label || '無編號') + (iv.name ? ' ' + iv.name : '') + '(' + iv.id + ')'; }
+  function withIds(p) { return (p.individuals || []).filter(function (iv) { return iv.id; }); }
+  function aucError(e) {
+    var m = (e && e.message) || '';
+    if (/uq_swf_auction_open/.test(m)) return new Error('這個個體已經有一場還沒結束的競標。');
+    if (/Could not find the (table|function)|does not exist/i.test(m)) return new Error('資料庫還沒有競標功能,請先在 Supabase 執行 swf_005_auctions.sql。');
+    return e;
+  }
+  function auction(ctx, done) {
+    ctx = ctx || {};
+    var row = ctx.row || null, plant = ctx.plant || null, indiv = ctx.indiv || null, fields = [];
+    var pick = (!row && !plant) ? (ctx.plants || []).filter(function (p) { return p.key && withIds(p).length; }) : null;
+    if (!row) {
+      if (pick) {
+        if (!pick.length) throw new Error('沒有可以競標的個體。');
+        plant = pick[0];
+        fields.push({ key: 'plant', label: '植物', type: 'select', value: '0',
+          options: pick.map(function (p, i) { return { value: String(i), text: p.name + (p.pid ? '(' + p.pid + ')' : '') + ' · ' + p.category }; }),
+          onChange: function (i, box) {
+            plant = pick[+i];
+            box.querySelector('#sfe-iv').innerHTML = withIds(plant).map(function (iv) { return '<option value="' + esc(iv.id) + '">' + esc(ivText(iv)) + '</option>'; }).join('');
+          } });
+      } else needKey(plant);
+      var ivs0 = withIds(plant);
+      if (!ivs0.length) throw new Error('這株還沒有個體編號,無法競標。');
+      if (!indiv || !indiv.id) indiv = ivs0[0];
+      if (pick || ivs0.length > 1) fields.push({ key: 'iv', label: '個體', type: 'select', value: indiv.id, options: ivs0.map(function (iv) { return { value: iv.id, text: ivText(iv) }; }) });
+    }
+    var locked = !!(row && row.bid_count > 0);      // 已經有人出價:起標價不能再改
+    if (!locked) fields.push({ key: 'start', label: '起標價(NT$)', type: 'number', value: row ? String(row.start_price) : '' });
+    fields.push({ key: 'inc', label: '每次最低加價(NT$)', type: 'number', value: String(row ? row.min_increment : 50) });
+    fields.push({ key: 'buy', label: '直購價(NT$;留空 = 不設直購。有人出到這個價就直接結標)', type: 'number', value: row && row.buy_now_price ? String(row.buy_now_price) : '' });
+    if (!row) fields.push({ key: 'starts', label: '開始時間(留空 = 立刻開始)', type: 'datetime-local', value: '' });
+    var d0 = new Date(Date.now() + 7 * 86400000); d0.setHours(21, 0, 0, 0);
+    fields.push({ key: 'ends', label: '結標時間(結標前 5 分鐘內有人出價會自動延長 5 分鐘)', type: 'datetime-local', value: localInput(row ? new Date(row.ends_at) : d0) });
+    fields.push({ key: 'note', label: '說明(尺寸、運送 / 面交、付款方式…;可留空,最多 1000 字)', type: 'area', rows: 4, value: row ? row.note || '' : '' });
+    modal({
+      title: row ? '修改競標:' + row.plant_name + ' ' + (row.indiv_label || '') : '開始競標' + (pick ? '' : ':' + plant.name),
+      hint: row ? (locked ? '已經有 ' + row.bid_count + ' 次出價(目前 NT$ ' + row.current_price + '),起標價不能再改。' : '還沒有人出價,所有欄位都可以改。')
+                : '以個體為單位。出價者要用 Google 登入;結標後到後台「競標」看得標者的 Email,自己聯絡對方(網站不收款)。',
+      fields: fields, saveLabel: row ? '儲存' : '開始競標',
+      onSave: function (v) {
+        var start = locked ? row.start_price : (String(v.start).trim() === '' ? NaN : Math.floor(+v.start));
+        var inc = Math.floor(+v.inc), buy = String(v.buy).trim() === '' ? null : Math.floor(+v.buy);
+        if (isNaN(start) || start < 0) throw new Error('請輸入起標價(0 以上的整數)。');
+        if (isNaN(inc) || inc < 1) throw new Error('每次最低加價至少要 1。');
+        if (buy !== null && (isNaN(buy) || buy <= start)) throw new Error('直購價要高於起標價。');
+        if (row && buy !== null && row.current_price != null && buy <= row.current_price) throw new Error('直購價要高於目前的出價。');
+        var ends = new Date(v.ends), starts = (!row && v.starts) ? new Date(v.starts) : null;
+        if (isNaN(ends)) throw new Error('請選擇結標時間。');
+        if (starts && isNaN(starts)) throw new Error('開始時間的格式不對。');
+        if (+ends <= Math.max(Date.now(), starts ? +starts : 0)) throw new Error('結標時間要是未來的時間,而且要在開始時間之後。');
+        var note = String(v.note || '').replace(/\r/g, '').trim();
+        if (note.length > 1000) throw new Error('說明太長了(最多 1000 字)。');
+        var body = { note: note, min_increment: inc, buy_now_price: buy, ends_at: ends.toISOString() };
+        if (!locked) body.start_price = start;
+        var req;
+        if (row) {
+          req = A.api('PATCH', 'auctions?id=eq.' + enc(row.id), body, 'return=representation');
+        } else {
+          if (fields.some(function (f) { return f.key === 'iv'; })) indiv = withIds(plant).filter(function (iv) { return iv.id === v.iv; })[0] || indiv;
+          body.individual_id = indiv.id; body.plant_key = plant.key; body.plant_name = plant.name;
+          body.indiv_label = (indiv.label || '') + (indiv.name ? ' ' + indiv.name : '');
+          if (starts) body.starts_at = starts.toISOString();
+          // 先把時間已到的舊競標標成結束,同一個個體才開得了新的一場
+          req = A.api('POST', 'rpc/settle_expired', {}).then(null, function () {}).then(function () { return A.api('POST', 'auctions', [body], 'return=representation'); });
+        }
+        return req.then(mustHit).then(function (rows) { if (done) done(rows[0]); }, function (e) { throw aucError(e); });
+      }
+    });
+  }
+  function cancelAuction(row, done) {
+    modal({
+      title: '取消競標?', hint: '「' + row.plant_name + ' ' + (row.indiv_label || '') + '」' + (row.bid_count ? '已經有 ' + row.bid_count + ' 次出價。' : '還沒有人出價。') + '取消後訪客就看不到這一場,出價紀錄也不再顯示。',
+      extra: [{ label: '確定取消競標', cls: 'danger', onClick: function (close) {
+        return A.api('PATCH', 'auctions?id=eq.' + enc(row.id), { status: 'cancelled' }, 'return=representation').then(mustHit).then(function () { close(); if (done) done(); });
+      } }]
+    });
+  }
+  function auctionBidders(row) {
+    return A.api('POST', 'rpc/auction_bidders', { a_id: row.id }).then(function (list) {
+      list = list || [];
+      var ended = row.status === 'ended' || Date.now() >= +new Date(row.ends_at);
+      modal({
+        title: '出價名單:' + row.plant_name + ' ' + (row.indiv_label || ''),
+        hint: list.length ? (ended ? '第一列是得標者。請用 Email 聯絡對方確認付款與取貨方式。' : '競標還在進行中,第一列是目前最高出價。') : '還沒有人出價。',
+        html: list.map(function (b, i) {
+          return '<div class="sfe-f" style="margin:0;padding:8px 0;border-top:1px solid rgba(255,255,255,.1)">' + (i === 0 ? '<b>' + (ended ? '得標 ' : '最高 ') + '</b>' : '') +
+            'NT$ ' + Number(b.amount).toLocaleString() + ' · ' + esc(b.display_name || '(沒有設定名稱)') + ' · ' +
+            (b.email ? '<a href="mailto:' + esc(b.email) + '" style="color:#7fd4a2">' + esc(b.email) + '</a>' : '(沒有 Email)') +
+            '<div style="font-size:12px;opacity:.6">' + esc(new Date(b.created_at).toLocaleString()) + '</div></div>';
+        }).join('')
+      });
+    }, function (e) { modal({ title: '讀不到出價名單', hint: (e && e.message) || '' }); });
+  }
+
   // 登入視窗(訪客與管理者共用)。只提供 Google 登入:第一次登入會自動建立帳號,等於註冊
   function login(done, returnQuery) {
     modal({
@@ -350,5 +451,6 @@
   window.SWFEdit = { ready: ready, modal: modal, login: login, account: account, note: safe(note), sources: safe(sources), setCover: setCover,
     coverPicker: safe(coverPicker), article: safe(article), removeArticle: safe(removeArticle),
     loadPrivate: loadPrivate, mergePrivate: mergePrivate, clearPrivate: clearPrivate,
-    about: safe(about), moveArticle: moveArticle };
+    about: safe(about), moveArticle: moveArticle,
+    auction: safe(auction), cancelAuction: safe(cancelAuction), auctionBidders: auctionBidders };
 })();

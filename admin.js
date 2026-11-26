@@ -1,12 +1,12 @@
 /* ===== admin.js — 後台頁面(admin.html)=====
-   分頁:植物(介紹 / 來源·母株 / 封面)、知識庫(新增 / 編輯 / 刪除 / 排序)、關於頁、留言(隱藏 / 顯示 / 刪除)、詢問單、同步(收件匣、紀錄、立即同步、待寫回的修改)
+   分頁:植物(介紹 / 來源·母株 / 封面)、知識庫(新增 / 編輯 / 刪除 / 排序)、關於頁、競標(開標 / 修改 / 取消 / 出價名單)、留言(隱藏 / 顯示 / 刪除)、詢問單、同步(收件匣、紀錄、立即同步、待寫回的修改)
    編輯視窗與寫入邏輯都在 edit.js(和網站內編輯共用);這裡只負責清單與版面。
 */
 (function () {
   'use strict';
   var A = window.SWFAuth, E = window.SWFEdit, CFG = window.SWF_BACKEND || {};
   var root = document.getElementById('root');
-  var st = { tab: 'plants', q: '', only: 'all', plants: [], inbox: [], runs: [], pending: null, err: '', inq: [], inqOnly: 'new', busy: false, cm: [], cmOnly: 'all', views: {} };
+  var st = { tab: 'plants', q: '', only: 'all', plants: [], inbox: [], runs: [], pending: null, err: '', inq: [], inqOnly: 'new', busy: false, cm: [], cmOnly: 'all', views: {}, auc: [], aucOk: true };
 
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; }); }
   function when(iso) { if (!iso) return ''; var d = new Date(iso); return d.getFullYear() + '.' + ('0' + (d.getMonth() + 1)).slice(-2) + '.' + ('0' + d.getDate()).slice(-2) + ' ' + ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2); }
@@ -38,7 +38,8 @@
         A.api('GET', 'inquiries?select=id,created_at,name,contact,items,message,status&order=created_at.desc&limit=300').then(null, function () { return []; }),
         A.api('GET', 'comments?select=id,plant_key,body,created_at,user_id,is_hidden&order=created_at.desc&limit=300').then(null, function () { return []; }),
         A.api('GET', 'comments_public?select=id,display_name&order=created_at.desc&limit=300').then(null, function () { return []; }),
-        A.api('GET', 'views?select=plant_key,count&limit=5000').then(null, function () { return []; })
+        A.api('GET', 'views?select=plant_key,count&limit=5000').then(null, function () { return []; }),
+        loadAuctions()
       ]);
     }).then(function (r) {
       st.inbox = r[0] || []; st.runs = r[1] || []; st.pending = r[2]; st.inq = r[3] || [];
@@ -46,6 +47,13 @@
       st.cm = (r[4] || []).map(function (c) { c.display_name = names[c.id] || ''; return c; });
       st.views = {}; (r[6] || []).forEach(function (v) { st.views[v.plant_key] = v.count; });
     });
+  }
+
+  // 競標:先把時間到了的標成結束,再讀全部(資料庫還沒有競標的表 → aucOk = false)
+  function loadAuctions() {
+    return A.api('POST', 'rpc/settle_expired', {}).then(null, function () {}).then(function () {
+      return A.api('GET', 'auctions?select=*&order=id.desc&limit=300');
+    }).then(function (r) { st.auc = r || []; st.aucOk = true; }, function () { st.auc = []; st.aucOk = false; });
   }
 
   // ---------- 畫面 ----------
@@ -98,6 +106,42 @@
       '<a class="btn" target="_blank" href="index.html">到網站看(大廳 →「關於」)</a></div>' +
       '<div class="about-pre">' + (lines.length ? lines.map(function (l) { return l === '' ? '<br>' : '<div>' + esc(l) + '</div>'; }).join('') : '<p class="mute">還沒有內容。</p>') + '</div></div>';
   }
+
+  // 競標
+  function aucPhase(a) {
+    if (a.status === 'cancelled') return 'cancelled';
+    if (a.status === 'ended' || Date.now() >= +new Date(a.ends_at)) return 'ended';
+    return Date.now() < +new Date(a.starts_at) ? 'soon' : 'live';
+  }
+  function aucTodo() { return st.auc.filter(function (a) { return aucPhase(a) === 'ended' && !a.handled && a.bid_count > 0; }).length; }
+  function nt(n) { return 'NT$ ' + Number(n).toLocaleString(); }
+  function aucRow(a) {
+    var ph = aucPhase(a), p = plantOf(a.plant_key);
+    var tag = ph === 'live' ? '<span class="badge g">進行中</span>' : ph === 'soon' ? '<span class="badge">即將開始</span>'
+            : ph === 'cancelled' ? '<span class="badge">已取消</span>' : (a.bid_count ? (a.handled ? '<span class="badge g">已處理</span>' : '<span class="badge">待聯絡得標者</span>') : '<span class="badge">流標</span>');
+    var price = a.current_price == null ? '起標 ' + nt(a.start_price) + ' · 還沒有人出價' : (ph === 'ended' ? '得標 ' : '目前 ') + nt(a.current_price) + ' · ' + a.bid_count + ' 次出價';
+    var b = '';
+    if (ph === 'live' || ph === 'soon') b += '<button class="btn sm" data-a="auc-edit" data-id="' + a.id + '">修改</button><button class="btn sm" data-a="auc-cancel" data-id="' + a.id + '">取消競標</button>';
+    if (a.bid_count) b += '<button class="btn sm' + (ph === 'ended' && !a.handled ? ' pri' : '') + '" data-a="auc-bidders" data-id="' + a.id + '">' + (ph === 'ended' ? '得標者 / 出價名單' : '出價名單') + '</button>';
+    if (ph === 'ended' && a.bid_count) b += '<button class="btn sm" data-a="auc-handled" data-id="' + a.id + '" data-h="' + (a.handled ? '0' : '1') + '">' + (a.handled ? '改回未處理' : '標為已處理') + '</button>';
+    if (a.individual_id) b += '<a class="btn sm" target="_blank" href="index.html?id=' + encodeURIComponent(a.individual_id) + '">開啟</a>';
+    return '<div class="row inq"><div class="nm">' + tag + ' ' + esc(a.plant_name) + ' ' + esc(a.indiv_label || '') + '<small>' + esc(a.individual_id || (p ? '' : '(個體已不存在)')) + '</small>' +
+      '<div class="inq-b">' + price + (a.buy_now_price ? ' · 直購 ' + nt(a.buy_now_price) : '') + ' · 每次加 ' + nt(a.min_increment) + '</div>' +
+      '<div class="inq-b">' + (ph === 'soon' ? '開始 ' + when(a.starts_at) + ' · ' : '') + (ph === 'ended' ? '已結標 ' : '結標 ') + when(a.ends_at) + (a.ended_reason === 'buy_now' ? '(直購成交)' : '') + '</div>' +
+      (a.note ? '<div class="inq-b inq-msg">' + esc(a.note) + '</div>' : '') + '</div>' + b + '</div>';
+  }
+  function aucTab() {
+    if (!st.aucOk) return '<div class="card"><h2>競標</h2><p class="bad">資料庫還沒有競標功能。請到 Supabase → SQL Editor 執行 <b>Docs/migrations/swf_005_auctions.sql</b>,再回來按「重新整理」。</p></div>';
+    var act = st.auc.filter(function (a) { var p = aucPhase(a); return p === 'live' || p === 'soon'; });
+    var todo = st.auc.filter(function (a) { return aucPhase(a) === 'ended' && !a.handled && a.bid_count > 0; });
+    var rest = st.auc.filter(function (a) { return act.indexOf(a) < 0 && todo.indexOf(a) < 0; });
+    function sec(title, list, empty) { return '<div class="card"><h2>' + title + ' <span class="mute">' + list.length + '</span></h2>' + (list.length ? list.map(aucRow).join('') : '<p class="mute">' + empty + '</p>') + '</div>'; }
+    return '<div class="tools"><button class="btn pri" data-a="auc-new">+ 開始新的競標</button>' +
+        '<span class="mute">也可以在網站的植物頁按「🔨 開始競標這個個體」。結標後這裡會出現得標者的 Email,由你自己聯絡(網站不收款)。</span></div>' +
+      sec('已結標,待聯絡得標者', todo, '沒有待處理的。') + sec('進行中 / 即將開始', act, '目前沒有進行中的競標。') + sec('已處理 / 流標 / 已取消', rest, '還沒有紀錄。');
+  }
+  function aucById(id) { for (var i = 0; i < st.auc.length; i++) if (String(st.auc[i].id) === String(id)) return st.auc[i]; return null; }
+  function reloadAuc() { return loadAuctions().then(view); }
 
   // 留言:全部留言(含已隱藏),可隱藏 / 重新顯示 / 刪除
   function plantOf(key) { for (var i = 0; i < st.plants.length; i++) if (st.plants[i].key === key) return st.plants[i]; return null; }
@@ -183,12 +227,13 @@
     var s = A.session() || { user: {} };
     var newInq = st.inq.filter(function (x) { return x.status === 'new'; }).length;
     var nCm = st.tab === 'cm' ? 0 : cmNew();
-    var tabs = [['plants', '植物'], ['kb', '知識庫'], ['about', '關於頁'], ['cm', '留言' + (nCm ? '<span class="badge">' + nCm + '</span>' : '')], ['inq', '詢問單' + (newInq ? '<span class="badge">' + newInq + '</span>' : '')], ['sync', '同步' + (st.inbox.length ? '<span class="badge">' + st.inbox.length + '</span>' : '')]];
+    var nAuc = aucTodo();
+    var tabs = [['plants', '植物'], ['kb', '知識庫'], ['about', '關於頁'], ['auc', '競標' + (nAuc ? '<span class="badge">' + nAuc + '</span>' : '')], ['cm', '留言' + (nCm ? '<span class="badge">' + nCm + '</span>' : '')], ['inq', '詢問單' + (newInq ? '<span class="badge">' + newInq + '</span>' : '')], ['sync', '同步' + (st.inbox.length ? '<span class="badge">' + st.inbox.length + '</span>' : '')]];
     root.innerHTML = '<header><h1>StagwithyouFerns 後台</h1><span class="sp"></span><span class="mute">' + esc(s.user.email || '') + '</span>' +
       '<a class="btn sm" href="index.html">回網站</a><button class="btn sm" data-a="reload">重新整理</button><button class="btn sm" data-a="out">登出</button></header>' +
       (st.err ? '<p class="err">' + esc(st.err) + '</p>' : '') +
       '<div class="tabs">' + tabs.map(function (t) { return '<div class="tab' + (st.tab === t[0] ? ' on' : '') + '" data-tab="' + t[0] + '">' + t[1] + '</div>'; }).join('') + '</div>' +
-      (st.tab === 'plants' ? plantsTab() : st.tab === 'kb' ? kbTab() : st.tab === 'about' ? aboutTab() : st.tab === 'cm' ? cmTab() : st.tab === 'inq' ? inqTab() : syncTab());
+      (st.tab === 'plants' ? plantsTab() : st.tab === 'kb' ? kbTab() : st.tab === 'about' ? aboutTab() : st.tab === 'auc' ? aucTab() : st.tab === 'cm' ? cmTab() : st.tab === 'inq' ? inqTab() : syncTab());
     var q = document.getElementById('q');
     if (q) q.oninput = function () { st.q = q.value; var pos = q.selectionStart; view(); var n = document.getElementById('q'); n.focus(); n.setSelectionRange(pos, pos); };
   }
@@ -215,6 +260,19 @@
         .then(function () { st.busy = false; view(); }, function (er) { st.busy = false; st.err = '排序沒有成功:' + er.message; view(); });
     }
     else if (a === 'about') E.about(view);
+    else if (a === 'auc-new') E.auction({ plants: st.plants }, reloadAuc);
+    else if (a === 'auc-edit') E.auction({ row: aucById(t.getAttribute('data-id')) }, reloadAuc);
+    else if (a === 'auc-cancel') E.cancelAuction(aucById(t.getAttribute('data-id')), reloadAuc);
+    else if (a === 'auc-bidders') E.auctionBidders(aucById(t.getAttribute('data-id')));
+    else if (a === 'auc-handled') {
+      t.disabled = true;
+      var hv = t.getAttribute('data-h') === '1', hid = t.getAttribute('data-id');
+      A.api('PATCH', 'auctions?id=eq.' + hid, { handled: hv }, 'return=representation').then(function (rows) {
+        if (!rows || !rows.length) throw new Error('沒有改到資料');
+        var x = aucById(hid); if (x) x.handled = hv;
+        st.err = ''; view();
+      }).then(null, function (er) { st.err = '沒有更新:' + er.message; view(); });
+    }
     else if (a === 'cm-hide') {
       t.disabled = true;
       var hide = t.getAttribute('data-h') === '1';

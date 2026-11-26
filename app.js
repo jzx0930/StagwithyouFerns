@@ -18,6 +18,7 @@
       icon: '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M13.6 21v-7.1h2.4l.4-2.9h-2.8V9.1c0-.8.3-1.4 1.5-1.4h1.4V5.1c-.7-.1-1.5-.2-2.4-.2-2.4 0-3.9 1.4-3.9 4v2.1H7.7v2.9h2.5V21h3.4z"/></svg>' }
   ];
   var SOC = window.SWFSocial || null;   // 互動功能(瀏覽數 / 收藏 / 留言);沒有載入就是 null
+  var AUC = window.SWFAuction || null;  // 競標;沒有載入就是 null
   function socialBar() {
     var about = '<span class="social-link about-link" data-act="about" role="button" tabindex="0" aria-label="關於" title="關於">關於</span>';
     var kb = '<span class="social-link about-link" data-act="knowledge" role="button" tabindex="0" aria-label="知識庫" title="知識庫">知識庫</span>';
@@ -26,7 +27,10 @@
       ? '<span class="social-link about-link" data-act="account" role="button" tabindex="0" aria-label="' + (logged ? '帳號' : '登入') + '" title="' + (logged ? '帳號' : '登入 / 註冊') + '">' + (logged ? '帳號' : '登入') + '</span>' : '';
     var favs = (logged && SOC && SOC.on())
       ? '<span class="social-link about-link" data-act="favs" role="button" tabindex="0" aria-label="我的收藏" title="我的收藏">收藏</span>' : '';
-    var nav = '<span class="nav-links">' + about + kb + favs + acct + '</span>';
+    var nAuc = (AUC && AUC.any()) ? AUC.attention() : 0;
+    var auc = (AUC && AUC.any())
+      ? '<span class="social-link about-link" data-act="auctions" role="button" tabindex="0" aria-label="競標" title="競標">競標' + (nAuc ? '<i class="nav-badge">' + nAuc + '</i>' : '') + '</span>' : '';
+    var nav = '<span class="nav-links">' + about + kb + auc + favs + acct + '</span>';
     return '<div class="social-bar" data-lay="lobby.social">' + nav + SOCIAL.map(function (s) {
       return '<a class="social-link" href="' + s.url + '" target="_blank" rel="noopener noreferrer" aria-label="' + s.name + '" title="' + s.name + '">' + s.icon + '<span>' + s.name + '</span></a>';
     }).join('') + '</div>';
@@ -587,6 +591,7 @@
       '<div class="pc-cover">' + ph + cover +
         (p.pid ? '<span class="pc-pid">' + esc(p.pid) + '</span>' : '') +
         '<span class="pc-count">' + photoCount(p) + ' 張</span>' +
+        (AUC && AUC.liveFor(p.key) ? '<span class="pc-auc">競標中</span>' : '') +
         (SOC && SOC.isFav(p.key) ? '<span class="pc-fav" title="已收藏" aria-label="已收藏">♥</span>' : '') + '</div>' +
       '<div class="pc-body">' +
         '<div class="pc-name">' + esc(p.name) + '</div>' +
@@ -609,6 +614,24 @@
              : '<p class="soc-mute" style="margin-top:30px">' + (state.logged ? '還沒有收藏任何植物。' : '登入後才能收藏植物。') + '</p>') +
       '</div>';
     animCards('#app .plant-card', 20);
+  }
+
+  // 競標列表(進行中 / 即將開始 / 我的出價 / 最近結標)
+  function findIndiv(id) {
+    var data = state.data || [];
+    for (var i = 0; i < data.length; i++) {
+      var ivs = normIndiv(data[i]);
+      for (var k = 0; k < ivs.length; k++) if (ivs[k].id === id) return { p: data[i], iv: ivs[k], i: i, k: k };
+    }
+    return null;
+  }
+  function renderAuctions() {
+    app.innerHTML = '<div class="wrap">' +
+      '<div class="back-row"><span class="pill-btn" data-act="lobby">← 回到分類大廳</span></div>' +
+      headerHTML('Auctions · 競標', '競標', '用 Google 登入就能出價。結標後由站主聯絡得標者,網站不收款。', false) +
+      (AUC ? AUC.pageHTML({ find: findIndiv, img: driveImg }) : '') +
+      '</div>';
+    animCards('#app .auc-card', 20);
   }
 
   function renderGrid() {
@@ -853,8 +876,10 @@
       '</div>' +
       '<div class="metrics" data-lay="detail.metrics">' + metricsHtml + '</div>' +
       (SOC && !diaryMode ? SOC.barHTML(sel) : '') +
+      (AUC && !diaryMode ? AUC.blockHTML(cur.id) : '') +
       shopRow(sel, state.selected, true) +
-      (state.admin && !diaryMode ? '<div class="ed-bar ed-center">' + edBtn('ed-note', '✎ 編輯介紹') + '</div>' : '') +
+      (state.admin && !diaryMode ? '<div class="ed-bar ed-center">' + edBtn('ed-note', '✎ 編輯介紹') +
+        (AUC && AUC.on() && cur.id && !(AUC.forIndiv(cur.id) && AUC._phase(AUC.forIndiv(cur.id)) !== 'ended') ? edBtn('ed-auc', '🔨 開始競標這個個體') : '') + '</div>' : '') +
       (noteOf(sel) ? '<div class="plant-intro" data-lay="detail.intro">' + fmtNote(noteOf(sel)) + '</div>'
         : (state.admin && !diaryMode ? '<div class="plant-intro ed-empty">這株還沒有介紹</div>' : '')) +
       (function () {
@@ -877,6 +902,7 @@
       '<div class="detail-footer"><span class="pill-btn" data-act="back-grid">↑ 回到照片牆</span></div>' +
     '</div>';
     if (SOC && !diaryMode) SOC.mount(sel, { admin: state.admin, id: curId });   // 計瀏覽、填收藏狀態與留言
+    if (AUC) { if (!diaryMode) AUC.mount({ indivId: cur.id, admin: state.admin, id: curId }); else AUC.stop(); }
   }
 
   function edBtn(act, label, extra) { return '<span class="ed-btn" data-act="' + act + '"' + (extra || '') + '>' + label + '</span>'; }
@@ -891,12 +917,14 @@
 
   function render() {
     if (state.view !== 'detail') _lastTyped = -1;   // 離開詳情後,下次再進同一株會重打
+    if (AUC && state.view !== 'detail') AUC.stop(); // 離開詳情頁就停掉競標的倒數與定時更新
     if (state.view === 'lobby') renderLobby();
     else if (state.view === 'grid') renderGrid();
     else if (state.view === 'about') renderAbout();
     else if (state.view === 'knowledge') renderKnowledge();
     else if (state.view === 'article') renderArticle();
     else if (state.view === 'favs') renderFavs();
+    else if (state.view === 'auctions') renderAuctions();
     else renderDetail();
     if (window.__fxMode) window.__fxMode(state.view);
     wireInteractions();   // 掛上滑鼠傾斜 / 磁吸(每次重繪後重掛)
@@ -930,6 +958,14 @@
     if (act === 'about') { go('about'); }
     else if (act === 'knowledge') { go('knowledge'); }
     else if (act === 'favs') { go('favs'); }
+    else if (act === 'auctions') {
+      go('auctions');
+      if (AUC) AUC.load().then(function (ch) { if (ch && state.view === 'auctions') render(); });   // 進頁面時再讀一次最新出價
+    }
+    else if (act === 'open-auc') { var fa = findIndiv(t.getAttribute('data-iv')); if (fa) openFromSearch(fa.i, fa.k); }
+    else if (act === 'ed-auc') {
+      window.SWFEdit.auction({ plant: curPlant(), indiv: curIndiv() }, function () { AUC.load().then(render); });
+    }
     else if (act === 'account') {
       if (window.SWFAuth.session()) window.SWFEdit.account(!!state.admin, refreshAuth);
       else window.SWFEdit.login(refreshAuth);
@@ -1161,8 +1197,10 @@
       var priv = ok ? E.loadPrivate() : Promise.resolve(E.clearPrivate());
       return priv.then(function (privChanged) {
         return (SOC ? SOC.sync() : Promise.resolve(false)).then(function (favChanged) {      // 登入者自己的收藏
-          if (state.view === 'favs' && !logged) state.view = 'lobby';
-          if ((changed || privChanged || favChanged) && state.data) render();     // 訪客(沒登入)不會多畫一次,不干擾開場動畫
+          return (AUC ? AUC.load() : Promise.resolve(false)).then(function (aucChanged) {     // 競標(沒有任何競標時不會多畫一次)
+            if (state.view === 'favs' && !logged) state.view = 'lobby';
+            if ((changed || privChanged || favChanged || aucChanged) && state.data) render();     // 訪客(沒登入)不會多畫一次,不干擾開場動畫
+          });
         });
       });
     });
