@@ -1382,7 +1382,7 @@
       "category": "鹿角蕨",
       "date": "2026.08.29",
       "note": "",
-      "cover": "1z5KhDJ3pRJByTaQSaaLH7qwKPS-w4JQt",
+      "cover": "16bJntqDVhEEkJCD38x-qSa6Z5M1b4SgS",
       "individuals": [
         {
           "label": "",
@@ -1447,7 +1447,8 @@
         }
       ],
       "pid": "PL-013",
-      "fid": "1XzRdOXoeVPSBGRP-nbkeW538yIsc8IUp"
+      "fid": "1XzRdOXoeVPSBGRP-nbkeW538yIsc8IUp",
+      "coverLocked": true
     },
     {
       "name": "深綠龍",
